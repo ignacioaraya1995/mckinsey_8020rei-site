@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One-Page SCR Memo Template — 8020IQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:#FAF8F5; --warm-white:#F5F3EF; --charcoal:#18181B;
+    --emerald:#10B981; --emerald-dark:#059669;
+    --text:#1C1C1E; --text-2:#636366; --text-3:#8E8E93;
+    --line:#E8E4DE; --line-strong:#DDD7CE;
+    --accent:var(--emerald); --accent-strong:var(--emerald-dark);
+    --accent-wash:rgba(16,185,129,0.10);
+    --font-display:'DM Sans',-apple-system,sans-serif;
+    --font-body:'Inter',-apple-system,sans-serif;
+    --font-mono:'JetBrains Mono',Menlo,Consolas,monospace;
+    --r-card:16px; --r-pill:9999px;
+    --shadow-rest:0 1px 2px rgba(0,0,0,0.04),0 1px 6px rgba(0,0,0,0.04);
+    color-scheme:light;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--cream); color:var(--text); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  ::selection { background:var(--accent-wash); }
+  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
+  @media (min-width:768px) { .wrap { padding:0 48px; } }
+  h1,h2,h3 { font-family:var(--font-display); font-weight:700; color:var(--text); margin:0; text-wrap:balance; }
+  p { margin:0 0 16px; }
+  a { color:var(--accent-strong); }
+  .eyebrow { font-family:var(--font-mono); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-strong); }
+  .topnav { position:sticky; top:0; z-index:50; background:color-mix(in srgb,var(--cream) 86%,transparent); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+  .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:18px; height:54px; }
+  .nav-brand { display:flex; align-items:center; gap:9px; font-family:var(--font-display); font-weight:800; font-size:15px; color:var(--text); text-decoration:none; }
+  .nav-brand .iso { width:20px; height:20px; border-radius:50%; background:conic-gradient(from 20deg,var(--accent-strong) 0 75%,rgba(5,150,105,0.35) 75% 100%); -webkit-mask:radial-gradient(circle,transparent 46%,#000 47%); mask:radial-gradient(circle,transparent 46%,#000 47%); }
+  .nav-back { font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--text-3); text-decoration:none; padding:6px 12px; border-radius:var(--r-pill); }
+  .nav-back:hover { color:var(--accent-strong); background:var(--accent-wash); }
+  header.hero { padding:52px 0 34px; border-bottom:1px solid var(--line); background-image:linear-gradient(to right,rgba(0,0,0,0.03) 1px,transparent 1px),linear-gradient(to bottom,rgba(0,0,0,0.03) 1px,transparent 1px); background-size:32px 32px; }
+  header.hero h1 { font-size:clamp(26px,3.6vw,38px); font-weight:800; line-height:1.1; margin:12px 0; }
+  header.hero .doc-sub { font-size:16px; color:var(--text-2); max-width:640px; margin:0; }
+  section { padding:42px 0; }
+
+  /* the memo, rendered as a one-page sheet */
+  .memo { background:#FFFFFF; border:1px solid var(--line-strong); border-radius:var(--r-card); box-shadow:var(--shadow-rest); padding:36px 40px; max-width:760px; margin:0 auto; }
+  @media (max-width:600px) { .memo { padding:24px 20px; } }
+  .memo-meta { display:flex; flex-wrap:wrap; gap:10px 24px; font-size:13.5px; color:var(--text-2); padding-bottom:16px; border-bottom:1px solid var(--line); margin-bottom:22px; }
+  .memo-meta b { color:var(--text); }
+  .blank { font-family:var(--font-mono); color:var(--text-3); }
+  .memo h2 { font-size:17px; margin:26px 0 8px; }
+  .memo h2 .tag { font-family:var(--font-mono); font-weight:600; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent-strong); margin-right:8px; }
+  .memo p, .memo li { font-size:14.5px; color:var(--text-2); }
+  .memo ul, .memo ol { padding-left:20px; margin:0 0 10px; }
+  .memo li { margin-bottom:8px; }
+  .memo b { color:var(--text); }
+  .rec { margin:0; padding:16px 20px; border-left:3px solid var(--accent-strong); background:var(--accent-wash); border-radius:0 10px 10px 0; font-size:15px; color:var(--text); }
+  .harvest { margin:8px 0 0; padding:14px 18px; border:1px dashed var(--line-strong); border-radius:10px; font-size:13.5px; color:var(--text-2); }
+  .checklist { margin-top:26px; padding-top:16px; border-top:1px solid var(--line); font-size:13.5px; color:var(--text-2); }
+  .checklist b { color:var(--text); }
+  code.inline { font-family:var(--font-mono); background:var(--accent-wash); padding:2px 6px; border-radius:4px; font-size:0.85em; color:var(--accent-strong); }
+  footer { padding:6px 0 48px; font-size:13px; color:var(--text-3); }
+  @media print { .topnav, header.hero, footer { display:none !important; } .memo { border:none; box-shadow:none; padding:0; } body { background:#fff; } }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Site">
+  <div class="wrap nav-inner">
+    <a class="nav-brand" href="index.html"><span class="iso" aria-hidden="true"></span>8020IQ</a>
+    <a class="nav-back" href="index.html">&larr; All documents</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Template — Post-Work Deliverable</span>
+    <h1>One-Page Diagnostic Memo (SCR)</h1>
+    <p class="doc-sub">One page. Recommendation first. At most three exhibits. Scored with the case rubric. Print this page (⌘P) to get a clean blank template.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="memo">
+      <div class="memo-meta">
+        <span><b>Client:</b> <span class="blank">__________</span></span>
+        <span><b>Author:</b> <span class="blank">__________</span></span>
+        <span><b>Date:</b> <span class="blank">__________</span></span>
+        <span style="flex-basis:100%;"><b>KPI flagged:</b> <span class="blank">__________</span> <i>(e.g., Appt → Contract, was ___% now ___%, baseline source: ______)</i></span>
+      </div>
+
+      <h2>Recommendation <i style="font-weight:400; font-size:12.5px; color:var(--text-3);">— write this first, one sentence</i></h2>
+      <p class="rec">We should <b>[specific action]</b> because <b>[confirmed root cause]</b>, which we expect to recover <b>[$ or # per month]</b> within <b>[horizon]</b>.</p>
+
+      <h2><span class="tag">S</span>Situation <i style="font-weight:400; font-size:12.5px; color:var(--text-3);">— facts only, no advocacy</i></h2>
+      <p>2–3 sentences: the client's normal state. Funnel volumes/rates at baseline, spend, market context. Numbers, not adjectives.</p>
+
+      <h2><span class="tag">C</span>Complication <i style="font-weight:400; font-size:12.5px; color:var(--text-3);">— why act now</i></h2>
+      <p>2–3 sentences: what broke, when, how big. Include the timing correlation if there is one ("the decline began the week X changed").</p>
+
+      <h2><span class="tag">R</span>Resolution <i style="font-weight:400; font-size:12.5px; color:var(--text-3);">— most of the page</i></h2>
+      <ul>
+        <li><b>Root cause, with evidence:</b> the segmentation or comparison that confirmed it (Exhibit 1/2). State which hypotheses were ruled out and by what.</li>
+        <li><b>Action plan:</b> who does what by when.</li>
+        <li><b>Size of the prize:</b> recovered contracts/deals × close rate × avg profit.</li>
+        <li><b>Risk &amp; monitoring:</b> the one metric to watch weekly, against what baseline, and the decision trigger if it doesn't recover.</li>
+      </ul>
+
+      <h2>Exhibits <i style="font-weight:400; font-size:12.5px; color:var(--text-3);">— max 3</i></h2>
+      <ol>
+        <li>Funnel before/after (stage rates, broken stage highlighted)</li>
+        <li>The confirming segmentation (by county / rep / channel / price band)</li>
+        <li>Optional: change log or market-context rule-out</li>
+      </ol>
+
+      <h2>Playbook entry proposed <i style="font-weight:400; font-size:12.5px; color:var(--text-3);">— the harvest</i></h2>
+      <p class="harvest">KPI: ______ · Hypothesis confirmed: ______ · Test that confirmed it: ______ · Action: ______<br>
+      <i>This row gets added to the <a href="diagnostic-playbook.html">Diagnostic Playbook</a> §3 in Session 2.</i></p>
+
+      <p class="checklist"><b>Checklist before submitting:</b> recommendation is the first sentence · every number has a source · at least two hypotheses explicitly ruled out · one monitoring metric named · fits on one page.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Rendered from <code class="inline">templates/scr-memo-template.md</code> — the markdown file is the source of truth.</p>
+  </div>
+</footer>
+
+</body>
+</html>

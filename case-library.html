@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Library — Run &amp; Author Cases — 8020IQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:#FAF8F5; --warm-white:#F5F3EF; --charcoal:#18181B;
+    --emerald:#10B981; --emerald-dark:#059669;
+    --text:#1C1C1E; --text-2:#636366; --text-3:#8E8E93;
+    --line:#E8E4DE; --line-strong:#DDD7CE;
+    --accent:var(--emerald); --accent-strong:var(--emerald-dark);
+    --accent-wash:rgba(16,185,129,0.10); --alert:#DC2626;
+    --font-display:'DM Sans',-apple-system,sans-serif;
+    --font-body:'Inter',-apple-system,sans-serif;
+    --font-mono:'JetBrains Mono',Menlo,Consolas,monospace;
+    --r-card:16px; --r-pill:9999px;
+    --shadow-rest:0 1px 2px rgba(0,0,0,0.04),0 1px 6px rgba(0,0,0,0.04);
+    color-scheme:light;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--cream); color:var(--text); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  ::selection { background:var(--accent-wash); }
+  .wrap { max-width:960px; margin:0 auto; padding:0 24px; }
+  @media (min-width:768px) { .wrap { padding:0 48px; } }
+  h1,h2,h3,h4 { font-family:var(--font-display); font-weight:700; color:var(--text); margin:0; text-wrap:balance; }
+  p { margin:0 0 16px; }
+  a { color:var(--accent-strong); }
+  .eyebrow { font-family:var(--font-mono); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-strong); }
+  .topnav { position:sticky; top:0; z-index:50; background:color-mix(in srgb,var(--cream) 86%,transparent); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+  .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:18px; height:54px; }
+  .nav-brand { display:flex; align-items:center; gap:9px; font-family:var(--font-display); font-weight:800; font-size:15px; color:var(--text); text-decoration:none; }
+  .nav-brand .iso { width:20px; height:20px; border-radius:50%; background:conic-gradient(from 20deg,var(--accent-strong) 0 75%,rgba(5,150,105,0.35) 75% 100%); -webkit-mask:radial-gradient(circle,transparent 46%,#000 47%); mask:radial-gradient(circle,transparent 46%,#000 47%); }
+  .nav-back { font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--text-3); text-decoration:none; padding:6px 12px; border-radius:var(--r-pill); }
+  .nav-back:hover { color:var(--accent-strong); background:var(--accent-wash); }
+  header.hero { padding:52px 0 34px; border-bottom:1px solid var(--line); background-image:linear-gradient(to right,rgba(0,0,0,0.03) 1px,transparent 1px),linear-gradient(to bottom,rgba(0,0,0,0.03) 1px,transparent 1px); background-size:32px 32px; }
+  header.hero h1 { font-size:clamp(26px,3.6vw,38px); font-weight:800; line-height:1.1; margin:12px 0; }
+  header.hero .doc-sub { font-size:16px; color:var(--text-2); max-width:660px; margin:0; }
+  section { padding:42px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type { border-bottom:none; }
+  section h2 { font-size:22px; margin-bottom:8px; }
+  .lede { color:var(--text-2); max-width:700px; margin-bottom:22px; }
+  .lede b { color:var(--text); }
+  ul.tight,ol.tight { padding-left:20px; color:var(--text-2); max-width:720px; }
+  ul.tight li,ol.tight li { margin-bottom:9px; }
+  ul.tight b,ol.tight b { color:var(--text); }
+  .table-scroll { overflow-x:auto; }
+  table.data { width:100%; border-collapse:collapse; margin:18px 0; font-size:14px; }
+  table.data th { font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--text-2); text-align:left; padding:10px 12px; border-bottom:1px solid var(--line-strong); }
+  table.data td { padding:11px 12px; border-bottom:1px solid var(--line); color:var(--text-2); vertical-align:top; }
+  table.data tbody tr:nth-child(even) { background:var(--warm-white); }
+  table.data td b { color:var(--text); }
+  td.mono { font-family:var(--font-mono); font-size:12.5px; color:var(--accent-strong); white-space:nowrap; }
+  td.strong { color:var(--text); font-weight:600; }
+  td.good { color:var(--accent-strong); font-weight:600; }
+  .callout { position:relative; padding:20px 24px; margin:22px 0; max-width:760px; }
+  .callout::before,.callout::after { content:""; position:absolute; width:14px; height:14px; border:1.4px solid var(--accent-strong); }
+  .callout::before { top:0; left:0; border-right:none; border-bottom:none; }
+  .callout::after { bottom:0; right:0; border-left:none; border-top:none; }
+  .callout p { font-size:14.5px; color:var(--text-2); margin:0 0 10px; }
+  .callout p:last-child { margin:0; }
+  .callout b { color:var(--text); }
+  code.inline { font-family:var(--font-mono); background:var(--accent-wash); padding:2px 6px; border-radius:4px; font-size:0.85em; color:var(--accent-strong); }
+  footer { padding:26px 0 48px; font-size:13px; color:var(--text-3); }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Site">
+  <div class="wrap nav-inner">
+    <a class="nav-brand" href="index.html"><span class="iso" aria-hidden="true"></span>8020IQ</a>
+    <a class="nav-back" href="index.html">&larr; All documents</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">2 · Practice — Facilitator Manual</span>
+    <h1>Case Library — How to Run &amp; Author Cases</h1>
+    <p class="doc-sub">Wholesale-REI case interviews in the McKinsey interviewer-led format, used as the live-session core of the <a href="8020IQ-Training-Program.html">training program</a>. The cases themselves — prompts, exhibits, answers — live in the password-protected <a href="interview-cases.html">Interview Casefile</a> (facilitators only).</p>
+  </div>
+</header>
+
+<section id="running">
+  <div class="wrap">
+    <h2>Running a case (facilitator)</h2>
+    <ul class="tight">
+      <li><b>Format: interviewer-led.</b> You control direction and provide data only when asked — the candidate must ask for exhibits and segmentations, not receive them upfront.</li>
+      <li><b>Time box:</b> 45–60 min. Participants work in pairs (one leads, one seconds); rotate at each question.</li>
+      <li><b>Score</b> with the rubric in each case file (Structure / Quant / Insight / Synthesis / Coachability, 1–5).</li>
+      <li><b>Coach, don't rescue:</b> each case file has scripted coaching prompts for stuck candidates. Use them verbatim before improvising.</li>
+      <li><b>Debrief mapping</b> (do this every time): prompt = Step 1 (define) · Q1 = Step 2 (structure) · choosing what to test first = Step 3 (prioritize) · asking for exhibits = Step 4 (plan) · the math = Step 5 (analyze) · Q4 = Steps 6–7 (synthesize &amp; recommend).</li>
+    </ul>
+  </div>
+</section>
+
+<section id="authoring">
+  <div class="wrap">
+    <h2>Authoring a new case</h2>
+    <p class="lede">Every case follows the same skeleton — see Case 01 (Lone Star) in the <a href="interview-cases.html">Interview Casefile</a> as the model:</p>
+    <ol class="tight">
+      <li><b>Opening prompt</b> — fictional client, one headline symptom, one owner quote. Keep spend/volume numbers loadable into the GNACC calculator.</li>
+      <li><b>Q1 — Structure:</b> "what framework?" Expected answer: funnel-first + the three diagnostic pillars + market. Include a coaching prompt.</li>
+      <li><b>Q2 — Quant exhibit:</b> before/after funnel table. Exactly <b>one</b> stage-conversion breaks; everything else stays stable. Candidate must isolate it and size the $ prize.</li>
+      <li><b>Q3 — Brainstorm:</b> MECE hypothesis set for that broken stage, then "what do you test first?" The taught move: <b>segment before you theorize</b> + <b>check the change log</b>. Exhibit 2 = a segmentation + a change-log note that together confirm one hypothesis.</li>
+      <li><b>Q4 — Synthesis:</b> two-minute elevator answer, SCR, recommendation first, with a risk and a monitoring metric.</li>
+      <li><b>Rubric + facilitator notes</b> — including which real red flag (from the <a href="gnacc-reference.html">GNACC Reference</a> diagnostic table) the case dramatizes.</li>
+    </ol>
+
+    <div class="callout">
+      <span class="eyebrow">Rules of the house style</span>
+      <p>• Use real benchmarks from the <a href="gnacc-reference.html">GNACC Reference</a>; the math must check out exactly (recompute every rate).</p>
+      <p>• One engineered root cause per case; the decline's start date correlates with a logged change event.</p>
+      <p>• Fictional client names, realistic geography (DFW area so far).</p>
+      <p>• Every red flag in <code class="inline">clientDiagnosticFlow.ts</code> is a candidate case seed.</p>
+    </div>
+  </div>
+</section>
+
+<section id="buildout">
+  <div class="wrap">
+    <h2>Build-out plan</h2>
+    <p class="lede">One case per broken funnel stage, so the library eventually covers the whole GNACC funnel.</p>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>#</th><th>Broken stage</th><th>Engineered root cause</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">01</td><td class="strong">Appt → Contract</td><td>Buy box expanded beyond dispo capacity</td><td class="good"><a href="interview-cases.html">Drafted — Lone Star</a></td></tr>
+          <tr><td class="mono">02</td><td class="strong">Gross → Net</td><td>Stale lists / skip-trace decay</td><td class="good"><a href="interview-cases.html">Drafted — Cedar Fork</a></td></tr>
+          <tr><td class="mono">03</td><td class="strong">Contract → Close</td><td>Dispo buyer concentration — top end-buyer paused</td><td class="good"><a href="interview-cases.html">Drafted — Prairie Gate</a></td></tr>
+          <tr><td class="mono">04</td><td class="strong">Mail → Response</td><td>Creative fatigue — no A/B test in 9 months</td><td>To draft</td></tr>
+          <tr><td class="mono">05</td><td class="strong">Net → Appt</td><td>Speed-to-lead &gt; 30 min after a team change — <i>note: taught as the running example in the guide; candidates may recognize it</i></td><td>To draft</td></tr>
+          <tr><td class="mono">06</td><td class="strong">None — trap case</td><td>Market contraction; execution is fine</td><td>To draft</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">Why case 06 matters</span>
+      <p>The method must also be able to conclude <b>"it's not the client's execution."</b> The market-context signals in client-diagnostic — DOM, months of supply, distressed inventory vs. 2019, cash-buyer % — exist precisely for this verdict.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Rendered from <code class="inline">case-library/README.md</code> — the markdown file is the source of truth. Case files live in <code class="inline">case-library/</code>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

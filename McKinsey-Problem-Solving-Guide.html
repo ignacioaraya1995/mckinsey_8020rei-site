@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The McKinsey Problem-Solving Method — Teaching Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  /* ===== 8020IQ master brand tokens (cream + emerald + charcoal) — light mode only ===== */
+  :root {
+    --cream: #FAF8F5;
+    --warm-white: #F5F3EF;
+    --charcoal: #18181B;
+    --emerald: #10B981;
+    --emerald-dark: #059669;
+    --emerald-light: #34D399;
+    --text-primary: #1C1C1E;
+    --text-secondary: #636366;
+    --text-tertiary: #8E8E93;
+    --border: #E8E4DE;
+    --border-strong: #DDD7CE;
+
+    --bg: var(--cream);
+    --bg-alt: var(--warm-white);
+    --surface: var(--warm-white);
+    --text: var(--text-primary);
+    --text-2: var(--text-secondary);
+    --text-3: var(--text-tertiary);
+    --line: var(--border);
+    --line-strong: var(--border-strong);
+    --line-card: var(--border-strong);
+    --accent: var(--emerald);
+    --accent-strong: var(--emerald-dark);
+    --accent-wash: rgba(16, 185, 129, 0.10);
+    --accent-wash-strong: rgba(16, 185, 129, 0.16);
+    --alert: #DC2626;
+
+    --font-display: 'DM Sans', -apple-system, sans-serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', Menlo, Consolas, monospace;
+
+    --r-card: 16px;
+    --r-button: 12px;
+    --r-pill: 9999px;
+
+    --shadow-rest: 0 1px 2px rgba(0,0,0,0.04), 0 1px 6px rgba(0,0,0,0.04);
+    --shadow-hover: 0 4px 12px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.06);
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--accent-wash); }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  @media (min-width: 768px) { .wrap { padding: 0 48px; } }
+  @media (min-width: 1100px) { .wrap { padding: 0 64px; } }
+
+  h1, h2, h3, h4, h5 { font-family: var(--font-display); font-weight: 700; color: var(--text); margin: 0; text-wrap: balance; }
+  p { margin: 0 0 16px; color: var(--text); }
+  a { color: var(--accent-strong); }
+
+  .eyebrow {
+    font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent-strong);
+  }
+
+  .bg-grid-fine {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
+                       linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* ===== header ===== */
+  header.hero { position: relative; padding: 56px 0 36px; border-bottom: 1px solid var(--line); overflow: hidden; }
+  header.hero .wrap { position: relative; z-index: 1; }
+  header.hero .doc-title { font-size: clamp(28px, 4vw, 40px); font-weight: 800; line-height: 1.08; margin: 12px 0 12px; }
+  header.hero .doc-sub { font-size: 16.5px; color: var(--text-2); max-width: 640px; margin: 0 0 20px; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+    color: var(--accent-strong); background: var(--accent-wash); border-radius: var(--r-pill);
+    padding: 6px 14px;
+  }
+
+  /* ===== section rhythm (tightened) ===== */
+  section { padding: 42px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 62px; }
+  section:last-of-type { border-bottom: none; }
+  .section-kicker { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+  .section-kicker h2 { font-size: 24px; }
+  .phase-chip {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent-strong); border: 1px solid var(--line-strong); border-radius: var(--r-pill);
+    padding: 4px 11px; white-space: nowrap;
+  }
+  .lede { color: var(--text-2); font-size: 15.5px; max-width: 660px; margin-bottom: 20px; }
+  .lede b { color: var(--text); }
+
+  h3.sub { font-family: var(--font-display); font-size: 15.5px; font-weight: 700; margin: 26px 0 12px; }
+  ol.tight, ul.tight { padding-left: 20px; max-width: 660px; color: var(--text-2); margin: 0 0 12px; }
+  ol.tight li, ul.tight li { margin-bottom: 8px; }
+  ol.tight b, ul.tight b { color: var(--text); }
+
+  /* ===== example blocks (running case): green background, labeled ===== */
+  .example {
+    position: relative;
+    background: var(--accent-wash);
+    border: 1px solid rgba(5, 150, 105, 0.22);
+    border-left: 4px solid var(--accent-strong);
+    border-radius: var(--r-card);
+    padding: 18px 24px 16px;
+    margin: 26px 0;
+    max-width: 900px;
+  }
+  .example .ex-label {
+    display: inline-block; font-family: var(--font-mono); font-weight: 600; font-size: 10px;
+    letter-spacing: 0.07em; text-transform: uppercase; color: var(--charcoal); background: var(--accent);
+    border-radius: var(--r-pill); padding: 4px 12px; margin: 0 0 14px;
+  }
+  .example p { font-size: 14px; color: var(--text-2); }
+  .example b { color: var(--text); }
+  .example > :last-child { margin-bottom: 0; }
+  .example .tree, .example .matrix-wrap { background: transparent; padding: 6px 0 0; margin: 6px 0 0; }
+  .example .compare, .example .before-after { margin: 6px 0 0; }
+  .example table.data { margin: 6px 0 14px; }
+  .example table.data tbody tr:nth-child(even) { background: rgba(255,255,255,0.6); }
+  .example .table-scroll:last-child table.data { margin-bottom: 4px; }
+
+  /* ===== MECE term with hover tooltip ===== */
+  a.term {
+    position: relative; color: var(--accent-strong); font-weight: 600; text-decoration: underline dotted 1.4px;
+    text-underline-offset: 3px; cursor: help;
+  }
+  a.term::after {
+    content: attr(data-tip);
+    position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(4px);
+    width: min(300px, 74vw); background: var(--charcoal); color: var(--warm-white);
+    font-family: var(--font-body); font-weight: 400; font-size: 12.5px; line-height: 1.5;
+    padding: 11px 14px; border-radius: 10px; box-shadow: var(--shadow-hover);
+    opacity: 0; pointer-events: none; transition: opacity 0.18s ease, transform 0.18s ease;
+    z-index: 40; text-align: left; white-space: normal;
+  }
+  a.term::before {
+    content: ""; position: absolute; bottom: calc(100% + 4px); left: 50%; transform: translateX(-50%) translateY(4px);
+    border: 6px solid transparent; border-top-color: var(--charcoal);
+    opacity: 0; transition: opacity 0.18s ease, transform 0.18s ease; z-index: 40;
+  }
+  a.term:hover::after, a.term:focus-visible::after,
+  a.term:hover::before, a.term:focus-visible::before { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ===== bracket-corner callout ===== */
+  .callout { position: relative; padding: 20px 24px; margin: 20px 0; max-width: 700px; }
+  .callout::before, .callout::after { content: ""; position: absolute; width: 14px; height: 14px; border: 1.4px solid var(--accent-strong); }
+  .callout::before { top: 0; left: 0; border-right: none; border-bottom: none; }
+  .callout::after { bottom: 0; right: 0; border-left: none; border-top: none; }
+  .callout .eyebrow { display: block; margin-bottom: 10px; }
+  .callout p { font-size: 14.5px; color: var(--text-2); margin: 0; }
+  .callout p + p { margin-top: 10px; }
+  .callout b { color: var(--text); }
+
+  .note-row { display: flex; gap: 16px; align-items: baseline; max-width: 660px; padding: 12px 0 0; border-top: 1px dashed var(--line-strong); margin-top: 18px; }
+  .note-row .eyebrow { flex-shrink: 0; }
+  .note-row p { font-size: 13.5px; color: var(--text-2); margin: 0; }
+  .note-row b { color: var(--text); }
+
+  /* ===== phase <-> step alignment diagram ===== */
+  .align-diagram { margin: 24px 0 8px; padding: 26px; border-radius: var(--r-card); background: var(--bg-alt); }
+  .grid7 { display: grid; grid-template-columns: repeat(7, 1fr); column-gap: 6px; row-gap: 0; }
+  .phase-band {
+    grid-row: 1; border-radius: var(--r-card) var(--r-card) 4px 4px; padding: 14px 14px 12px;
+    background: var(--surface); border: 1px solid var(--line-card); border-top: 3px solid var(--accent-strong);
+    box-shadow: var(--shadow-rest);
+  }
+  .phase-band .p-num { font-family: var(--font-mono); font-weight: 600; font-size: 11px; color: var(--accent-strong); display: block; margin-bottom: 4px; }
+  .phase-band h4 { font-size: 15px; }
+  .phase-band p { font-size: 12px; color: var(--text-2); margin: 4px 0 0; }
+  .p1 { grid-column: 1 / span 1; }
+  .p2 { grid-column: 2 / span 2; }
+  .p3 { grid-column: 4 / span 2; }
+  .p4 { grid-column: 6 / span 2; }
+  .bracket {
+    grid-row: 2; height: 16px; margin: 0 10px;
+    border-left: 2px solid var(--accent-strong); border-right: 2px solid var(--accent-strong); border-bottom: 2px solid var(--accent-strong);
+    border-radius: 0 0 7px 7px; opacity: 0.55;
+  }
+  .step-cell {
+    grid-row: 3; margin-top: 6px; background: var(--bg); border: 1px solid var(--line-card); border-radius: 10px; padding: 10px 8px 11px; text-align: center;
+    box-shadow: var(--shadow-rest);
+  }
+  .step-cell .s-num { font-family: var(--font-mono); font-size: 10px; color: var(--text-3); display: block; }
+  .step-cell .s-name { font-size: 11.5px; font-weight: 600; color: var(--text); margin-top: 3px; line-height: 1.3; }
+  .engage-strip {
+    grid-column: 1 / -1; grid-row: 4; margin-top: 16px; text-align: center;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent-strong); border: 1px dashed var(--accent-strong); border-radius: var(--r-pill); padding: 8px 16px;
+  }
+  @media (max-width: 860px) {
+    .grid7 { grid-template-columns: repeat(7, minmax(90px, 1fr)); }
+    .align-diagram { overflow-x: auto; padding-bottom: 8px; }
+    .align-diagram .grid7 { min-width: 820px; }
+  }
+
+  /* ===== comparison cards ===== */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; max-width: 860px; }
+  @media (max-width: 760px) { .compare { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line-card); border-radius: var(--r-card); box-shadow: var(--shadow-rest); padding: 18px 20px; }
+  .card h5 { font-family: var(--font-display); font-size: 14.5px; margin-bottom: 10px; }
+  .card ul, .card ol { margin: 0; padding-left: 18px; font-size: 13.5px; color: var(--text-2); }
+  .card ul li, .card ol li { margin-bottom: 8px; }
+  .card p { font-size: 13.5px; color: var(--text-2); margin: 0 0 10px; }
+  .card b { color: var(--text); }
+  .card.bad-side { border-top: 3px solid var(--text-3); }
+  .card.good-side { border-top: 3px solid var(--accent-strong); }
+  .card .tag { font-family: var(--font-mono); font-weight: 600; font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-3); display: block; margin-bottom: 8px; }
+  .card.good-side .tag { color: var(--accent-strong); }
+
+  /* ===== issue tree ===== */
+  .tree { margin: 22px 0; padding: 22px; border-radius: var(--r-card); background: var(--bg-alt); }
+  .tree-root-wrap { display: flex; justify-content: center; }
+  .tree-root { display: inline-block; font-family: var(--font-display); font-weight: 700; font-size: 14px; padding: 11px 18px; background: var(--charcoal); color: var(--warm-white); border-radius: var(--r-button); text-align: center; box-shadow: var(--shadow-rest); }
+  .tree-trunk { width: 2px; height: 18px; background: var(--accent-strong); margin: 0 auto; opacity: 0.6; }
+  .tree-branches { display: flex; gap: 18px; margin-top: 0; padding-top: 18px; position: relative; }
+  .tree-branches::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent-strong); opacity: 0.6; }
+  .branch { flex: 1; position: relative; padding-top: 14px; min-width: 0; }
+  .branch::before { content: ""; position: absolute; top: 0; left: 50%; width: 2px; height: 14px; background: var(--accent-strong); opacity: 0.6; }
+  .branch-label {
+    font-family: var(--font-display); font-weight: 700; font-size: 13px; margin-bottom: 10px; text-align: center;
+    background: var(--surface); border: 1px solid var(--line-card); border-radius: 8px; padding: 8px 10px; box-shadow: var(--shadow-rest);
+  }
+  .sub-branch { margin-top: 10px; font-size: 12.5px; }
+  .sub-branch b { display: block; color: var(--text); font-size: 12.5px; margin-bottom: 4px; }
+  .leaf-list { list-style: none; margin: 0; padding: 0; font-size: 12.5px; color: var(--text-2); }
+  .leaf-list li { padding: 4px 0 4px 12px; border-left: 1px solid var(--line); margin-bottom: 4px; }
+  .tree-note { font-size: 13px; color: var(--text-2); max-width: 680px; margin-top: -6px; }
+  @media (max-width: 700px) {
+    .tree { overflow-x: auto; }
+    .tree-branches { min-width: 560px; }
+  }
+
+  /* ===== 2x2 matrix ===== */
+  .matrix-wrap { display: flex; gap: 30px; align-items: flex-start; margin: 20px 0 6px; flex-wrap: wrap; padding: 22px; border-radius: var(--r-card); background: var(--bg-alt); }
+  .matrix-axes { display: flex; }
+  .axis-y { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.04em; color: var(--text-2); margin-right: 12px; white-space: nowrap; display: flex; align-items: center; gap: 4px; }
+  .matrix {
+    position: relative; width: 300px; height: 300px; flex-shrink: 0; border-radius: 10px;
+    border: 1.5px solid var(--text-3); background: var(--surface); box-shadow: var(--shadow-rest); overflow: hidden;
+  }
+  .matrix::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--line-strong); }
+  .matrix::after { content: ""; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--line-strong); }
+  .quad { position: absolute; width: 50%; height: 50%; }
+  .quad.tl { top: 0; left: 0; }
+  .quad.tr { top: 0; left: 50%; background: var(--accent-wash-strong); }
+  .quad.bl { top: 50%; left: 0; }
+  .quad.br { top: 50%; left: 50%; background: var(--accent-wash); }
+  .qlabel { position: absolute; font-family: var(--font-mono); font-weight: 600; font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-3); padding: 8px 10px; }
+  .quad.tl .qlabel { top: 0; left: 0; }
+  .quad.tr .qlabel { top: 0; right: 0; text-align: right; color: var(--accent-strong); }
+  .quad.bl .qlabel { bottom: 0; left: 0; }
+  .quad.br .qlabel { bottom: 0; right: 0; text-align: right; color: var(--accent-strong); }
+  .dot {
+    position: absolute; width: 27px; height: 27px; border-radius: 50%; background: var(--charcoal); color: var(--warm-white);
+    font-family: var(--font-mono); font-weight: 600; font-size: 11.5px; display: flex; align-items: center; justify-content: center;
+    transform: translate(-50%, 50%); box-shadow: 0 0 0 3px var(--surface), 0 2px 5px rgba(0,0,0,0.15); z-index: 1;
+  }
+  .dot.hi { background: var(--accent); color: var(--charcoal); }
+  .axis-x { text-align: center; font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.04em; color: var(--text-2); margin-top: 12px; }
+  .matrix-legend { flex: 1; min-width: 240px; }
+  .matrix-legend p { font-size: 14px; color: var(--text-2); }
+  .matrix-legend ul { padding-left: 18px; font-size: 13.5px; color: var(--text-2); }
+  .matrix-legend ul li { margin-bottom: 7px; }
+  .matrix-legend b { color: var(--text); }
+
+  /* ===== data tables (exhibits, workplan) ===== */
+  .table-scroll { overflow-x: auto; }
+  table.data { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13.5px; }
+  table.data th { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-2); text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line-strong); }
+  table.data td { padding: 10px 12px; border-bottom: 1px solid var(--line); color: var(--text-2); vertical-align: top; }
+  table.data tbody tr:nth-child(even) { background: var(--bg-alt); }
+  table.data td.mono { font-family: var(--font-mono); font-size: 12.5px; color: var(--accent-strong); white-space: nowrap; }
+  table.data td b, table.data td.strong { color: var(--text); font-weight: 600; }
+  table.data td.bad { color: var(--alert); font-weight: 600; }
+  table.data td.good { color: var(--accent-strong); font-weight: 600; }
+
+  /* ===== synthesis ladder ===== */
+  .ladder { display: flex; flex-direction: column; gap: 8px; margin: 20px 0 8px; max-width: 620px; }
+  .rung { background: var(--surface); border: 1px solid var(--line-card); border-radius: var(--r-card); box-shadow: var(--shadow-rest); padding: 12px 16px; margin-left: calc(var(--i, 0) * 20px); }
+  .rung .rung-label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent-strong); }
+  .rung.final { border-color: var(--accent); background: var(--accent-wash); }
+  .rung p { margin: 4px 0 0; font-size: 13px; color: var(--text-2); }
+
+  table.synth-table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 13.5px; }
+  table.synth-table th { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent-strong); text-align: left; border-bottom: 1px solid var(--line-strong); padding: 8px 12px; }
+  table.synth-table td { border-bottom: 1px solid var(--line); padding: 10px 12px; vertical-align: top; color: var(--text-2); }
+  table.synth-table td:first-child { font-family: var(--font-mono); font-size: 11.5px; color: var(--accent-strong); white-space: nowrap; }
+  table.synth-table b { color: var(--text); }
+
+  /* ===== pyramid ===== */
+  .pyramid { display: flex; flex-direction: column; align-items: center; gap: 0; margin: 24px auto 8px; padding: 24px 22px; max-width: 660px; border-radius: var(--r-card); background: var(--bg-alt); }
+  .pyr-row { display: flex; gap: 6px; justify-content: center; position: relative; }
+  .pyr-row + .pyr-row { margin-top: 14px; }
+  .pyr-row + .pyr-row::before { content: ""; position: absolute; top: -14px; left: 50%; width: 2px; height: 14px; background: var(--accent-strong); opacity: 0.55; }
+  .pyr-box { border-radius: 8px; padding: 8px 10px; font-size: 11.5px; text-align: center; flex: 1; background: var(--accent-wash); color: var(--text); display: flex; align-items: center; justify-content: center; }
+  .pyr-row.r1 .pyr-box { font-weight: 700; background: var(--charcoal); color: var(--warm-white); font-size: 13.5px; padding: 13px 18px; border-radius: 10px; box-shadow: var(--shadow-rest); }
+  .pyr-row.r2 .pyr-box { background: var(--accent-wash-strong); font-weight: 600; padding: 10px 10px; }
+  .pyr-row.r4 .pyr-box { background: var(--surface); border: 1px solid var(--line-card); color: var(--text-3); font-size: 10px; padding: 6px 6px; }
+  .pyr-flow { display: flex; justify-content: space-between; width: 100%; max-width: 620px; margin: 18px auto 0; font-family: var(--font-mono); font-weight: 600; font-size: 10.5px; letter-spacing: 0.02em; color: var(--text-2); }
+
+  /* ===== SCR cards ===== */
+  .scr { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: stretch; gap: 10px; margin: 20px 0; }
+  @media (max-width: 760px) { .scr { grid-template-columns: 1fr; } .scr-arrow { display: none; } }
+  .scr-arrow { align-self: center; font-size: 18px; color: var(--line-strong); font-family: var(--font-display); }
+  .scr-card { position: relative; background: var(--surface); border: 1px solid var(--line-card); border-top: 3px solid var(--text-3); border-radius: 4px var(--r-card) 4px var(--r-card); box-shadow: var(--shadow-rest); padding: 20px 18px 16px; }
+  .scr-card.res { border-top-color: var(--accent); }
+  .scr-num { position: absolute; top: -11px; left: 18px; background: var(--text-3); color: var(--bg-alt); font-family: var(--font-mono); font-weight: 600; font-size: 10px; letter-spacing: 0.05em; border-radius: var(--r-pill); padding: 2px 8px; }
+  .scr-card.res .scr-num { background: var(--accent-strong); color: var(--charcoal); }
+  .scr-card h5 { font-family: var(--font-display); font-size: 14px; margin-bottom: 7px; }
+  .scr-card p { font-size: 13px; color: var(--text-2); margin: 0; }
+  .scr-example { margin-top: 10px; background: var(--accent-wash); border-radius: 8px; padding: 9px 12px; font-size: 12.5px; font-style: italic; color: var(--text-2); }
+  .scr-example::before {
+    content: "Example · Trinity River"; display: block; font-family: var(--font-mono); font-style: normal;
+    font-weight: 600; font-size: 9px; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--accent-strong); margin-bottom: 4px;
+  }
+
+  /* ===== MECE ===== */
+  .mece-rule { display: flex; gap: 14px; margin: 18px 0; flex-wrap: wrap; max-width: 860px; }
+  .mece-rule .r { flex: 1; min-width: 220px; background: var(--surface); border: 1px solid var(--line-card); border-radius: var(--r-card); box-shadow: var(--shadow-rest); padding: 16px 20px; }
+  .mece-rule .r .big { font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--accent-strong); }
+  .mece-rule .r p { font-size: 13.5px; color: var(--text-2); margin: 6px 0 0; }
+  .mece-rule .r b { color: var(--text); }
+  .glyph { display: flex; align-items: center; height: 26px; margin-bottom: 10px; }
+  .glyph-me { gap: 8px; }
+  .glyph-me .c { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--accent-strong); background: var(--accent-wash); }
+  .glyph-ce { gap: 3px; }
+  .glyph-ce .seg { flex: 1; height: 13px; background: var(--accent-strong); border-radius: 2px; opacity: 0.85; }
+  .glyph-ce .seg:nth-child(even) { opacity: 0.5; }
+
+  .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; max-width: 860px; }
+  @media (max-width: 760px) { .before-after { grid-template-columns: 1fr; } }
+  .ba-card { border: 1px solid var(--line-card); border-radius: var(--r-card); overflow: hidden; box-shadow: var(--shadow-rest); }
+  .ba-head { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; padding: 9px 16px; background: var(--surface); color: var(--text-2); border-bottom: 1px solid var(--line); }
+  .ba-card.good .ba-head { color: var(--accent-strong); }
+  .ba-body { padding: 13px 16px; background: var(--bg); }
+  .ba-body ul { margin: 0; padding-left: 18px; font-size: 13px; color: var(--text-2); }
+  .ba-body ul li { margin-bottom: 6px; }
+
+  /* ===== habits ===== */
+  .habits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 18px 0; }
+  @media (max-width: 760px) { .habits { grid-template-columns: 1fr; } }
+  .habit { background: var(--surface); border: 1px solid var(--line-card); border-radius: var(--r-card); box-shadow: var(--shadow-rest); padding: 14px 18px; }
+  .habit .h-num { font-family: var(--font-mono); font-size: 11px; color: var(--accent-strong); }
+  .habit h5 { font-family: var(--font-display); font-size: 14px; margin: 5px 0 4px; }
+  .habit p { font-size: 12.5px; color: var(--text-2); margin: 0; }
+
+  footer { padding: 32px 0 56px; }
+  footer p { font-size: 12.5px; color: var(--text-3); max-width: 640px; }
+
+  code.inline { font-family: var(--font-mono); background: var(--accent-wash); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; color: var(--accent-strong); }
+
+  /* ===== reading progress / skip / nav / to-top ===== */
+  .progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 60; pointer-events: none; }
+  .progress-bar { height: 100%; width: 0; background: var(--accent-strong); }
+  .skip {
+    position: fixed; top: 8px; left: 8px; z-index: 70;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+    background: var(--charcoal); color: var(--warm-white); padding: 8px 14px; border-radius: var(--r-pill);
+    text-decoration: none; transform: translateY(-56px); transition: transform 0.2s ease;
+  }
+  .skip:focus { transform: none; }
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 84%, transparent);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .topnav.scrolled { border-bottom-color: var(--line); }
+  .nav-inner { display: flex; align-items: center; gap: 18px; height: 54px; }
+  .nav-brand { display: flex; align-items: center; gap: 9px; font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--text); text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+  .nav-brand .iso {
+    width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+    background: conic-gradient(from 20deg, var(--accent-strong) 0 75%, color-mix(in srgb, var(--accent-strong) 40%, transparent) 75% 100%);
+    -webkit-mask: radial-gradient(circle, transparent 46%, #000 47%);
+    mask: radial-gradient(circle, transparent 46%, #000 47%);
+  }
+  .nav-links { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; mask-image: linear-gradient(to right, transparent, #000 12px, #000 calc(100% - 12px), transparent); }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--text-3); text-decoration: none; padding: 6px 11px; border-radius: var(--r-pill); white-space: nowrap;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a.active { color: var(--accent-strong); background: var(--accent-wash); }
+  @media (max-width: 640px) { .nav-brand { display: none; } }
+  .to-top {
+    position: fixed; right: 22px; bottom: 22px; z-index: 55;
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid var(--line-strong); background: var(--surface); color: var(--text);
+    box-shadow: var(--shadow-hover); cursor: pointer; font-size: 17px; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .to-top.show { opacity: 1; pointer-events: auto; transform: none; }
+  .to-top:hover { border-color: var(--accent-strong); color: var(--accent-strong); }
+
+  /* ===== hover lift + reveal ===== */
+  .card, .habit, .step-cell, .mece-rule .r { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .card:hover, .habit:hover, .step-cell:hover, .mece-rule .r:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  }
+
+  /* ===== print ===== */
+  @media print {
+    .topnav, .progress, .to-top, .skip { display: none !important; }
+    .card, .habit, .callout, .phase-band { break-inside: avoid; box-shadow: none; }
+    section { padding: 26px 0; }
+    a.term::after, a.term::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#overview">Skip to content</a>
+<div class="progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+
+<nav class="topnav" id="topnav" aria-label="Sections">
+  <div class="wrap nav-inner">
+    <a class="nav-brand" href="index.html"><span class="iso" aria-hidden="true"></span>8020IQ</a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">&larr; Index</a>
+      <a href="#overview">Overview</a>
+      <a href="#step1">Define</a>
+      <a href="#step2">Structure</a>
+      <a href="#step3">Prioritize</a>
+      <a href="#step4">Plan</a>
+      <a href="#step5">Analyze</a>
+      <a href="#step6">Synthesize</a>
+      <a href="#step7">Recommend</a>
+      <a href="#mece">MECE</a>
+      <a href="#habits">Habits</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero bg-grid-fine">
+  <div class="wrap">
+    <span class="eyebrow">Internal Teaching Guide</span>
+    <h1 class="doc-title">The McKinsey Problem-Solving Method</h1>
+    <p class="doc-sub">Seven steps, four phases, and the toolbox behind them — taught through <b>one wholesale case</b> that runs from the owner's first complaint to the final recommendation.</p>
+    <div class="pill-row">
+      <span class="pill">7 STEPS</span>
+      <span class="pill">4 PHASES</span>
+      <span class="pill">1 RUNNING CASE</span>
+      <span class="pill">REAL BENCHMARKS</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= OVERVIEW ================= -->
+<section id="overview">
+  <div class="wrap">
+    <div class="section-kicker"><h2>How the four phases map to the seven steps</h2></div>
+    <p class="lede">The seven steps are not run back to back. McKinsey groups them into four phases; each band below sits directly above the steps it contains. Client engagement runs underneath all four — not only at kickoff and readout.</p>
+
+    <div class="align-diagram">
+      <div class="grid7">
+        <div class="phase-band p1"><span class="p-num">Phase 1</span><h4>Define</h4><p>Agree the problem before analysis starts</p></div>
+        <div class="phase-band p2"><span class="p-num">Phase 2</span><h4>Structure</h4><p>Break it down, then rank the pieces</p></div>
+        <div class="phase-band p3"><span class="p-num">Phase 3</span><h4>Analyze</h4><p>Plan the work, then run it</p></div>
+        <div class="phase-band p4"><span class="p-num">Phase 4</span><h4>Synthesize</h4><p>Turn findings into a recommendation</p></div>
+
+        <div class="bracket p1"></div>
+        <div class="bracket p2"></div>
+        <div class="bracket p3"></div>
+        <div class="bracket p4"></div>
+
+        <div class="step-cell" style="grid-column:1;"><span class="s-num">Step 1</span><div class="s-name">Define the problem</div></div>
+        <div class="step-cell" style="grid-column:2;"><span class="s-num">Step 2</span><div class="s-name">Structure the problem</div></div>
+        <div class="step-cell" style="grid-column:3;"><span class="s-num">Step 3</span><div class="s-name">Prioritize issues</div></div>
+        <div class="step-cell" style="grid-column:4;"><span class="s-num">Step 4</span><div class="s-name">Plan the analyses</div></div>
+        <div class="step-cell" style="grid-column:5;"><span class="s-num">Step 5</span><div class="s-name">Conduct the analyses</div></div>
+        <div class="step-cell" style="grid-column:6;"><span class="s-num">Step 6</span><div class="s-name">Synthesize findings</div></div>
+        <div class="step-cell" style="grid-column:7;"><span class="s-num">Step 7</span><div class="s-name">Recommend &amp; communicate</div></div>
+
+        <div class="engage-strip">Engage the client, underneath all four phases, not only at kickoff and readout</div>
+      </div>
+    </div>
+
+    <div class="example">
+      <span class="ex-label">The Running Case · Trinity River Home Buyers</span>
+      <p>A fictional wholesale investor in Dallas–Fort Worth, an 8020REI client for two years. Their <b>monthly net profit has declined two months in a row</b>: from a ~$34,000 baseline to $23,500, then $13,000. Marketing spend is unchanged at $15,000/month.</p>
+      <p>Every step below works this same problem, so you can watch one diagnosis travel through the whole method. The healthy baseline: 500 gross leads → 350 net leads → 70 appointments → 14 contracts a month, at $3,500 avg profit per deal — the standard <a class="term" href="gnacc-reference.html" data-tip="GNACC — the canonical wholesale funnel: Gross Leads → Net Leads → Appointments → Contracts → Closings. Every stage definition and benchmark number used in this guide lives in the GNACC Funnel &amp; Benchmark Reference. Click to open it.">GNACC</a> benchmark funnel.</p>
+      <p><b>Green blocks like this one always contain the example.</b> Theory stays on the cream background; whenever you see green, the running case is being worked.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STEP 1 ================= -->
+<section id="step1">
+  <div class="wrap">
+    <div class="section-kicker"><span class="eyebrow">01</span><h2>Define the Problem</h2><span class="phase-chip">Phase 1 · Define</span></div>
+    <p class="lede">Most weak diagnostic work is not weak analysis — it is excellent analysis of the wrong question. Write the problem as a <b>problem</b> (a metric that moved, with numbers and dates), never as an opportunity ("how do we grow?") or a pre-picked solution ("they need more leads").</p>
+
+    <div class="example">
+      <span class="ex-label">Example · Defining Trinity River's problem</span>
+      <div class="compare">
+      <div class="card bad-side">
+        <span class="tag">Not SMART</span>
+        <p><i>"Trinity River isn't happy — how do we improve their results?"</i></p>
+        <p><i>"They need more volume. Should they raise spend?"</i></p>
+        <p style="margin:0; font-size:12.5px; color:var(--text-3);">The first is an opportunity with no metric, no baseline, no deadline. The second smuggles in a solution before any diagnosis.</p>
+      </div>
+      <div class="card good-side">
+        <span class="tag">SMART</span>
+        <p><b>"Trinity River's net profit fell from ~$34k/month to $13k over the last two months, with spend unchanged at $15k. Find the root cause and restore profit to the $34k baseline within 60 days, without increasing the marketing budget."</b></p>
+        <p style="margin:0; font-size:12.5px; color:var(--text-3);">Specific, measurable, action-oriented, relevant, time-bound.</p>
+      </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="eyebrow">The define checklist — answer all five in writing before moving on</span>
+      <p><b>1 · Is it a problem, not an opportunity or a solution?</b> A metric that moved — "profit declined two months in a row" — not "how do we grow" or a fix chosen in advance.</p>
+      <p><b>2 · Which metric, from what to what, since when?</b> Numbers and dates. ($34k → $13k, last two months.)</p>
+      <p><b>3 · What does solved look like, and by when?</b> A target and a deadline. (Back to $34k within 60 days.)</p>
+      <p><b>4 · What is out of bounds?</b> Budget, channels, team changes the client won't accept. (Spend stays at $15k.)</p>
+      <p><b>5 · Who decides, and where will the data come from?</b> The owner of the call, and the data sources — the client's CRM and the benchmark reference. Three written lines answering these is enough.</p>
+    </div>
+
+    <div class="note-row"><span class="eyebrow">Teaching note</span><p>Skipping this step feels fast when the client wants action. Resist. Twenty minutes of hard argument here saves weeks downstream.</p></div>
+  </div>
+</section>
+
+<!-- ================= STEP 2 ================= -->
+<section id="step2">
+  <div class="wrap">
+    <div class="section-kicker"><span class="eyebrow">02</span><h2>Structure the Problem</h2><span class="phase-chip">Phase 2 · Structure</span></div>
+    <p class="lede">You cannot analyze "profit is down." You can analyze one leaf of a tree — "did the net-lead-to-appointment rate move?" <b>Solve the leaves and, by construction, you solve the root.</b></p>
+
+    <h3 class="sub">Two ways to build the tree — pick by how much data you have</h3>
+    <div class="compare">
+      <div class="card good-side">
+        <span class="tag">Data rich → hypothesis tree</span>
+        <ul>
+          <li>Starts from a proposed answer and decomposes it into testable sub-hypotheses</li>
+          <li><b>Our usual case:</b> client funnels live in the CRM, so we can start with a strong hunch and test it in queries</li>
+          <li>Running case: <i>"profit fell because exactly one funnel stage broke, while spend and profit per deal stayed flat"</i> — one sub-hypothesis per funnel stage, each provable in a single query</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag">Data thin → issue tree</span>
+        <ul>
+          <li>Starts from open questions rather than a proposed answer; explores the space before committing</li>
+          <li>Use when the client's data is missing or untrusted (no CRM hygiene, no baseline)</li>
+          <li>Must still be built <a class="term" href="#mece" data-tip="MECE — Mutually Exclusive, Collectively Exhaustive: buckets that don't overlap and together cover everything. Wholesale test: profit = contracts × profit per contract − costs. Nothing counted twice, nothing left out. Click for the full section.">MECE</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="example">
+      <span class="ex-label">Example · The issue tree for Trinity River</span>
+      <div class="tree">
+      <div class="tree-root-wrap"><div class="tree-root">"Why did monthly net profit fall from $34k to $13k?"</div></div>
+      <div class="tree-trunk"></div>
+      <div class="tree-branches">
+        <div class="branch">
+          <div class="branch-label">Fewer contracts signed</div>
+          <div class="sub-branch"><b>Less volume in</b>
+            <ul class="leaf-list"><li>Fewer gross leads (spend, list size, response rate)</li></ul>
+          </div>
+          <div class="sub-branch"><b>Worse conversion</b>
+            <ul class="leaf-list"><li>Gross → Net rate</li><li>Net → Appointment rate</li><li>Appointment → Contract rate</li></ul>
+          </div>
+        </div>
+        <div class="branch">
+          <div class="branch-label">Less profit per contract</div>
+          <div class="sub-branch"><b>Deal economics</b>
+            <ul class="leaf-list"><li>Offer spread vs. ARV shrinking</li><li>Dispo pricing / renegotiations at close</li></ul>
+          </div>
+        </div>
+        <div class="branch">
+          <div class="branch-label">Higher costs</div>
+          <div class="sub-branch"><b>Spend &amp; ops</b>
+            <ul class="leaf-list"><li>Marketing spend</li><li>Operating overhead</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="tree-note">This tree is <a class="term" href="#mece" data-tip="MECE — Mutually Exclusive, Collectively Exhaustive: buckets that don't overlap and together cover everything. This tree qualifies because it mirrors an identity: profit = contracts × profit per contract − costs.">MECE</a> by construction: it mirrors the identity <b style="color:var(--text);">profit = contracts × profit per contract − costs</b>, so the three branches cannot overlap and nothing else can move profit. When one dimension won't cut cleanly, cross two — e.g. funnel stage × county.</p>
+    </div>
+
+    <div class="note-row"><span class="eyebrow">Teaching note</span><p>Build the tree out loud with the team, not alone at your desk. The argument about where a branch belongs is usually when someone spots that the problem statement itself was fuzzy. That backward loop to Step 1 is healthy.</p></div>
+  </div>
+</section>
+
+<!-- ================= STEP 3 ================= -->
+<section id="step3">
+  <div class="wrap">
+    <div class="section-kicker"><span class="eyebrow">03</span><h2>Prioritize the Issues</h2><span class="phase-chip">Phase 2 · Structure</span></div>
+    <p class="lede">A perfectly <a class="term" href="#mece" data-tip="MECE — Mutually Exclusive, Collectively Exhaustive: buckets that don't overlap and together cover everything. A MECE tree structures the problem; prioritization decides which branches actually get analyzed.">MECE</a> tree with thirty leaves will bankrupt your timeline if you analyze all thirty with equal rigor. <b>Prioritization turns "comprehensive" into "deliverable."</b> Plot every branch on impact × ease; attack top-right first.</p>
+
+    <div class="example">
+      <span class="ex-label">Example · Prioritizing the Trinity River branches</span>
+      <div class="matrix-wrap">
+      <div class="matrix-axes">
+        <div class="axis-y">Impact</div>
+        <div>
+          <div class="matrix">
+            <div class="quad tl"><span class="qlabel">Plan for later</span></div>
+            <div class="quad tr"><span class="qlabel">Do first</span></div>
+            <div class="quad bl"><span class="qlabel">Reconsider</span></div>
+            <div class="quad br"><span class="qlabel">Quick wins</span></div>
+            <div class="dot hi" style="left:82%; bottom:84%;">A</div>
+            <div class="dot hi" style="left:62%; bottom:72%;">B</div>
+            <div class="dot" style="left:78%; bottom:40%;">C</div>
+            <div class="dot" style="left:70%; bottom:26%;">D</div>
+            <div class="dot" style="left:30%; bottom:52%;">E</div>
+          </div>
+          <div class="axis-x">Ease of implementation</div>
+        </div>
+      </div>
+      <div class="matrix-legend">
+        <p>The five branches from Step 2, ranked:</p>
+        <ul>
+          <li><b>A — Funnel stage rates vs. baseline</b> (fewer contracts): one CRM query, decides everything → do first</li>
+          <li><b>B — Speed-to-lead &amp; rep segmentation</b>: cheap follow-up to A</li>
+          <li><b>C — Spend &amp; cost lines</b>: spend already known flat → quick rule-out</li>
+          <li><b>D — Profit per contract trend</b>: stable at $3,500 in the CRM → quick rule-out</li>
+          <li><b>E — Market shift</b> (DOM, supply): real work, only if execution checks out</li>
+        </ul>
+        <p style="font-size:13px;">Two same-day queries kill the "costs" and "profit per contract" branches by lunch. Rank — don't score to two decimals; judgment and intuition are legitimate inputs, and the client's stakeholders belong in the conversation.</p>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STEP 4 ================= -->
+<section id="step4">
+  <div class="wrap">
+    <div class="section-kicker"><span class="eyebrow">04</span><h2>Plan the Analyses</h2><span class="phase-chip">Phase 3 · Analyze</span></div>
+    <p class="lede">The least glamorous step and the one most often shortcut — exactly where timelines quietly die. For every prioritized branch, write down five things <b>before</b> scheduling any work: the hypothesis, the analysis that tests it, the data source, the owner + deadline, and the "so what" if true and if false.</p>
+
+    <div class="example">
+      <span class="ex-label">Example · The Trinity River workplan</span>
+      <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Hypothesis</th><th>Analysis</th><th>Data source</th><th>Owner · due</th><th>So what if true / false</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="strong">One funnel stage broke</td>
+            <td>Stage-by-stage conversion rates, baseline vs. last 2 months</td>
+            <td class="mono">CRM funnel counts</td>
+            <td>CSM · day 1</td>
+            <td>True → isolate the stage. False → volume problem; go upstream to leads.</td>
+          </tr>
+          <tr>
+            <td class="strong">Speed-to-lead degraded</td>
+            <td>Median first-contact time by week; appt rate by response-time bucket</td>
+            <td class="mono">CRM timestamps</td>
+            <td>CSM · day 2</td>
+            <td>True → ops/staffing fix. False → check scripts &amp; qualification.</td>
+          </tr>
+          <tr>
+            <td class="strong">The market cooled</td>
+            <td>DOM, months of supply, distressed inventory vs. last year</td>
+            <td class="mono">MLS / county market data</td>
+            <td>CSM · day 2</td>
+            <td>True → reset expectations, not process. False → execution problem confirmed.</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <div class="note-row"><span class="eyebrow">Teaching note</span><p>If you cannot state what a piece of analysis would prove either way, it is not ready to be scheduled.</p></div>
+  </div>
+</section>
+
+<!-- ================= STEP 5 ================= -->
+<section id="step5">
+  <div class="wrap">
+    <div class="section-kicker"><span class="eyebrow">05</span><h2>Conduct the Analyses</h2><span class="phase-chip">Phase 3 · Analyze</span></div>
+    <p class="lede">Match rigor to the decision at stake, not to what is technically possible. Before commissioning anything fresh, check what is already known and find the <b>80/20</b> — the handful of queries that resolve most of the uncertainty. Here, two of them:</p>
+
+    <div class="example">
+      <span class="ex-label">Example · Query 1 — walk the funnel</span>
+      <div class="table-scroll">
+      <table class="data" style="max-width:760px;">
+        <thead><tr><th>Metric</th><th>Baseline (avg/mo)</th><th>Last month</th><th>Rate baseline → now</th><th>Benchmark</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Marketing spend</td><td>$15,000</td><td>$15,000</td><td>—</td><td class="mono">—</td></tr>
+          <tr><td class="strong">Gross leads</td><td>500</td><td>510</td><td>—</td><td class="mono">—</td></tr>
+          <tr><td class="strong">Net leads</td><td>350</td><td>357</td><td>70% → 70%</td><td class="mono">50%</td></tr>
+          <tr><td class="strong">Appointments attended</td><td>70</td><td class="bad">40</td><td class="bad">20% → 11%</td><td class="mono">25%</td></tr>
+          <tr><td class="strong">Contracts signed</td><td>14</td><td class="bad">8</td><td>20% → 20%</td><td class="mono">15%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13.5px; color:var(--text-2); max-width:700px;">Exactly one stage broke: <b style="color:var(--text);">net lead → appointment collapsed from 20% to 11%</b> (benchmark: 25%). Marketing is fine — leads are flat. Closing is fine — reps still sign 20% of the appointments they attend. Sizing the prize: restoring 70 appointments returns +6 contracts × $3,500 ≈ <b style="color:var(--text);">+$21k/month, ~$250k/year</b>. Every benchmark cited here lives in the <a class="term" href="gnacc-reference.html" data-tip="The GNACC Funnel &amp; Benchmark Reference: stage definitions, all conversion benchmarks, the healthy monthly baseline, and the diagnostic red-flag table. The single source of truth for numbers — click to open.">benchmark reference</a>.</p>
+    </div>
+
+    <div class="example">
+      <span class="ex-label">Example · Query 2 — segment before you theorize, then check the change log</span>
+      <p><b>The reveal:</b> appointment rate by first-contact speed — leads called <b>within 5 minutes</b> still book at a healthy 38% (healthy: ≥35%). Leads called <b>after 30+ minutes</b> book at 9%. The share of leads contacted within 5 minutes fell from ~80% to ~20%.</p>
+      <p><b>Change log:</b> the lead manager resigned ten weeks ago; since then reps return calls in end-of-day batches. The industry red flag: first contact after 30 minutes is ≈ <b>21× less likely to convert</b>. Metric inflection + timestamped change = the fastest confirmation there is.</p>
+    </div>
+
+    <div class="note-row"><span class="eyebrow">Teaching note</span><p>A regression on the wrong sample, dressed up in precision, is worse than a clean back-of-envelope — it looks authoritative. Deciding what to <b>skip</b> is as much a skill as deciding what to run.</p></div>
+  </div>
+</section>
+
+<!-- ================= STEP 6 ================= -->
+<section id="step6">
+  <div class="wrap">
+    <div class="section-kicker"><span class="eyebrow">06</span><h2>Synthesize the Findings</h2><span class="phase-chip">Phase 4 · Synthesize</span></div>
+    <p class="lede">Analysis produces data. <b>Synthesis turns data into a recommendation</b> — a distinct step, not a rename of the last one. Each rung compresses the one below it; if a rung just repeats the previous one with more confident adjectives, synthesis is not happening.</p>
+
+    <div class="example">
+      <span class="ex-label">Example · The ladder, climbed</span>
+      <div class="table-scroll">
+      <table class="synth-table" style="max-width:820px;">
+        <thead><tr><th>Rung</th><th>Trinity River</th></tr></thead>
+        <tbody>
+          <tr><td>Data</td><td>Spend flat. Leads flat. Appointments 70 → 40. Contracts still 20% of appointments. Profit per deal stable at $3,500. Share of leads contacted &lt;5 min: 80% → 20%. Lead manager resigned week zero of the decline.</td></tr>
+          <tr><td>Insight</td><td>The funnel breaks at exactly one stage — net lead → appointment — and the break began when first-contact speed collapsed.</td></tr>
+          <tr><td>Implication</td><td>Demand and sales-close are healthy; fresh leads are decaying before anyone calls them. This is a staffing/process failure, not a marketing failure.</td></tr>
+          <tr><td>So what</td><td>Restore first-contact speed and the funnel restores itself — no extra spend required.</td></tr>
+          <tr><td><b>Recommendation</b></td><td><b>Backfill the lead-manager role and route every fresh lead to a &lt;5-minute first call this week; monitor net-lead → appointment weekly against the 20% baseline.</b></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STEP 7 ================= -->
+<section id="step7">
+  <div class="wrap">
+    <div class="section-kicker"><span class="eyebrow">07</span><h2>Develop Recommendations &amp; Communicate</h2><span class="phase-chip">Phase 4 · Synthesize</span></div>
+    <p class="lede">Analytical rigor that never gets absorbed by the decision maker has zero impact. <b>Communication is part of the real work, not a wrapper around it.</b></p>
+
+    <h3 class="sub" id="pyramid">The Pyramid Principle — think bottom-up, present top-down</h3>
+    <div class="pyramid">
+      <div class="pyr-row r1" style="width:36%"><div class="pyr-box">Key message / recommendation</div></div>
+      <div class="pyr-row r2" style="width:58%"><div class="pyr-box">Reason A</div><div class="pyr-box">Reason B</div></div>
+      <div class="pyr-row r3" style="width:80%"><div class="pyr-box">Analysis</div><div class="pyr-box">Analysis</div><div class="pyr-box">Analysis</div><div class="pyr-box">Analysis</div></div>
+      <div class="pyr-row r4" style="width:100%"><div class="pyr-box">Facts</div><div class="pyr-box">Facts</div><div class="pyr-box">Facts</div><div class="pyr-box">Facts</div><div class="pyr-box">Facts</div><div class="pyr-box">Facts</div></div>
+      <div class="pyr-flow"><span>Built bottom up (synthesis)</span><span>Presented top down (communication)</span></div>
+    </div>
+    <p style="font-size:13.5px; color:var(--text-2); max-width:660px;">Every level must be <a class="term" href="#mece" data-tip="MECE — Mutually Exclusive, Collectively Exhaustive: the supporting points at each layer should exhaust, and not overlap, the point above them — an issue tree in reverse.">MECE</a> relative to the level above it. Leading with the answer respects a busy owner's time, matches how they think, and directness reads as confidence.</p>
+
+    <div class="example">
+      <span class="ex-label">Example · The two-minute opening</span>
+      <div class="compare">
+      <div class="card bad-side">
+        <span class="tag">Weak opening</span>
+        <p>Walks the owner through two months of funnel charts, explains the segmentation methodology, then suggests "exploring staffing options."</p>
+      </div>
+      <div class="card good-side">
+        <span class="tag">Strong opening</span>
+        <p><i>"Backfill your lead-manager role and route every fresh lead to a five-minute first call, starting this week — that restores roughly $21k of monthly profit."</i></p>
+        <p style="margin:0;">Then three reasons: appointments are the only broken stage; the break started the week the lead manager left; leads still called within 5 minutes convert at the healthy rate.</p>
+      </div>
+      </div>
+    </div>
+
+    <h3 class="sub" id="scr">SCR — the storyline around the pyramid</h3>
+    <div class="scr">
+      <div class="scr-card">
+        <span class="scr-num">01</span>
+        <h5>Situation</h5>
+        <p>Fact-based current state. No advocacy yet.</p>
+        <div class="scr-example">For two years Trinity River converted ~20% of net leads to appointments and earned ~$34k/month on $15k of spend.</div>
+      </div>
+      <div class="scr-arrow" aria-hidden="true">&rarr;</div>
+      <div class="scr-card">
+        <span class="scr-num">02</span>
+        <h5>Complication</h5>
+        <p>Why the situation now requires action.</p>
+        <div class="scr-example">Profit has fallen to $13k in two months; the appointment rate collapsed the week the lead manager left; every unstaffed week costs ~$5k.</div>
+      </div>
+      <div class="scr-arrow" aria-hidden="true">&rarr;</div>
+      <div class="scr-card res">
+        <span class="scr-num">03</span>
+        <h5>Resolution</h5>
+        <p>What to do — most of the document lives here.</p>
+        <div class="scr-example">Backfill + &lt;5-minute routing now; watch net-lead → appointment weekly vs. the 20% baseline; escalate if not recovered in four weeks.</div>
+      </div>
+    </div>
+    <p style="font-size:13px; color:var(--text-2); max-width:640px;">When the audience already agrees, reorder to <b>RSC</b>: lead with the answer, then justify. That is the two-minute elevator format used in the case interviews.</p>
+  </div>
+</section>
+
+<!-- ================= MECE ================= -->
+<section id="mece">
+  <div class="wrap">
+    <div class="section-kicker"><span class="eyebrow">TB</span><h2>MECE: Mutually Exclusive, Collectively Exhaustive</h2></div>
+    <p class="lede">Developed by Barbara Minto in the 1960s. <b>The single rule that makes every tree, pyramid, and bullet list defensible.</b></p>
+    <div class="mece-rule">
+      <div class="r"><div class="glyph glyph-me"><span class="c"></span><span class="c"></span></div><span class="big">ME</span><p><b>Mutually Exclusive.</b> No category overlaps another. Every item belongs to exactly one bucket.</p></div>
+      <div class="r"><div class="glyph glyph-ce"><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div><span class="big">CE</span><p><b>Collectively Exhaustive.</b> Nothing is left out. The buckets sum to the whole problem.</p></div>
+    </div>
+
+    <div class="example">
+      <span class="ex-label">Example · Explaining the profit decline</span>
+      <div class="before-after">
+      <div class="ba-card">
+        <div class="ba-head">Not MECE</div>
+        <div class="ba-body"><ul><li>"Lead quality"</li><li>"Rep performance"</li><li>"Marketing"</li><li>"The market"</li><li>Buckets overlap (lead quality is both a marketing and a targeting issue) and offer economics is missing entirely — you could confirm all four and still not explain the decline</li></ul></div>
+      </div>
+      <div class="ba-card good">
+        <div class="ba-head">MECE</div>
+        <div class="ba-body"><ul><li>Fewer contracts signed</li><li>Less profit per contract</li><li>Higher costs</li><li>An identity: profit = contracts × profit per contract − costs. No overlap, nothing missing — the decline <b>must</b> live in at least one bucket</li></ul></div>
+      </div>
+      </div>
+    </div>
+    <p style="font-size:13px; color:var(--text-2); max-width:680px;">MECE does not demand exhaustive analysis of every leaf. Pair it with the <b>80/20 rule</b>: structure everything, spend your hours on the 20% of branches driving 80% of the effect — for Trinity River, one funnel query settled three branches at once.</p>
+  </div>
+</section>
+
+<!-- ================= HABITS ================= -->
+<div class="closing" style="position:relative; overflow:hidden; border-top:1px solid var(--line);">
+<section id="habits" style="border-bottom:none;">
+  <div class="wrap" style="position:relative;">
+    <div class="section-kicker"><span class="eyebrow">+</span><h2>Bonus: 8 operating habits</h2></div>
+    <p class="lede">Separate from the seven-step process, these are the working habits, via <i>The McKinsey Mind</i>, that keep the process alive under real deadline pressure.</p>
+    <div class="habits">
+      <div class="habit"><span class="h-num">1</span><h5>Solve it at the first meeting</h5><p>Form a fact-based hypothesis on day one so you know what to test, not what to explore blindly.</p></div>
+      <div class="habit"><span class="h-num">2</span><h5>Intuition counts as much as facts</h5><p>When data is thin, informed judgment is a legitimate input, not a cop-out.</p></div>
+      <div class="habit"><span class="h-num">3</span><h5>Research, do not reinvent</h5><p>Find the 80/20 and the quick wins before commissioning fresh analysis.</p></div>
+      <div class="habit"><span class="h-num">4</span><h5>Tell the story behind the data</h5><p>Numbers do not persuade on their own. The narrative built from them does.</p></div>
+      <div class="habit"><span class="h-num">5</span><h5>Prewire everything</h5><p>Brief decision makers before the room fills up, not during the meeting.</p></div>
+      <div class="habit"><span class="h-num">6</span><h5>Start with the conclusion</h5><p>Inductive, not deductive. Lead with the answer, then justify it.</p></div>
+      <div class="habit"><span class="h-num">7</span><h5>Hit singles</h5><p>Consistent, deliverable progress beats a home run swing that misses.</p></div>
+      <div class="habit"><span class="h-num">8</span><h5>Respect your time</h5><p>Work expands to fill the time given it. Delegate and set boundaries deliberately.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="position:relative;">
+    <p>Compiled as an internal teaching reference from McKinsey internal problem-solving training materials, Slideworks.io's process, Pyramid Principle, SCR, and MECE explainers, and Iliyana Stareva's summary of <i>The McKinsey Mind</i>. Trinity River Home Buyers is fictional; all funnel numbers and benchmarks are 8020REI's own — see the <a href="gnacc-reference.html">GNACC Funnel &amp; Benchmark Reference</a>. Built to the 8020IQ brand system — cream, emerald, charcoal / DM Sans, Inter, JetBrains Mono.</p>
+  </div>
+</footer>
+</div>
+
+<button class="to-top" id="toTop" aria-label="Back to top" title="Back to top">&uarr;</button>
+
+<script>
+(function () {
+  var bar = document.getElementById('progressBar');
+  var nav = document.getElementById('topnav');
+  var toTop = document.getElementById('toTop');
+
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    nav.classList.toggle('scrolled', h.scrollTop > 8);
+    toTop.classList.toggle('show', h.scrollTop > 700);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  /* scroll-spy: highlight the nav link for the section in view */
+  var links = Array.prototype.slice.call(document.querySelectorAll('#navLinks a'));
+  var map = {};
+  links.forEach(function (a) {
+    var href = a.getAttribute('href');
+    if (href.charAt(0) === '#') map[href.slice(1)] = a;
+  });
+  var spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.classList.remove('active'); });
+      var a = map[e.target.id];
+      if (a) {
+        a.classList.add('active');
+        a.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      }
+    });
+  }, { rootMargin: '-20% 0px -65% 0px' });
+  Object.keys(map).forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) spy.observe(el);
+  });
+
+  /* reveal-on-scroll */
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    var targets = document.querySelectorAll('section .wrap > *');
+    targets.forEach(function (el) { el.classList.add('reveal'); });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    targets.forEach(function (el) { io.observe(el); });
+  }
+})();
+</script>
+
+</body>
+</html>

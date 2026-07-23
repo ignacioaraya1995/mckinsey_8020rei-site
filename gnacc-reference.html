@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GNACC Funnel &amp; Benchmark Reference — 8020IQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:#FAF8F5; --warm-white:#F5F3EF; --charcoal:#18181B;
+    --emerald:#10B981; --emerald-dark:#059669;
+    --text:#1C1C1E; --text-2:#636366; --text-3:#8E8E93;
+    --line:#E8E4DE; --line-strong:#DDD7CE;
+    --accent:var(--emerald); --accent-strong:var(--emerald-dark);
+    --accent-wash:rgba(16,185,129,0.10); --alert:#DC2626;
+    --font-display:'DM Sans',-apple-system,sans-serif;
+    --font-body:'Inter',-apple-system,sans-serif;
+    --font-mono:'JetBrains Mono',Menlo,Consolas,monospace;
+    --r-card:16px; --r-pill:9999px;
+    --shadow-rest:0 1px 2px rgba(0,0,0,0.04),0 1px 6px rgba(0,0,0,0.04);
+    color-scheme:light;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--cream); color:var(--text); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  ::selection { background:var(--accent-wash); }
+  .wrap { max-width:960px; margin:0 auto; padding:0 24px; }
+  @media (min-width:768px) { .wrap { padding:0 48px; } }
+  h1,h2,h3,h4 { font-family:var(--font-display); font-weight:700; color:var(--text); margin:0; text-wrap:balance; }
+  p { margin:0 0 16px; }
+  a { color:var(--accent-strong); }
+  .eyebrow { font-family:var(--font-mono); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-strong); }
+  .topnav { position:sticky; top:0; z-index:50; background:color-mix(in srgb,var(--cream) 86%,transparent); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+  .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:18px; height:54px; }
+  .nav-brand { display:flex; align-items:center; gap:9px; font-family:var(--font-display); font-weight:800; font-size:15px; color:var(--text); text-decoration:none; }
+  .nav-brand .iso { width:20px; height:20px; border-radius:50%; background:conic-gradient(from 20deg,var(--accent-strong) 0 75%,rgba(5,150,105,0.35) 75% 100%); -webkit-mask:radial-gradient(circle,transparent 46%,#000 47%); mask:radial-gradient(circle,transparent 46%,#000 47%); }
+  .nav-back { font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--text-3); text-decoration:none; padding:6px 12px; border-radius:var(--r-pill); }
+  .nav-back:hover { color:var(--accent-strong); background:var(--accent-wash); }
+  header.hero { padding:52px 0 34px; border-bottom:1px solid var(--line); background-image:linear-gradient(to right,rgba(0,0,0,0.03) 1px,transparent 1px),linear-gradient(to bottom,rgba(0,0,0,0.03) 1px,transparent 1px); background-size:32px 32px; }
+  header.hero h1 { font-size:clamp(26px,3.6vw,38px); font-weight:800; line-height:1.1; margin:12px 0; }
+  header.hero .doc-sub { font-size:16px; color:var(--text-2); max-width:660px; margin:0; }
+  section { padding:42px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type { border-bottom:none; }
+  section h2 { font-size:22px; margin-bottom:8px; }
+  .lede { color:var(--text-2); max-width:680px; margin-bottom:22px; }
+  .lede b { color:var(--text); }
+  ul.tight { padding-left:20px; color:var(--text-2); max-width:720px; }
+  ul.tight li { margin-bottom:9px; }
+  ul.tight b { color:var(--text); }
+  .table-scroll { overflow-x:auto; }
+  table.data { width:100%; border-collapse:collapse; margin:18px 0; font-size:14px; }
+  table.data th { font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--text-2); text-align:left; padding:10px 12px; border-bottom:1px solid var(--line-strong); }
+  table.data td { padding:11px 12px; border-bottom:1px solid var(--line); color:var(--text-2); vertical-align:top; }
+  table.data tbody tr:nth-child(even) { background:var(--warm-white); }
+  table.data td b { color:var(--text); }
+  td.mono { font-family:var(--font-mono); font-size:12.5px; color:var(--accent-strong); white-space:nowrap; }
+  td.strong { color:var(--text); font-weight:600; }
+  td.bad { color:var(--alert); font-weight:600; }
+  td.good { color:var(--accent-strong); font-weight:600; }
+  .callout { position:relative; padding:20px 24px; margin:22px 0; max-width:760px; }
+  .callout::before,.callout::after { content:""; position:absolute; width:14px; height:14px; border:1.4px solid var(--accent-strong); }
+  .callout::before { top:0; left:0; border-right:none; border-bottom:none; }
+  .callout::after { bottom:0; right:0; border-left:none; border-top:none; }
+  .callout p { font-size:14.5px; color:var(--text-2); margin:0 0 10px; }
+  .callout p:last-child { margin:0; }
+  .callout b { color:var(--text); }
+  code.inline { font-family:var(--font-mono); background:var(--accent-wash); padding:2px 6px; border-radius:4px; font-size:0.85em; color:var(--accent-strong); }
+  .funnel { display:flex; align-items:stretch; gap:0; margin:24px 0; padding:20px; border-radius:var(--r-card); background:var(--warm-white); overflow-x:auto; }
+  .f-stage { flex:1; min-width:104px; background:var(--cream); border:1px solid var(--line-strong); border-radius:10px; padding:12px 10px; text-align:center; box-shadow:var(--shadow-rest); }
+  .f-stage .f-name { font-family:var(--font-display); font-weight:700; font-size:12.5px; line-height:1.3; }
+  .f-stage .f-def { font-size:10.5px; color:var(--text-3); margin-top:4px; line-height:1.4; }
+  .f-arrow { flex-shrink:0; width:60px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; }
+  .f-arrow .f-rate { font-family:var(--font-mono); font-weight:600; font-size:11px; color:var(--accent-strong); white-space:nowrap; }
+  .f-arrow .f-line { font-size:14px; color:var(--text-3); line-height:1; }
+  footer { padding:26px 0 48px; font-size:13px; color:var(--text-3); }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Site">
+  <div class="wrap nav-inner">
+    <a class="nav-brand" href="index.html"><span class="iso" aria-hidden="true"></span>8020IQ</a>
+    <a class="nav-back" href="index.html">&larr; All documents</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">3 · Apply — Reference</span>
+    <h1>GNACC Funnel &amp; Benchmark Reference</h1>
+    <p class="doc-sub">The single source of truth for stage definitions, benchmarks, and formulas used across the playbook, cases, and training. Everything here is verified against the intranet code — cite this page instead of inventing numbers.</p>
+  </div>
+</header>
+
+<section id="funnel">
+  <div class="wrap">
+    <h2>The funnel — GNACC</h2>
+    <p class="lede"><b>GNACC = Gross Leads → Net Leads → Appointments → Contracts → Closings.</b> Stage definitions per the Collective Genius standard (Dallas TX, March 2026); rates below are the CG stage-to-stage benchmarks.</p>
+    <div class="funnel">
+      <div class="f-stage"><div class="f-name">Gross Leads</div><div class="f-def">Anything entering the CRM</div></div>
+      <div class="f-arrow"><span class="f-rate">50%</span><span class="f-line">&rarr;</span></div>
+      <div class="f-stage"><div class="f-name">Net Leads</div><div class="f-def">Verified owner, wants to sell</div></div>
+      <div class="f-arrow"><span class="f-rate">25%</span><span class="f-line">&rarr;</span></div>
+      <div class="f-stage"><div class="f-name">Appointments</div><div class="f-def">Attended, offer presented</div></div>
+      <div class="f-arrow"><span class="f-rate">15%</span><span class="f-line">&rarr;</span></div>
+      <div class="f-stage"><div class="f-name">Contracts</div><div class="f-def">Fully executed agreement</div></div>
+      <div class="f-arrow"><span class="f-rate">70%</span><span class="f-line">&rarr;</span></div>
+      <div class="f-stage"><div class="f-name">Closed Deals</div><div class="f-def">Revenue received</div></div>
+    </div>
+
+    <h3 class="eyebrow" style="display:block; margin:26px 0 0;">Stage definitions</h3>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Stage</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Gross Lead</td><td>Any lead that enters the CRM. Includes all inbound inquiries, even removal requests. Only confirmed spam (no real person) is excluded.</td></tr>
+          <tr><td class="strong">Net Lead</td><td>A verified human contact who owns a property and has expressed interest in selling. Not necessarily qualified.</td></tr>
+          <tr><td class="strong">Attended Appointment</td><td>An appointment (virtual or in person) where the seller engages with the buyer and an offer is presented.</td></tr>
+          <tr><td class="strong">Contract</td><td>Seller has agreed to terms and signed the purchase agreement along with the purchasing company — fully executed.</td></tr>
+          <tr><td class="strong">Closed Deal</td><td>Revenue received from the sale, or the property added to the balance sheet if retained as a rental.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13.5px; color:var(--text-2); max-width:720px;">Verdict bands vs. a target (from <code class="inline">classifyVsBenchmark</code>): <b>below</b> = under target · <b>meeting</b> = target up to +20% · <b>exceeding</b> = above +20%.</p>
+  </div>
+</section>
+
+<section id="full-funnel">
+  <div class="wrap">
+    <h2>Full-funnel benchmarks (Gross Lead → outcome)</h2>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Tier</th><th>Source</th><th>Ratio</th><th>%</th><th>Measures</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Floor</td><td>Gary Harper / CG</td><td class="mono">1 in 70–100</td><td class="mono">1.0–1.4%</td><td>GL → Closed (matches 50% × 25% × 15% × 70%)</td></tr>
+          <tr><td class="strong">Mid</td><td>Benmont</td><td class="mono">1 in 10–20</td><td class="mono">5–10%</td><td>GL → Closed (practitioner average, ICP1/ICP2-biased)</td></tr>
+          <tr><td class="strong">Top</td><td>ICP1</td><td class="mono">1 in ~14–20</td><td class="mono">5–7%</td><td>GL → <b>Contract</b> (≈3.5–4.9% closed at 70% close rate)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13.5px; color:var(--text-2); max-width:720px;">Tier classification of GL→Contract (from <code class="inline">classifyFunnelTier</code>): ≥5% top · ≥1.5% mid · ≥0.5% floor.</p>
+
+    <div class="callout">
+      <span class="eyebrow">The "8020REI Benchmarks" preset (monthly)</span>
+      <p><b>$15,000 spend · 500 gross leads · 350 net leads (70%) · 70 appointments (20%) · 14 contracts (20%) · $3,500 avg profit/deal.</b></p>
+      <p>Derived: cost/lead $30 · cost/net lead ~$43 · cost/appt ~$214 · cost/contract ~$1,071 · revenue $49,000 · ROI ≈ 2.3x.</p>
+      <p><i>Industry-average preset: $10k spend, 300 GL, 180 NL, 36 appts, 5 contracts, $2,500/deal.</i></p>
+    </div>
+  </div>
+</section>
+
+<section id="direct-mail">
+  <div class="wrap">
+    <h2>Direct-mail funnel benchmarks (per 10,000 pieces)</h2>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Stage</th><th>Metric</th><th>Worst</th><th>Average</th><th>Best</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Mail → Response</td><td>Response rate</td><td>0.2% → 20</td><td>0.35% → 35</td><td>0.6% → 60</td></tr>
+          <tr><td class="strong">Response → Qualified</td><td>Gross/net ratio</td><td>30% → 6</td><td>35% → 12</td><td>40% → 24</td></tr>
+          <tr><td class="strong">Qualified → Appointment</td><td>Lead/appt rate</td><td>30% → 2</td><td>35% → 4</td><td>40% → 10</td></tr>
+          <tr><td class="strong">Appointment → Contract</td><td>Appt/contract rate</td><td>20% → 0</td><td>30% → 1</td><td>40% → 4</td></tr>
+          <tr><td class="strong">Contract → Deal</td><td>Close rate</td><td>75% → 0</td><td>83% → 1</td><td>90% → 3</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13.5px; color:var(--text-2); max-width:720px;"><b style="color:var(--text);">Mail pieces per closed deal:</b> worst ~37,000 · average ~9,400 · best ~2,900. Red flag threshold: &gt;25,000/deal = funnel leaking at multiple stages; healthy &lt;10,000.</p>
+  </div>
+</section>
+
+<section id="formulas">
+  <div class="wrap">
+    <h2>Formulas (as implemented in the GNACC calculator)</h2>
+    <ul class="tight">
+      <li><b>Conversion rates:</b> each stage ÷ previous stage; <code class="inline">glToContractRate</code> = contracts ÷ gross leads (headline tier metric)</li>
+      <li><b>Cost per X</b> = total ad spend ÷ X (leads, net leads, appointments, contracts)</li>
+      <li><b>Total revenue</b> = contracts × avg profit per deal · <b>Net profit</b> = revenue − ad spend · <b>ROI</b> = net profit ÷ ad spend</li>
+    </ul>
+  </div>
+</section>
+
+<section id="diagnostic">
+  <div class="wrap">
+    <h2>Selected diagnostic benchmarks (client-diagnostic pillars)</h2>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Item</th><th>Healthy</th><th>Red flag</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">BuyBox freshness</td><td class="good">Reviewed ≤ 90 days</td><td class="bad">No update in 6+ months</td></tr>
+          <tr><td class="strong">BuyBox vs. closed deals</td><td class="good">≥ 80% of closed deals match buy box</td><td class="bad">Closing outside buy box = stale targeting</td></tr>
+          <tr><td class="strong">Cash offer %</td><td class="good">Tiered by ARV bracket (e.g. 63/68/78%)</td><td class="bad">Flat % across price ranges, or &lt; 60%</td></tr>
+          <tr><td class="strong">Skip-trace quality</td><td class="good">&gt; 50% reachable</td><td class="bad">High wrong-number rate</td></tr>
+          <tr><td class="strong">Property data accuracy</td><td class="good">&lt; 5% errors</td><td class="bad">Classification errors, stale distress flags</td></tr>
+          <tr><td class="strong">DM response rate</td><td class="good">≥ 0.35%</td><td class="bad">&lt; 0.2% (list fatigue / bad creative / wrong audience)</td></tr>
+          <tr><td class="strong">A/B testing</td><td class="good">Active, quarterly</td><td class="bad">Same piece 6+ months</td></tr>
+          <tr><td class="strong">Channel mix</td><td class="good">2–3 active channels</td><td class="bad">Single-channel dependency</td></tr>
+          <tr><td class="strong">Speed to lead</td><td class="good">&lt; 5 min (hot leads)</td><td class="bad">&gt; 30 min = 21× less likely to convert</td></tr>
+          <tr><td class="strong">Contact attempts</td><td class="good">6–8 across call/text/VM</td><td class="bad">1–2 then disqualified</td></tr>
+          <tr><td class="strong">Lead → appointment</td><td class="good">≥ 35%</td><td class="bad">&lt; 25% (weak follow-up or qualification)</td></tr>
+          <tr><td class="strong">Appt → contract</td><td class="good">≥ 30%</td><td class="bad">&lt; 20% (pricing, negotiation, unmotivated sellers)</td></tr>
+          <tr><td class="strong">Pipeline flow</td><td class="good">No stage &gt; 30% drop-off</td><td class="bad">Steep drop at one stage</td></tr>
+          <tr><td class="strong">Team capacity</td><td class="good">≥ 5 people, clear roles</td><td class="bad">&lt; 5 = execution risk</td></tr>
+          <tr><td class="strong">CRM hygiene</td><td class="good">&gt; 90% field completion</td><td class="bad">No CRM / incomplete = can't diagnose</td></tr>
+          <tr><td class="strong">Churn context</td><td>—</td><td class="bad">Churn 30–33%; unengaged clients and teams &lt; 5 highest risk</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="market">
+  <div class="wrap">
+    <h2>Market-context signals (rule the market in or out)</h2>
+    <ul class="tight">
+      <li><b>Days on Market trend</b> — rising = cooling market, more inventory; falling = hot, harder to find deals</li>
+      <li><b>Months of supply</b> — &lt; 6 = seller's market (harder for investors); &gt; 6 = buyer's market</li>
+      <li><b>Distressed inventory vs. 2019 baseline</b> — lower distress = smaller addressable market; may explain volume drop regardless of execution</li>
+      <li><b>Cash-buyer % vs. historical</b> — spike = institutional competition compressing margins</li>
+      <li><b>Foreclosure pipeline / tax-lien season</b> — fewer filings = fewer leads at the source; seasonal misalignment = marketing off-cycle</li>
+    </ul>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="wrap">
+    <h2>Source files (intranet repo)</h2>
+    <p class="lede">Repo: <code class="inline">/Volumes/External Drive/Projects/8020REI/intranet</code></p>
+    <ul class="tight">
+      <li><code class="inline">src/lib/config/gnaccCalculator.ts</code> — stages, CG benchmarks, presets, tiers, formulas</li>
+      <li><code class="inline">src/lib/config/clientDiagnosticFlow.ts</code> — 3-pillar diagnostic tree, DM funnel, market signals, 5-step approach</li>
+      <li>Tools (UI): <code class="inline">src/routes/(authenticated)/tools/{gnacc-calculator, client-diagnostic, roi-calculator, roi-client-analysis}</code></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Rendered from <code class="inline">gnacc-reference.md</code> — the markdown file is the source of truth. Collective Genius standardized definitions, Dallas TX, March 2026.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8020IQ Problem-Solving Program — Index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  /* ===== 8020IQ brand tokens — light mode only ===== */
+  :root {
+    --cream: #FAF8F5;
+    --warm-white: #F5F3EF;
+    --charcoal: #18181B;
+    --emerald: #10B981;
+    --emerald-dark: #059669;
+    --text: #1C1C1E;
+    --text-2: #636366;
+    --text-3: #8E8E93;
+    --line: #E8E4DE;
+    --line-strong: #DDD7CE;
+    --accent: var(--emerald);
+    --accent-strong: var(--emerald-dark);
+    --accent-wash: rgba(16, 185, 129, 0.10);
+    --font-display: 'DM Sans', -apple-system, sans-serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', Menlo, Consolas, monospace;
+    --r-card: 16px;
+    --r-pill: 9999px;
+    --shadow-rest: 0 1px 2px rgba(0,0,0,0.04), 0 1px 6px rgba(0,0,0,0.04);
+    --shadow-hover: 0 4px 12px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.06);
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--cream); color: var(--text);
+    font-family: var(--font-body); font-size: 16px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--accent-wash); }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  @media (min-width: 768px) { .wrap { padding: 0 48px; } }
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; color: var(--text); margin: 0; text-wrap: balance; }
+  p { margin: 0 0 16px; }
+  a { color: var(--accent-strong); }
+  .eyebrow {
+    font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent-strong);
+  }
+
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--cream) 86%, transparent);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner { display: flex; align-items: center; gap: 18px; height: 54px; }
+  .nav-brand { display: flex; align-items: center; gap: 9px; font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--text); text-decoration: none; }
+  .nav-brand .iso {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: conic-gradient(from 20deg, var(--accent-strong) 0 75%, rgba(5,150,105,0.35) 75% 100%);
+    -webkit-mask: radial-gradient(circle, transparent 46%, #000 47%);
+    mask: radial-gradient(circle, transparent 46%, #000 47%);
+  }
+  .nav-tag { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); }
+
+  header.hero {
+    padding: 52px 0 36px; border-bottom: 1px solid var(--line);
+    background-image: linear-gradient(to right, rgba(0,0,0,0.035) 1px, transparent 1px),
+                       linear-gradient(to bottom, rgba(0,0,0,0.035) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  header.hero h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; line-height: 1.08; margin: 12px 0 12px; }
+  header.hero .doc-sub { font-size: 16.5px; color: var(--text-2); max-width: 620px; margin: 0; }
+  header.hero .doc-sub b { color: var(--text); }
+
+  section { padding: 44px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  section h2 { font-size: 23px; margin-bottom: 6px; }
+  .lede { color: var(--text-2); max-width: 640px; margin-bottom: 26px; }
+  .lede b { color: var(--text); }
+
+  /* ===== the linear path ===== */
+  .path { position: relative; display: flex; flex-direction: column; gap: 14px; max-width: 760px; }
+  .path::before {
+    content: ""; position: absolute; top: 28px; bottom: 28px; left: 27px; width: 2px;
+    background: var(--accent-strong); opacity: 0.35;
+  }
+  a.step {
+    position: relative; display: flex; gap: 20px; align-items: flex-start;
+    text-decoration: none; color: inherit;
+    background: var(--warm-white); border: 1px solid var(--line-strong);
+    border-radius: var(--r-card); box-shadow: var(--shadow-rest);
+    padding: 20px 22px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  a.step:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); border-color: var(--accent-strong); }
+  .step-num {
+    flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
+    background: var(--accent-strong); color: var(--cream);
+    font-family: var(--font-mono); font-weight: 600; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 0 4px var(--cream); position: relative; z-index: 1; margin-top: 2px;
+  }
+  .step-body { min-width: 0; flex: 1; }
+  .step-body .s-when { font-family: var(--font-mono); font-weight: 600; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-strong); }
+  .step-body h3 { font-size: 17px; margin: 5px 0 5px; }
+  .step-body h3 .go { color: var(--accent-strong); }
+  .step-body p { font-size: 13.5px; color: var(--text-2); margin: 0 0 8px; }
+  .step-body .s-src { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); }
+  .loop-note {
+    margin: 6px 0 0 74px; max-width: 640px;
+    font-size: 13px; color: var(--text-2);
+    border-left: 2px dashed var(--line-strong); padding: 2px 0 2px 16px;
+  }
+  @media (max-width: 560px) {
+    .path::before { display: none; }
+    a.step { flex-direction: column; gap: 10px; }
+    .step-num { box-shadow: none; }
+    .loop-note { margin-left: 0; }
+  }
+
+  /* ===== references ===== */
+  .refs { display: flex; flex-direction: column; gap: 10px; max-width: 760px; }
+  a.ref {
+    display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap;
+    text-decoration: none; color: inherit;
+    background: transparent; border: 1px solid var(--line-strong); border-radius: 12px;
+    padding: 14px 18px;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  a.ref:hover { background: var(--warm-white); border-color: var(--accent-strong); }
+  a.ref h3 { font-size: 14.5px; white-space: nowrap; }
+  a.ref h3 .go { color: var(--accent-strong); }
+  a.ref p { font-size: 13px; color: var(--text-2); margin: 0; flex: 1; min-width: 220px; }
+  a.ref .r-src { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-3); }
+
+  footer { padding: 26px 0 52px; font-size: 13px; color: var(--text-3); }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Site">
+  <div class="wrap nav-inner">
+    <a class="nav-brand" href="index.html"><span class="iso" aria-hidden="true"></span>8020IQ</a>
+    <span class="nav-tag">problem-solving program · index</span>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Internal Training &amp; Diagnostics</span>
+    <h1>8020IQ Problem-Solving Program</h1>
+    <p class="doc-sub">One path, four steps: <b>learn</b> the method, <b>practice</b> it on a case, <b>apply</b> it to a real client, and <b>feed what you find back</b> into the playbook. Follow the steps in order; the references below are there when you need a number or a term.</p>
+  </div>
+</header>
+
+<!-- ================= THE PATH ================= -->
+<section id="path">
+  <div class="wrap">
+    <h2>The path — follow in order</h2>
+    <p class="lede">This is the same sequence the program runs on. If you're new, start at step 1 and don't skip.</p>
+
+    <div class="path">
+      <a class="step" href="McKinsey-Problem-Solving-Guide.html">
+        <span class="step-num">1</span>
+        <span class="step-body">
+          <span class="s-when">Learn · self-paced, ~60 min</span>
+          <h3>Read the Problem-Solving Guide <span class="go">&rarr;</span></h3>
+          <p>The McKinsey method taught through one running wholesale case: 7 steps in 4 phases, issue trees, MECE, the Pyramid Principle, SCR. This is the pre-work before Session 1 — at minimum read the 4 phases, Step 1, Step 2, and MECE.</p>
+          <span class="s-src">McKinsey-Problem-Solving-Guide.html</span>
+        </span>
+      </a>
+
+      <a class="step" href="8020IQ-Training-Program.html">
+        <span class="step-num">2</span>
+        <span class="step-body">
+          <span class="s-when">Practice · Session 1, live, 90 min</span>
+          <h3>Do the Training Program <span class="go">&rarr;</span></h3>
+          <p>The flipped-classroom program: pre-work gate, the live case interview (run by a facilitator from the password-protected Interview Casefile), and certification levels. Submit the micro-exercise before class — no exercise, no seat.</p>
+          <span class="s-src">8020IQ-Training-Program.html</span>
+        </span>
+      </a>
+
+      <a class="step" href="diagnostic-playbook.html">
+        <span class="step-num">3</span>
+        <span class="step-body">
+          <span class="s-when">Apply · post-work, async, real client</span>
+          <h3>Diagnose a real client with the Playbook <span class="go">&rarr;</span></h3>
+          <p>Pick one underperforming client and run the five-step diagnostic — Segment → Compare → Benchmark → Correlate → Prioritize — using the pre-built hypothesis trees: KPI deviation → hypotheses → tests → actions.</p>
+          <span class="s-src">diagnostic-playbook.html</span>
+        </span>
+      </a>
+
+      <a class="step" href="scr-memo-template.html">
+        <span class="step-num">4</span>
+        <span class="step-body">
+          <span class="s-when">Deliver · Session 2, live, 45 min</span>
+          <h3>Write the one-page SCR memo <span class="go">&rarr;</span></h3>
+          <p>Recommendation first, Situation–Complication–Resolution, at most three exhibits. Presented in the two-minute elevator format and scored with the case rubric.</p>
+          <span class="s-src">scr-memo-template.html</span>
+        </span>
+      </a>
+    </div>
+
+    <p class="loop-note">The loop closes here: every confirmed root cause from step 4 becomes a new hypothesis → test → action row in the playbook (step 3), so each cohort leaves it richer.</p>
+  </div>
+</section>
+
+<!-- ================= REFERENCES ================= -->
+<section id="references">
+  <div class="wrap">
+    <h2>References — when you need them</h2>
+    <p class="lede">Not part of the sequence. Open these whenever a step needs a number, a term, or a facilitator.</p>
+
+    <div class="refs">
+      <a class="ref" href="gnacc-reference.html">
+        <h3>GNACC Funnel &amp; Benchmarks <span class="go">&rarr;</span></h3>
+        <p>Stage definitions, every conversion benchmark, formulas, and the red-flag table. The single source of truth for numbers — never invent a rate.</p>
+        <span class="r-src">gnacc-reference.html</span>
+      </a>
+      <a class="ref" href="case-library.html">
+        <h3>Case Library <span class="go">&rarr;</span></h3>
+        <p>For facilitators: how to run a case, the authoring skeleton, house rules, and the build-out plan.</p>
+        <span class="r-src">case-library.html</span>
+      </a>
+      <a class="ref" href="interview-cases.html">
+        <h3>Interview Casefile &#128274; <span class="go">&rarr;</span></h3>
+        <p>The three case interviews with exhibits, answers, and rubric. Facilitators only — password protected.</p>
+        <span class="r-src">interview-cases.html</span>
+      </a>
+      <a class="ref" href="glossary.html">
+        <h3>Glossary <span class="go">&rarr;</span></h3>
+        <p>Wholesale terms (buy box, dispo, ARV, MAO, speed to lead…) and method terms (MECE, SCR, 80/20, change-log correlation…).</p>
+        <span class="r-src">glossary.html</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>8020IQ internal training project. Markdown files in this folder are the source of truth; HTML pages are styled renderings. Brand system: cream, emerald, charcoal / DM Sans, Inter, JetBrains Mono.</p>
+  </div>
+</footer>
+
+</body>
+</html>

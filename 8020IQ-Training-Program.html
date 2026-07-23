@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8020IQ Training Program — Flipped Classroom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:#FAF8F5; --warm-white:#F5F3EF; --charcoal:#18181B;
+    --emerald:#10B981; --emerald-dark:#059669;
+    --text:#1C1C1E; --text-2:#636366; --text-3:#8E8E93;
+    --line:#E8E4DE; --line-strong:#DDD7CE;
+    --accent:var(--emerald); --accent-strong:var(--emerald-dark);
+    --accent-wash:rgba(16,185,129,0.10);
+    --font-display:'DM Sans',-apple-system,sans-serif;
+    --font-body:'Inter',-apple-system,sans-serif;
+    --font-mono:'JetBrains Mono',Menlo,Consolas,monospace;
+    --r-card:16px; --r-pill:9999px;
+    --shadow-rest:0 1px 2px rgba(0,0,0,0.04),0 1px 6px rgba(0,0,0,0.04);
+    --shadow-hover:0 4px 12px rgba(0,0,0,0.06),0 12px 32px rgba(0,0,0,0.06);
+    color-scheme:light;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--cream); color:var(--text); font-family:var(--font-body); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  ::selection { background:var(--accent-wash); }
+  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
+  @media (min-width:768px) { .wrap { padding:0 48px; } }
+  h1,h2,h3,h4 { font-family:var(--font-display); font-weight:700; color:var(--text); margin:0; text-wrap:balance; }
+  p { margin:0 0 14px; }
+  a { color:var(--accent-strong); }
+  .eyebrow { font-family:var(--font-mono); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-strong); }
+  .topnav { position:sticky; top:0; z-index:50; background:color-mix(in srgb,var(--cream) 86%,transparent); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+  .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:18px; height:54px; }
+  .nav-brand { display:flex; align-items:center; gap:9px; font-family:var(--font-display); font-weight:800; font-size:15px; color:var(--text); text-decoration:none; }
+  .nav-brand .iso { width:20px; height:20px; border-radius:50%; background:conic-gradient(from 20deg,var(--accent-strong) 0 75%,rgba(5,150,105,0.35) 75% 100%); -webkit-mask:radial-gradient(circle,transparent 46%,#000 47%); mask:radial-gradient(circle,transparent 46%,#000 47%); }
+  .nav-back { font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--text-3); text-decoration:none; padding:6px 12px; border-radius:var(--r-pill); }
+  .nav-back:hover { color:var(--accent-strong); background:var(--accent-wash); }
+  header.hero { padding:52px 0 34px; border-bottom:1px solid var(--line); background-image:linear-gradient(to right,rgba(0,0,0,0.03) 1px,transparent 1px),linear-gradient(to bottom,rgba(0,0,0,0.03) 1px,transparent 1px); background-size:32px 32px; }
+  header.hero h1 { font-size:clamp(26px,3.6vw,38px); font-weight:800; line-height:1.1; margin:12px 0; }
+  header.hero .doc-sub { font-size:16px; color:var(--text-2); max-width:640px; margin:0 0 18px; }
+  .pill-row { display:flex; flex-wrap:wrap; gap:8px; }
+  .pill { font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:0.04em; color:var(--accent-strong); background:var(--accent-wash); border-radius:var(--r-pill); padding:6px 14px; }
+  section { padding:42px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type { border-bottom:none; }
+  section h2 { font-size:22px; margin-bottom:8px; }
+  .lede { color:var(--text-2); max-width:660px; margin-bottom:22px; }
+  .lede b { color:var(--text); }
+
+  /* program timeline */
+  .stages { display:flex; flex-direction:column; gap:12px; margin:20px 0; }
+  .stage { display:grid; grid-template-columns:120px 1fr; border:1px solid var(--line-strong); border-radius:var(--r-card); overflow:hidden; box-shadow:var(--shadow-rest); background:var(--warm-white); }
+  @media (max-width:640px) { .stage { grid-template-columns:1fr; } }
+  .stage .s-chip { background:var(--cream); border-right:1px solid var(--line); padding:16px 14px; display:flex; flex-direction:column; gap:3px; }
+  @media (max-width:640px) { .stage .s-chip { border-right:none; border-bottom:1px solid var(--line); flex-direction:row; align-items:baseline; gap:10px; } }
+  .stage .s-chip .nm { font-family:var(--font-mono); font-weight:600; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent-strong); }
+  .stage .s-chip .dur { font-family:var(--font-mono); font-size:10.5px; color:var(--text-3); }
+  .stage .s-body { padding:14px 20px; }
+  .stage .s-body h3 { font-size:15px; margin-bottom:5px; }
+  .stage .s-body p, .stage .s-body li { font-size:13.5px; color:var(--text-2); }
+  .stage .s-body p { margin:0 0 6px; }
+  .stage .s-body ul { margin:0; padding-left:18px; }
+  .stage .s-body li { margin-bottom:5px; }
+  .stage .s-body b { color:var(--text); }
+
+  /* locked casefile card */
+  a.locked {
+    display:flex; gap:18px; align-items:center; flex-wrap:wrap; max-width:720px;
+    text-decoration:none; color:inherit;
+    background:var(--warm-white); border:1px solid var(--line-strong); border-top:3px solid var(--accent-strong);
+    border-radius:var(--r-card); box-shadow:var(--shadow-rest); padding:20px 24px;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  a.locked:hover { transform:translateY(-2px); box-shadow:var(--shadow-hover); }
+  a.locked .lk { flex-shrink:0; width:42px; height:42px; border-radius:12px; background:var(--accent-wash); color:var(--accent-strong); display:flex; align-items:center; justify-content:center; font-size:18px; }
+  a.locked .body { flex:1; min-width:240px; }
+  a.locked h3 { font-size:16.5px; margin-bottom:4px; }
+  a.locked p { font-size:13.5px; color:var(--text-2); margin:0; }
+  a.locked .go { font-family:var(--font-mono); font-weight:600; font-size:11px; color:var(--accent-strong); white-space:nowrap; }
+
+  .callout { position:relative; padding:18px 24px; margin:20px 0; max-width:700px; }
+  .callout::before,.callout::after { content:""; position:absolute; width:14px; height:14px; border:1.4px solid var(--accent-strong); }
+  .callout::before { top:0; left:0; border-right:none; border-bottom:none; }
+  .callout::after { bottom:0; right:0; border-left:none; border-top:none; }
+  .callout .eyebrow { display:block; margin-bottom:8px; }
+  .callout p { font-size:14px; color:var(--text-2); margin:0 0 8px; }
+  .callout p:last-child { margin:0; }
+  .callout b { color:var(--text); }
+  ul.tight { padding-left:20px; max-width:660px; color:var(--text-2); margin:0 0 12px; }
+  ul.tight li { margin-bottom:8px; }
+  ul.tight b { color:var(--text); }
+  footer { padding:26px 0 48px; font-size:12.5px; color:var(--text-3); }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Site">
+  <div class="wrap nav-inner">
+    <a class="nav-brand" href="index.html"><span class="iso" aria-hidden="true"></span>8020IQ</a>
+    <a class="nav-back" href="index.html">&larr; Index</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Internal Training Program</span>
+    <h1>Learn It Alone, Solve It Together</h1>
+    <p class="doc-sub">Flipped classroom: read the theory before class, then spend the live time running a case interview under pressure — the way consulting firms actually teach. Then apply it to a real client.</p>
+    <div class="pill-row">
+      <span class="pill">FLIPPED CLASSROOM</span>
+      <span class="pill">2 LIVE SESSIONS</span>
+      <span class="pill">3 CASES</span>
+      <span class="pill">REAL BENCHMARKS</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= PROGRAM ================= -->
+<section id="program">
+  <div class="wrap">
+    <h2>The program</h2>
+    <p class="lede">Five moves: read alone, solve together, apply on a real client, present the memo, feed the playbook.</p>
+
+    <div class="stages">
+      <div class="stage">
+        <div class="s-chip"><span class="nm">Pre-work</span><span class="dur">~60 min · solo</span></div>
+        <div class="s-body">
+          <h3>Learn the method</h3>
+          <ul>
+            <li>Read the <a href="McKinsey-Problem-Solving-Guide.html">Problem-Solving Guide</a> — at minimum: the 4 phases, Step 1, Step 2, and MECE.</li>
+            <li><b>Micro-exercise (the gate):</b> a client says <i>"my cost per deal doubled."</i> Write a SMART problem statement and a two-level MECE tree. Submit before class — no exercise, no seat.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="s-chip"><span class="nm">Session 1</span><span class="dur">90 min · live</span></div>
+        <div class="s-body">
+          <h3>The case interview</h3>
+          <ul>
+            <li><b>0–10</b> Warm-up: critique two problem statements, one vague, one SMART.</li>
+            <li><b>10–55</b> Run a case from the <a href="interview-cases.html">Interview Casefile</a>, interviewer-led. Pairs — one leads, one seconds; rotate each question.</li>
+            <li><b>55–75</b> Debrief: map the case onto the 7 steps; show the rubric.</li>
+            <li><b>75–90</b> Connect to reality: reproduce the case math against the real benchmarks and the diagnostic pillars.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="s-chip"><span class="nm">Post-work</span><span class="dur">async · own book</span></div>
+        <div class="s-body">
+          <h3>A real client</h3>
+          <p>Pick one underperforming client. Run the five-step diagnostic — <b>Segment → Compare → Benchmark → Correlate → Prioritize</b> — using the <a href="diagnostic-playbook.html">playbook</a>. Deliverable: a <a href="scr-memo-template.html">one-page SCR memo</a>, recommendation first, ≤ 3 exhibits.</p>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="s-chip"><span class="nm">Session 2</span><span class="dur">45 min · live</span></div>
+        <div class="s-body">
+          <h3>Memo review — and the harvest</h3>
+          <p>Volunteers present in the two-minute elevator format; the group scores with the case rubric. Every confirmed root cause becomes a new playbook row — <b>each cohort leaves the playbook richer.</b></p>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:34px;">Certification</h2>
+    <ul class="tight">
+      <li><b>Level 1 — Solver:</b> completed a case as candidate + delivered an accepted SCR memo.</li>
+      <li><b>Level 2 — Interviewer:</b> ran a case as facilitator. Interviewers facilitate the next cohort — the program staffs itself.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= CASEFILE ================= -->
+<section id="casefile">
+  <div class="wrap">
+    <h2>The Interview Casefile</h2>
+    <p class="lede">Three interviewer-led cases — one per broken funnel stage — each with the opening prompt, exhibits, expected answers, coaching lines, and the shared rubric. <b>Facilitators only:</b> the file is password-protected so candidates can't read ahead.</p>
+    <a class="locked" href="interview-cases.html">
+      <span class="lk" aria-hidden="true">&#128274;</span>
+      <span class="body">
+        <h3>Open the Interview Casefile</h3>
+        <p>Case 01 · Lone Star (Appt→Contract) &nbsp;·&nbsp; Case 02 · Cedar Fork (Gross→Net) &nbsp;·&nbsp; Case 03 · Prairie Gate (Contract→Close)</p>
+      </span>
+      <span class="go">PASSWORD REQUIRED &rarr;</span>
+    </a>
+    <div class="callout">
+      <span class="eyebrow">How to run a case</span>
+      <p><b>Interviewer-led.</b> You control direction; provide exhibits only when asked. Time box 45–60 min. Coach with the scripted lines before improvising. Score 1–5 on the rubric during the case.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Companion to <i>The McKinsey Problem-Solving Method — Teaching Guide</i>. Case format adapted from McKinsey's interviewer-led practice cases; all funnel numbers and benchmarks are 8020REI's own — see the <a href="gnacc-reference.html">GNACC Reference</a>. All client names are fictional.</p>
+  </div>
+</footer>
+
+</body>
+</html>
