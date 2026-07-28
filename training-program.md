@@ -48,7 +48,7 @@ The library spans the GNACC funnel and can revisit a stage when the root causes 
 
 | # | Case | Broken stage | Engineered root cause | Status |
 |---|---|---|---|---|
-| 01 | Lone Star Home Buyers | Contract → Close | Buy box expanded beyond dispo capacity | ✅ drafted |
+| 01 | Lone Star Home Buyers | Appointment → Contract | Setter-to-rep handoff stopped enforcing the active buy box | ✅ drafted |
 | 02 | Cedar Fork Property Group | Gross → Net | Stale list / skip-trace decay | ✅ drafted |
 | 03 | Prairie Gate Investments | Contract → Close | Dispo buyer concentration — top end-buyer paused | ✅ drafted |
 | 04 | Red Oak Home Offers | Mail → Response | Creative fatigue, no A/B test in 9 months | ✅ drafted |
@@ -58,7 +58,7 @@ The library spans the GNACC funnel and can revisit a stage when the root causes 
 
 Case 06 matters: the method must also conclude *"it's not the client's execution"* — the market-context signals in client-diagnostic (DOM, months of supply, distressed inventory vs 2019, cash-buyer %) exist precisely for this.
 
-Cases 01 and 03 intentionally share **Contract → Close**: Lone Star tests whether the buy box outran dispo capacity, while Prairie Gate tests buyer-concentration risk. Case 07 fills **Appointment → Contract** with a seller-side offer-calibration failure.
+Cases 01 and 07 intentionally share **Appointment → Contract**: Lone Star tests qualification and buy-box fit across the setter-to-rep handoff; Waxahachie tests seller-side offer calibration. Prairie Gate is the clean **Contract → Close** contrast: signed contracts fail because the end-buyer list is too concentrated.
 
 Source material for new cases: Knowledge Gap sessions (the 367 that informed the diagnostic pillars), real anonymized client inflections, and the red-flag items already codified in `clientDiagnosticFlow.ts` — every `redFlag` in that file is a case seed.
 
@@ -73,5 +73,5 @@ Source material for new cases: Knowledge Gap sessions (the 367 that informed the
 
 - [ ] One-page SCR memo template (Google Doc)
 - [ ] Decide cohort composition (CS only, or CS + sales + data?)
-- [ ] Change-event logging on real clients (buy box edits, creative changes) — the diagnostic shortcut taught in Case 01 only works in production if changes are timestamped somewhere queryable
+- [ ] Change-event logging on real clients (buy box edits, qualification/routing changes, creative changes) — the diagnostic shortcut taught across the cases only works in production if changes are timestamped somewhere queryable
 - [ ] Optional later: AI case partner — an agent prompt that plays interviewer for solo practice (cheap once cases are written, since the interviewer guide is the prompt)

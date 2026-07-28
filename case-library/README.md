@@ -24,15 +24,18 @@ Every case follows the same skeleton (see `case-01-lone-star.md` as the model):
 **Rules of the house style:**
 - Use real benchmarks from `../gnacc-reference.md`; the math must check out exactly (recompute every rate).
 - If the prompt says a metric is unchanged, keep the before/after exhibit values identical. Use **$25,000 gross profit per closed deal** for case sizing (typical range: $20,000–$30,000, or roughly 10%–15% of property value) unless the case provides a client-specific figure.
+- Place the cause at the stage where the failure actually happens: no seller signature = **Appointment → Contract**; a signed contract that cannot monetize = **Contract → Close**; stable closings with lower gross profit per deal = **unit economics**, not a GNACC conversion break.
 - One engineered root cause per case. The decline's start date correlates with a supplied change event except in an explicit market/context trap, where the evidence must rule out client-side changes.
 - Fictional client names, realistic geography (DFW area so far).
 - Every red flag in `clientDiagnosticFlow.ts` is a candidate case seed.
+
+**Casefile role-card convention:** the renderer turns the opening prompt, each `**Ask:**` line, Exhibit 1, and Exhibit 2 into blue student-share cards. Expected answers, coaching prompts, reveals, model syntheses, rubrics, and facilitator notes become amber coach-only cards. Keep those labels and headings intact so the generated cards remain screenshot-safe.
 
 ## Build-out plan
 
 | # | Broken stage | Engineered root cause | Status |
 |---|---|---|---|
-| 01 | Contract → Close | Buy box expanded beyond dispo capacity | ✅ `case-01-lone-star.md` |
+| 01 | Appointment → Contract | Setter-to-rep handoff stopped enforcing the active buy box | ✅ `case-01-lone-star.md` |
 | 02 | Gross → Net | Stale lists / skip-trace decay | ✅ `case-02-cedar-fork.md` |
 | 03 | Contract → Close | Dispo buyer concentration — top end-buyer paused | ✅ `case-03-prairie-gate.md` |
 | 04 | Mail → Response | Creative fatigue, no A/B test in 9 months | ✅ `case-04-red-oak.md` |
@@ -44,4 +47,6 @@ Every case follows the same skeleton (see `case-01-lone-star.md` as the model):
 
 Case 06 matters because the method must also be able to conclude "it's not the client's execution" — that's what the market-context signals exist for.
 
-Cases 01 and 03 intentionally share **Contract → Close** but teach different branches: deal-to-buyer fit vs. buyer concentration. Case 07 provides the distinct **Appointment → Contract** lesson: the seller rejects a miscalibrated offer before signing.
+Cases 01 and 07 intentionally share **Appointment → Contract** but teach different branches: Lone Star sends the wrong opportunities through the setter-to-rep handoff; Waxahachie sends the right opportunities the wrong offer. Case 03 is the clean **Contract → Close** contrast: the seller has signed, but the buyer list cannot absorb the contracts.
+
+Run `node scripts/audit-cases.mjs` after substantive edits. Rebuild the encrypted page with `node scripts/rebuild-casefile.mjs`; it reads the existing casefile password from standard input, stores no password, and verifies the encrypted round trip.

@@ -116,9 +116,11 @@
       <span class="eyebrow">Rules of the house style</span>
       <p>• Use real benchmarks from the <a href="gnacc-reference.html">GNACC Reference</a>; the math must check out exactly (recompute every rate).</p>
       <p>• If the prompt says a metric is unchanged, keep its before/after values identical. Use $25,000 gross profit per closed deal for case sizing (typical range: $20,000–$30,000, or roughly 10%–15% of property value) unless the case supplies a client-specific figure.</p>
+      <p>• Place the cause where the failure actually happens: no seller signature = <b>Appointment → Contract</b>; a signed contract that cannot monetize = <b>Contract → Close</b>; stable closings with lower gross profit per deal = <b>unit economics</b>, not a GNACC conversion break.</p>
       <p>• One engineered root cause per case. The decline's start date correlates with a supplied change event except in an explicit market/context trap, where the evidence must rule out client-side changes.</p>
       <p>• Fictional client names, realistic geography (DFW area so far).</p>
       <p>• Every red flag in <code class="inline">clientDiagnosticFlow.ts</code> is a candidate case seed.</p>
+      <p>• The encrypted casefile renders prompts and exhibits as blue <b>student-share</b> cards, and answers, hints, reveals, and facilitator notes as amber <b>coach-only</b> cards, so each card can be captured safely.</p>
     </div>
   </div>
 </section>
@@ -131,7 +133,7 @@
       <table class="data">
         <thead><tr><th>#</th><th>Broken stage</th><th>Engineered root cause</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td class="mono">01</td><td class="strong">Contract → Close</td><td>Buy box expanded beyond dispo capacity</td><td class="good"><a href="interview-cases.html#case01">Rendered — Lone Star</a></td></tr>
+          <tr><td class="mono">01</td><td class="strong">Appointment → Contract</td><td>Setter-to-rep handoff stopped enforcing the active buy box</td><td class="good"><a href="interview-cases.html#case01">Rendered — Lone Star</a></td></tr>
           <tr><td class="mono">02</td><td class="strong">Gross → Net</td><td>Stale lists / skip-trace decay</td><td class="good"><a href="interview-cases.html#case02">Rendered — Cedar Fork</a></td></tr>
           <tr><td class="mono">03</td><td class="strong">Contract → Close</td><td>Dispo buyer concentration — top end-buyer paused</td><td class="good"><a href="interview-cases.html#case03">Rendered — Prairie Gate</a></td></tr>
           <tr><td class="mono">04</td><td class="strong">Mail → Response</td><td>Creative fatigue — no A/B test in 9 months</td><td class="good"><a href="interview-cases.html#case04">Rendered — Red Oak</a></td></tr>
@@ -141,7 +143,7 @@
         </tbody>
       </table>
     </div>
-    <p class="lede">Cases 01 and 03 intentionally share <b>Contract → Close</b> but teach different branches: deal-to-buyer fit vs. buyer concentration. Case 07 provides the distinct <b>Appointment → Contract</b> lesson: the seller rejects a miscalibrated offer before signing.</p>
+    <p class="lede">Cases 01 and 07 intentionally share <b>Appointment → Contract</b> but teach different branches: Lone Star sends the wrong opportunities through the setter-to-rep handoff; Waxahachie sends the right opportunities the wrong offer. Case 03 is the clean <b>Contract → Close</b> contrast: the seller has signed, but the buyer list cannot absorb the contracts.</p>
     <div class="callout">
       <span class="eyebrow">Why case 06 matters</span>
       <p>The method must also be able to conclude <b>"it's not the client's execution."</b> The market-context signals in client-diagnostic — DOM, months of supply, distressed inventory vs. 2019, cash-buyer % — exist precisely for this verdict.</p>

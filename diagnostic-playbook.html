@@ -125,13 +125,31 @@
   <div class="wrap">
     <h2>3 · Hypothesis playbook (entries drafted so far)</h2>
 
+    <h3 class="sub">3.0 — Diagnose the financial symptom before choosing a funnel stage</h3>
+    <p class="lede" style="margin-bottom:8px;">Do not force every revenue or profit decline into GNACC. Start with the identity: <b>gross profit contribution = closed deals × gross profit per closed deal − operating/marketing costs.</b></p>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Observed pattern</th><th>Correct diagnostic branch</th><th>First tests</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Closed deals fell; gross profit per deal is stable</td><td>Volume or GNACC conversion</td><td>Compare every adjacent-stage rate before/after; segment the first broken rate; check change history</td></tr>
+          <tr><td class="strong">Closed deals are stable; revenue or gross profit per deal fell</td><td>Unit economics — <b>not</b> a GNACC conversion failure</td><td><b>Segment gross profit per deal first</b> by market, property type, ARV band, acquisition rep, and exit type; compare contract price, buyer price, repair revisions, assignment-fee/JV splits, and concessions; check pricing/formula changes</td></tr>
+          <tr><td class="strong">Both closed deals and gross profit per deal fell</td><td>Two simultaneous branches</td><td>Quantify the contribution of deal-count loss versus unit-economics compression, then diagnose each separately</td></tr>
+          <tr><td class="strong">Closed deals and gross profit per deal are stable; profit fell</td><td>Cost branch</td><td>Compare marketing, labor, financing, transaction, and operating costs before/after</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">Unit-economics guardrail</span>
+      <p>Common causes include a worse deal mix, thinner assignment spreads, acquisition prices rising faster than buyer prices, repair/ARV misses that force price reductions, more JV or double-close costs, and inconsistent revenue recognition. <b>A lower gross profit per closed deal can coexist with a healthy Contract → Close rate.</b></p>
+    </div>
+
     <h3 class="sub">3.1 — Appointment → Contract rate LOW (while appointments are happening)</h3>
     <p class="lede" style="margin-bottom:8px;"><b>The strong hypothesis:</b> the appointment is not producing a seller-acceptable offer — because the property does not meet acquisition criteria, the offer economics are wrong, or the rep fails to convert the seller. <b>Do not put “we signed it but could not find a cash buyer” here; that is a Contract → Close failure (§3.2).</b></p>
     <div class="table-scroll">
       <table class="data">
         <thead><tr><th>#</th><th>Hypothesis</th><th>Test / evidence</th><th>If confirmed → action</th></tr></thead>
         <tbody>
-          <tr><td class="mono">1</td><td class="strong">Appointments do not fit the acquisition criteria, so no viable offer is made</td><td>Compare characteristics of visited properties (price band, repair level, neighborhood) vs. target criteria; check change log — did the decline start when someone edited the criteria?</td><td>Recalibrate appointment routing and acquisition criteria</td></tr>
+          <tr><td class="mono">1</td><td class="strong">Setter-to-acquisition handoff sends appointments outside the active buy box, so no viable offer is made</td><td><b>Segment Appointment → Contract first</b> by active-buy-box fit, then by appointment setter and acquisition rep; compare visited-property characteristics with criteria; inspect required booking fields and routing changes</td><td>Reinstate required buy-box qualification before booking; hard-stop or reroute off-box leads; QA by setter and rep</td></tr>
           <tr><td class="mono">2</td><td class="strong">Offers going out but too low to convert</td><td>Offer-to-ARV / offer-to-ask spread vs. historical and vs. market comps</td><td>Revisit offer formula, MAO assumptions</td></tr>
           <tr><td class="mono">3</td><td class="strong">Acquisition rep execution (rapport, follow-up)</td><td>Rate by rep; call recordings; follow-up cadence data</td><td>Coaching / process</td></tr>
           <tr><td class="mono">4</td><td class="strong">Competitive pressure in the market</td><td>Lost-deal reasons; market DOM / investor activity</td><td>Speed and offer positioning, not targeting</td></tr>
@@ -140,25 +158,26 @@
     </div>
     <div class="callout">
       <span class="eyebrow">Key signature</span>
-      <p><b>Appointments high + signed contracts low.</b> The seller has not signed yet, so tests belong on acquisition fit, offer economics, and rep conversion.</p>
+      <p><b>Appointments high + signed contracts low.</b> The seller has not signed yet, so tests belong on qualification/handoff, acquisition fit, offer economics, and rep conversion. If the appointment setter and acquisition rep are different people, explicitly test that handoff.</p>
     </div>
 
     <h3 class="sub">3.2 — Contract → Close rate LOW (signed contracts are not monetizing)</h3>
-    <p class="lede" style="margin-bottom:8px;"><b>The strong hypothesis:</b> the signed contracts do not fit available cash-buyer demand — the buy box has expanded beyond dispo capacity.</p>
+    <p class="lede" style="margin-bottom:8px;"><b>Start with the stage fact:</b> the seller has already signed, but the contract did not become a closed deal. Buyer-list/dispo capacity is often the leading branch, but the fallout reasons determine which post-signature hypothesis deserves priority.</p>
     <div class="table-scroll">
       <table class="data">
         <thead><tr><th>#</th><th>Hypothesis</th><th>Test / evidence</th><th>If confirmed → action</th></tr></thead>
         <tbody>
-          <tr><td class="mono">1</td><td class="strong">Buy box expanded beyond dispo capacity</td><td><b>Segment Contract → Close first</b> by county, price band, and property type; compare signed-contract mix with verified buyer demand; inspect fallout reasons; correlate the decline with buy-box edits</td><td>Pause/revert unsupported criteria, refocus on proven segments, and build verified buyer depth before re-expanding</td></tr>
-          <tr><td class="mono">2</td><td class="strong">Buyer concentration or demand loss</td><td>Closings and active demand by end buyer; buyer share of exits; buyer pause dates</td><td>Rebuild buyer depth, pre-market contracts, and cap concentration</td></tr>
+          <tr><td class="mono">1</td><td class="strong">Buyer-list depth, concentration, or demand loss</td><td><b>Segment Contract → Close first</b> by fallout reason and end buyer; measure verified active buyers, buyer share of exits, bid coverage, time-to-first-bid, and buyer pause dates; check change history</td><td>Re-verify and expand the buyer list, pre-market contracts, and cap concentration</td></tr>
+          <tr><td class="mono">2</td><td class="strong">Buy box expanded beyond dispo capacity</td><td>Segment by county, price band, and property type; compare signed-contract mix with verified buyer demand; correlate the decline with buy-box edits</td><td>Pause/revert unsupported criteria, refocus on proven segments, and build verified buyer depth before re-expanding</td></tr>
           <tr><td class="mono">3</td><td class="strong">Contracts priced too high to assign</td><td>Contract price, repairs, ARV, expected buyer margin, and assignment spread vs. closed deals</td><td>Tighten MAO/underwriting; renegotiate current contracts</td></tr>
-          <tr><td class="mono">4</td><td class="strong">Transaction or seller fallout</td><td>Title, inspection, withdrawal, and missed-deadline reason codes</td><td>Fix title/process controls; extend timelines or address the seller-side cause</td></tr>
+          <tr><td class="mono">4</td><td class="strong">Dispo execution or closing window is too slow/short</td><td>Time from signature to first marketing, buyer follow-up, bid count, and days remaining before close</td><td>Market on day zero, assign ownership/SLA, and negotiate realistic closing windows</td></tr>
+          <tr><td class="mono">5</td><td class="strong">Title, transaction, or seller fallout</td><td>Title, inspection, withdrawal, financing, and missed-deadline reason codes</td><td>Fix title/process controls; extend timelines or address the documented seller-side cause</td></tr>
         </tbody>
       </table>
     </div>
     <div class="callout">
       <span class="eyebrow">Key signature</span>
-      <p><b>Signed contracts flat + closings down + “no buyer found” fallout concentrated in a newly added segment ⇒ buy-box-to-dispo mismatch.</b></p>
+      <p><b>Signed contracts flat + closings down.</b> “No buyer found” points to buyer-list/dispo or deal-to-buyer fit; title and seller withdrawals point to different branches. If closings are flat but gross profit per closed deal is down, return to §3.0 — that is unit economics, not Contract → Close.</p>
     </div>
 
     <h3 class="sub">3.3 — Prospect → Lead rate DECLINING</h3>
@@ -182,7 +201,7 @@
     <h3 class="sub">3.4 — Remaining entries to draft</h3>
     <ul class="tight">
       <li>Lead → Appointment declining (speed-to-lead, lead manager capacity, script)</li>
-      <li>Offer → Contract declining (offer level, competition, negotiation)</li>
+      <li>Additional Appointment → Contract branches (offer level, competition, negotiation)</li>
       <li>Volume problems vs. ratio problems (top-of-funnel spend/list size vs. conversion) — keep these separate; they have different trees</li>
     </ul>
   </div>

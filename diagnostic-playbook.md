@@ -38,31 +38,47 @@ Upstream of Gross Leads sits the marketing layer (the "prospect → lead" ratio 
 
 ## 3. Hypothesis playbook (entries drafted so far)
 
+### 3.0 Diagnose the financial symptom before choosing a funnel stage
+
+Do not force every revenue or profit decline into GNACC. Start with the identity:
+
+**Gross profit contribution = closed deals × gross profit per closed deal − operating/marketing costs.**
+
+| Observed pattern | Correct diagnostic branch | First tests |
+|---|---|---|
+| Closed deals fell; gross profit per deal is stable | Volume or GNACC conversion | Compare every adjacent-stage rate before/after; segment the first broken rate; check change history |
+| Closed deals are stable; revenue or gross profit per deal fell | Unit economics — **not** a GNACC conversion failure | Segment gross profit per closed deal first by market, property type, ARV band, acquisition rep, and exit type; compare contract price, buyer price, repair revisions, assignment-fee/JV splits, and concessions; check pricing/formula changes |
+| Both closed deals and gross profit per deal fell | Two simultaneous branches | Quantify the contribution of deal-count loss versus unit-economics compression, then diagnose each separately |
+| Closed deals and gross profit per deal are stable; profit fell | Cost branch | Compare marketing, labor, financing, transaction, and operating costs before/after |
+
+Common unit-economics hypotheses include a worse deal mix, thinner assignment spreads, acquisition prices rising faster than buyer prices, repair/ARV misses that force price reductions, more JV or double-close costs, and inconsistent revenue recognition. The first test is still segmentation plus change history. **A lower gross profit per closed deal can coexist with a healthy Contract → Close rate.**
+
 ### 3.1 Appointment → Contract rate LOW (while appointments/visits are happening)
 
 **Your hypothesis (the strong one):** the appointment is not producing a seller-acceptable offer — because the property does not meet acquisition criteria, the offer economics are wrong, or the rep fails to convert the seller. **Do not put "we signed it but could not find a cash buyer" here; that is a Contract → Close failure (§3.2).**
 
 | # | Hypothesis | Test / evidence | If confirmed → action |
 |---|---|---|---|
-| 1 | Appointments do not fit the acquisition criteria, so no viable offer is made | Compare characteristics of visited properties (price band, repair level, neighborhood) vs. target criteria; check change log — did the decline start when someone edited the criteria? | Recalibrate appointment routing and acquisition criteria |
+| 1 | Setter-to-acquisition handoff sends appointments outside the active buy box, so no viable offer is made | **Segment Appointment → Contract first** by active-buy-box fit, then by appointment setter and acquisition rep; compare visited-property characteristics with criteria; inspect required booking fields and routing changes | Reinstate required buy-box qualification before booking; hard-stop or reroute off-box leads; QA by setter and rep |
 | 2 | Offers going out but too low to convert | Offer-to-ARV / offer-to-ask spread vs. historical and vs. market comps | Revisit offer formula, MAO assumptions |
 | 3 | Acquisition rep execution (rapport, follow-up) | Rate by rep; call recordings; follow-up cadence data | Coaching / process |
 | 4 | Competitive pressure in the market | Lost-deal reasons; market DOM / investor activity | Speed and offer positioning, not targeting |
 
-Key signature: **appointments high + signed contracts low**. The seller has not signed yet, so tests belong on acquisition fit, offer economics, and rep conversion.
+Key signature: **appointments high + signed contracts low**. The seller has not signed yet, so tests belong on qualification/handoff, acquisition fit, offer economics, and rep conversion. If the appointment setter and the acquisition rep are different people, explicitly test that handoff.
 
 ### 3.2 Contract → Close rate LOW (signed contracts are not monetizing)
 
-**Your hypothesis (the strong one):** the signed contracts do not fit the available cash-buyer demand — the buy box has expanded beyond dispo capacity.
+**Start with the stage fact:** the seller has already signed, but the contract did not become a closed deal. Buyer-list/dispo capacity is often the leading branch, but the fallout reasons determine which post-signature hypothesis deserves priority.
 
 | # | Hypothesis | Test / evidence | If confirmed → action |
 |---|---|---|---|
-| 1 | Buy box expanded beyond dispo capacity | **Segment Contract → Close first** by county, price band, and property type; compare signed-contract mix with verified buyer demand; inspect fallout reasons; correlate the decline with buy-box edits | Pause/revert unsupported criteria, refocus on proven segments, and build verified buyer depth before re-expanding |
-| 2 | Buyer concentration or demand loss | Closings and active demand by end buyer; buyer share of exits; buyer pause dates | Rebuild buyer depth, pre-market contracts, and cap concentration |
+| 1 | Buyer-list depth, concentration, or demand loss | **Segment Contract → Close first** by fallout reason and end buyer; measure verified active buyers, buyer share of exits, bid coverage, time-to-first-bid, and buyer pause dates; check change history | Re-verify and expand the buyer list, pre-market contracts, and cap concentration |
+| 2 | Buy box expanded beyond dispo capacity | Segment by county, price band, and property type; compare signed-contract mix with verified buyer demand; correlate the decline with buy-box edits | Pause/revert unsupported criteria, refocus on proven segments, and build verified buyer depth before re-expanding |
 | 3 | Contracts priced too high to assign | Contract price, repairs, ARV, expected buyer margin, and assignment spread vs. closed deals | Tighten MAO/underwriting; renegotiate current contracts |
-| 4 | Transaction or seller fallout | Title, inspection, withdrawal, and missed-deadline reason codes | Fix title/process controls; extend timelines or address the seller-side cause |
+| 4 | Dispo execution or closing window is too slow/short | Time from signature to first marketing, buyer follow-up, bid count, and days remaining before close | Market on day zero, assign ownership/SLA, and negotiate realistic closing windows |
+| 5 | Title, transaction, or seller fallout | Title, inspection, withdrawal, financing, and missed-deadline reason codes | Fix title/process controls; extend timelines or address the documented seller-side cause |
 
-Key signature: **signed contracts flat + closings down + "no buyer found" fallout concentrated in a newly added segment ⇒ buy-box-to-dispo mismatch.**
+Key signature: **signed contracts flat + closings down**. `"No buyer found"` points to buyer-list/dispo or deal-to-buyer fit; title and seller withdrawals point to different branches. If closings are flat but gross profit per closed deal is down, return to §3.0 — that is unit economics, not Contract → Close.
 
 ### 3.3 Prospect → Lead rate DECLINING
 
@@ -78,7 +94,7 @@ Key signature: **signed contracts flat + closings down + "no buyer found" fallou
 
 ### 3.4 Remaining entries to draft
 - Lead → Appointment declining (speed-to-lead, lead manager capacity, script)
-- Offer → Contract declining (offer level, competition, negotiation)
+- Additional Appointment → Contract branches (offer level, competition, negotiation)
 - Volume problems vs. ratio problems (top-of-funnel spend/list size vs. conversion) — keep these separate; they have different trees
 
 ---

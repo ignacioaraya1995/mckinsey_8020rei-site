@@ -14,8 +14,6 @@
 
 ---
 
-
-
 <!-- ===== mckinsey-method.md ===== -->
 
 # The McKinsey Problem-Solving Method — Reference
@@ -24,7 +22,7 @@
 
 ## The running case — Trinity River Home Buyers
 
-Fictional wholesale investor, Dallas–Fort Worth, 8020REI client for two years. **Monthly profit after marketing spend declined two months in a row:** ~$235k baseline → $185k → $135k, with spend unchanged at $15k/mo. The healthy baseline uses the standard funnel counts and benchmarks (`gnacc-reference.md`): 500 GL → 350 NL (70%) → 70 appts (20%) → 14 contracts (20%) → ~10 closed deals (70%), with **$25,000 average gross profit per closed deal**. Baseline profit after marketing spend ≈ 10 × $25,000 − $15,000 = **$235k**.
+Fictional wholesale investor, Dallas–Fort Worth, 8020REI client for two years. **Monthly profit after marketing spend declined two months in a row:** ~$235k baseline → $185k → $135k, with spend unchanged at **$15,000/month**. The healthy baseline uses the standard funnel counts and benchmarks (`gnacc-reference.md`): 500 GL → 350 NL (70%) → 70 appts (20%) → 14 contracts (20%) → ~10 closed deals (70%), with **$25,000 average gross profit per closed deal**. Baseline profit after marketing spend ≈ 10 × $25,000 − $15,000 = **$235k**.
 
 Engineered root cause (deliberately different from Case 01's buy-box story): the **lead manager resigned ten weeks ago**; speed-to-lead collapsed (share of leads contacted <5 min: ~80% → ~20%), so **Net→Appt fell 20% → 11%** (appts 70 → 40, contracts 14 → 8, closings ~10 → ~6). Everything else stayed flat. Restoring it recovers about four closed deals × $25,000 ≈ **+$100k/mo (~$1.2m/yr)**.
 
@@ -46,7 +44,7 @@ The seven steps are grouped into four phases; one phase can hold several steps. 
 Most weak diagnostic work is excellent analysis of the wrong question. Write the problem as a **problem** (a metric that moved, with numbers and dates) — never as an opportunity ("how do we grow?") or a pre-picked solution ("they need more leads").
 
 **Not SMART:** "Trinity River isn't happy — how do we improve their results?" / "They need more volume — should they raise spend?"
-**SMART:** "Trinity River's monthly profit after marketing spend fell from ~$235k to $135k over the last two months with spend unchanged at $15k. Find the root cause and restore profit to the $235k baseline within 60 days, without increasing the marketing budget."
+**SMART:** "Trinity River's monthly profit after marketing spend fell from ~$235k to $135k over the last two months with spend unchanged at $15,000. Find the root cause and restore profit to the $235k baseline within 60 days, without increasing the marketing budget."
 
 **The define checklist — answer all five in writing (three lines is enough):**
 
@@ -100,7 +98,7 @@ The least glamorous step and the most often shortcut. For every prioritized bran
 
 Match rigor to the decision at stake. Find the **80/20** — the handful of queries resolving most of the uncertainty. Running case, two queries:
 
-**Query 1 — walk the funnel (baseline → last month):** spend $15k → $15k · GL 500 → 500 · NL 350 → 350 (70% → 70%; benchmark 50%) · **appts 70 → 40 (20% → 11%; benchmark 25%)** · contracts 14 → 8 (20% → 20%; benchmark 15%) · closed deals 10 → 6 (~71% → 75%; benchmark 70%). Exactly one stage broke. Prize: restore about four closed deals × $25,000 ≈ **+$100k/mo (~$1.2m/yr)**.
+**Query 1 — walk the funnel (baseline → last month):** spend $15,000 → $15,000 · GL 500 → 500 · NL 350 → 350 (70% → 70%; benchmark 50%) · **appts 70 → 40 (20% → 11%; benchmark 25%)** · contracts 14 → 8 (20% → 20%; benchmark 15%) · closed deals 10 → 6 (~71% → 75%; benchmark 70%). Exactly one stage broke. Prize: restore about four closed deals × $25,000 ≈ **+$100k/mo (~$1.2m/yr)**.
 
 **Query 2 — segment before you theorize + change log:** appt rate for leads called <5 min: 38% (healthy ≥35%); called >30 min: 9%. Share called <5 min: 80% → 20%. Change log: lead manager resigned ten weeks ago; calls returned in end-of-day batches. Red flag: first contact after 30 min ≈ 21× less likely to convert. Metric inflection + timestamped change = fastest confirmation there is.
 
@@ -148,10 +146,7 @@ MECE doesn't demand exhaustive analysis of every leaf. Pair with 80/20: structur
 
 *Sources: McKinsey internal problem-solving training materials; Slideworks.io explainers on the process, Pyramid Principle, SCR, and MECE; Iliyana Stareva's summary of "The McKinsey Mind." Trinity River Home Buyers is fictional; all benchmarks are 8020REI's own (`gnacc-reference.md`).*
 
-
 ---
-
-
 
 <!-- ===== training-program.md ===== -->
 
@@ -205,7 +200,7 @@ The library spans the GNACC funnel and can revisit a stage when the root causes 
 
 | # | Case | Broken stage | Engineered root cause | Status |
 |---|---|---|---|---|
-| 01 | Lone Star Home Buyers | Contract → Close | Buy box expanded beyond dispo capacity | ✅ drafted |
+| 01 | Lone Star Home Buyers | Appointment → Contract | Setter-to-rep handoff stopped enforcing the active buy box | ✅ drafted |
 | 02 | Cedar Fork Property Group | Gross → Net | Stale list / skip-trace decay | ✅ drafted |
 | 03 | Prairie Gate Investments | Contract → Close | Dispo buyer concentration — top end-buyer paused | ✅ drafted |
 | 04 | Red Oak Home Offers | Mail → Response | Creative fatigue, no A/B test in 9 months | ✅ drafted |
@@ -215,7 +210,7 @@ The library spans the GNACC funnel and can revisit a stage when the root causes 
 
 Case 06 matters: the method must also conclude *"it's not the client's execution"* — the market-context signals in client-diagnostic (DOM, months of supply, distressed inventory vs 2019, cash-buyer %) exist precisely for this.
 
-Cases 01 and 03 intentionally share **Contract → Close**: Lone Star tests whether the buy box outran dispo capacity, while Prairie Gate tests buyer-concentration risk. Case 07 fills **Appointment → Contract** with a seller-side offer-calibration failure.
+Cases 01 and 07 intentionally share **Appointment → Contract**: Lone Star tests qualification and buy-box fit across the setter-to-rep handoff; Waxahachie tests seller-side offer calibration. Prairie Gate is the clean **Contract → Close** contrast: signed contracts fail because the end-buyer list is too concentrated.
 
 Source material for new cases: Knowledge Gap sessions (the 367 that informed the diagnostic pillars), real anonymized client inflections, and the red-flag items already codified in `clientDiagnosticFlow.ts` — every `redFlag` in that file is a case seed.
 
@@ -230,13 +225,10 @@ Source material for new cases: Knowledge Gap sessions (the 367 that informed the
 
 - [ ] One-page SCR memo template (Google Doc)
 - [ ] Decide cohort composition (CS only, or CS + sales + data?)
-- [ ] Change-event logging on real clients (buy box edits, creative changes) — the diagnostic shortcut taught in Case 01 only works in production if changes are timestamped somewhere queryable
+- [ ] Change-event logging on real clients (buy box edits, qualification/routing changes, creative changes) — the diagnostic shortcut taught across the cases only works in production if changes are timestamped somewhere queryable
 - [ ] Optional later: AI case partner — an agent prompt that plays interviewer for solo practice (cheap once cases are written, since the interviewer guide is the prompt)
 
-
 ---
-
-
 
 <!-- ===== case-library/README.md ===== -->
 
@@ -266,15 +258,18 @@ Every case follows the same skeleton (see `case-01-lone-star.md` as the model):
 **Rules of the house style:**
 - Use real benchmarks from `../gnacc-reference.md`; the math must check out exactly (recompute every rate).
 - If the prompt says a metric is unchanged, keep the before/after exhibit values identical. Use **$25,000 gross profit per closed deal** for case sizing (typical range: $20,000–$30,000, or roughly 10%–15% of property value) unless the case provides a client-specific figure.
+- Place the cause at the stage where the failure actually happens: no seller signature = **Appointment → Contract**; a signed contract that cannot monetize = **Contract → Close**; stable closings with lower gross profit per deal = **unit economics**, not a GNACC conversion break.
 - One engineered root cause per case. The decline's start date correlates with a supplied change event except in an explicit market/context trap, where the evidence must rule out client-side changes.
 - Fictional client names, realistic geography (DFW area so far).
 - Every red flag in `clientDiagnosticFlow.ts` is a candidate case seed.
+
+**Casefile role-card convention:** the renderer turns the opening prompt, each `**Ask:**` line, Exhibit 1, and Exhibit 2 into blue student-share cards. Expected answers, coaching prompts, reveals, model syntheses, rubrics, and facilitator notes become amber coach-only cards. Keep those labels and headings intact so the generated cards remain screenshot-safe.
 
 ## Build-out plan
 
 | # | Broken stage | Engineered root cause | Status |
 |---|---|---|---|
-| 01 | Contract → Close | Buy box expanded beyond dispo capacity | ✅ `case-01-lone-star.md` |
+| 01 | Appointment → Contract | Setter-to-rep handoff stopped enforcing the active buy box | ✅ `case-01-lone-star.md` |
 | 02 | Gross → Net | Stale lists / skip-trace decay | ✅ `case-02-cedar-fork.md` |
 | 03 | Contract → Close | Dispo buyer concentration — top end-buyer paused | ✅ `case-03-prairie-gate.md` |
 | 04 | Mail → Response | Creative fatigue, no A/B test in 9 months | ✅ `case-04-red-oak.md` |
@@ -286,12 +281,11 @@ Every case follows the same skeleton (see `case-01-lone-star.md` as the model):
 
 Case 06 matters because the method must also be able to conclude "it's not the client's execution" — that's what the market-context signals exist for.
 
-Cases 01 and 03 intentionally share **Contract → Close** but teach different branches: deal-to-buyer fit vs. buyer concentration. Case 07 provides the distinct **Appointment → Contract** lesson: the seller rejects a miscalibrated offer before signing.
+Cases 01 and 07 intentionally share **Appointment → Contract** but teach different branches: Lone Star sends the wrong opportunities through the setter-to-rep handoff; Waxahachie sends the right opportunities the wrong offer. Case 03 is the clean **Contract → Close** contrast: the seller has signed, but the buyer list cannot absorb the contracts.
 
+Run `node scripts/audit-cases.mjs` after substantive edits. Rebuild the encrypted page with `node scripts/rebuild-casefile.mjs`; it reads the existing casefile password from standard input, stores no password, and verifies the encrypted round trip.
 
 ---
-
-
 
 <!-- ===== diagnostic-playbook.md ===== -->
 
@@ -335,31 +329,47 @@ Upstream of Gross Leads sits the marketing layer (the "prospect → lead" ratio 
 
 ## 3. Hypothesis playbook (entries drafted so far)
 
+### 3.0 Diagnose the financial symptom before choosing a funnel stage
+
+Do not force every revenue or profit decline into GNACC. Start with the identity:
+
+**Gross profit contribution = closed deals × gross profit per closed deal − operating/marketing costs.**
+
+| Observed pattern | Correct diagnostic branch | First tests |
+|---|---|---|
+| Closed deals fell; gross profit per deal is stable | Volume or GNACC conversion | Compare every adjacent-stage rate before/after; segment the first broken rate; check change history |
+| Closed deals are stable; revenue or gross profit per deal fell | Unit economics — **not** a GNACC conversion failure | Segment gross profit per closed deal first by market, property type, ARV band, acquisition rep, and exit type; compare contract price, buyer price, repair revisions, assignment-fee/JV splits, and concessions; check pricing/formula changes |
+| Both closed deals and gross profit per deal fell | Two simultaneous branches | Quantify the contribution of deal-count loss versus unit-economics compression, then diagnose each separately |
+| Closed deals and gross profit per deal are stable; profit fell | Cost branch | Compare marketing, labor, financing, transaction, and operating costs before/after |
+
+Common unit-economics hypotheses include a worse deal mix, thinner assignment spreads, acquisition prices rising faster than buyer prices, repair/ARV misses that force price reductions, more JV or double-close costs, and inconsistent revenue recognition. The first test is still segmentation plus change history. **A lower gross profit per closed deal can coexist with a healthy Contract → Close rate.**
+
 ### 3.1 Appointment → Contract rate LOW (while appointments/visits are happening)
 
 **Your hypothesis (the strong one):** the appointment is not producing a seller-acceptable offer — because the property does not meet acquisition criteria, the offer economics are wrong, or the rep fails to convert the seller. **Do not put "we signed it but could not find a cash buyer" here; that is a Contract → Close failure (§3.2).**
 
 | # | Hypothesis | Test / evidence | If confirmed → action |
 |---|---|---|---|
-| 1 | Appointments do not fit the acquisition criteria, so no viable offer is made | Compare characteristics of visited properties (price band, repair level, neighborhood) vs. target criteria; check change log — did the decline start when someone edited the criteria? | Recalibrate appointment routing and acquisition criteria |
+| 1 | Setter-to-acquisition handoff sends appointments outside the active buy box, so no viable offer is made | **Segment Appointment → Contract first** by active-buy-box fit, then by appointment setter and acquisition rep; compare visited-property characteristics with criteria; inspect required booking fields and routing changes | Reinstate required buy-box qualification before booking; hard-stop or reroute off-box leads; QA by setter and rep |
 | 2 | Offers going out but too low to convert | Offer-to-ARV / offer-to-ask spread vs. historical and vs. market comps | Revisit offer formula, MAO assumptions |
 | 3 | Acquisition rep execution (rapport, follow-up) | Rate by rep; call recordings; follow-up cadence data | Coaching / process |
 | 4 | Competitive pressure in the market | Lost-deal reasons; market DOM / investor activity | Speed and offer positioning, not targeting |
 
-Key signature: **appointments high + signed contracts low**. The seller has not signed yet, so tests belong on acquisition fit, offer economics, and rep conversion.
+Key signature: **appointments high + signed contracts low**. The seller has not signed yet, so tests belong on qualification/handoff, acquisition fit, offer economics, and rep conversion. If the appointment setter and the acquisition rep are different people, explicitly test that handoff.
 
 ### 3.2 Contract → Close rate LOW (signed contracts are not monetizing)
 
-**Your hypothesis (the strong one):** the signed contracts do not fit the available cash-buyer demand — the buy box has expanded beyond dispo capacity.
+**Start with the stage fact:** the seller has already signed, but the contract did not become a closed deal. Buyer-list/dispo capacity is often the leading branch, but the fallout reasons determine which post-signature hypothesis deserves priority.
 
 | # | Hypothesis | Test / evidence | If confirmed → action |
 |---|---|---|---|
-| 1 | Buy box expanded beyond dispo capacity | **Segment Contract → Close first** by county, price band, and property type; compare signed-contract mix with verified buyer demand; inspect fallout reasons; correlate the decline with buy-box edits | Pause/revert unsupported criteria, refocus on proven segments, and build verified buyer depth before re-expanding |
-| 2 | Buyer concentration or demand loss | Closings and active demand by end buyer; buyer share of exits; buyer pause dates | Rebuild buyer depth, pre-market contracts, and cap concentration |
+| 1 | Buyer-list depth, concentration, or demand loss | **Segment Contract → Close first** by fallout reason and end buyer; measure verified active buyers, buyer share of exits, bid coverage, time-to-first-bid, and buyer pause dates; check change history | Re-verify and expand the buyer list, pre-market contracts, and cap concentration |
+| 2 | Buy box expanded beyond dispo capacity | Segment by county, price band, and property type; compare signed-contract mix with verified buyer demand; correlate the decline with buy-box edits | Pause/revert unsupported criteria, refocus on proven segments, and build verified buyer depth before re-expanding |
 | 3 | Contracts priced too high to assign | Contract price, repairs, ARV, expected buyer margin, and assignment spread vs. closed deals | Tighten MAO/underwriting; renegotiate current contracts |
-| 4 | Transaction or seller fallout | Title, inspection, withdrawal, and missed-deadline reason codes | Fix title/process controls; extend timelines or address the seller-side cause |
+| 4 | Dispo execution or closing window is too slow/short | Time from signature to first marketing, buyer follow-up, bid count, and days remaining before close | Market on day zero, assign ownership/SLA, and negotiate realistic closing windows |
+| 5 | Title, transaction, or seller fallout | Title, inspection, withdrawal, financing, and missed-deadline reason codes | Fix title/process controls; extend timelines or address the documented seller-side cause |
 
-Key signature: **signed contracts flat + closings down + "no buyer found" fallout concentrated in a newly added segment ⇒ buy-box-to-dispo mismatch.**
+Key signature: **signed contracts flat + closings down**. `"No buyer found"` points to buyer-list/dispo or deal-to-buyer fit; title and seller withdrawals point to different branches. If closings are flat but gross profit per closed deal is down, return to §3.0 — that is unit economics, not Contract → Close.
 
 ### 3.3 Prospect → Lead rate DECLINING
 
@@ -375,7 +385,7 @@ Key signature: **signed contracts flat + closings down + "no buyer found" fallou
 
 ### 3.4 Remaining entries to draft
 - Lead → Appointment declining (speed-to-lead, lead manager capacity, script)
-- Offer → Contract declining (offer level, competition, negotiation)
+- Additional Appointment → Contract branches (offer level, competition, negotiation)
 - Volume problems vs. ratio problems (top-of-funnel spend/list size vs. conversion) — keep these separate; they have different trees
 
 ---
@@ -440,10 +450,7 @@ One template, parameterized by KPI + client. The playbook is the product; the pr
 4. **Pick the baseline approach** (§5) — recommend starting with self-trend + change-log correlation, adding cohort bands later.
 5. **Then** write the agent prompt and wire it into `client-diagnostic`.
 
-
 ---
-
-
 
 <!-- ===== templates/scr-memo-template.md ===== -->
 
@@ -490,10 +497,7 @@ One template, parameterized by KPI + client. The playbook is the product; the pr
 
 **Checklist before submitting:** recommendation is the first sentence · every number has a source · at least two hypotheses explicitly ruled out · one monitoring metric named · fits on one page.
 
-
 ---
-
-
 
 <!-- ===== gnacc-reference.md ===== -->
 
@@ -595,10 +599,7 @@ Derived: cost/lead $30 · cost/net lead ~$43 · cost/appt ~$214 · cost/contract
 - `src/lib/config/clientDiagnosticFlow.ts` — 3-pillar diagnostic tree, DM funnel, market signals, 5-step approach
 - Tools (UI): `src/routes/(authenticated)/tools/{gnacc-calculator, client-diagnostic, roi-calculator, roi-client-analysis}`
 
-
 ---
-
-
 
 <!-- ===== glossary.md ===== -->
 
@@ -643,6 +644,3 @@ Derived: cost/lead $30 · cost/net lead ~$43 · cost/appt ~$214 · cost/contract
 - **Baseline vs. benchmark** — the client's own trailing history vs. cross-client/industry standards; deviations from either can trigger a diagnostic.
 - **Flipped classroom** — theory consumed alone before class; live time reserved for supervised practice (the case).
 - **Case interview (interviewer-led)** — McKinsey-style teaching/testing format: structure → quant exhibit → brainstorm → synthesis, with the interviewer controlling direction.
-
-
----
