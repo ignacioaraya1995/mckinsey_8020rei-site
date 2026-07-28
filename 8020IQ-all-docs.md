@@ -228,7 +228,6 @@ Source material for new cases: Knowledge Gap sessions (the 367 that informed the
 
 ## 5. Open items
 
-- [ ] Regenerate the encrypted Interview Casefile so cases 04–07 join cases 01–03
 - [ ] One-page SCR memo template (Google Doc)
 - [ ] Decide cohort composition (CS only, or CS + sales + data?)
 - [ ] Change-event logging on real clients (buy box edits, creative changes) — the diagnostic shortcut taught in Case 01 only works in production if changes are timestamped somewhere queryable
@@ -283,7 +282,7 @@ Every case follows the same skeleton (see `case-01-lone-star.md` as the model):
 | 06 | None (trap case) | Market contraction — distressed inventory down; execution is fine | ✅ `case-06-north-elm.md` |
 | 07 | Appt → Contract | Flat 55% offer formula replaced tiered ARV brackets | ✅ `case-07-waxahachie.md` |
 
-**Rendering & access:** cases 01–03 currently live in `interview-cases.html` — the password-protected Interview Casefile (facilitators only; content is AES-encrypted in the page). Cases 04–07 are complete in source and require encrypted-payload regeneration. The case `.md` files here are the source of truth and are **not** published to the web or downloads page.
+**Rendering & access:** all seven cases live in `interview-cases.html` — the password-protected Interview Casefile (facilitators only; content is AES-encrypted in the page). The case `.md` files here are the source of truth and are **not** published to the web or downloads page.
 
 Case 06 matters because the method must also be able to conclude "it's not the client's execution" — that's what the market-context signals exist for.
 

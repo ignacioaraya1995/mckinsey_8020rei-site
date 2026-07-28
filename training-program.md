@@ -71,7 +71,6 @@ Source material for new cases: Knowledge Gap sessions (the 367 that informed the
 
 ## 5. Open items
 
-- [ ] Regenerate the encrypted Interview Casefile so cases 04–07 join cases 01–03
 - [ ] One-page SCR memo template (Google Doc)
 - [ ] Decide cohort composition (CS only, or CS + sales + data?)
 - [ ] Change-event logging on real clients (buy box edits, creative changes) — the diagnostic shortcut taught in Case 01 only works in production if changes are timestamped somewhere queryable
