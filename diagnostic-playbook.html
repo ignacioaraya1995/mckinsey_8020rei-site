@@ -126,12 +126,12 @@
     <h2>3 · Hypothesis playbook (entries drafted so far)</h2>
 
     <h3 class="sub">3.1 — Appointment → Contract rate LOW (while appointments are happening)</h3>
-    <p class="lede" style="margin-bottom:8px;"><b>The strong hypothesis:</b> the buy box is wrong — reps are visiting properties the client doesn't actually want to buy, so no offer (or a throwaway offer) follows the visit.</p>
+    <p class="lede" style="margin-bottom:8px;"><b>The strong hypothesis:</b> the appointment is not producing a seller-acceptable offer — because the property does not meet acquisition criteria, the offer economics are wrong, or the rep fails to convert the seller. <b>Do not put “we signed it but could not find a cash buyer” here; that is a Contract → Close failure (§3.2).</b></p>
     <div class="table-scroll">
       <table class="data">
         <thead><tr><th>#</th><th>Hypothesis</th><th>Test / evidence</th><th>If confirmed → action</th></tr></thead>
         <tbody>
-          <tr><td class="mono">1</td><td class="strong">Buy box misconfigured or recently changed</td><td>Compare characteristics of visited properties (price band, repair level, neighborhood) vs. target criteria; check change log — did the decline start when someone edited the buy box?</td><td>Recalibrate buy box; re-filter lead routing</td></tr>
+          <tr><td class="mono">1</td><td class="strong">Appointments do not fit the acquisition criteria, so no viable offer is made</td><td>Compare characteristics of visited properties (price band, repair level, neighborhood) vs. target criteria; check change log — did the decline start when someone edited the criteria?</td><td>Recalibrate appointment routing and acquisition criteria</td></tr>
           <tr><td class="mono">2</td><td class="strong">Offers going out but too low to convert</td><td>Offer-to-ARV / offer-to-ask spread vs. historical and vs. market comps</td><td>Revisit offer formula, MAO assumptions</td></tr>
           <tr><td class="mono">3</td><td class="strong">Acquisition rep execution (rapport, follow-up)</td><td>Rate by rep; call recordings; follow-up cadence data</td><td>Coaching / process</td></tr>
           <tr><td class="mono">4</td><td class="strong">Competitive pressure in the market</td><td>Lost-deal reasons; market DOM / investor activity</td><td>Speed and offer positioning, not targeting</td></tr>
@@ -140,10 +140,28 @@
     </div>
     <div class="callout">
       <span class="eyebrow">Key signature</span>
-      <p><b>Visits high + contracts low + timing matches a buy-box change ⇒ hypothesis 1 with high prior.</b> This is the pattern Case 01 dramatizes.</p>
+      <p><b>Appointments high + signed contracts low.</b> The seller has not signed yet, so tests belong on acquisition fit, offer economics, and rep conversion.</p>
     </div>
 
-    <h3 class="sub">3.2 — Prospect → Lead rate DECLINING</h3>
+    <h3 class="sub">3.2 — Contract → Close rate LOW (signed contracts are not monetizing)</h3>
+    <p class="lede" style="margin-bottom:8px;"><b>The strong hypothesis:</b> the signed contracts do not fit available cash-buyer demand — the buy box has expanded beyond dispo capacity.</p>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>#</th><th>Hypothesis</th><th>Test / evidence</th><th>If confirmed → action</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">1</td><td class="strong">Buy box expanded beyond dispo capacity</td><td><b>Segment Contract → Close first</b> by county, price band, and property type; compare signed-contract mix with verified buyer demand; inspect fallout reasons; correlate the decline with buy-box edits</td><td>Pause/revert unsupported criteria, refocus on proven segments, and build verified buyer depth before re-expanding</td></tr>
+          <tr><td class="mono">2</td><td class="strong">Buyer concentration or demand loss</td><td>Closings and active demand by end buyer; buyer share of exits; buyer pause dates</td><td>Rebuild buyer depth, pre-market contracts, and cap concentration</td></tr>
+          <tr><td class="mono">3</td><td class="strong">Contracts priced too high to assign</td><td>Contract price, repairs, ARV, expected buyer margin, and assignment spread vs. closed deals</td><td>Tighten MAO/underwriting; renegotiate current contracts</td></tr>
+          <tr><td class="mono">4</td><td class="strong">Transaction or seller fallout</td><td>Title, inspection, withdrawal, and missed-deadline reason codes</td><td>Fix title/process controls; extend timelines or address the seller-side cause</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">Key signature</span>
+      <p><b>Signed contracts flat + closings down + “no buyer found” fallout concentrated in a newly added segment ⇒ buy-box-to-dispo mismatch.</b></p>
+    </div>
+
+    <h3 class="sub">3.3 — Prospect → Lead rate DECLINING</h3>
     <div class="table-scroll">
       <table class="data">
         <thead><tr><th>#</th><th>Hypothesis</th><th>Test / evidence</th><th>If confirmed → action</th></tr></thead>
@@ -161,11 +179,10 @@
       <p><b>Segmenting the KPI (by channel, by rep, by list source, by property type) is itself the cheapest first test</b> — it usually kills half the tree in one query.</p>
     </div>
 
-    <h3 class="sub">3.3 — Remaining entries to draft</h3>
+    <h3 class="sub">3.4 — Remaining entries to draft</h3>
     <ul class="tight">
       <li>Lead → Appointment declining (speed-to-lead, lead manager capacity, script)</li>
       <li>Offer → Contract declining (offer level, competition, negotiation)</li>
-      <li>Contract → Close fallout rising (inspection renegotiation, title, dispo)</li>
       <li>Volume problems vs. ratio problems (top-of-funnel spend/list size vs. conversion) — keep these separate; they have different trees</li>
     </ul>
   </div>

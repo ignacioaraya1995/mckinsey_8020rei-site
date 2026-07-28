@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Downloads — Markdown Sources — 8020IQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:#FAF8F5; --warm-white:#F5F3EF; --charcoal:#18181B;
+    --emerald:#10B981; --emerald-dark:#059669;
+    --text:#1C1C1E; --text-2:#636366; --text-3:#8E8E93;
+    --line:#E8E4DE; --line-strong:#DDD7CE;
+    --accent:var(--emerald); --accent-strong:var(--emerald-dark);
+    --accent-wash:rgba(16,185,129,0.10);
+    --font-display:'DM Sans',-apple-system,sans-serif;
+    --font-body:'Inter',-apple-system,sans-serif;
+    --font-mono:'JetBrains Mono',Menlo,Consolas,monospace;
+    --r-card:16px; --r-pill:9999px;
+    --shadow-rest:0 1px 2px rgba(0,0,0,0.04),0 1px 6px rgba(0,0,0,0.04);
+    --shadow-hover:0 4px 12px rgba(0,0,0,0.06),0 12px 32px rgba(0,0,0,0.06);
+    color-scheme:light;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--cream); color:var(--text); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  ::selection { background:var(--accent-wash); }
+  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
+  @media (min-width:768px) { .wrap { padding:0 48px; } }
+  h1,h2,h3 { font-family:var(--font-display); font-weight:700; color:var(--text); margin:0; text-wrap:balance; }
+  p { margin:0 0 16px; }
+  a { color:var(--accent-strong); }
+  .eyebrow { font-family:var(--font-mono); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-strong); }
+  .topnav { position:sticky; top:0; z-index:50; background:color-mix(in srgb,var(--cream) 86%,transparent); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+  .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:18px; height:54px; }
+  .nav-brand { display:flex; align-items:center; gap:9px; font-family:var(--font-display); font-weight:800; font-size:15px; color:var(--text); text-decoration:none; }
+  .nav-brand .iso { width:20px; height:20px; border-radius:50%; background:conic-gradient(from 20deg,var(--accent-strong) 0 75%,rgba(5,150,105,0.35) 75% 100%); -webkit-mask:radial-gradient(circle,transparent 46%,#000 47%); mask:radial-gradient(circle,transparent 46%,#000 47%); }
+  .nav-back { font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--text-3); text-decoration:none; padding:6px 12px; border-radius:var(--r-pill); }
+  .nav-back:hover { color:var(--accent-strong); background:var(--accent-wash); }
+  header.hero { padding:52px 0 34px; border-bottom:1px solid var(--line); background-image:linear-gradient(to right,rgba(0,0,0,0.03) 1px,transparent 1px),linear-gradient(to bottom,rgba(0,0,0,0.03) 1px,transparent 1px); background-size:32px 32px; }
+  header.hero h1 { font-size:clamp(26px,3.6vw,38px); font-weight:800; line-height:1.1; margin:12px 0; }
+  header.hero .doc-sub { font-size:16px; color:var(--text-2); max-width:640px; margin:0; }
+  section { padding:42px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type { border-bottom:none; }
+  section h2 { font-size:22px; margin-bottom:6px; }
+  .lede { color:var(--text-2); max-width:660px; margin-bottom:22px; }
+
+  /* featured: download everything */
+  a.dl-all {
+    display:flex; gap:20px; align-items:center; flex-wrap:wrap;
+    text-decoration:none; color:inherit;
+    background:var(--warm-white); border:1px solid var(--line-strong); border-top:3px solid var(--accent-strong);
+    border-radius:var(--r-card); box-shadow:var(--shadow-rest); padding:22px 24px; max-width:760px;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  a.dl-all:hover { transform:translateY(-2px); box-shadow:var(--shadow-hover); }
+  .dl-all .big-icon {
+    flex-shrink:0; width:44px; height:44px; border-radius:12px; background:var(--accent-strong); color:var(--cream);
+    display:flex; align-items:center; justify-content:center; font-size:20px;
+  }
+  .dl-all .body { flex:1; min-width:240px; }
+  .dl-all h3 { font-size:17px; margin-bottom:4px; }
+  .dl-all p { font-size:13.5px; color:var(--text-2); margin:0; }
+  .dl-all .meta { font-family:var(--font-mono); font-size:11px; color:var(--text-3); white-space:nowrap; }
+
+  /* individual file rows */
+  .files { display:flex; flex-direction:column; gap:10px; max-width:760px; }
+  a.file {
+    display:flex; gap:16px; align-items:center; flex-wrap:wrap;
+    text-decoration:none; color:inherit;
+    border:1px solid var(--line-strong); border-radius:12px; padding:13px 18px;
+    transition:background 0.2s ease, border-color 0.2s ease;
+  }
+  a.file:hover { background:var(--warm-white); border-color:var(--accent-strong); }
+  .file .f-icon { flex-shrink:0; font-family:var(--font-mono); font-weight:600; font-size:10px; letter-spacing:0.04em; color:var(--accent-strong); background:var(--accent-wash); border-radius:6px; padding:4px 7px; }
+  .file .f-body { flex:1; min-width:220px; }
+  .file h3 { font-size:14.5px; }
+  .file p { font-size:12.5px; color:var(--text-2); margin:0; }
+  .file .f-src { font-family:var(--font-mono); font-size:10.5px; color:var(--text-3); white-space:nowrap; }
+  .file .f-size { font-family:var(--font-mono); font-size:10.5px; color:var(--text-3); white-space:nowrap; }
+  .file .f-dl { font-family:var(--font-mono); font-weight:600; font-size:11px; color:var(--accent-strong); white-space:nowrap; }
+
+  .hint { max-width:660px; font-size:13px; color:var(--text-2); border-top:1px dashed var(--line-strong); padding-top:14px; margin-top:24px; }
+  .hint b { color:var(--text); }
+  code.inline { font-family:var(--font-mono); background:var(--accent-wash); padding:2px 6px; border-radius:4px; font-size:0.85em; color:var(--accent-strong); }
+  footer { padding:26px 0 48px; font-size:13px; color:var(--text-3); }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Site">
+  <div class="wrap nav-inner">
+    <a class="nav-brand" href="index.html"><span class="iso" aria-hidden="true"></span>8020IQ</a>
+    <a class="nav-back" href="index.html">&larr; All documents</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Downloads</span>
+    <h1>Markdown Sources</h1>
+    <p class="doc-sub">Every document in the program as plain markdown — the source of truth behind the styled pages. Grab one file, or everything in a single bundle.</p>
+  </div>
+</header>
+
+<section id="bundle">
+  <div class="wrap">
+    <h2>Everything, one file</h2>
+    <p class="lede">All seven public documents concatenated in reading order, with a table of contents. Facilitator case content remains in the encrypted casefile.</p>
+    <a class="dl-all" href="8020IQ-all-docs.md" download>
+      <span class="big-icon" aria-hidden="true">&darr;</span>
+      <span class="body">
+        <h3>8020IQ-all-docs.md</h3>
+        <p>Method → training program → case-library manual → playbook → memo template → benchmarks → glossary. Case content is excluded: rendered cases 01–03 live in the password-protected <a href="interview-cases.html">Interview Casefile</a>, while drafted cases 04–07 remain facilitator-only source files until that payload is regenerated.</p>
+      </span>
+      <span class="meta">.md · ~42 KB</span>
+    </a>
+  </div>
+</section>
+
+<section id="individual">
+  <div class="wrap">
+    <h2>Individual documents</h2>
+    <div class="files">
+      <a class="file" href="mckinsey-method.md" download>
+        <span class="f-icon">MD</span>
+        <span class="f-body"><h3>The McKinsey Problem-Solving Method</h3><p>7 steps, 4 phases, MECE, Pyramid Principle, SCR — with the running wholesale case.</p></span>
+        <span class="f-src">mckinsey-method.md</span><span class="f-size">12 KB</span><span class="f-dl">Download &darr;</span>
+      </a>
+      <a class="file" href="training-program.md" download>
+        <span class="f-icon">MD</span>
+        <span class="f-body"><h3>Training Program</h3><p>Flipped classroom: pre-work, two live sessions, async post-work, certification.</p></span>
+        <span class="f-src">training-program.md</span><span class="f-size">8 KB</span><span class="f-dl">Download &darr;</span>
+      </a>
+      <a class="file" href="case-library/README.md" download>
+        <span class="f-icon">MD</span>
+        <span class="f-body"><h3>Case Library — Run &amp; Author Cases</h3><p>Facilitator manual: format, authoring skeleton, house rules, build-out plan.</p></span>
+        <span class="f-src">case-library/README.md</span><span class="f-size">4 KB</span><span class="f-dl">Download &darr;</span>
+      </a>
+      <a class="file" href="diagnostic-playbook.md" download>
+        <span class="f-icon">MD</span>
+        <span class="f-body"><h3>Client Diagnostic Playbook</h3><p>KPI deviation → hypothesis trees → tests → actions; baselines; next steps.</p></span>
+        <span class="f-src">diagnostic-playbook.md</span><span class="f-size">12 KB</span><span class="f-dl">Download &darr;</span>
+      </a>
+      <a class="file" href="templates/scr-memo-template.md" download>
+        <span class="f-icon">MD</span>
+        <span class="f-body"><h3>One-Page SCR Memo Template</h3><p>The post-work deliverable, with submission checklist.</p></span>
+        <span class="f-src">templates/scr-memo-template.md</span><span class="f-size">4 KB</span><span class="f-dl">Download &darr;</span>
+      </a>
+      <a class="file" href="gnacc-reference.md" download>
+        <span class="f-icon">MD</span>
+        <span class="f-body"><h3>GNACC Funnel &amp; Benchmark Reference</h3><p>Stage definitions, every benchmark, formulas, red-flag table.</p></span>
+        <span class="f-src">gnacc-reference.md</span><span class="f-size">8 KB</span><span class="f-dl">Download &darr;</span>
+      </a>
+      <a class="file" href="glossary.md" download>
+        <span class="f-icon">MD</span>
+        <span class="f-body"><h3>Glossary</h3><p>Wholesale-REI domain terms and methodology terms.</p></span>
+        <span class="f-src">glossary.md</span><span class="f-size">8 KB</span><span class="f-dl">Download &darr;</span>
+      </a>
+    </div>
+
+    <p class="hint"><b>If a file opens in the browser instead of downloading:</b> right-click the link and choose "Download Linked File" / "Save Link As…". The bundle <code class="inline">8020IQ-all-docs.md</code> is regenerated from the individual files — edit the individual files, not the bundle.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Markdown files are the source of truth; the styled HTML pages are renderings of them.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -503,8 +503,8 @@
 
     <div class="example">
       <span class="ex-label">The Running Case · Trinity River Home Buyers</span>
-      <p>A fictional wholesale investor in Dallas–Fort Worth, an 8020REI client for two years. Their <b>monthly net profit has declined two months in a row</b>: from a ~$34,000 baseline to $23,500, then $13,000. Marketing spend is unchanged at $15,000/month.</p>
-      <p>Every step below works this same problem, so you can watch one diagnosis travel through the whole method. The healthy baseline: 500 gross leads → 350 net leads → 70 appointments → 14 contracts a month, at $3,500 avg profit per deal — the standard <a class="term" href="gnacc-reference.html" data-tip="GNACC — the canonical wholesale funnel: Gross Leads → Net Leads → Appointments → Contracts → Closings. Every stage definition and benchmark number used in this guide lives in the GNACC Funnel &amp; Benchmark Reference. Click to open it.">GNACC</a> benchmark funnel.</p>
+      <p>A fictional wholesale investor in Dallas–Fort Worth, an 8020REI client for two years. Their <b>monthly profit after marketing spend has declined two months in a row</b>: from a ~$235,000 baseline to $185,000, then $135,000. Marketing spend is unchanged at $15,000/month.</p>
+      <p>Every step below works this same problem, so you can watch one diagnosis travel through the whole method. The healthy baseline: 500 gross leads → 350 net leads → 70 appointments → 14 contracts → about 10 closed deals a month, at $25,000 average gross profit per closed deal. The funnel counts and conversion benchmarks come from the <a class="term" href="gnacc-reference.html" data-tip="GNACC — the canonical wholesale funnel: Gross Leads → Net Leads → Appointments → Contracts → Closings. Every stage definition and benchmark number used in this guide lives in the GNACC Funnel &amp; Benchmark Reference. Click to open it.">GNACC</a> reference; $25,000 is the confirmed training-case midpoint.</p>
       <p><b>Green blocks like this one always contain the example.</b> Theory stays on the cream background; whenever you see green, the running case is being worked.</p>
     </div>
   </div>
@@ -527,7 +527,7 @@
       </div>
       <div class="card good-side">
         <span class="tag">SMART</span>
-        <p><b>"Trinity River's net profit fell from ~$34k/month to $13k over the last two months, with spend unchanged at $15k. Find the root cause and restore profit to the $34k baseline within 60 days, without increasing the marketing budget."</b></p>
+        <p><b>"Trinity River's monthly profit after marketing spend fell from ~$235k to $135k over the last two months, with spend unchanged at $15k. Find the root cause and restore profit to the $235k baseline within 60 days, without increasing the marketing budget."</b></p>
         <p style="margin:0; font-size:12.5px; color:var(--text-3);">Specific, measurable, action-oriented, relevant, time-bound.</p>
       </div>
       </div>
@@ -536,8 +536,8 @@
     <div class="callout">
       <span class="eyebrow">The define checklist — answer all five in writing before moving on</span>
       <p><b>1 · Is it a problem, not an opportunity or a solution?</b> A metric that moved — "profit declined two months in a row" — not "how do we grow" or a fix chosen in advance.</p>
-      <p><b>2 · Which metric, from what to what, since when?</b> Numbers and dates. ($34k → $13k, last two months.)</p>
-      <p><b>3 · What does solved look like, and by when?</b> A target and a deadline. (Back to $34k within 60 days.)</p>
+      <p><b>2 · Which metric, from what to what, since when?</b> Numbers and dates. ($235k → $135k, last two months.)</p>
+      <p><b>3 · What does solved look like, and by when?</b> A target and a deadline. (Back to $235k within 60 days.)</p>
       <p><b>4 · What is out of bounds?</b> Budget, channels, team changes the client won't accept. (Spend stays at $15k.)</p>
       <p><b>5 · Who decides, and where will the data come from?</b> The owner of the call, and the data sources — the client's CRM and the benchmark reference. Three written lines answering these is enough.</p>
     </div>
@@ -559,7 +559,7 @@
         <ul>
           <li>Starts from a proposed answer and decomposes it into testable sub-hypotheses</li>
           <li><b>Our usual case:</b> client funnels live in the CRM, so we can start with a strong hunch and test it in queries</li>
-          <li>Running case: <i>"profit fell because exactly one funnel stage broke, while spend and profit per deal stayed flat"</i> — one sub-hypothesis per funnel stage, each provable in a single query</li>
+          <li>Running case: <i>"profit fell because exactly one funnel stage broke, while spend and gross profit per closed deal stayed flat"</i> — one sub-hypothesis per funnel stage, each provable in a single query</li>
         </ul>
       </div>
       <div class="card">
@@ -567,7 +567,7 @@
         <ul>
           <li>Starts from open questions rather than a proposed answer; explores the space before committing</li>
           <li>Use when the client's data is missing or untrusted (no CRM hygiene, no baseline)</li>
-          <li>Must still be built <a class="term" href="#mece" data-tip="MECE — Mutually Exclusive, Collectively Exhaustive: buckets that don't overlap and together cover everything. Wholesale test: profit = contracts × profit per contract − costs. Nothing counted twice, nothing left out. Click for the full section.">MECE</a></li>
+          <li>Must still be built <a class="term" href="#mece" data-tip="MECE — Mutually Exclusive, Collectively Exhaustive: buckets that don't overlap and together cover everything. Wholesale test: profit = closed deals × gross profit per closed deal − costs. Nothing counted twice, nothing left out. Click for the full section.">MECE</a></li>
         </ul>
       </div>
     </div>
@@ -575,20 +575,20 @@
     <div class="example">
       <span class="ex-label">Example · The issue tree for Trinity River</span>
       <div class="tree">
-      <div class="tree-root-wrap"><div class="tree-root">"Why did monthly net profit fall from $34k to $13k?"</div></div>
+      <div class="tree-root-wrap"><div class="tree-root">"Why did monthly profit fall from $235k to $135k?"</div></div>
       <div class="tree-trunk"></div>
       <div class="tree-branches">
         <div class="branch">
-          <div class="branch-label">Fewer contracts signed</div>
+          <div class="branch-label">Fewer closed deals</div>
           <div class="sub-branch"><b>Less volume in</b>
             <ul class="leaf-list"><li>Fewer gross leads (spend, list size, response rate)</li></ul>
           </div>
           <div class="sub-branch"><b>Worse conversion</b>
-            <ul class="leaf-list"><li>Gross → Net rate</li><li>Net → Appointment rate</li><li>Appointment → Contract rate</li></ul>
+            <ul class="leaf-list"><li>Gross → Net rate</li><li>Net → Appointment rate</li><li>Appointment → Contract rate</li><li>Contract → Close rate</li></ul>
           </div>
         </div>
         <div class="branch">
-          <div class="branch-label">Less profit per contract</div>
+          <div class="branch-label">Less gross profit per closed deal</div>
           <div class="sub-branch"><b>Deal economics</b>
             <ul class="leaf-list"><li>Offer spread vs. ARV shrinking</li><li>Dispo pricing / renegotiations at close</li></ul>
           </div>
@@ -601,7 +601,7 @@
         </div>
       </div>
     </div>
-    <p class="tree-note">This tree is <a class="term" href="#mece" data-tip="MECE — Mutually Exclusive, Collectively Exhaustive: buckets that don't overlap and together cover everything. This tree qualifies because it mirrors an identity: profit = contracts × profit per contract − costs.">MECE</a> by construction: it mirrors the identity <b style="color:var(--text);">profit = contracts × profit per contract − costs</b>, so the three branches cannot overlap and nothing else can move profit. When one dimension won't cut cleanly, cross two — e.g. funnel stage × county.</p>
+    <p class="tree-note">This tree is <a class="term" href="#mece" data-tip="MECE — Mutually Exclusive, Collectively Exhaustive: buckets that don't overlap and together cover everything. This tree qualifies because it mirrors an identity: profit = closed deals × gross profit per closed deal − costs.">MECE</a> by construction: it mirrors the identity <b style="color:var(--text);">profit = closed deals × gross profit per closed deal − costs</b>, so the three branches cannot overlap and nothing else can move profit. When one dimension won't cut cleanly, cross two — e.g. funnel stage × county.</p>
     </div>
 
     <div class="note-row"><span class="eyebrow">Teaching note</span><p>Build the tree out loud with the team, not alone at your desk. The argument about where a branch belongs is usually when someone spots that the problem statement itself was fuzzy. That backward loop to Step 1 is healthy.</p></div>
@@ -637,13 +637,13 @@
       <div class="matrix-legend">
         <p>The five branches from Step 2, ranked:</p>
         <ul>
-          <li><b>A — Funnel stage rates vs. baseline</b> (fewer contracts): one CRM query, decides everything → do first</li>
+          <li><b>A — Funnel stage rates vs. baseline</b> (fewer closed deals): one CRM query, decides everything → do first</li>
           <li><b>B — Speed-to-lead &amp; rep segmentation</b>: cheap follow-up to A</li>
           <li><b>C — Spend &amp; cost lines</b>: spend already known flat → quick rule-out</li>
-          <li><b>D — Profit per contract trend</b>: stable at $3,500 in the CRM → quick rule-out</li>
+          <li><b>D — Gross profit per closed deal trend</b>: stable at $25,000 in the CRM → quick rule-out</li>
           <li><b>E — Market shift</b> (DOM, supply): real work, only if execution checks out</li>
         </ul>
-        <p style="font-size:13px;">Two same-day queries kill the "costs" and "profit per contract" branches by lunch. Rank — don't score to two decimals; judgment and intuition are legitimate inputs, and the client's stakeholders belong in the conversation.</p>
+        <p style="font-size:13px;">Two same-day queries kill the "costs" and "gross profit per closed deal" branches by lunch. Rank — don't score to two decimals; judgment and intuition are legitimate inputs, and the client's stakeholders belong in the conversation.</p>
       </div>
       </div>
     </div>
@@ -705,14 +705,15 @@
         <thead><tr><th>Metric</th><th>Baseline (avg/mo)</th><th>Last month</th><th>Rate baseline → now</th><th>Benchmark</th></tr></thead>
         <tbody>
           <tr><td class="strong">Marketing spend</td><td>$15,000</td><td>$15,000</td><td>—</td><td class="mono">—</td></tr>
-          <tr><td class="strong">Gross leads</td><td>500</td><td>510</td><td>—</td><td class="mono">—</td></tr>
-          <tr><td class="strong">Net leads</td><td>350</td><td>357</td><td>70% → 70%</td><td class="mono">50%</td></tr>
+          <tr><td class="strong">Gross leads</td><td>500</td><td>500</td><td>—</td><td class="mono">—</td></tr>
+          <tr><td class="strong">Net leads</td><td>350</td><td>350</td><td>70% → 70%</td><td class="mono">50%</td></tr>
           <tr><td class="strong">Appointments attended</td><td>70</td><td class="bad">40</td><td class="bad">20% → 11%</td><td class="mono">25%</td></tr>
           <tr><td class="strong">Contracts signed</td><td>14</td><td class="bad">8</td><td>20% → 20%</td><td class="mono">15%</td></tr>
+          <tr><td class="strong">Closed deals</td><td>10</td><td class="bad">6</td><td>~71% → 75%</td><td class="mono">70%</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:13.5px; color:var(--text-2); max-width:700px;">Exactly one stage broke: <b style="color:var(--text);">net lead → appointment collapsed from 20% to 11%</b> (benchmark: 25%). Marketing is fine — leads are flat. Closing is fine — reps still sign 20% of the appointments they attend. Sizing the prize: restoring 70 appointments returns +6 contracts × $3,500 ≈ <b style="color:var(--text);">+$21k/month, ~$250k/year</b>. Every benchmark cited here lives in the <a class="term" href="gnacc-reference.html" data-tip="The GNACC Funnel &amp; Benchmark Reference: stage definitions, all conversion benchmarks, the healthy monthly baseline, and the diagnostic red-flag table. The single source of truth for numbers — click to open.">benchmark reference</a>.</p>
+    <p style="font-size:13.5px; color:var(--text-2); max-width:700px;">Exactly one stage broke: <b style="color:var(--text);">net lead → appointment collapsed from 20% to 11%</b> (benchmark: 25%). Marketing is fine — leads are flat. Downstream conversion is stable. Sizing the prize: restoring the funnel recovers about four closed deals × $25,000 ≈ <b style="color:var(--text);">+$100k/month, ~$1.2m/year</b>. Every conversion benchmark cited here lives in the <a class="term" href="gnacc-reference.html" data-tip="The GNACC Funnel &amp; Benchmark Reference: stage definitions, all conversion benchmarks, the healthy monthly baseline, and the diagnostic red-flag table. The single source of truth for numbers — click to open.">benchmark reference</a>.</p>
     </div>
 
     <div class="example">
@@ -737,7 +738,7 @@
       <table class="synth-table" style="max-width:820px;">
         <thead><tr><th>Rung</th><th>Trinity River</th></tr></thead>
         <tbody>
-          <tr><td>Data</td><td>Spend flat. Leads flat. Appointments 70 → 40. Contracts still 20% of appointments. Profit per deal stable at $3,500. Share of leads contacted &lt;5 min: 80% → 20%. Lead manager resigned week zero of the decline.</td></tr>
+          <tr><td>Data</td><td>Spend flat. Leads flat. Appointments 70 → 40. Downstream rates stable. Gross profit per closed deal steady at $25,000. Share of leads contacted &lt;5 min: 80% → 20%. Lead manager resigned week zero of the decline.</td></tr>
           <tr><td>Insight</td><td>The funnel breaks at exactly one stage — net lead → appointment — and the break began when first-contact speed collapsed.</td></tr>
           <tr><td>Implication</td><td>Demand and sales-close are healthy; fresh leads are decaying before anyone calls them. This is a staffing/process failure, not a marketing failure.</td></tr>
           <tr><td>So what</td><td>Restore first-contact speed and the funnel restores itself — no extra spend required.</td></tr>
@@ -774,7 +775,7 @@
       </div>
       <div class="card good-side">
         <span class="tag">Strong opening</span>
-        <p><i>"Backfill your lead-manager role and route every fresh lead to a five-minute first call, starting this week — that restores roughly $21k of monthly profit."</i></p>
+        <p><i>"Backfill your lead-manager role and route every fresh lead to a five-minute first call, starting this week — that restores roughly $100k of monthly profit."</i></p>
         <p style="margin:0;">Then three reasons: appointments are the only broken stage; the break started the week the lead manager left; leads still called within 5 minutes convert at the healthy rate.</p>
       </div>
       </div>
@@ -786,14 +787,14 @@
         <span class="scr-num">01</span>
         <h5>Situation</h5>
         <p>Fact-based current state. No advocacy yet.</p>
-        <div class="scr-example">For two years Trinity River converted ~20% of net leads to appointments and earned ~$34k/month on $15k of spend.</div>
+        <div class="scr-example">For two years Trinity River converted ~20% of net leads to appointments and earned ~$235k/month after marketing spend.</div>
       </div>
       <div class="scr-arrow" aria-hidden="true">&rarr;</div>
       <div class="scr-card">
         <span class="scr-num">02</span>
         <h5>Complication</h5>
         <p>Why the situation now requires action.</p>
-        <div class="scr-example">Profit has fallen to $13k in two months; the appointment rate collapsed the week the lead manager left; every unstaffed week costs ~$5k.</div>
+        <div class="scr-example">Profit has fallen to ~$135k in two months; the appointment rate collapsed the week the lead manager left; every unstaffed week costs roughly $25k.</div>
       </div>
       <div class="scr-arrow" aria-hidden="true">&rarr;</div>
       <div class="scr-card res">
@@ -826,7 +827,7 @@
       </div>
       <div class="ba-card good">
         <div class="ba-head">MECE</div>
-        <div class="ba-body"><ul><li>Fewer contracts signed</li><li>Less profit per contract</li><li>Higher costs</li><li>An identity: profit = contracts × profit per contract − costs. No overlap, nothing missing — the decline <b>must</b> live in at least one bucket</li></ul></div>
+        <div class="ba-body"><ul><li>Fewer closed deals</li><li>Less gross profit per closed deal</li><li>Higher costs</li><li>An identity: profit = closed deals × gross profit per closed deal − costs. No overlap, nothing missing — the decline <b>must</b> live in at least one bucket</li></ul></div>
       </div>
       </div>
     </div>
