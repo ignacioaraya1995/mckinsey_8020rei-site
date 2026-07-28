@@ -216,7 +216,7 @@ a { color:var(--emerald); }
   align-items:start;
 }
 .case-stream { grid-column:1; grid-row:1; min-width:0; }
-.case-rail { grid-column:2; grid-row:1; min-width:0; }
+.case-rail { grid-column:2; grid-row:1; min-width:0; align-self:stretch; }
 .rail-sticky { position:sticky; top:86px; }
 .case-tabs {
   position:static;
@@ -564,8 +564,8 @@ blockquote.model b { color:var(--ink); font-style:normal; }
 
 @media (max-width:1040px) {
   #casefile { padding-top:18px; }
-  .case-layout { grid-template-columns:minmax(0,860px); gap:22px; }
-  .case-rail { grid-column:1; grid-row:1; }
+  .case-layout { grid-template-columns:minmax(0,860px); grid-template-rows:auto 1fr; gap:22px; }
+  .case-rail { grid-column:1; grid-row:1 / -1; }
   .case-stream { grid-column:1; grid-row:2; }
   .rail-sticky { position:sticky; top:58px; z-index:30; padding-top:7px; background:var(--paper); }
   .case-tabs {
