@@ -6,83 +6,163 @@
 <title>The McKinsey Problem-Solving Method — 8020IQ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Azeret+Mono:wght@500;600&family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
+  /* ===== Casefile design tokens — light mode only ===== */
   :root {
-    --cream:#FAF8F5; --warm-white:#F5F3EF; --charcoal:#18181B;
-    --emerald:#10B981; --emerald-dark:#059669;
-    --text:#1C1C1E; --text-2:#636366; --text-3:#8E8E93;
-    --line:#E8E4DE; --line-strong:#DDD7CE;
-    --accent:var(--emerald); --accent-strong:var(--emerald-dark);
-    --accent-wash:rgba(16,185,129,0.10); --alert:#DC2626;
-    --font-display:'DM Sans',-apple-system,sans-serif;
-    --font-body:'Inter',-apple-system,sans-serif;
-    --font-mono:'JetBrains Mono',Menlo,Consolas,monospace;
-    --r-card:16px; --r-pill:9999px;
-    --shadow-rest:0 1px 2px rgba(0,0,0,0.04),0 1px 6px rgba(0,0,0,0.04);
-    color-scheme:light;
+    --paper: #F3EFE5;
+    --surface: #FFFCF5;
+    --ink: #17211C;
+    --ink-soft: #34443C;
+    --muted: #657169;
+    --rule: #D4CDBE;
+    --rule-strong: #B8AE9D;
+    --emerald: #0E6B4F;
+    --alert: #B6402A;
+    --font-display: 'Barlow Semi Condensed', 'Arial Narrow', sans-serif;
+    --font-body: 'Atkinson Hyperlegible', Arial, sans-serif;
+    --font-mono: 'Azeret Mono', Menlo, Consolas, monospace;
+    color-scheme: light;
   }
-  * { box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-  body { margin:0; background:var(--cream); color:var(--text); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }
-  ::selection { background:var(--accent-wash); }
-  .wrap { max-width:960px; margin:0 auto; padding:0 24px; }
-  @media (min-width:768px) { .wrap { padding:0 48px; } }
-  h1,h2,h3,h4 { font-family:var(--font-display); font-weight:700; color:var(--text); margin:0; text-wrap:balance; }
-  p { margin:0 0 16px; }
-  a { color:var(--accent-strong); }
-  .eyebrow { font-family:var(--font-mono); font-weight:600; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-strong); }
-  .topnav { position:sticky; top:0; z-index:50; background:color-mix(in srgb,var(--cream) 86%,transparent); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
-  .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:18px; height:54px; }
-  .nav-brand { display:flex; align-items:center; gap:9px; font-family:var(--font-display); font-weight:800; font-size:15px; color:var(--text); text-decoration:none; }
-  .nav-brand .iso { width:20px; height:20px; border-radius:50%; background:conic-gradient(from 20deg,var(--accent-strong) 0 75%,rgba(5,150,105,0.35) 75% 100%); -webkit-mask:radial-gradient(circle,transparent 46%,#000 47%); mask:radial-gradient(circle,transparent 46%,#000 47%); }
-  .nav-back { font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--text-3); text-decoration:none; padding:6px 12px; border-radius:var(--r-pill); }
-  .nav-back:hover { color:var(--accent-strong); background:var(--accent-wash); }
-  header.hero { padding:52px 0 34px; border-bottom:1px solid var(--line); background-image:linear-gradient(to right,rgba(0,0,0,0.03) 1px,transparent 1px),linear-gradient(to bottom,rgba(0,0,0,0.03) 1px,transparent 1px); background-size:32px 32px; }
-  header.hero h1 { font-size:clamp(26px,3.6vw,38px); font-weight:800; line-height:1.1; margin:12px 0; }
-  header.hero .doc-sub { font-size:16px; color:var(--text-2); max-width:660px; margin:0; }
-  section { padding:42px 0; border-bottom:1px solid var(--line); }
-  section:last-of-type { border-bottom:none; }
-  section h2 { font-size:22px; margin-bottom:8px; }
-  .lede { color:var(--text-2); max-width:680px; margin-bottom:22px; }
-  .lede b { color:var(--text); }
-  ul.tight, ol.tight { padding-left:20px; color:var(--text-2); max-width:720px; }
-  ul.tight li, ol.tight li { margin-bottom:9px; }
-  ul.tight b, ol.tight b { color:var(--text); }
-  .table-scroll { overflow-x:auto; }
-  table.data { width:100%; border-collapse:collapse; margin:18px 0; font-size:14px; }
-  table.data th { font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--text-2); text-align:left; padding:10px 12px; border-bottom:1px solid var(--line-strong); }
-  table.data td { padding:11px 12px; border-bottom:1px solid var(--line); color:var(--text-2); vertical-align:top; }
-  table.data tbody tr:nth-child(even) { background:var(--warm-white); }
-  table.data td b { color:var(--text); }
-  td.mono { font-family:var(--font-mono); font-size:12.5px; color:var(--accent-strong); white-space:nowrap; }
-  td.strong { color:var(--text); font-weight:600; }
-  td.bad { color:var(--alert); font-weight:600; }
-  td.good { color:var(--accent-strong); font-weight:600; }
-  .callout { position:relative; padding:20px 24px; margin:22px 0; max-width:760px; }
-  .callout::before,.callout::after { content:""; position:absolute; width:14px; height:14px; border:1.4px solid var(--accent-strong); }
-  .callout::before { top:0; left:0; border-right:none; border-bottom:none; }
-  .callout::after { bottom:0; right:0; border-left:none; border-top:none; }
-  .callout p { font-size:14.5px; color:var(--text-2); margin:0 0 10px; }
-  .callout p:last-child { margin:0; }
-  .callout b { color:var(--text); }
-  code.inline { font-family:var(--font-mono); background:var(--accent-wash); padding:2px 6px; border-radius:4px; font-size:0.85em; color:var(--accent-strong); }
-  .funnel { display:flex; align-items:stretch; gap:0; margin:24px 0; padding:20px; border-radius:var(--r-card); background:var(--warm-white); overflow-x:auto; }
-  .f-stage { flex:1; min-width:104px; background:var(--cream); border:1px solid var(--line-strong); border-radius:10px; padding:12px 10px; text-align:center; box-shadow:var(--shadow-rest); }
-  .f-stage .f-name { font-family:var(--font-display); font-weight:700; font-size:12.5px; line-height:1.3; }
-  .f-stage .f-def { font-size:10.5px; color:var(--text-3); margin-top:4px; line-height:1.4; }
-  .f-arrow { flex-shrink:0; width:60px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; }
-  .f-arrow .f-rate { font-family:var(--font-mono); font-weight:600; font-size:11px; color:var(--accent-strong); white-space:nowrap; }
-  .f-arrow .f-line { font-size:14px; color:var(--text-3); line-height:1; }
-  footer { padding:26px 0 48px; font-size:13px; color:var(--text-3); }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: #BFDFD2; color: var(--ink); }
+  .wrap { width: 100%; min-width: 0; max-width: 920px; margin: 0 auto; padding: 0 32px; }
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; color: var(--ink); margin: 0; text-wrap: balance; }
+  p { max-width: 72ch; margin: 0 0 14px; }
+  a { color: var(--emerald); }
+  :focus-visible { outline: 3px solid #E2A72E; outline-offset: 3px; }
+  .eyebrow {
+    font-family: var(--font-mono); font-weight: 600; font-size: 10px; letter-spacing: 0.055em;
+    text-transform: uppercase; color: var(--emerald);
+  }
+
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; height: 58px; }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: 0.01em;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-brand img { display: block; width: 112px; height: auto; }
+  .nav-back {
+    padding: 7px 0;
+    border-radius: 0;
+    border-bottom: 1px solid transparent;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+  }
+  .nav-back:hover { color: var(--emerald); border-bottom-color: var(--emerald); }
+
+  header.hero {
+    padding: 56px 0 44px;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  header.hero h1 {
+    max-width: 20ch;
+    font-size: clamp(44px, 6vw, 68px); line-height: 0.92; letter-spacing: -0.02em;
+    margin: 14px 0 16px;
+  }
+  header.hero .doc-sub { font-size: 16.5px; color: var(--ink-soft); max-width: 62ch; margin: 0; }
+  header.hero .doc-sub b { color: var(--ink); }
+
+  section { padding: 44px 0; border-bottom: 1px solid var(--rule); }
+  section:last-of-type { border-bottom: none; }
+  .sec-head {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    padding: 15px 4px 12px; margin-bottom: 26px;
+    border-top: 3px solid var(--ink); border-bottom: 1px solid var(--rule-strong);
+  }
+  .sec-head h2 { font-size: 26px; line-height: 1; }
+  .sec-head span {
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .lede { color: var(--ink-soft); max-width: 62ch; margin-bottom: 22px; }
+  .lede b { color: var(--ink); }
+  ul.tight, ol.tight { padding-left: 20px; color: var(--ink-soft); max-width: 72ch; }
+  ul.tight li, ol.tight li { margin-bottom: 9px; }
+  ul.tight b, ol.tight b { color: var(--ink); }
+
+  .table-scroll { overflow-x: auto; }
+  table.data { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 14px; background: var(--surface); }
+  table.data th {
+    font-family: var(--font-mono); font-weight: 600; font-size: 10px; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--muted); text-align: left;
+    padding: 10px 12px; border: 1px solid var(--rule); border-bottom: 2px solid var(--ink);
+  }
+  table.data td { padding: 11px 12px; border: 1px solid var(--rule); color: var(--ink-soft); vertical-align: top; }
+  table.data td b { color: var(--ink); }
+  td.mono { font-family: var(--font-mono); font-size: 12.5px; color: var(--emerald); white-space: nowrap; }
+  td.strong { color: var(--ink); font-weight: 600; }
+  td.bad { color: var(--alert); font-weight: 600; }
+  td.good { color: var(--emerald); font-weight: 600; }
+
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--rule-strong);
+    border-top: 3px solid var(--ink);
+    border-radius: 0;
+    padding: 18px 22px 14px; margin: 22px 0; max-width: 760px;
+  }
+  .callout .eyebrow { display: block; margin-bottom: 8px; }
+  .callout p { font-size: 14.5px; color: var(--ink-soft); margin: 0 0 10px; }
+  .callout p:last-child { margin: 0; }
+  .callout b { color: var(--ink); }
+
+  code.inline {
+    font-family: var(--font-mono); font-size: 0.85em;
+    background: #E6EFE9; color: var(--emerald); padding: 2px 6px;
+  }
+
+  .funnel {
+    display: flex; align-items: stretch; gap: 0; margin: 24px 0; padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--rule-strong);
+    border-top: 3px solid var(--ink);
+    overflow-x: auto;
+  }
+  .f-stage {
+    flex: 1; min-width: 104px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 0;
+    padding: 12px 10px; text-align: center;
+  }
+  .f-stage .f-name { font-family: var(--font-display); font-weight: 700; font-size: 12.5px; line-height: 1.3; }
+  .f-stage .f-def { font-size: 10.5px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+  .f-arrow { flex-shrink: 0; width: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+  .f-arrow .f-rate { font-family: var(--font-mono); font-weight: 600; font-size: 11px; color: var(--emerald); white-space: nowrap; }
+  .f-arrow .f-line { font-size: 14px; color: var(--muted); line-height: 1; }
+
+  footer { padding: 26px 0 52px; font-size: 12px; color: var(--muted); }
+  footer p { margin: 0; max-width: 72ch; }
+
+  @media (max-width: 640px) {
+    .wrap { padding-left: 16px; padding-right: 16px; }
+    header.hero { padding: 40px 0 32px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
 </style>
 </head>
 <body>
 
 <nav class="topnav" aria-label="Site">
   <div class="wrap nav-inner">
-    <a class="nav-brand" href="index.html"><span class="iso" aria-hidden="true"></span>8020IQ</a>
-    <a class="nav-back" href="index.html">&larr; Index</a>
+    <a class="nav-brand" href="index.html" aria-label="8020REI home"><img src="assets/8020rei-logo.svg" alt="8020REI"></a>
+    <a class="nav-back" href="index.html">&larr; All documents</a>
   </div>
 </nav>
 
@@ -102,7 +182,7 @@
 
 <section id="running-case">
   <div class="wrap">
-    <h2>The running case — Trinity River Home Buyers</h2>
+    <div class="sec-head"><h2>The running case — Trinity River Home Buyers</h2></div>
     <p class="lede">Fictional wholesale investor, Dallas–Fort Worth, 8020REI client for two years. <b>Monthly profit after marketing spend declined two months in a row:</b> ~$235k baseline → $185k → $135k, with spend unchanged at <b>$15,000/month</b>. The healthy baseline uses the standard funnel counts and benchmarks (<code class="inline">gnacc-reference.md</code>): 500 GL → 350 NL (70%) → 70 appts (20%) → 14 contracts (20%) → ~10 closed deals (70%), with <b>$25,000 average gross profit per closed deal</b>. Baseline profit after marketing spend ≈ 10 × $25,000 − $15,000 = <b>$235k</b>.</p>
     <p class="lede" style="margin-bottom:0;">Engineered root cause (deliberately different from Case 01's buy-box story): the <b>lead manager resigned ten weeks ago</b>; speed-to-lead collapsed (share of leads contacted &lt;5 min: ~80% → ~20%), so <b>Net→Appt fell 20% → 11%</b> (appts 70 → 40, contracts 14 → 8, closings ~10 → ~6). Everything else stayed flat. Restoring it recovers about four closed deals × $25,000 ≈ <b>+$100k/mo (~$1.2m/yr)</b>.</p>
   </div>
@@ -110,7 +190,7 @@
 
 <section id="phases">
   <div class="wrap">
-    <h2>The 4 phases and 7 steps</h2>
+    <div class="sec-head"><h2>The 4 phases and 7 steps</h2></div>
     <p class="lede">The seven steps are grouped into four phases; one phase can hold several steps. Client engagement runs underneath all four phases, not only at kickoff and readout.</p>
     <div class="table-scroll">
       <table class="data">
@@ -128,7 +208,7 @@
 
 <section id="engine">
   <div class="wrap">
-    <h2>The engine underneath — four tools in a loop</h2>
+    <div class="sec-head"><h2>The engine underneath — four tools in a loop</h2></div>
     <p class="lede">The 7 steps look linear on paper. In practice they run on four tools used in an iterative loop: <b>hypothesis → issue tree → drill-down → synthesis</b>. Drill down into the data, pull up to revise the hypothesis, restructure the tree, drill down again — lather, rinse, repeat. It is the scientific method wearing a suit: hypothesis → experiment → conclusion, repeated until the conclusion stops moving.</p>
     <p class="lede"><b>Trinity River, looped:</b> hypothesis "one funnel stage broke" → tree (one branch per stage) → drill down (walk the funnel) → finding (only NL→Appt broke) → revised hypothesis "first-contact speed collapsed" → new tree (speed buckets × time) → drill down (segmentation + change log) → synthesis. Two loops, two queries, one answer.</p>
     <p class="lede"><b>Hypothesis first, frameworks second.</b> A hypothesis is a theory to be proved <b>or disproved</b> — proving it wrong still moves you to the right answer, because a dead branch is information. Had Trinity River's funnel walk come back healthy, that failure would have sent the search upstream to lead volume just as fast.</p>
@@ -154,7 +234,7 @@
 
 <section id="step-1">
   <div class="wrap">
-    <h2>Step 1 — Define the problem</h2>
+    <div class="sec-head"><h2>Step 1 — Define the problem</h2></div>
     <p class="lede">Most weak diagnostic work is excellent analysis of the wrong question. Write the problem as a <b>problem</b> (a metric that moved, with numbers and dates) — never as an opportunity ("how do we grow?") or a pre-picked solution ("they need more leads").</p>
     <p class="lede"><b>Not SMART:</b> "Trinity River isn't happy — how do we improve their results?" / "They need more volume — should they raise spend?"<br>
     <b>SMART:</b> "Trinity River's monthly profit after marketing spend fell from ~$235k to $135k over the last two months with spend unchanged at $15,000. Find the root cause and restore profit to the $235k baseline within 60 days, without increasing the marketing budget."</p>
@@ -175,7 +255,7 @@
 
 <section id="step-2">
   <div class="wrap">
-    <h2>Step 2 — Structure the problem</h2>
+    <div class="sec-head"><h2>Step 2 — Structure the problem</h2></div>
     <p class="lede">You cannot analyze "profit is down." You can analyze one leaf of a tree. Solve the leaves and, by construction, you solve the root.</p>
     <p class="lede"><b>Two ways to build the tree — pick by how much data you have:</b></p>
     <ul class="tight">
@@ -198,7 +278,7 @@
 
 <section id="step-3">
   <div class="wrap">
-    <h2>Step 3 — Prioritize the issues</h2>
+    <div class="sec-head"><h2>Step 3 — Prioritize the issues</h2></div>
     <p class="lede">A perfectly MECE tree with thirty leaves bankrupts the timeline. Plot branches on <b>impact × ease</b>, attack top-right first. Rank; don't score to two decimals; judgment and the client's stakeholders belong in the call.</p>
     <p class="lede" style="margin-bottom:0;"><b>Running case, ranked:</b> (A) funnel stage rates vs. baseline — one CRM query, decides everything → do first; (B) speed-to-lead &amp; rep segmentation — cheap follow-up; (C) spend/cost lines — known flat → quick rule-out; (D) gross-profit-per-closed-deal trend — stable at $25,000 → quick rule-out; (E) market shift (DOM, supply) — only if execution checks out. Two same-day queries kill branches 2 and 3 by lunch.</p>
   </div>
@@ -206,7 +286,7 @@
 
 <section id="step-4">
   <div class="wrap">
-    <h2>Step 4 — Plan the analyses</h2>
+    <div class="sec-head"><h2>Step 4 — Plan the analyses</h2></div>
     <p class="lede">The least glamorous step and the most often shortcut. For every prioritized branch write down, <b>before</b> scheduling work: the hypothesis, the analysis that tests it, the data source, the owner + deadline, and the "so what" if true and if false.</p>
     <p class="lede"><b>Running-case workplan:</b></p>
     <div class="table-scroll">
@@ -228,7 +308,7 @@
 
 <section id="step-5">
   <div class="wrap">
-    <h2>Step 5 — Conduct the analyses</h2>
+    <div class="sec-head"><h2>Step 5 — Conduct the analyses</h2></div>
     <p class="lede">Match rigor to the decision at stake. Find the <b>80/20</b> — the handful of queries resolving most of the uncertainty. Running case, two queries:</p>
     <p class="lede"><b>Query 1 — walk the funnel (baseline → last month):</b> spend $15,000 → $15,000 · GL 500 → 500 · NL 350 → 350 (70% → 70%; benchmark 50%) · <b>appts 70 → 40 (20% → 11%; benchmark 25%)</b> · contracts 14 → 8 (20% → 20%; benchmark 15%) · closed deals 10 → 6 (~71% → 75%; benchmark 70%). Exactly one stage broke. Prize: restore about four closed deals × $25,000 ≈ <b>+$100k/mo (~$1.2m/yr)</b>.</p>
     <p class="lede"><b>Query 2 — segment before you theorize + change log:</b> appt rate for leads called &lt;5 min: 38% (healthy ≥35%); called &gt;30 min: 9%. Share called &lt;5 min: 80% → 20%. Change log: lead manager resigned ten weeks ago; calls returned in end-of-day batches. Red flag: first contact after 30 min ≈ 21× less likely to convert. Metric inflection + timestamped change = fastest confirmation there is.</p>
@@ -241,7 +321,7 @@
 
 <section id="step-6">
   <div class="wrap">
-    <h2>Step 6 — Synthesize the findings</h2>
+    <div class="sec-head"><h2>Step 6 — Synthesize the findings</h2></div>
     <p class="lede">Analysis produces data; <b>synthesis turns data into a recommendation</b>. Ladder: data → insights → implications → "so what" → recommendation. Each rung compresses the one below it — repetition with more confident adjectives is the tell that synthesis isn't happening.</p>
     <p class="lede" style="margin-bottom:0;"><b>Running case, climbed:</b> Data — spend flat, leads flat, appts 70→40, downstream rates stable, gross profit per closed deal steady at $25,000, &lt;5-min contact share 80%→20%, lead manager resigned week zero → Insight — the funnel breaks at exactly one stage (NL→Appt), starting when first-contact speed collapsed → Implication — demand and downstream execution are healthy; fresh leads decay before anyone calls; staffing/process failure, not marketing → So what — restore first-contact speed and the funnel restores itself, no extra spend → <b>Recommendation — backfill the lead-manager role, route every fresh lead to a &lt;5-minute first call this week, monitor NL→Appt weekly vs. the 20% baseline.</b></p>
   </div>
@@ -249,7 +329,7 @@
 
 <section id="step-7">
   <div class="wrap">
-    <h2>Step 7 — Develop recommendations &amp; communicate</h2>
+    <div class="sec-head"><h2>Step 7 — Develop recommendations &amp; communicate</h2></div>
     <p class="lede">Rigor that never gets absorbed has zero impact. <b>The Pyramid Principle</b> (Minto): <i>think bottom-up, present top-down</i> — answer first, then MECE supporting reasons.</p>
     <p class="lede"><b>Weak opening:</b> walks through two months of funnel charts, then suggests "exploring staffing options."<br>
     <b>Strong opening:</b> "Backfill your lead-manager role and route every fresh lead to a five-minute first call, starting this week — that restores roughly $100k of monthly profit." Then three reasons: appointments are the only broken stage; the break started the week the lead manager left; leads called within 5 minutes still convert at the healthy rate.</p>
@@ -259,7 +339,7 @@
 
 <section id="mece">
   <div class="wrap">
-    <h2>MECE — Mutually Exclusive, Collectively Exhaustive</h2>
+    <div class="sec-head"><h2>MECE — Mutually Exclusive, Collectively Exhaustive</h2></div>
     <p class="lede">Minto, 1960s. The single rule that makes every tree, pyramid, and bullet list defensible. <b>ME</b> — no category overlaps another. <b>CE</b> — nothing left out; buckets sum to the whole.</p>
     <p class="lede"><b>Wholesale before/after (explaining the profit decline):</b></p>
     <ul class="tight">
@@ -272,7 +352,7 @@
 
 <section id="habits">
   <div class="wrap">
-    <h2>Bonus — 8 operating habits (<i>The McKinsey Mind</i>)</h2>
+    <div class="sec-head"><h2>Bonus — 8 operating habits (<i>The McKinsey Mind</i>)</h2></div>
     <ol class="tight">
       <li><b>Solve it at the first meeting</b> — form a fact-based hypothesis on day one</li>
       <li><b>Intuition counts as much as facts</b> — when data is thin, informed judgment is legitimate</li>

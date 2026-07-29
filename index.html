@@ -6,146 +6,175 @@
 <title>8020IQ Problem-Solving Program — Index</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Azeret+Mono:wght@500;600&family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
-  /* ===== 8020IQ brand tokens — light mode only ===== */
+  /* ===== Casefile design tokens — light mode only ===== */
   :root {
-    --cream: #FAF8F5;
-    --warm-white: #F5F3EF;
-    --charcoal: #18181B;
-    --emerald: #10B981;
-    --emerald-dark: #059669;
-    --text: #1C1C1E;
-    --text-2: #636366;
-    --text-3: #8E8E93;
-    --line: #E8E4DE;
-    --line-strong: #DDD7CE;
-    --accent: var(--emerald);
-    --accent-strong: var(--emerald-dark);
-    --accent-wash: rgba(16, 185, 129, 0.10);
-    --font-display: 'DM Sans', -apple-system, sans-serif;
-    --font-body: 'Inter', -apple-system, sans-serif;
-    --font-mono: 'JetBrains Mono', Menlo, Consolas, monospace;
-    --r-card: 16px;
-    --r-pill: 9999px;
-    --shadow-rest: 0 1px 2px rgba(0,0,0,0.04), 0 1px 6px rgba(0,0,0,0.04);
-    --shadow-hover: 0 4px 12px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.06);
+    --paper: #F3EFE5;
+    --surface: #FFFCF5;
+    --ink: #17211C;
+    --ink-soft: #34443C;
+    --muted: #657169;
+    --rule: #D4CDBE;
+    --rule-strong: #B8AE9D;
+    --emerald: #0E6B4F;
+    --alert: #B6402A;
+    --font-display: 'Barlow Semi Condensed', 'Arial Narrow', sans-serif;
+    --font-body: 'Atkinson Hyperlegible', Arial, sans-serif;
+    --font-mono: 'Azeret Mono', Menlo, Consolas, monospace;
     color-scheme: light;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    margin: 0; background: var(--cream); color: var(--text);
-    font-family: var(--font-body); font-size: 16px; line-height: 1.65;
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--font-body); font-size: 16px; line-height: 1.55;
     -webkit-font-smoothing: antialiased;
   }
-  ::selection { background: var(--accent-wash); }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
-  @media (min-width: 768px) { .wrap { padding: 0 48px; } }
-  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; color: var(--text); margin: 0; text-wrap: balance; }
-  p { margin: 0 0 16px; }
-  a { color: var(--accent-strong); }
+  ::selection { background: #BFDFD2; color: var(--ink); }
+  .wrap { width: 100%; min-width: 0; max-width: 920px; margin: 0 auto; padding: 0 32px; }
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; color: var(--ink); margin: 0; text-wrap: balance; }
+  p { max-width: 72ch; margin: 0 0 14px; }
+  a { color: var(--emerald); }
+  :focus-visible { outline: 3px solid #E2A72E; outline-offset: 3px; }
   .eyebrow {
-    font-family: var(--font-mono); font-weight: 600; font-size: 11px; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--accent-strong);
+    font-family: var(--font-mono); font-weight: 600; font-size: 10px; letter-spacing: 0.055em;
+    text-transform: uppercase; color: var(--emerald);
   }
 
   .topnav {
     position: sticky; top: 0; z-index: 50;
-    background: color-mix(in srgb, var(--cream) 86%, transparent);
-    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
   }
-  .nav-inner { display: flex; align-items: center; gap: 18px; height: 54px; }
-  .nav-brand { display: flex; align-items: center; gap: 9px; font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--text); text-decoration: none; }
-  .nav-brand .iso {
-    width: 20px; height: 20px; border-radius: 50%;
-    background: conic-gradient(from 20deg, var(--accent-strong) 0 75%, rgba(5,150,105,0.35) 75% 100%);
-    -webkit-mask: radial-gradient(circle, transparent 46%, #000 47%);
-    mask: radial-gradient(circle, transparent 46%, #000 47%);
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; height: 58px; }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: 0.01em;
+    color: var(--ink); text-decoration: none;
   }
-  .nav-tag { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); }
+  .nav-brand img { display: block; width: 112px; height: auto; }
+  .nav-back {
+    padding: 7px 0;
+    border-radius: 0;
+    border-bottom: 1px solid transparent;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+  }
 
   header.hero {
-    padding: 52px 0 36px; border-bottom: 1px solid var(--line);
-    background-image: linear-gradient(to right, rgba(0,0,0,0.035) 1px, transparent 1px),
-                       linear-gradient(to bottom, rgba(0,0,0,0.035) 1px, transparent 1px);
-    background-size: 32px 32px;
+    padding: 56px 0 44px;
+    border-bottom: 1px solid var(--rule-strong);
   }
-  header.hero h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; line-height: 1.08; margin: 12px 0 12px; }
-  header.hero .doc-sub { font-size: 16.5px; color: var(--text-2); max-width: 620px; margin: 0; }
-  header.hero .doc-sub b { color: var(--text); }
+  header.hero h1 {
+    max-width: 16ch;
+    font-size: clamp(44px, 6vw, 68px); line-height: 0.92; letter-spacing: -0.02em;
+    margin: 14px 0 16px;
+  }
+  header.hero .doc-sub { font-size: 16.5px; color: var(--ink-soft); max-width: 62ch; margin: 0; }
+  header.hero .doc-sub b { color: var(--ink); }
 
-  section { padding: 44px 0; border-bottom: 1px solid var(--line); }
+  section { padding: 44px 0; border-bottom: 1px solid var(--rule); }
   section:last-of-type { border-bottom: none; }
-  section h2 { font-size: 23px; margin-bottom: 6px; }
-  .lede { color: var(--text-2); max-width: 640px; margin-bottom: 26px; }
-  .lede b { color: var(--text); }
+  .sec-head {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    padding: 15px 4px 12px; margin-bottom: 26px;
+    border-top: 3px solid var(--ink); border-bottom: 1px solid var(--rule-strong);
+  }
+  .sec-head h2 { font-size: 26px; line-height: 1; }
+  .sec-head span {
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .lede { color: var(--ink-soft); max-width: 62ch; margin-bottom: 26px; }
+  .lede b { color: var(--ink); }
 
   /* ===== the linear path ===== */
-  .path { position: relative; display: flex; flex-direction: column; gap: 14px; max-width: 760px; }
-  .path::before {
-    content: ""; position: absolute; top: 28px; bottom: 28px; left: 27px; width: 2px;
-    background: var(--accent-strong); opacity: 0.35;
-  }
+  .path { display: flex; flex-direction: column; gap: 16px; max-width: 760px; }
   a.step {
-    position: relative; display: flex; gap: 20px; align-items: flex-start;
+    display: grid; grid-template-columns: 84px 1fr; align-items: stretch;
     text-decoration: none; color: inherit;
-    background: var(--warm-white); border: 1px solid var(--line-strong);
-    border-radius: var(--r-card); box-shadow: var(--shadow-rest);
-    padding: 20px 22px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    background: var(--surface);
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--rule-strong);
+    border-radius: 0;
+    transition: background 150ms ease;
   }
-  a.step:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); border-color: var(--accent-strong); }
+  a.step:hover { background: var(--paper); }
+  a.step:hover h3 .go { color: var(--emerald); }
   .step-num {
-    flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
-    background: var(--accent-strong); color: var(--cream);
-    font-family: var(--font-mono); font-weight: 600; font-size: 14px;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 0 0 4px var(--cream); position: relative; z-index: 1; margin-top: 2px;
+    display: flex; align-items: center; padding: 10px 12px;
+    background: var(--emerald); color: #FFFDF6;
+    font-family: var(--font-mono); font-weight: 600; font-size: 13px;
+    letter-spacing: 0.04em;
   }
-  .step-body { min-width: 0; flex: 1; }
-  .step-body .s-when { font-family: var(--font-mono); font-weight: 600; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-strong); }
-  .step-body h3 { font-size: 17px; margin: 5px 0 5px; }
-  .step-body h3 .go { color: var(--accent-strong); }
-  .step-body p { font-size: 13.5px; color: var(--text-2); margin: 0 0 8px; }
-  .step-body .s-src { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); }
+  .step-body { min-width: 0; padding: 16px 18px 14px; border-left: 1px solid var(--rule); }
+  .step-body .s-when {
+    font-family: var(--font-mono); font-weight: 600; font-size: 9px;
+    letter-spacing: 0.05em; text-transform: uppercase; color: var(--emerald);
+  }
+  .step-body h3 { font-size: 21px; line-height: 1.05; margin: 6px 0 7px; }
+  .step-body h3 .go { color: var(--muted); }
+  .step-body p { font-size: 13.5px; color: var(--ink-soft); margin: 0 0 9px; }
+  .step-body .s-src { font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
   .loop-note {
-    margin: 6px 0 0 74px; max-width: 640px;
-    font-size: 13px; color: var(--text-2);
-    border-left: 2px dashed var(--line-strong); padding: 2px 0 2px 16px;
-  }
-  @media (max-width: 560px) {
-    .path::before { display: none; }
-    a.step { flex-direction: column; gap: 10px; }
-    .step-num { box-shadow: none; }
-    .loop-note { margin-left: 0; }
+    margin: 10px 0 0; max-width: 640px;
+    font-size: 13px; color: var(--ink-soft);
+    border-left: 1px solid var(--emerald); padding: 2px 0 2px 16px;
   }
 
   /* ===== references ===== */
-  .refs { display: flex; flex-direction: column; gap: 10px; max-width: 760px; }
-  a.ref {
-    display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap;
-    text-decoration: none; color: inherit;
-    background: transparent; border: 1px solid var(--line-strong); border-radius: 12px;
-    padding: 14px 18px;
-    transition: background 0.2s ease, border-color 0.2s ease;
+  .refs {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;
+    max-width: 860px;
   }
-  a.ref:hover { background: var(--warm-white); border-color: var(--accent-strong); }
-  a.ref h3 { font-size: 14.5px; white-space: nowrap; }
-  a.ref h3 .go { color: var(--accent-strong); }
-  a.ref p { font-size: 13px; color: var(--text-2); margin: 0; flex: 1; min-width: 220px; }
-  a.ref .r-src { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-3); }
+  a.ref {
+    display: flex; flex-direction: column; min-width: 0;
+    text-decoration: none; color: inherit;
+    background: var(--surface);
+    border: 1px solid var(--rule-strong);
+    border-top: 3px solid var(--ink);
+    border-radius: 0;
+    padding: 16px 18px 13px;
+    transition: background 150ms ease, border-color 150ms ease;
+  }
+  a.ref:hover { background: var(--paper); border-color: var(--ink); border-top-color: var(--ink); }
+  a.ref h3 { font-size: 19px; line-height: 1.05; margin-bottom: 7px; }
+  a.ref h3 .go { color: var(--muted); }
+  a.ref:hover h3 .go { color: var(--emerald); }
+  a.ref p { font-size: 13px; color: var(--ink-soft); margin: 0 0 10px; flex: 1; }
+  a.ref .r-src { font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
 
-  footer { padding: 26px 0 52px; font-size: 13px; color: var(--text-3); }
+  footer { padding: 26px 0 52px; font-size: 12px; color: var(--muted); }
+  footer p { margin: 0; max-width: 72ch; }
+
+  @media (max-width: 768px) {
+    .refs { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding-left: 16px; padding-right: 16px; }
+    header.hero { padding: 40px 0 32px; }
+    .sec-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+  @media (max-width: 560px) {
+    a.step { grid-template-columns: 68px 1fr; }
+    .step-num { padding: 8px; font-size: 11px; }
+    .step-body { padding: 13px 14px 12px; }
+    .step-body h3 { font-size: 18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
 </style>
 </head>
 <body>
 
 <nav class="topnav" aria-label="Site">
   <div class="wrap nav-inner">
-    <a class="nav-brand" href="index.html"><span class="iso" aria-hidden="true"></span>8020IQ</a>
-    <span class="nav-tag">problem-solving program · index</span>
+    <a class="nav-brand" href="index.html" aria-label="8020REI home"><img src="assets/8020rei-logo.svg" alt="8020REI"></a>
+    <span class="nav-back">Problem-solving program &middot; index</span>
   </div>
 </nav>
 
@@ -160,12 +189,15 @@
 <!-- ================= THE PATH ================= -->
 <section id="path">
   <div class="wrap">
-    <h2>The path — follow in order</h2>
+    <div class="sec-head">
+      <h2>The path — follow in order</h2>
+      <span>4 steps</span>
+    </div>
     <p class="lede">This is the same sequence the program runs on. If you're new, start at step 1 and don't skip.</p>
 
     <div class="path">
       <a class="step" href="McKinsey-Problem-Solving-Guide.html">
-        <span class="step-num">1</span>
+        <span class="step-num">01</span>
         <span class="step-body">
           <span class="s-when">Learn · self-paced, ~60 min</span>
           <h3>Read the Problem-Solving Guide <span class="go">&rarr;</span></h3>
@@ -175,7 +207,7 @@
       </a>
 
       <a class="step" href="8020IQ-Training-Program.html">
-        <span class="step-num">2</span>
+        <span class="step-num">02</span>
         <span class="step-body">
           <span class="s-when">Practice · Session 1, live, 90 min</span>
           <h3>Do the Training Program <span class="go">&rarr;</span></h3>
@@ -185,7 +217,7 @@
       </a>
 
       <a class="step" href="diagnostic-playbook.html">
-        <span class="step-num">3</span>
+        <span class="step-num">03</span>
         <span class="step-body">
           <span class="s-when">Apply · post-work, async, real client</span>
           <h3>Diagnose a real client with the Playbook <span class="go">&rarr;</span></h3>
@@ -195,7 +227,7 @@
       </a>
 
       <a class="step" href="scr-memo-template.html">
-        <span class="step-num">4</span>
+        <span class="step-num">04</span>
         <span class="step-body">
           <span class="s-when">Deliver · Session 2, live, 45 min</span>
           <h3>Write the one-page SCR memo <span class="go">&rarr;</span></h3>
@@ -212,7 +244,10 @@
 <!-- ================= REFERENCES ================= -->
 <section id="references">
   <div class="wrap">
-    <h2>References — when you need them</h2>
+    <div class="sec-head">
+      <h2>References — when you need them</h2>
+      <span>6 documents</span>
+    </div>
     <p class="lede">Not part of the sequence. Open these whenever a step needs a number, a term, or a facilitator.</p>
 
     <div class="refs">
@@ -252,7 +287,7 @@
 
 <footer>
   <div class="wrap">
-    <p>8020IQ internal training project. Markdown files in this folder are the source of truth; HTML pages are styled renderings. Brand system: cream, emerald, charcoal / DM Sans, Inter, JetBrains Mono.</p>
+    <p>8020IQ internal training project. Markdown files in this folder are the source of truth; HTML pages are styled renderings. Brand system: warm paper, emerald, ink / Barlow Semi Condensed, Atkinson Hyperlegible, Azeret Mono.</p>
   </div>
 </footer>
 
