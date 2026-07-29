@@ -272,6 +272,7 @@ Wholesale-REI case interviews in the McKinsey interviewer-led format, used as th
 ## Running a case (facilitator)
 
 - **Format:** interviewer-led. You control direction and provide data only when asked — the candidate must ask for exhibits and segmentations, not receive them upfront.
+- **Drip-feed background:** answer only the specific item the candidate asks for from the case's "If asked" block — never read the block wholesale, even when the candidate's question is broad.
 - **Time box:** 45–60 min. Participants work in pairs (one leads, one seconds); rotate at each question.
 - **Score** with the rubric in each case file (Structure / Quant / Insight / Synthesis / Coachability, 1–5).
 - **Coach, don't rescue:** each case file has scripted coaching prompts for stuck candidates. Use them verbatim before improvising.
@@ -287,6 +288,7 @@ Every case follows the same skeleton (see `case-01-lone-star.md` as the model):
 4. **Q3 — Brainstorm**: MECE hypothesis set for the alarm, then "what do you test first?" The taught move: **segment before you theorize** + **check the change log**. A standard Exhibit 2 confirms one hypothesis; an advanced case uses sequential Exhibits 2A/2B/2C with a partial-fix calculation after each.
 5. **Q4 — Synthesis**: two-minute elevator answer, SCR, recommendation first, with a risk and a monitoring metric.
 6. **Rubric + facilitator notes** — including a one-line issue summary, the exact KPI that triggered the alarm, and which real red flag (from `../gnacc-reference.md` diagnostic table) the case dramatizes.
+7. **Client context** — a `## Client context (coach — answer only when asked)` section between the opening prompt and Q1: a table of stable background (client profile, named team roster with headcount, marketing channels, tools & vendors, 8020REI engagement). The facilitator answers only the specific item asked. It must contain **no change events, dates of changes, exhibit content, or root-cause clues** — anything that changed belongs in Exhibit 2, not here. Roster names/labels must match whatever the exhibits use (for example, "Rep A / Rep B").
 
 **Rules of the house style:**
 - Use real benchmarks from `../gnacc-reference.md`; the math must check out exactly (recompute every rate).
@@ -301,7 +303,9 @@ Every case follows the same skeleton (see `case-01-lone-star.md` as the model):
 - Fictional client names, realistic geography (DFW area so far).
 - Every red flag in `clientDiagnosticFlow.ts` is a candidate case seed.
 
-**Casefile role-card convention:** the renderer turns the opening prompt, each `**Ask:**` line, Exhibit 1, and Exhibit 2 into blue student-share cards. Expected answers, coaching prompts, reveals, model syntheses, rubrics, and facilitator notes become amber coach-only cards. Keep those labels and headings intact so the generated cards remain screenshot-safe.
+**Casefile role-card convention:** the renderer turns the opening prompt, each `**Ask:**` line, Exhibit 1, and Exhibit 2 into blue student-share cards. Expected answers, coaching prompts, reveals, model syntheses, rubrics, facilitator notes, and the `## Client context` section become amber coach-only cards. Keep those labels and headings intact so the generated cards remain screenshot-safe.
+
+**Glossary tooltip convention:** the renderer automatically wraps canonical domain terms — gross lead(s), net lead(s), lead(s), lead manager(s), acquisition rep(s), dispo manager, admin, appointment(s), assignment, wholesale — in hover tooltips (dotted underline; definitions live in `scripts/render-casefile.mjs` and mirror `../glossary.md`). Use those exact spellings in case files so the terms get tooltipped; add new terms to the renderer's list, not ad hoc.
 
 ## Required marketing-channel lens
 

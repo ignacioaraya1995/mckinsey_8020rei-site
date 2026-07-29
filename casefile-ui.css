@@ -631,6 +631,40 @@ blockquote.model b { color:var(--ink); font-style:normal; }
   line-height:1.6;
 }
 
+/* Glossary hover tooltips (terms wrapped by scripts/render-casefile.mjs) */
+.gloss {
+  position:relative;
+  border-bottom:1px dotted var(--emerald);
+  cursor:help;
+}
+.gloss::after {
+  content:attr(data-tip);
+  position:absolute;
+  left:0;
+  bottom:calc(100% + 6px);
+  z-index:40;
+  width:max-content;
+  max-width:300px;
+  padding:8px 10px;
+  border:1px solid var(--ink);
+  border-radius:0;
+  background:var(--surface);
+  color:var(--ink);
+  font-family:var(--font-mono);
+  font-size:11.5px;
+  font-weight:400;
+  line-height:1.45;
+  white-space:normal;
+  box-shadow:none;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 0.12s ease;
+  pointer-events:none;
+}
+.gloss:hover::after,.gloss:focus::after { opacity:1; visibility:visible; }
+.context-card table.data { margin:10px 0 4px; }
+.context-card table.data td,.context-card table.data th { vertical-align:top; }
+
 @media (max-width:1040px) {
   #casefile { padding-top:18px; }
   .case-layout { grid-template-columns:minmax(0,860px); grid-template-rows:auto 1fr; gap:22px; }
