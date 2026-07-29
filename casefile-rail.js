@@ -3,7 +3,36 @@
    plaintext previews by scripts/render-casefile-preview.mjs. */
 var onCaseActive = [];
 
+function splitLegacyHypothesisMarkup(markup) {
+  return markup
+    .split(/\s*\(\d+\)\s*/)
+    .slice(1)
+    .map(function (item) { return item.trim().replace(/;\s*$/, '.'); })
+    .filter(Boolean);
+}
+
+function normalizeHypothesisLists() {
+  Array.from(document.querySelectorAll('.coach-card p')).forEach(function (paragraph) {
+    if (paragraph.textContent.trim().indexOf('Expected MECE-ish set:') !== 0) return;
+
+    var items = splitLegacyHypothesisMarkup(paragraph.innerHTML);
+    if (items.length < 2) return;
+
+    paragraph.innerHTML = '<b>Expected root-cause hypotheses (MECE):</b>';
+    var list = document.createElement('ul');
+    list.className = 'hypothesis-list';
+    items.forEach(function (item) {
+      var listItem = document.createElement('li');
+      listItem.innerHTML = item;
+      list.appendChild(listItem);
+    });
+    paragraph.insertAdjacentElement('afterend', list);
+  });
+}
+
 function initCaseRail() {
+  normalizeHypothesisLists();
+
   var links = Array.from(document.querySelectorAll('[data-case-link]'));
   var sections = links
     .map(function (link) { return document.getElementById(link.dataset.caseLink); })
