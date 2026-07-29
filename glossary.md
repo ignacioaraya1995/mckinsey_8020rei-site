@@ -2,7 +2,7 @@
 
 *For agents and new team members. Operating roles first, domain terms second, method terms third.*
 
-## Wholesale operation roles & KPI ownership
+## Wholesale-first investor operation roles & KPI ownership
 
 Titles vary by company, and lean teams often combine several roles. In this section, **owns** means the role is accountable for keeping a metric defined, reviewing it on the stated rhythm, and leading the response when it moves. It does **not** mean that person is the only possible cause of the result.
 
@@ -16,7 +16,7 @@ Use the verified definitions and targets in `gnacc-reference.md`. A benchmark is
 | **Gross → Net** | Prospecting rep, inbound intake, or lead manager — depending on channel | Correct-owner verification, seller interest, accurate dispositions, and no premature disqualification |
 | **Net → Attended Appointment** | Lead manager / ISA / appointment setter | Fast response, persistent follow-up, basic buy-box qualification, booking, confirmation, and attendance |
 | **Appointment → Contract** | Acquisition rep, supported by the acquisitions manager / underwriter | A real offer, sound ARV/repair/MAO logic, seller negotiation, follow-up, and a fully executed purchase agreement |
-| **Contract → Close** | Dispositions + transaction coordination | Buyer demand, fast contract marketing, title/closing execution, deadline control, and revenue receipt |
+| **Contract → Close** | Exit-specific: dispositions + transaction coordination for wholesale; capital/closing + project/resale owners for fix-and-flip | The signed purchase agreement reaches the correct monetization event for the approved exit strategy |
 
 ### Client operating roles
 
@@ -31,9 +31,23 @@ Use the verified definitions and targets in `gnacc-reference.md`. A benchmark is
 | **Underwriter / estimator** | Validates property facts, ARV, repairs, exit assumptions, and MAO before or during the offer process. In lean teams, an acquisitions manager or rep performs this role. | Underwriting turnaround; ARV and repair-estimate variance; offer/MAO exception rate; re-trades or cancellations caused by underwriting; expected vs. realized deal spread. | Per deal before offer; weekly exception review; monthly calibration against closed deals. |
 | **Acquisition rep** | Runs the seller appointment, evaluates the property, presents the offer, negotiates, follows up, and obtains the signed purchase agreement. | Attended appointments and offers presented; Appointment → Contract; Contracts signed; follow-up completion; buy-box fit; lost-deal reasons; realized gross profit per deal as a quality guardrail. | Daily pipeline and follow-up; weekly conversion by rep, channel, market, price band, and buy-box fit. |
 | **Acquisitions manager / sales manager** | Sets offer guardrails, assigns leads/territories, coaches reps, audits calls, approves exceptions, and forecasts contracts. | Team Appointment → Contract; Contracts signed; buy-box fit at appointment/contract; rep follow-up adherence; lost-deal reason completeness; pricing and gross-profit guardrails. | Daily pipeline/exception review; weekly rep scorecards and call QA; monthly loss and pricing review. |
-| **Dispositions rep / dispositions manager** | Validates buyer demand, launches the contract to qualified buyers, collects bids, negotiates the assignment, maintains buyer relationships/proof of funds, and selects the exit. | Contract → Close; time from signature to first marketing and first bid; bids per contract; verified active buyers; end-buyer concentration; assignment spread/gross profit per Closed Deal; dispo-caused fallout. | Daily contract inventory and buyer follow-up; weekly closing/buyer scorecard; monthly buyer-depth and concentration review. |
+| **Dispositions rep / dispositions manager** | Validates buyer demand, launches the contract to qualified buyers, collects bids, negotiates the assignment, maintains buyer relationships/proof of funds, and executes the approved wholesale exit. Recommends an exit change when buyer evidence invalidates the original plan. | Contract → Close; time from signature to first marketing and first bid; bids per contract; verified active buyers; end-buyer concentration; assignment spread/gross profit per Closed Deal; dispo-caused fallout. | Daily contract inventory and buyer follow-up; weekly closing/buyer scorecard; monthly buyer-depth and concentration review. |
 | **Transaction coordinator / closing coordinator** | Moves the fully executed contract through title/escrow or the closing attorney; controls documents, access, inspections, signatures, contingencies, and deadlines. | Open contracts by milestone; deadline completion; days to close; exception/curative aging; missing documents; Contract → Close and fallout reason, shared with dispositions. | Daily open-file and exception review; weekly closing forecast and fallout review. |
 | **Finance / bookkeeper / controller** | Reconciles deposits, wires, assignment fees, closing statements, commissions, revenue, marketing spend, and the profit-and-loss statement (P&L). | Revenue received; gross profit per Closed Deal; ad spend; marketing ROI; cash collection; Closed Deal-to-revenue reconciliation; commission accuracy. | Weekly cash and closing reconciliation; monthly P&L and marketing-economics review. |
+| **Capital / lending manager** *(when the client takes title)* | Secures acquisition and construction funding, clears lender conditions, schedules wires, and manages liquidity and financing constraints. | Funding readiness; available/committed capital; lender-condition aging; acquisition-closing fallout; interest and carrying-cost exposure. | Per deal before closing; daily funding exceptions; weekly capital forecast. |
+| **Fix-and-flip project / construction manager** | Converts the approved scope and budget into a completed renovation; manages contractors, permits, draws, schedule, quality, and change orders. | Days from acquisition to rehab start and completion; budget versus actual; change orders; rework; carrying days and costs. | Daily active-project review; weekly budget/schedule review; post-project variance review. |
+| **Resale / listing manager or agent** | Prices, prepares, lists, markets, negotiates, and closes the renovated or wholetail property with the retail buyer. | Days from rehab completion to list; days on market; price reductions; list-to-sale spread; resale fallout; realized gross profit. | Weekly listing pipeline; per-offer review; monthly resale and margin review. |
+
+### Exit-strategy ownership boundary
+
+The owner sets the business-level exit strategy and capital guardrails. Before an offer goes to the seller, acquisitions and underwriting choose a deal-level primary and backup exit and confirm that the economics work. Post-signature ownership then changes by exit:
+
+| Exit | Post-signature operating path | Canonical Closed Deal / gross-profit treatment |
+|---|---|---|
+| **Wholesale / assignment** | Dispositions validates buyer demand and markets the contract; transaction coordination moves seller, end buyer, and title/escrow to closing. | Closed when the end buyer closes and assignment revenue is received. Gross profit is sold/assignment price minus purchase-contract price. |
+| **Fix-and-flip / wholetail** | Capital and transaction coordination close the acquisition; project/construction manages any rehab; resale/listing markets and closes the property. | Acquisition closing is an operating milestone. The canonical Closed Deal is the resale that produces revenue. Gross profit is sold price minus purchase price minus rehab costs. |
+
+Keep these exits separate in reporting. A healthy wholesale buyer list does not prove that a flip can be funded or renovated, and a successful acquisition closing does not prove that the final resale economics were achieved.
 
 ### 8020REI partner roles
 
@@ -61,9 +75,15 @@ Use the verified definitions and targets in `gnacc-reference.md`. A benchmark is
 
 - **Wholesaling** — getting a property under contract below market value and assigning (selling) that contract to a cash buyer for a fee, without renovating or (usually) closing on the property yourself.
 - **Assignment / assignment fee** — the wholesaler's profit: the price the end buyer pays for the contract minus the contracted purchase price.
-- **Buy box** — a client's target-property criteria: location (counties/zips), price band, property type, condition/repair level, equity, seller situation. Drives which prospects get marketed to and which leads get pursued. *Stale or over-expanded buy boxes are the most common diagnostic root cause.*
+- **Buy box** — a client's exit-strategy-specific target-property criteria: location (counties/zips), price band, property type, condition/repair level, equity, and seller situation, constrained by wholesale buyer demand or by the client's capital, rehab capacity, and resale economics. It drives which prospects get marketed to and which leads get pursued. *Stale or over-expanded buy boxes are the most common diagnostic root cause.*
+- **Reverse BuyBox** — the 8020REI analysis that works backward from a client's historical successful deals to create targeting proposals. It informs a BuyBox; it does not silently overwrite the active configuration.
+- **BuyBox IQ** — client-specific learning trained on the investor's closed-deal history. Its value depends on accurate, current Feedback Loop data.
+- **Likely Deal Score (LDS)** — 8020REI's distress-based prioritization signal. It can support an explicitly approved test or opportunity outside the historical BuyBox; it is not permission to bypass the active BuyBox release gate.
+- **Active / approved BuyBox** — the targeting configuration mutually confirmed and saved by the client and CSM. Fulfillment must use this version unless a documented, CSM-approved test cohort or revision replaces it.
 - **Acquisitions** — the seller-facing side of the operation: turning an attended appointment into a signed purchase agreement through property evaluation, underwriting, offer presentation, negotiation, and follow-up.
 - **Dispo (disposition)** — the sell side: the cash-buyer list and the process of assigning signed contracts to it. A buy box wider than dispo capacity produces contracts that cannot be assigned to an end buyer and therefore fail between **Contract → Close**.
+- **Fix-and-flip** — buying the property, taking title, renovating it, and reselling it. Unlike an assignment, it requires acquisition capital, construction execution, carrying-cost control, and a retail resale.
+- **Wholetail** — buying and taking title, performing limited cleanup or repairs, and reselling the property largely as-is. For 8020REI gross-profit reporting it follows the fix-and-flip treatment when the client invested money in the property.
 - **Underwriting** — estimating ARV, repairs, holding/closing costs, buyer demand, and the maximum price the company can pay before an offer is approved.
 - **Transaction coordination (TC)** — the administrative and deadline-control work between a fully executed Contract and a Closed Deal, usually across the seller, buyer, title/escrow or closing attorney, and internal acquisitions/dispositions teams.
 - **ISA (Inside Sales Agent)** — the lead-management role that responds to, qualifies, follows up with, and books seller leads. Some teams call this intake, lead manager, or appointment setter.
@@ -82,7 +102,7 @@ Use the verified definitions and targets in `gnacc-reference.md`. A benchmark is
 - **Months of supply** — inventory ÷ absorption; < 6 months = seller's market (harder for investors).
 - **iBuyer / institutional buyer** — large-scale cash purchasers (hedge funds etc.); a spike in cash-buyer % means margin-compressing competition.
 - **CSM** — customer success manager; runs 8020REI client engagement calls and diagnostics, coordinates actions, and keeps the buy box and Feedback Loop current. The client remains accountable for its own operating results.
-- **Feedback Loop** — clients submitting their closed-deal/lead/appointment data back to 8020REI; without it the buy box is guesswork.
+- **Feedback Loop** — clients submitting lead, appointment, and closed-deal outcomes back to 8020REI, including accurate purchase price, sold price, rehab cost, and exit strategy when applicable. These results feed ROI analysis, Reverse BuyBox proposals, and BuyBox IQ; without them the BuyBox is guesswork.
 - **Knowledge Gap sessions** — recorded client Q&A/coaching sessions; 367 of them informed the diagnostic pillars.
 - **ICP** — ideal customer profile (ICP1/ICP2 = client tiers).
 

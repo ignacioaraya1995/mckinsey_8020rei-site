@@ -14,8 +14,8 @@ Wholesale-REI case interviews in the McKinsey interviewer-led format, used as th
 
 Every case follows the same skeleton (see `case-01-lone-star.md` as the model):
 
-1. **Opening prompt** — fictional client, one headline symptom, one owner quote. Keep spend/volume numbers loadable into the GNACC calculator.
-2. **Q1 — Structure**: "what framework?" Expected answer: funnel-first + the three diagnostic pillars + market. Include coaching prompt.
+1. **Opening prompt** — fictional client, one vague and realistic complaint, and one suspected culprit in the owner's voice. Do **not** include counts, rates, spend, stage-by-stage facts, or root-cause clues. The candidate must clarify the language and request the evidence; put the numeric funnel in Exhibit 1.
+2. **Q1 — Structure**: define the client's ambiguous terms, state what evidence is needed, then build the funnel-first issue tree across the three diagnostic pillars + market. Include a coaching prompt that advances discovery without leaking Exhibit 1.
 3. **Q2 — Quant exhibit**: before/after funnel table. A standard case has exactly **one** stage-conversion break and everything else stays stable. A case explicitly labeled **advanced** may contain two or three declared issues; its exhibits must let the candidate isolate them sequentially and show why correcting only one leaves a measurable residual gap. Candidate must isolate the pattern and size the $ exposure.
 4. **Q3 — Brainstorm**: MECE hypothesis set for the alarm, then "what do you test first?" The taught move: **segment before you theorize** + **check the change log**. A standard Exhibit 2 confirms one hypothesis; an advanced case uses sequential Exhibits 2A/2B/2C with a partial-fix calculation after each.
 5. **Q4 — Synthesis**: two-minute elevator answer, SCR, recommendation first, with a risk and a monitoring metric.
@@ -23,11 +23,14 @@ Every case follows the same skeleton (see `case-01-lone-star.md` as the model):
 
 **Rules of the house style:**
 - Use real benchmarks from `../gnacc-reference.md`; the math must check out exactly (recompute every rate).
+- Do not volunteer evidence in the opening, the Q1 ask, or the first Q1 re-router. When the candidate names the matched-period funnel data needed, hand over Exhibit 1.
 - If the prompt says a metric is unchanged, keep the before/after exhibit values identical. Use **$25,000 gross profit per closed deal** for case sizing (typical range: $20,000–$30,000, or roughly 10%–15% of property value) unless the case provides a client-specific figure.
 - Place the cause at the stage where the failure actually happens: no seller signature = **Appointment → Contract**; a signed contract that cannot monetize = **Contract → Close**; stable closings with lower gross profit per deal = **unit economics**, not a GNACC conversion break.
+- The library is wholesale-first. If a case uses fix-and-flip or wholetail, make the acquisition close, rehab, listing, final resale, and revenue milestones explicit; do not default to a buyer-list/dispo diagnosis.
 - Use one engineered root cause in a standard case. An advanced case may declare exactly two or three independent issues, but must expose them hypothesis by hypothesis: the first fix produces a partial recovery, the residual KPI points to the next test, and the final recommendation sequences every required fix. Do not hide a grab bag of causes behind one blended exhibit.
 - Every case must contain a `**Channel check:**`. Segment the broken KPI by marketing channel first; if a single channel is already isolated, segment by that channel's operating unit. If channel is not causal, the exhibit must explicitly rule it out.
 - Test 8020REI's own fulfillment output as well as the client's execution. Reconcile the approved buy box to the imported criteria and final export; count excluded-tag leakage (`SystemDMA`, `DoNotSend`, and any client-specific suppression tags); compare source totals, row counts, and a record sample before release. A manual export is a control point, not proof of correctness.
+- Keep Reverse BuyBox and BuyBox IQ recommendations separate from the active, CSM-confirmed BuyBox. A written volume request does not bypass that release gate; outside-BuyBox records require a documented, CSM-approved test cohort or BuyBox revision.
 - Fictional client names, realistic geography (DFW area so far).
 - Every red flag in `clientDiagnosticFlow.ts` is a candidate case seed.
 

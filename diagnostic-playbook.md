@@ -78,6 +78,17 @@ Ad Spend → Gross Leads → Net Leads → Appointments Attended → Contracts S
 
 Upstream of Gross Leads sits the **channel-specific marketing layer**; there is no single canonical "Prospect → Lead" denominator across SMS, Cold Call, and Direct Mail. Diagnose each channel through its own operating waterfall (§4.6). Verified Direct Mail benchmarks live in `clientDiagnosticFlow.ts` (Mail → Response 0.35% avg; mail pieces per deal ~9,400 avg, ~2,900 best); do not invent equivalent SMS or Cold Call benchmarks.
 
+### 3.1 8020REI targeting control model
+
+Keep four layers distinct when diagnosing a targeting complaint:
+
+1. **Feedback Loop evidence** — accurate lead, appointment, closed-deal, gross-profit, and exit-strategy outcomes supplied by the client.
+2. **Reverse BuyBox / BuyBox IQ recommendations** — proposals generated from the client's historical successes and relevant market evidence.
+3. **Active / approved BuyBox** — the criteria mutually confirmed and saved by the client and CSM after considering the client's exit strategy, buyer demand or capital/rehab capacity, and operating constraints.
+4. **Fulfillment** — 8020REI applies that active version to selection, exclusions, dedupe, and export.
+
+A recommendation does not silently change the active BuyBox, and a written request for more volume does not bypass the release gate. Outside-BuyBox opportunities, including high-Likely-Deal-Score records, belong in an explicitly documented, CSM-approved test cohort or approved BuyBox revision—not blended into core volume.
+
 ---
 
 ## 4. KPI decline guide — common hypotheses to test first
@@ -166,7 +177,7 @@ Key signature: **Gross Leads stable + Net Leads down**. For Cold Call, test corr
 | 1 | Lead-management capacity or speed-to-lead failed, especially after volume increased | **Segment Net → Appointment first by channel**, lead owner/setter, lead-arrival period, first-contact-time bucket, and backlog; compare Net Leads per owner and queue size before/after | Stage volume the team cannot absorb, assign overflow ownership, add/rebalance trained coverage, and restore the hot-lead SLA before rescaling spend |
 | 2 | Too few follow-up attempts or premature disqualification | Segment by attempt count, cadence completion, last disposition, and owner; compare with the 6–8-attempt diagnostic control | Enforce the follow-up cadence and stopping rules; audit completion and appointment yield by owner |
 | 3 | Booking/show process failed | Split **scheduled versus attended**; inspect calendar availability, confirmation/reminder events, reschedules, cancellations, and no-show reasons by channel and setter | Restore booking capacity and confirmation/reminder workflows; assign no-show recovery and monitor Scheduled → Attended |
-| 4 | Net Leads are outside the active buy box or routed to the wrong team | Segment by active-buy-box fit, imported buy-box version, routing rule, county, property type, and price band; compare on-box and off-box booking rates | Correct the fulfillment/import or routing defect; hard-stop or reroute off-box leads rather than blaming setters |
+| 4 | Net Leads are outside the active buy box or routed to the wrong team | Segment by active-buy-box fit, imported buy-box version, routing rule, county, property type, and price band; compare on-box and off-box booking rates | Correct the fulfillment/import or routing defect; hard-stop or reroute **unapproved** off-box leads, while keeping any CSM-approved test cohort tagged and measured separately |
 | 5 | Setter/caller discovery, objection handling, or disposition behavior weakened | Rate by setter/caller and disposition; after isolating the abnormal segment, compare targeted recordings with a healthy control | Coach the isolated behavior, correct scripts/dispositions, and re-audit a defined sample |
 
 Key signature: **Net Leads rise or remain stable while attended Appointments do not**. If scheduled appointments are stable but attendance falls, the problem sits in confirmations, reminders, rescheduling, or no-show recovery—not lead qualification.
@@ -177,7 +188,7 @@ Key signature: **Net Leads rise or remain stable while attended Appointments do 
 
 | # | Hypothesis | Test / evidence | If confirmed → action |
 |---|---|---|---|
-| 1 | Setter-to-acquisition handoff sends appointments outside the active buy box, so no viable offer is made | **Segment Appointment → Contract first** by active-buy-box fit, then by appointment setter and acquisition rep; compare visited-property characteristics with criteria; inspect required booking fields and routing changes | Reinstate required buy-box qualification before booking; hard-stop or reroute off-box leads; QA by setter and rep |
+| 1 | Setter-to-acquisition handoff sends appointments outside the active buy box, so no viable offer is made | **Segment Appointment → Contract first** by active-buy-box fit, then by appointment setter and acquisition rep; compare visited-property characteristics with criteria; inspect required booking fields and routing changes | Reinstate required buy-box qualification before booking; hard-stop or reroute unapproved off-box leads; isolate any approved exploration cohort; QA by setter and rep |
 | 2 | Offers going out but too low to convert | Offer-to-ARV / offer-to-ask spread vs. historical and vs. market comps | Revisit offer formula, MAO assumptions |
 | 3 | Acquisition rep execution (rapport, negotiation, follow-up) | Segment by acquisition rep and channel; inspect follow-up cadence and lost-deal reasons; after isolating the abnormal cohort, compare a small matched recording sample with a healthy control | Coach the isolated behavior, enforce the follow-up process, and re-audit the same KPI segment |
 | 4 | Competitive pressure in the market | Lost-deal reasons; market DOM / investor activity | Speed and offer positioning, not targeting |
@@ -186,7 +197,9 @@ Key signature: **appointments high + signed contracts low**. The seller has not 
 
 ### 4.5 Contract → Close rate LOW (signed contracts are not monetizing)
 
-**Start with the stage fact:** the seller has already signed, but the contract did not become a closed deal. Buyer-list/dispo capacity is often the leading branch, but the fallout reasons determine which post-signature hypothesis deserves priority.
+**Start with the stage fact:** the seller has already signed, but the contract did not become a closed deal. The table below is the **wholesale/assignment default**: buyer-list/dispo capacity is often the leading branch, but the fallout reasons determine which post-signature hypothesis deserves priority.
+
+For a **fix-and-flip or wholetail** exit, replace the buyer-list branch with the actual operating milestones: acquisition financing/title → acquisition closing → rehab scope/budget/schedule → listing/resale → revenue. Acquisition closing is an intermediate milestone; under the canonical definition, the Closed Deal is the resale that produces revenue. Measure gross profit as sold price − purchase price − rehab costs and compare matured cohorts so unfinished projects are not mislabeled as fallout.
 
 | # | Hypothesis | Test / evidence | If confirmed → action |
 |---|---|---|---|
