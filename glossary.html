@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="assets/8020rei-logo.svg" type="image/svg+xml">
-<title>Glossary — Wholesale REI &amp; Methodology Terms — 8020IQ</title>
+<title>Glossary — Wholesale REI Roles, KPIs &amp; Methodology — 8020IQ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Azeret+Mono:wght@500;600&family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;family=Azeret+Mono:wght@500;600&amp;family=Barlow+Semi+Condensed:wght@600;700&amp;display=swap" rel="stylesheet">
 <style>
   /* ===== Casefile design tokens — light mode only ===== */
   :root {
@@ -15,7 +15,7 @@
     --surface: #FFFCF5;
     --ink: #17211C;
     --ink-soft: #34443C;
-    --muted: #657169;
+    --muted: #647068;
     --rule: #D4CDBE;
     --rule-strong: #B8AE9D;
     --emerald: #0E6B4F;
@@ -33,7 +33,7 @@
     -webkit-font-smoothing: antialiased;
   }
   ::selection { background: #BFDFD2; color: var(--ink); }
-  .wrap { width: 100%; min-width: 0; max-width: 920px; margin: 0 auto; padding: 0 32px; }
+  .wrap { width: 100%; min-width: 0; max-width: 1080px; margin: 0 auto; padding: 0 32px; }
   h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; color: var(--ink); margin: 0; text-wrap: balance; }
   p { max-width: 72ch; margin: 0 0 14px; }
   a { color: var(--emerald); }
@@ -77,7 +77,24 @@
   header.hero .doc-sub { font-size: 16.5px; color: var(--ink-soft); max-width: 62ch; margin: 0; }
   header.hero .doc-sub b { color: var(--ink); }
 
-  section { padding: 44px 0; border-bottom: 1px solid var(--rule); }
+  .section-nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-nav .wrap {
+    display: flex; gap: 26px; overflow-x: auto;
+    scrollbar-width: thin; scrollbar-color: var(--rule-strong) transparent;
+  }
+  .section-nav a {
+    flex: 0 0 auto; padding: 13px 0 11px;
+    border-bottom: 2px solid transparent;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; white-space: nowrap;
+  }
+  .section-nav a:hover { color: var(--emerald); border-bottom-color: var(--emerald); }
+
+  section { padding: 44px 0; border-bottom: 1px solid var(--rule); scroll-margin-top: 70px; }
   section:last-of-type { border-bottom: none; }
   .sec-head {
     display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
@@ -89,6 +106,100 @@
     font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.04em;
     text-transform: uppercase; color: var(--muted);
   }
+  .lede { max-width: 72ch; margin-bottom: 24px; color: var(--ink-soft); }
+  .lede b { color: var(--ink); }
+
+  .subhead {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    margin: 38px 0 13px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .subhead h3 { font-size: 21px; line-height: 1.05; }
+  .subhead span {
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--muted);
+  }
+
+  .funnel-map {
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
+    margin-top: 12px;
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--rule-strong);
+    background: var(--surface);
+  }
+  .funnel-step { min-width: 0; padding: 15px 14px 16px; border-right: 1px solid var(--rule); }
+  .funnel-step:last-child { border-right: none; }
+  .funnel-step .f-stage {
+    display: block; margin-bottom: 8px;
+    font-family: var(--font-mono); font-size: 9px; font-weight: 600;
+    letter-spacing: 0.035em; text-transform: uppercase; color: var(--emerald);
+  }
+  .funnel-step b {
+    display: block; margin-bottom: 5px;
+    font-family: var(--font-display); font-size: 16px; line-height: 1.05;
+  }
+  .funnel-step .f-duty { display: block; color: var(--ink-soft); font-size: 12.5px; line-height: 1.4; }
+
+  .table-scroll {
+    max-width: 100%; overflow-x: auto;
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--rule-strong);
+    background: var(--surface);
+    scrollbar-width: thin; scrollbar-color: var(--rule-strong) transparent;
+  }
+  table.roles {
+    width: 100%; min-width: 930px;
+    border-collapse: collapse; table-layout: fixed;
+    font-size: 13px; line-height: 1.4;
+  }
+  table.roles col.role { width: 18%; }
+  table.roles col.duty { width: 26%; }
+  table.roles col.metrics { width: 38%; }
+  table.roles col.rhythm { width: 18%; }
+  table.roles th {
+    padding: 10px 12px; text-align: left; vertical-align: bottom;
+    border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule-strong);
+    background: #E6EFE9; color: var(--ink);
+    font-family: var(--font-mono); font-size: 9px; font-weight: 600;
+    letter-spacing: 0.035em; text-transform: uppercase;
+  }
+  table.roles th:last-child { border-right: none; }
+  table.roles td {
+    padding: 13px 12px; vertical-align: top;
+    border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    color: var(--ink-soft);
+  }
+  table.roles td:last-child { border-right: none; }
+  table.roles tr:last-child td { border-bottom: none; }
+  table.roles tbody tr:hover td { background: var(--paper); }
+  table.roles td:first-child b {
+    display: block; color: var(--ink);
+    font-family: var(--font-display); font-size: 16px; line-height: 1.08;
+  }
+  table.roles .alias {
+    display: block; margin-top: 4px;
+    font-size: 11.5px; line-height: 1.3; color: var(--muted);
+  }
+  table.roles .metric-primary { color: var(--ink); font-weight: 700; }
+  .table-hint {
+    display: none; margin: 8px 0 0;
+    font-family: var(--font-mono); font-size: 9px; color: var(--muted);
+    letter-spacing: 0.03em; text-transform: uppercase;
+  }
+
+  .ownership-rules {
+    padding: 18px 20px 17px;
+    border-top: 3px solid var(--emerald);
+    border-bottom: 1px solid var(--rule-strong);
+    background: var(--surface);
+  }
+  .ownership-rules ol { margin: 0; padding-left: 22px; }
+  .ownership-rules li { padding: 4px 0 5px 5px; color: var(--ink-soft); font-size: 14px; }
+  .ownership-rules li::marker {
+    color: var(--emerald);
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  }
+  .ownership-rules b { color: var(--ink); }
 
   dl.gloss { max-width: 760px; margin: 0; }
   dl.gloss dt { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--ink); margin: 20px 0 3px; }
@@ -108,6 +219,14 @@
     .wrap { padding-left: 16px; padding-right: 16px; }
     header.hero { padding: 40px 0 32px; }
     .sec-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .subhead { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .funnel-map { grid-template-columns: 1fr; }
+    .funnel-step { border-right: none; border-bottom: 1px solid var(--rule); }
+    .funnel-step:last-child { border-bottom: none; }
+    .ownership-rules { padding: 15px 14px 14px; }
+  }
+  @media (max-width: 980px) {
+    .table-hint { display: block; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -128,9 +247,238 @@
   <div class="wrap">
     <span class="eyebrow">Reference</span>
     <h1>Glossary</h1>
-    <p class="doc-sub">Wholesale-REI domain terms and methodology terms, for agents and new team members. Domain first, method second.</p>
+    <p class="doc-sub">Operating roles, KPI ownership, wholesale-REI domain terms, and problem-solving language for agents and new team members.</p>
   </div>
 </header>
+
+<nav class="section-nav" aria-label="On this page">
+  <div class="wrap">
+    <a href="#roles">Roles &amp; KPI ownership</a>
+    <a href="#domain">Domain terms</a>
+    <a href="#method">Methodology</a>
+  </div>
+</nav>
+
+<section id="roles">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Wholesale operation roles &amp; KPI ownership</h2>
+      <span>12 client roles · 2 partner roles</span>
+    </div>
+    <p class="lede">Titles vary, and lean teams often combine several roles. Here, <b>owns</b> means the role keeps a metric defined, reviews it on the stated rhythm, and leads the response when it moves. It does not mean that person is the only possible cause. Use the verified definitions and targets in the <a href="gnacc-reference.html">GNACC Reference</a>; a benchmark is a diagnostic reference, not an automatic individual quota.</p>
+
+    <div class="subhead">
+      <h3>Who protects each GNACC handoff</h3>
+      <span>Primary operating owner</span>
+    </div>
+    <div class="funnel-map" role="list" aria-label="Primary owner at each GNACC handoff">
+      <div class="funnel-step" role="listitem">
+        <span class="f-stage">Marketing → Gross</span>
+        <b>Marketing + data/list ops</b>
+        <span class="f-duty">Protect audience, buy box, delivery, source tracking, and CRM capture.</span>
+      </div>
+      <div class="funnel-step" role="listitem">
+        <span class="f-stage">Gross → Net</span>
+        <b>Caller or intake owner</b>
+        <span class="f-duty">Verify the correct owner and seller interest; record accurate dispositions.</span>
+      </div>
+      <div class="funnel-step" role="listitem">
+        <span class="f-stage">Net → Appointment</span>
+        <b>Lead manager / setter</b>
+        <span class="f-duty">Respond fast, follow up, qualify, book, confirm, and protect attendance.</span>
+      </div>
+      <div class="funnel-step" role="listitem">
+        <span class="f-stage">Appointment → Contract</span>
+        <b>Acquisition rep</b>
+        <span class="f-duty">Present a sound offer, negotiate, follow up, and secure the signed agreement.</span>
+      </div>
+      <div class="funnel-step" role="listitem">
+        <span class="f-stage">Contract → Close</span>
+        <b>Dispositions + TC</b>
+        <span class="f-duty">Create buyer demand, control deadlines, clear closing, and receive revenue.</span>
+      </div>
+    </div>
+
+    <div class="subhead">
+      <h3>Client operating roles</h3>
+      <span>Responsibilities · metrics · rhythm</span>
+    </div>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Client operating roles and KPI ownership">
+      <table class="roles">
+        <colgroup>
+          <col class="role"><col class="duty"><col class="metrics"><col class="rhythm">
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">What the role does</th>
+            <th scope="col">Metrics the role is accountable for</th>
+            <th scope="col">Regular review rhythm</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Owner / CEO</b></td>
+            <td>Sets markets, buy box, exit strategy, capital allocation, targets, and final cross-functional priorities.</td>
+            <td><span class="metric-primary">Full GNACC funnel and Closed Deals</span>; revenue received; gross profit per Closed Deal; marketing ROI; buy-box-to-closed-deal alignment.</td>
+            <td>Weekly funnel; monthly economics; quarterly market, capacity, and buy-box review.</td>
+          </tr>
+          <tr>
+            <td><b>COO / integrator</b><span class="alias">Operations manager</span></td>
+            <td>Turns strategy into staffing, service-level agreements (SLAs), handoffs, CRM discipline, meeting rhythms, and corrective actions.</td>
+            <td>Every GNACC stage volume and conversion by channel/rep; backlog and queue age; speed to lead; CRM field completion; closing forecast and capacity.</td>
+            <td>Daily exceptions; weekly operations; monthly capacity and process review.</td>
+          </tr>
+          <tr>
+            <td><b>Marketing manager</b><span class="alias">Lead-generation manager</span></td>
+            <td>Owns channel mix, budget, campaigns, creative, vendors, tracking, and the test calendar.</td>
+            <td><span class="metric-primary">Ad spend, Gross Leads, and cost per Lead (Gross Lead)</span> by channel; direct-mail response; mail pieces per Closed Deal; Gross → Net quality; marketing ROI.</td>
+            <td>Daily delivery/spend; weekly channels; monthly ROI, cohorts, and tests.</td>
+          </tr>
+          <tr>
+            <td><b>Data / list / CRM manager</b><span class="alias">Marketing operations</span></td>
+            <td>Translates the approved buy box into lists and CRM rules; manages skip tracing, exclusions, dedupe, routing, fields, and reporting QA.</td>
+            <td>Selected → eligible → exported counts; buy-box version and match; property-data errors; reachable/wrong-number rates; exclusion/duplicate exceptions; routing failures; CRM field completion.</td>
+            <td>Every batch/import; daily routing exceptions; weekly data quality; buy box at least every 90 days.</td>
+          </tr>
+          <tr>
+            <td><b>Prospecting rep</b><span class="alias">Cold caller · outbound virtual assistant (VA)</span></td>
+            <td>Works records and phone positions, reaches the correct owner, establishes selling interest, and records the disposition.</td>
+            <td>Records and phone positions attempted; live-answer rate; correct-owner reach; <span class="metric-primary">Gross → Net</span> by caller/channel; attempt depth; disposition and field accuracy.</td>
+            <td>Daily activity and conversion; weekly segmented recording QA.</td>
+          </tr>
+          <tr>
+            <td><b>Lead manager / ISA</b><span class="alias">Inside sales agent · intake · appointment setter</span></td>
+            <td>Responds to inbound leads, verifies owner and interest, runs follow-up, performs basic qualification, and books/confirms appointments.</td>
+            <td>Speed to lead; Net Leads worked; backlog/queue age; completed attempts; <span class="metric-primary">Net → Appointment</span>; scheduled → attended/show rate; qualification-field completeness.</td>
+            <td>Live queue; daily follow-up; weekly conversion by source, owner, and response-time bucket.</td>
+          </tr>
+          <tr>
+            <td><b>Underwriter / estimator</b></td>
+            <td>Validates property facts, ARV, repairs, exit assumptions, and MAO before or during the offer process. A manager or rep may cover this role.</td>
+            <td>Underwriting turnaround; ARV and repair-estimate variance; offer/MAO exceptions; re-trades or cancellations caused by underwriting; expected vs. realized deal spread.</td>
+            <td>Per deal before offer; weekly exceptions; monthly calibration against closed deals.</td>
+          </tr>
+          <tr>
+            <td><b>Acquisition rep</b></td>
+            <td>Runs the seller appointment, evaluates the property, presents the offer, negotiates, follows up, and obtains the signed purchase agreement.</td>
+            <td>Attended appointments and offers; <span class="metric-primary">Appointment → Contract</span>; Contracts signed; follow-up completion; buy-box fit; lost-deal reasons; realized gross profit as a quality guardrail.</td>
+            <td>Daily pipeline/follow-up; weekly conversion by rep, channel, market, price band, and buy-box fit.</td>
+          </tr>
+          <tr>
+            <td><b>Acquisitions manager</b><span class="alias">Sales manager</span></td>
+            <td>Sets offer guardrails, assigns leads/territories, coaches reps, audits calls, approves exceptions, and forecasts contracts.</td>
+            <td>Team Appointment → Contract; Contracts signed; buy-box fit at appointment/contract; rep follow-up; lost-deal reason completeness; pricing and gross-profit guardrails.</td>
+            <td>Daily pipeline/exceptions; weekly rep scorecards and call QA; monthly loss and pricing review.</td>
+          </tr>
+          <tr>
+            <td><b>Dispositions rep / manager</b></td>
+            <td>Validates buyer demand, launches contracts to qualified buyers, collects bids, negotiates assignments, maintains buyer relationships/proof of funds, and selects the exit.</td>
+            <td><span class="metric-primary">Contract → Close</span>; signature-to-marketing and first-bid time; bids per contract; verified active buyers; buyer concentration; assignment spread/gross profit; dispo-caused fallout.</td>
+            <td>Daily contract inventory and buyer follow-up; weekly closings/buyers; monthly buyer depth and concentration.</td>
+          </tr>
+          <tr>
+            <td><b>Transaction coordinator</b><span class="alias">Closing coordinator · TC</span></td>
+            <td>Moves the executed contract through title/escrow or the closing attorney; controls documents, access, inspections, signatures, contingencies, and deadlines.</td>
+            <td>Open contracts by milestone; deadline completion; days to close; exception/curative age; missing documents; <span class="metric-primary">Contract → Close and fallout reason</span>, shared with dispositions.</td>
+            <td>Daily open files and exceptions; weekly closing forecast and fallout review.</td>
+          </tr>
+          <tr>
+            <td><b>Finance / bookkeeper</b><span class="alias">Controller</span></td>
+            <td>Reconciles deposits, wires, assignment fees, closing statements, commissions, revenue, marketing spend, and the profit-and-loss statement (P&amp;L).</td>
+            <td>Revenue received; gross profit per Closed Deal; ad spend; marketing ROI; cash collection; Closed Deal-to-revenue reconciliation; commission accuracy.</td>
+            <td>Weekly cash and closing reconciliation; monthly P&amp;L and marketing economics.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-hint" aria-hidden="true">Swipe table horizontally for all columns →</p>
+
+    <div class="subhead">
+      <h3>8020REI partner roles</h3>
+      <span>Supports the client operation</span>
+    </div>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="8020REI partner roles and KPI ownership">
+      <table class="roles">
+        <colgroup>
+          <col class="role"><col class="duty"><col class="metrics"><col class="rhythm">
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">What the role does</th>
+            <th scope="col">Metrics the role is accountable for</th>
+            <th scope="col">Regular review rhythm</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>8020REI CSM</b><span class="alias">Customer success manager</span></td>
+            <td>Runs engagement calls and diagnostics, confirms the buy box, requests Feedback Loop data, coordinates action owners, and escalates fulfillment issues. The client still owns its operating results.</td>
+            <td>Engagement-call attendance; buy-box freshness; buy-box-to-closed-deal match; monthly Feedback Loop participation; action-item closure; client GNACC trend monitoring.</td>
+            <td>Weekly active-issue follow-up; monthly engagement call; buy-box review at least every 90 days.</td>
+          </tr>
+          <tr>
+            <td><b>8020REI fulfillment</b><span class="alias">Data operations</span></td>
+            <td>Converts the approved buy box into compliant campaign files, applies field mapping/exclusions/dedupe, manages data and skip-trace outputs, and completes delivery QA.</td>
+            <td>Approved → selected → eligible → exported reconciliation; exclusion leakage; duplicates; required-field completeness; property-data errors; delivery timeliness; rework.</td>
+            <td>Every file/campaign; daily exceptions; weekly defect and rework review.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-hint" aria-hidden="true">Swipe table horizontally for all columns →</p>
+
+    <div class="subhead">
+      <h3>Common external partners</h3>
+      <span>Monitored · not the internal owner</span>
+    </div>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="External partners and internal accountable owners">
+      <table class="roles">
+        <colgroup>
+          <col class="role"><col class="duty"><col class="metrics"><col class="rhythm">
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">Partner</th>
+            <th scope="col">What the partner does</th>
+            <th scope="col">Operating measures to monitor</th>
+            <th scope="col">Internal accountable owner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Title / escrow</b><span class="alias">Closing attorney where applicable</span></td>
+            <td>Searches and clears title, holds funds, prepares closing documents, coordinates signing, funds, and records the transaction.</td>
+            <td>Title commitment/clear-to-close timing; curative-item age; on-time signing/funding; fallout by title or closing reason.</td>
+            <td>Transaction coordinator.</td>
+          </tr>
+          <tr>
+            <td><b>Call center / marketing vendor</b></td>
+            <td>Executes the contracted mail, SMS, cold-calling, pay-per-click (PPC), or other channel workflow.</td>
+            <td>Selected/submitted/delivered/attempted counts; coverage and records exhausted; correct-owner reach; dispositions; reject/suppression reasons; SLA exceptions.</td>
+            <td>Marketing for delivery; lead manager/operations for lead handling.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-hint" aria-hidden="true">Swipe table horizontally for all columns →</p>
+
+    <div class="subhead">
+      <h3>KPI ownership rules</h3>
+      <span>How to use the scorecards</span>
+    </div>
+    <div class="ownership-rules">
+      <ol>
+        <li><b>Give every KPI one named primary owner.</b> Shared contribution is real; shared accountability without a decision owner is not.</li>
+        <li><b>Diagnose handoffs, not just people.</b> Segment a broken conversion by channel, rep, market, price band, buy-box fit, and fallout reason before concluding that a role failed.</li>
+        <li><b>Separate activity, conversion, quality, and economics.</b> Activity shows whether work happened; conversion shows the handoff result; quality shows whether the outcome was usable; economics shows whether it was profitable.</li>
+        <li><b>Review at the speed of the work.</b> Queues, new leads, live contracts, and closing exceptions need daily attention. Conversion rates need a weekly cohort view. Economics and buy-box alignment need monthly or quarterly review.</li>
+        <li><b>Log changes manually for now.</b> There is no queryable change-event log for buy-box or creative edits yet, so the owner/operations team must reconstruct dates when diagnosing an inflection.</li>
+      </ol>
+    </div>
+  </div>
+</section>
 
 <section id="domain">
   <div class="wrap">
@@ -141,7 +489,13 @@
       <dt>Wholesaling</dt><dd>Getting a property under contract below market value and assigning (selling) that contract to a cash buyer for a fee, without renovating or (usually) closing on the property yourself.</dd>
       <dt>Assignment / assignment fee</dt><dd>The wholesaler's profit: the price the end buyer pays for the contract minus the contracted purchase price.</dd>
       <dt>Buy box</dt><dd>A client's target-property criteria: location (counties/zips), price band, property type, condition/repair level, equity, seller situation. Drives which prospects get marketed to and which leads get pursued. <b>Stale or over-expanded buy boxes are the most common diagnostic root cause.</b></dd>
+      <dt>Acquisitions</dt><dd>The seller-facing side of the operation: turning an attended appointment into a signed purchase agreement through property evaluation, underwriting, offer presentation, negotiation, and follow-up.</dd>
       <dt>Dispo (disposition)</dt><dd>The sell side: the cash-buyer list and the process of assigning signed contracts to it. A buy box wider than dispo capacity produces contracts that cannot be assigned to an end buyer and therefore fail between <b>Contract → Close</b>.</dd>
+      <dt>Underwriting</dt><dd>Estimating ARV, repairs, holding/closing costs, buyer demand, and the maximum price the company can pay before an offer is approved.</dd>
+      <dt>Transaction coordination (TC)</dt><dd>The administrative and deadline-control work between a fully executed Contract and a Closed Deal, usually across the seller, buyer, title/escrow or closing attorney, and internal acquisitions/dispositions teams.</dd>
+      <dt>ISA (Inside Sales Agent)</dt><dd>The lead-management role that responds to, qualifies, follows up with, and books seller leads. Some teams call this intake, lead manager, or appointment setter.</dd>
+      <dt>VA (Virtual Assistant)</dt><dd>A remote team member or vendor staffer. VA describes where/how the person works, not the function; score the person against the KPIs for the role they actually perform.</dd>
+      <dt>SLA (service-level agreement)</dt><dd>The promised response-time, coverage, quality, or delivery standard for a team or vendor, such as speed to lead or records attempted.</dd>
       <dt>GNACC</dt><dd>The canonical funnel: <b>G</b>ross Leads → <b>N</b>et Leads → <b>A</b>ppointments → <b>C</b>ontracts → <b>C</b>losings. Full definitions and benchmarks: <a href="gnacc-reference.html">GNACC Reference</a>.</dd>
       <dt>Gross lead / net lead</dt><dd>Anything entering the CRM vs. a verified owner who wants to sell (see the <a href="gnacc-reference.html">GNACC Reference</a>).</dd>
       <dt>ARV (After Repair Value)</dt><dd>Estimated value of a property once renovated; the anchor for offer formulas.</dd>
@@ -154,7 +508,7 @@
       <dt>DOM (Days on Market)</dt><dd>Market-temperature signal; rising DOM = cooling market.</dd>
       <dt>Months of supply</dt><dd>Inventory ÷ absorption; &lt; 6 months = seller's market (harder for investors).</dd>
       <dt>iBuyer / institutional buyer</dt><dd>Large-scale cash purchasers (hedge funds etc.); a spike in cash-buyer % means margin-compressing competition.</dd>
-      <dt>CSM</dt><dd>Customer success manager; runs engagement calls and diagnostics on 8020REI clients.</dd>
+      <dt>CSM</dt><dd>Customer success manager; runs 8020REI client engagement calls and diagnostics, coordinates actions, and keeps the buy box and Feedback Loop current. The client remains accountable for its own operating results.</dd>
       <dt>Feedback Loop</dt><dd>Clients submitting their closed-deal/lead/appointment data back to 8020REI; without it the buy box is guesswork.</dd>
       <dt>Knowledge Gap sessions</dt><dd>Recorded client Q&amp;A/coaching sessions; 367 of them informed the diagnostic pillars.</dd>
       <dt>ICP</dt><dd>Ideal customer profile (ICP1/ICP2 = client tiers).</dd>
