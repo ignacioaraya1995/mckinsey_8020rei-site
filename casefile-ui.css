@@ -217,7 +217,16 @@ a { color:var(--emerald); }
 }
 .case-stream { grid-column:1; grid-row:1; min-width:0; }
 .case-rail { grid-column:2; grid-row:1; min-width:0; align-self:stretch; }
-.rail-sticky { position:sticky; top:86px; }
+.rail-sticky {
+  position:sticky;
+  top:86px;
+  max-height:calc(100vh - 102px);
+  padding-right:4px;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+  scrollbar-color:var(--rule-strong) transparent;
+}
 .case-tabs {
   position:static;
   display:flex;
@@ -627,7 +636,17 @@ blockquote.model b { color:var(--ink); font-style:normal; }
   .case-layout { grid-template-columns:minmax(0,860px); grid-template-rows:auto 1fr; gap:22px; }
   .case-rail { grid-column:1; grid-row:1 / -1; }
   .case-stream { grid-column:1; grid-row:2; }
-  .rail-sticky { position:sticky; top:58px; z-index:30; padding-top:7px; background:var(--paper); }
+  .rail-sticky {
+    position:sticky;
+    top:58px;
+    z-index:30;
+    max-height:none;
+    padding-top:7px;
+    padding-right:0;
+    overflow:visible;
+    overscroll-behavior:auto;
+    background:var(--paper);
+  }
   .case-tabs {
     flex-direction:row;
     overflow-x:auto;

@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="assets/8020rei-logo.svg" type="image/svg+xml">
 <title>Case Library — Run &amp; Author Cases — 8020IQ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -146,7 +147,7 @@
   <div class="wrap">
     <span class="eyebrow">2 · Practice — Facilitator Manual</span>
     <h1>Case Library — How to Run &amp; Author Cases</h1>
-    <p class="doc-sub">Wholesale-REI case interviews in the McKinsey interviewer-led format, used as the live-session core of the <a href="8020IQ-Training-Program.html">training program</a>. All seven rendered cases live in the password-protected <a href="interview-cases.html">Interview Casefile</a> (facilitators only).</p>
+    <p class="doc-sub">Wholesale-REI case interviews in the McKinsey interviewer-led format, used as the live-session core of the <a href="8020IQ-Training-Program.html">training program</a>. All nine rendered cases live in the password-protected <a href="interview-cases.html">Interview Casefile</a> (facilitators only).</p>
   </div>
 </header>
 
@@ -174,10 +175,10 @@
     <ol class="tight">
       <li><b>Opening prompt</b> — fictional client, one headline symptom, one owner quote. Keep spend/volume numbers loadable into the GNACC calculator.</li>
       <li><b>Q1 — Structure:</b> "what framework?" Expected answer: funnel-first + the three diagnostic pillars + market. Include a coaching prompt.</li>
-      <li><b>Q2 — Quant exhibit:</b> before/after funnel table. Exactly <b>one</b> stage-conversion breaks and everything else stays stable — unless the case is explicitly designed as a market/context trap, in which case <b>no</b> conversion breaks. Candidate must isolate the pattern and size the $ exposure.</li>
-      <li><b>Q3 — Brainstorm:</b> MECE hypothesis set for that broken stage, then "what do you test first?" The taught move: <b>segment before you theorize</b> + <b>check the change log</b>. Exhibit 2 = a segmentation + a change-log note that together confirm one hypothesis.</li>
+      <li><b>Q2 — Quant exhibit:</b> before/after funnel table. A standard case has exactly <b>one</b> stage-conversion break. A case explicitly labeled <b>advanced</b> may contain two or three declared issues; its exhibits must isolate them sequentially and show why one fix leaves a measurable residual gap. Candidate must isolate the pattern and size the $ exposure.</li>
+      <li><b>Q3 — Brainstorm:</b> MECE hypotheses for the alarm, then "what do you test first?" The taught move: <b>segment before you theorize</b> + <b>check the change log</b>. A standard Exhibit 2 confirms one hypothesis; an advanced case uses sequential Exhibits 2A/2B/2C with a partial-fix calculation after each.</li>
       <li><b>Q4 — Synthesis:</b> two-minute elevator answer, SCR, recommendation first, with a risk and a monitoring metric.</li>
-      <li><b>Rubric + facilitator notes</b> — including which real red flag (from the <a href="gnacc-reference.html">GNACC Reference</a> diagnostic table) the case dramatizes.</li>
+      <li><b>Rubric + facilitator notes</b> — including a one-line issue summary, the exact KPI that triggered the alarm, and which real red flag the case dramatizes.</li>
     </ol>
 
     <div class="callout">
@@ -185,7 +186,9 @@
       <p>• Use real benchmarks from the <a href="gnacc-reference.html">GNACC Reference</a>; the math must check out exactly (recompute every rate).</p>
       <p>• If the prompt says a metric is unchanged, keep its before/after values identical. Use $25,000 gross profit per closed deal for case sizing (typical range: $20,000–$30,000, or roughly 10%–15% of property value) unless the case supplies a client-specific figure.</p>
       <p>• Place the cause where the failure actually happens: no seller signature = <b>Appointment → Contract</b>; a signed contract that cannot monetize = <b>Contract → Close</b>; stable closings with lower gross profit per deal = <b>unit economics</b>, not a GNACC conversion break.</p>
-      <p>• One engineered root cause per case. The decline's start date correlates with a supplied change event except in an explicit market/context trap, where the evidence must rule out client-side changes.</p>
+      <p>• Use one engineered root cause in a standard case. An advanced case may declare exactly two or three independent issues, but the first fix must produce only partial recovery, the residual KPI must trigger the next test, and the synthesis must sequence every fix.</p>
+      <p>• Every case must contain a <b>Channel check</b>. Segment the broken KPI by marketing channel first; if one channel is already isolated, segment by that channel's operating unit. If channel is not causal, the exhibit must explicitly rule it out.</p>
+      <p>• Test 8020REI's own fulfillment output: approved buy box → imported criteria → exclusions such as <code class="inline">SystemDMA</code> / <code class="inline">DoNotSend</code> → final export, with row-count reconciliation and a targeted record sample.</p>
       <p>• Fictional client names, realistic geography (DFW area so far).</p>
       <p>• Every red flag in <code class="inline">clientDiagnosticFlow.ts</code> is a candidate case seed.</p>
       <p>• The encrypted casefile renders prompts and exhibits as blue <b>student-share</b> cards, and answers, hints, reveals, and facilitator notes as amber <b>coach-only</b> cards, so each card can be captured safely.</p>
@@ -193,30 +196,80 @@
   </div>
 </section>
 
-<section id="buildout">
+<section id="channels">
   <div class="wrap">
     <div class="sec-head">
-      <h2>Build-out plan</h2>
+      <h2>Required marketing-channel lens</h2>
     </div>
-    <p class="lede">The library spans the GNACC funnel and can revisit a stage when the root causes and tests differ materially.</p>
+    <p class="lede">A blended GNACC result can hide one broken marketing channel—or one vendor, caller, carrier, or mail piece inside that channel. Apply this cut before recommending a team-wide fix.</p>
     <div class="table-scroll">
       <table class="data">
-        <thead><tr><th>#</th><th>Broken stage</th><th>Engineered root cause</th><th>Status</th></tr></thead>
+        <thead><tr><th>Marketing channel</th><th>Extend the funnel upstream</th><th>First within-channel segmentations</th></tr></thead>
         <tbody>
-          <tr><td class="mono">01</td><td class="strong">Appointment → Contract</td><td>Setter-to-rep handoff stopped enforcing the active buy box</td><td class="good"><a href="interview-cases.html#case01">Rendered — Lone Star</a></td></tr>
-          <tr><td class="mono">02</td><td class="strong">Gross → Net</td><td>Stale lists / skip-trace decay</td><td class="good"><a href="interview-cases.html#case02">Rendered — Cedar Fork</a></td></tr>
-          <tr><td class="mono">03</td><td class="strong">Contract → Close</td><td>Dispo buyer concentration — top end-buyer paused</td><td class="good"><a href="interview-cases.html#case03">Rendered — Prairie Gate</a></td></tr>
-          <tr><td class="mono">04</td><td class="strong">Mail → Response</td><td>Creative fatigue — no A/B test in 9 months</td><td class="good"><a href="interview-cases.html#case04">Rendered — Red Oak</a></td></tr>
-          <tr><td class="mono">05</td><td class="strong">Net → Appt</td><td>Speed-to-lead collapse after lead-manager departure</td><td class="good"><a href="interview-cases.html#case05">Rendered — Panther City</a></td></tr>
-          <tr><td class="mono">06</td><td class="strong">None — trap case</td><td>Market contraction; execution is fine</td><td class="good"><a href="interview-cases.html#case06">Rendered — North Elm</a></td></tr>
-          <tr><td class="mono">07</td><td class="strong">Appt → Contract</td><td>Flat 55% offer formula replaced tiered ARV brackets</td><td class="good"><a href="interview-cases.html#case07">Rendered — Waxahachie</a></td></tr>
+          <tr><td class="strong">SMS</td><td>Selected records → Sent → Delivered → Response/Gross Lead</td><td>Jurisdiction, carrier, messaging vendor, registered campaign/sender, message version, delivery/error code, opt-out cohort</td></tr>
+          <tr><td class="strong">Cold Call</td><td>Selected records → Phone positions supplied → Positions attempted → Live answer → Correct owner → Interest/Net Lead</td><td>Call-center vendor, caller/team member, attempt count, highest phone position attempted, disposition, time/day, targeted call-recording QA</td></tr>
+          <tr><td class="strong">Direct Mail</td><td>Selected records → Pieces mailed → Delivered/returned → Working response path → Response/Gross Lead</td><td>Piece type (for example, Check Letter vs. Postcard), printed phone/tracking number or QR/URL, mail vendor, drop date, list/exposure cohort, offer</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="lede">Cases 01 and 07 intentionally share <b>Appointment → Contract</b> but teach different branches: Lone Star sends the wrong opportunities through the setter-to-rep handoff; Waxahachie sends the right opportunities the wrong offer. Case 03 is the clean <b>Contract → Close</b> contrast: the seller has signed, but the buyer list cannot absorb the contracts.</p>
     <div class="callout">
-      <span class="eyebrow">Why case 06 matters</span>
-      <p>The method must also be able to conclude <b>"it's not the client's execution."</b> The market-context signals in client-diagnostic — DOM, months of supply, distressed inventory vs. 2019, cash-buyer % — exist precisely for this verdict.</p>
+      <span class="eyebrow">SMS verification rule</span>
+      <p>Keep <b>legislation/regulation</b>, <b>carrier filtering/policy</b>, and <b>vendor configuration</b> as separate hypotheses. Do not teach a specific legal or carrier rule until its jurisdiction, effective date, and current official source have been verified. Carrier restrictions are not legislation.</p>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">Recordings explain a segment</span>
+      <p><b>Segment before listening.</b> Sample a few calls from the abnormal vendor/caller/disposition cohort plus a healthy control, then check owner identity, script adherence, objection handling, disposition accuracy, and premature disqualification. A convenient random handful does not establish prevalence.</p>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">Audit our own fulfillment</span>
+      <p>Compare the approved buy box with the import and final export; verify exclusion-tag logic, lineage, source and row counts, and a targeted record sample. For contactability declines, segment by <b>skiptrace date/age</b>—a file last refreshed 12 months ago can decay gradually.</p>
+    </div>
+  </div>
+</section>
+
+<section id="buildout">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Case roster — spoiler-safe public view</h2>
+    </div>
+    <p class="lede">The public roster identifies the fictional client and case format only. <b>KPI values, engineered root causes, exhibits, answers, rubrics, and facilitator notes stay inside the encrypted Interview Casefile.</b></p>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>#</th><th>Fictional client</th><th>Format</th><th>Access</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">01</td><td class="strong">Lone Star Home Buyers</td><td>Standard · single issue</td><td class="good">Encrypted casefile</td></tr>
+          <tr><td class="mono">02</td><td class="strong">Cedar Fork Property Group</td><td>Standard · single issue</td><td class="good">Encrypted casefile</td></tr>
+          <tr><td class="mono">03</td><td class="strong">Prairie Gate Investments</td><td>Standard · single issue</td><td class="good">Encrypted casefile</td></tr>
+          <tr><td class="mono">04</td><td class="strong">Red Oak Home Offers</td><td>Standard · single issue</td><td class="good">Encrypted casefile</td></tr>
+          <tr><td class="mono">05</td><td class="strong">Panther City Acquisitions</td><td>Standard · single issue</td><td class="good">Encrypted casefile</td></tr>
+          <tr><td class="mono">06</td><td class="strong">North Elm Property Buyers</td><td>Standard · single issue</td><td class="good">Encrypted casefile</td></tr>
+          <tr><td class="mono">07</td><td class="strong">Waxahachie Home Solutions</td><td>Standard · single issue</td><td class="good">Encrypted casefile</td></tr>
+          <tr><td class="mono">08</td><td class="strong">Cross Timbers Property Partners</td><td>Advanced · two issues</td><td class="good">Encrypted casefile</td></tr>
+          <tr><td class="mono">09</td><td class="strong">Trinity Bend Homebuyers</td><td>Advanced · three issues</td><td class="good">Encrypted casefile</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede">All nine cases live in the password-protected Interview Casefile for facilitators. The individual case Markdown files are private and are not copied to the public site or downloads page.</p>
+    <div class="sec-head" style="margin-top:34px;">
+      <h2>Diagnostic coverage — not an answer key</h2>
+    </div>
+    <p class="lede">Across the library, participants practice these diagnostic domains. The public view deliberately does not map a domain, KPI, or confirmed cause to a particular case.</p>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Domain</th><th>Skills practiced</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">GNACC stage logic</td><td>Distinguish a volume loss from Gross → Net, Net → Appointment, Appointment → Contract, and Contract → Close conversion failures</td></tr>
+          <tr><td class="strong">Marketing channels</td><td>Cut the alarm by SMS, Cold Call, and Direct Mail before recommending a blended fix</td></tr>
+          <tr><td class="strong">Channel operations</td><td>Segment by jurisdiction/carrier/vendor, caller/attempt/phone position, or mail piece/vendor/response path as appropriate</td></tr>
+          <tr><td class="strong">8020REI fulfillment</td><td>Reconcile approved buy box → import → exclusions → dedupe → final export and inspect targeted records</td></tr>
+          <tr><td class="strong">Sales and dispo operations</td><td>Test capacity, handoffs, offer execution, follow-up, buyer depth, and post-signature fallout at the correct stage</td></tr>
+          <tr><td class="strong">Advanced sequencing</td><td>Apply a partial fix, recompute the full funnel, and let the residual KPI select the next hypothesis</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">Facilitator boundary</span>
+      <p>The case-specific mapping of these domains, alarm KPIs, exhibits, and root causes is available only after unlocking the encrypted casefile.</p>
     </div>
   </div>
 </section>

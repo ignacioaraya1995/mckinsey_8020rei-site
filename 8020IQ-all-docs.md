@@ -223,23 +223,25 @@ Lecture time spent explaining MECE is wasted — people nod and forget. The flip
 - **Level 2 — Interviewer:** ran a case as facilitator (you don't fully understand the method until you interview with it).
 - Interviewers become facilitators for the next cohort → the program self-staffs.
 
-## 3. The case library (build-out plan)
+## 3. The case library
 
-The library spans the GNACC funnel and can revisit a stage when the root causes and tests differ materially. Each case follows the Case 01 template (prompt → structure → exhibit/quant → brainstorm → synthesis + rubric + facilitator notes).
+The library spans the diagnostic method through seven standard single-issue cases and two advanced multi-issue cases. Each follows the same interviewer-led structure: prompt → structure → exhibit/quant → brainstorm → synthesis + rubric + facilitator notes.
 
-| # | Case | Broken stage | Engineered root cause | Status |
-|---|---|---|---|---|
-| 01 | Lone Star Home Buyers | Appointment → Contract | Setter-to-rep handoff stopped enforcing the active buy box | ✅ drafted |
-| 02 | Cedar Fork Property Group | Gross → Net | Stale list / skip-trace decay | ✅ drafted |
-| 03 | Prairie Gate Investments | Contract → Close | Dispo buyer concentration — top end-buyer paused | ✅ drafted |
-| 04 | Red Oak Home Offers | Mail → Response | Creative fatigue, no A/B test in 9 months | ✅ drafted |
-| 05 | Panther City Acquisitions | Net → Appt | Speed-to-lead collapse after lead-manager departure | ✅ drafted |
-| 06 | North Elm Property Buyers | Nothing (trap case) | Market contraction — distressed inventory down; execution is fine | ✅ drafted |
-| 07 | Waxahachie Home Solutions | Appt → Contract | Flat 55% offer formula replaced tiered ARV brackets | ✅ drafted |
+| # | Fictional client | Format | Access |
+|---|---|---|---|
+| 01 | Lone Star Home Buyers | Standard · single issue | 🔒 Encrypted casefile |
+| 02 | Cedar Fork Property Group | Standard · single issue | 🔒 Encrypted casefile |
+| 03 | Prairie Gate Investments | Standard · single issue | 🔒 Encrypted casefile |
+| 04 | Red Oak Home Offers | Standard · single issue | 🔒 Encrypted casefile |
+| 05 | Panther City Acquisitions | Standard · single issue | 🔒 Encrypted casefile |
+| 06 | North Elm Property Buyers | Standard · single issue | 🔒 Encrypted casefile |
+| 07 | Waxahachie Home Solutions | Standard · single issue | 🔒 Encrypted casefile |
+| 08 | Cross Timbers Property Partners | Advanced · two issues | 🔒 Encrypted casefile |
+| 09 | Trinity Bend Homebuyers | Advanced · three issues | 🔒 Encrypted casefile |
 
-Case 06 matters: the method must also conclude *"it's not the client's execution"* — the market-context signals in client-diagnostic (DOM, months of supply, distressed inventory vs 2019, cash-buyer %) exist precisely for this.
+**Public-spoiler rule:** this program overview intentionally omits case-specific KPI values, root causes, exhibits, and answers. Facilitators access those only inside the password-protected Interview Casefile.
 
-Cases 01 and 07 intentionally share **Appointment → Contract**: Lone Star tests qualification and buy-box fit across the setter-to-rep handoff; Waxahachie tests seller-side offer calibration. Prairie Gate is the clean **Contract → Close** contrast: signed contracts fail because the end-buyer list is too concentrated.
+In the advanced cases, the facilitator releases evidence sequentially, applies a partial fix, and asks **"Are we done?"** The remaining KPI gap determines the next hypothesis; the final synthesis must sequence every required fix.
 
 Source material for new cases: Knowledge Gap sessions (the 367 that informed the diagnostic pillars), real anonymized client inflections, and the red-flag items already codified in `clientDiagnosticFlow.ts` — every `redFlag` in that file is a case seed.
 
@@ -249,6 +251,8 @@ Source material for new cases: Knowledge Gap sessions (the 367 that informed the
 2. **The tree is pre-built; judgment is what's trained.** The client-diagnostic tool already holds the hypothesis tree. The skill being taught is steps 3–7: prioritizing, testing cheaply (segmentation first, change-log correlation first), and synthesizing SCR-style.
 3. **Interviewer-led, not candidate-led.** Matches McKinsey's own format and keeps a 45-min time box; the facilitator can rescue a stuck room with the scripted coaching prompts.
 4. **Every diagnosis feeds the playbook.** The memo template's last section is literally "playbook entry proposed." Training and knowledge management are the same loop.
+5. **Channel first, then operator.** Every case segments the broken KPI by SMS, Cold Call, and Direct Mail before recommending a broad fix. Once a channel is isolated, the next cut matches its mechanics: state/carrier/vendor/campaign for SMS; call center/caller/attempt depth/phone position for Cold Call; piece type/printed response number/vendor/drop date for Direct Mail. For Cold Call, segment first and then listen to a few recordings from the abnormal cohort plus a healthy control; check identity verification, script, objections, dispositions, and premature disqualification.
+6. **Audit our own fulfillment.** A client symptom can originate inside 8020REI. Reconcile the approved buy box to the import and final export, verify `SystemDMA` / `DoNotSend` and client-specific exclusions, compare source and row counts, and inspect a targeted record sample. For contactability declines, segment by skiptrace date/age—a file last refreshed 12 months ago can decay gradually.
 
 ## 5. Open items
 
@@ -279,38 +283,71 @@ Every case follows the same skeleton (see `case-01-lone-star.md` as the model):
 
 1. **Opening prompt** — fictional client, one headline symptom, one owner quote. Keep spend/volume numbers loadable into the GNACC calculator.
 2. **Q1 — Structure**: "what framework?" Expected answer: funnel-first + the three diagnostic pillars + market. Include coaching prompt.
-3. **Q2 — Quant exhibit**: before/after funnel table. Exactly **one** stage-conversion breaks and everything else stays stable — unless the case is explicitly designed as a market/context trap, in which case **no** conversion breaks. Candidate must isolate the pattern and size the $ exposure.
-4. **Q3 — Brainstorm**: MECE hypothesis set for that broken stage, then "what do you test first?" The taught move: **segment before you theorize** + **check the change log**. Exhibit 2 = a segmentation + a change-log note that together confirm one hypothesis.
+3. **Q2 — Quant exhibit**: before/after funnel table. A standard case has exactly **one** stage-conversion break and everything else stays stable. A case explicitly labeled **advanced** may contain two or three declared issues; its exhibits must let the candidate isolate them sequentially and show why correcting only one leaves a measurable residual gap. Candidate must isolate the pattern and size the $ exposure.
+4. **Q3 — Brainstorm**: MECE hypothesis set for the alarm, then "what do you test first?" The taught move: **segment before you theorize** + **check the change log**. A standard Exhibit 2 confirms one hypothesis; an advanced case uses sequential Exhibits 2A/2B/2C with a partial-fix calculation after each.
 5. **Q4 — Synthesis**: two-minute elevator answer, SCR, recommendation first, with a risk and a monitoring metric.
-6. **Rubric + facilitator notes** — including which real red flag (from `../gnacc-reference.md` diagnostic table) the case dramatizes.
+6. **Rubric + facilitator notes** — including a one-line issue summary, the exact KPI that triggered the alarm, and which real red flag (from `../gnacc-reference.md` diagnostic table) the case dramatizes.
 
 **Rules of the house style:**
 - Use real benchmarks from `../gnacc-reference.md`; the math must check out exactly (recompute every rate).
 - If the prompt says a metric is unchanged, keep the before/after exhibit values identical. Use **$25,000 gross profit per closed deal** for case sizing (typical range: $20,000–$30,000, or roughly 10%–15% of property value) unless the case provides a client-specific figure.
 - Place the cause at the stage where the failure actually happens: no seller signature = **Appointment → Contract**; a signed contract that cannot monetize = **Contract → Close**; stable closings with lower gross profit per deal = **unit economics**, not a GNACC conversion break.
-- One engineered root cause per case. The decline's start date correlates with a supplied change event except in an explicit market/context trap, where the evidence must rule out client-side changes.
+- Use one engineered root cause in a standard case. An advanced case may declare exactly two or three independent issues, but must expose them hypothesis by hypothesis: the first fix produces a partial recovery, the residual KPI points to the next test, and the final recommendation sequences every required fix. Do not hide a grab bag of causes behind one blended exhibit.
+- Every case must contain a `**Channel check:**`. Segment the broken KPI by marketing channel first; if a single channel is already isolated, segment by that channel's operating unit. If channel is not causal, the exhibit must explicitly rule it out.
+- Test 8020REI's own fulfillment output as well as the client's execution. Reconcile the approved buy box to the imported criteria and final export; count excluded-tag leakage (`SystemDMA`, `DoNotSend`, and any client-specific suppression tags); compare source totals, row counts, and a record sample before release. A manual export is a control point, not proof of correctness.
 - Fictional client names, realistic geography (DFW area so far).
 - Every red flag in `clientDiagnosticFlow.ts` is a candidate case seed.
 
 **Casefile role-card convention:** the renderer turns the opening prompt, each `**Ask:**` line, Exhibit 1, and Exhibit 2 into blue student-share cards. Expected answers, coaching prompts, reveals, model syntheses, rubrics, and facilitator notes become amber coach-only cards. Keep those labels and headings intact so the generated cards remain screenshot-safe.
 
-## Build-out plan
+## Required marketing-channel lens
 
-| # | Broken stage | Engineered root cause | Status |
+A blended GNACC result can hide one broken marketing channel—or one vendor, caller, carrier, or mail piece inside that channel. Apply this cut before debating team-wide fixes:
+
+| Marketing channel | Extend the funnel upstream | First within-channel segmentations |
+|---|---|---|
+| **SMS** | Selected records → Sent → Delivered → Response/Gross Lead | Jurisdiction, carrier, messaging vendor, registered campaign/sender, message version, delivery/error code, opt-out cohort |
+| **Cold Call** | Selected records → Phone positions supplied → Positions attempted → Live answer → Correct owner → Interest/Net Lead | Call-center vendor, caller/team member, attempt count, highest phone position attempted, disposition, time/day, targeted call-recording QA |
+| **Direct Mail** | Selected records → Pieces mailed → Delivered/returned → Working response path → Response/Gross Lead | Piece type (for example, Check Letter vs. Postcard), printed phone/tracking number or QR/URL, mail vendor, drop date, list/exposure cohort, offer |
+
+For SMS, keep **legislation/regulation**, **carrier filtering/policy**, and **vendor configuration** as separate hypotheses. Do not teach a specific legal or carrier rule until its jurisdiction, effective date, and current official source have been verified. Carrier restrictions are not legislation.
+
+For Cold Call, **segment before listening**. Select a small sample from the abnormal vendor/caller/disposition cohort plus a healthy control, then check owner-identity verification, script adherence, objection handling, disposition accuracy, and premature disqualification. A few recordings can explain *why* a segmented KPI moved; a convenient random handful cannot establish the prevalence of a problem.
+
+For data fulfillment, compare what the client approved with what 8020REI actually delivered. Inspect buy-box version and field mapping, import/export lineage, exclusion-tag logic, source and row-count reconciliations, and a targeted record sample. When skiptrace performance declines, cohort contactability by **skiptrace date/age** before assuming the list or caller is bad; a file last refreshed 12 months ago can deteriorate gradually rather than fail on one obvious date.
+
+## Case roster — spoiler-safe public view
+
+The public roster identifies the fictional client and case format only. **KPI values, engineered root causes, exhibits, answers, rubrics, and facilitator notes stay inside the encrypted Interview Casefile.** Do not add case-specific diagnostics to this page or the public document bundle.
+
+| # | Fictional client | Format | Access |
 |---|---|---|---|
-| 01 | Appointment → Contract | Setter-to-rep handoff stopped enforcing the active buy box | ✅ `case-01-lone-star.md` |
-| 02 | Gross → Net | Stale lists / skip-trace decay | ✅ `case-02-cedar-fork.md` |
-| 03 | Contract → Close | Dispo buyer concentration — top end-buyer paused | ✅ `case-03-prairie-gate.md` |
-| 04 | Mail → Response | Creative fatigue, no A/B test in 9 months | ✅ `case-04-red-oak.md` |
-| 05 | Net → Appt | Speed-to-lead > 30 min after lead-manager departure | ✅ `case-05-panther-city.md` |
-| 06 | None (trap case) | Market contraction — distressed inventory down; execution is fine | ✅ `case-06-north-elm.md` |
-| 07 | Appt → Contract | Flat 55% offer formula replaced tiered ARV brackets | ✅ `case-07-waxahachie.md` |
+| 01 | Lone Star Home Buyers | Standard · single issue | 🔒 Encrypted casefile |
+| 02 | Cedar Fork Property Group | Standard · single issue | 🔒 Encrypted casefile |
+| 03 | Prairie Gate Investments | Standard · single issue | 🔒 Encrypted casefile |
+| 04 | Red Oak Home Offers | Standard · single issue | 🔒 Encrypted casefile |
+| 05 | Panther City Acquisitions | Standard · single issue | 🔒 Encrypted casefile |
+| 06 | North Elm Property Buyers | Standard · single issue | 🔒 Encrypted casefile |
+| 07 | Waxahachie Home Solutions | Standard · single issue | 🔒 Encrypted casefile |
+| 08 | Cross Timbers Property Partners | Advanced · two issues | 🔒 Encrypted casefile |
+| 09 | Trinity Bend Homebuyers | Advanced · three issues | 🔒 Encrypted casefile |
 
-**Rendering & access:** all seven cases live in `interview-cases.html` — the password-protected Interview Casefile (facilitators only; content is AES-encrypted in the page). The case `.md` files here are the source of truth and are **not** published to the web or downloads page.
+**Rendering & access:** all nine cases live in `interview-cases.html`, the password-protected Interview Casefile for facilitators. The individual case `.md` files are the private source of truth and are **not** copied to the public site or downloads page.
 
-Case 06 matters because the method must also be able to conclude "it's not the client's execution" — that's what the market-context signals exist for.
+## Diagnostic coverage — not an answer key
 
-Cases 01 and 07 intentionally share **Appointment → Contract** but teach different branches: Lone Star sends the wrong opportunities through the setter-to-rep handoff; Waxahachie sends the right opportunities the wrong offer. Case 03 is the clean **Contract → Close** contrast: the seller has signed, but the buyer list cannot absorb the contracts.
+Across the library, participants practice the following diagnostic domains. The public view deliberately does not map a domain, KPI, or confirmed cause to a particular case.
+
+| Domain | Skills practiced |
+|---|---|
+| GNACC stage logic | Distinguish a volume loss from Gross → Net, Net → Appointment, Appointment → Contract, and Contract → Close conversion failures |
+| Marketing channels | Cut the alarm by SMS, Cold Call, and Direct Mail before recommending a blended fix |
+| Channel operations | Segment by jurisdiction/carrier/vendor, caller/attempt/phone position, or mail piece/vendor/response path as appropriate |
+| 8020REI fulfillment | Reconcile approved buy box → import → exclusions → dedupe → final export and inspect targeted records |
+| Sales and dispo operations | Test capacity, handoffs, offer execution, follow-up, buyer depth, and post-signature fallout at the correct stage |
+| Advanced sequencing | Apply a partial fix, recompute the full funnel, and let the residual KPI select the next hypothesis |
+
+The case-specific mapping of these domains, alarm KPIs, exhibits, and root causes is facilitator-only.
 
 Run `node scripts/audit-cases.mjs` after substantive edits. Rebuild the encrypted page with `node scripts/rebuild-casefile.mjs`; it reads the existing casefile password from standard input, stores no password, and verifies the encrypted round trip.
 
@@ -326,7 +363,7 @@ Run `node scripts/audit-cases.mjs` after substantive edits. Rebuild the encrypte
 
 ## 1. The core idea in one paragraph
 
-Build a **diagnostic playbook** that turns client funnel KPIs into root-cause hypotheses, the way a McKinsey team would — but pre-built and repeatable. When a conversion rate is below baseline or trending down, the playbook says which hypotheses to test, what data confirms or kills each one, and what the fix is. The McKinsey guide is the *method*; this playbook is the method *instantiated for the wholesale REI acquisition funnel*. Eventually an AI agent inside the client-diagnostic tool runs it automatically.
+Build a **diagnostic playbook** that turns client funnel KPIs into root-cause hypotheses, the way a McKinsey team would — but pre-built and repeatable. When Gross Lead volume or a GNACC conversion is below baseline or trending down, the playbook says which hypotheses to test, what data confirms or kills each one, and what the fix is. The McKinsey guide is the *method*; this playbook is the method *instantiated for the wholesale REI acquisition funnel*. Eventually an AI agent inside the client-diagnostic tool runs it automatically.
 
 Three ingredients, all necessary:
 
@@ -396,17 +433,48 @@ Ad Spend → Gross Leads → Net Leads → Appointments Attended → Contracts S
 | Contract → Close | 70% (lower for virtual) | — |
 | Full funnel GL → Closed | floor 1.0–1.4%, mid 5–10% | — |
 
-Upstream of Gross Leads sits the marketing layer (the "prospect → lead" ratio from the original conversation): the DM funnel benchmarks live in `clientDiagnosticFlow.ts` (Mail → Response 0.35% avg; mail pieces per deal ~9,400 avg, ~2,900 best).
+Upstream of Gross Leads sits the **channel-specific marketing layer**; there is no single canonical "Prospect → Lead" denominator across SMS, Cold Call, and Direct Mail. Diagnose each channel through its own operating waterfall (§4.6). Verified Direct Mail benchmarks live in `clientDiagnosticFlow.ts` (Mail → Response 0.35% avg; mail pieces per deal ~9,400 avg, ~2,900 best); do not invent equivalent SMS or Cold Call benchmarks.
 
 ---
 
-## 4. Hypothesis playbook (entries drafted so far)
+## 4. KPI decline guide — common hypotheses to test first
 
-### 4.0 Diagnose the financial symptom before choosing a funnel stage
+This is the quick routing guide. It does **not** claim that 8020REI has measured the statistical frequency of every cause by KPI; it prioritizes the recurring hypotheses already encoded in `clientDiagnosticFlow.ts`, the case library, and the operating patterns supplied by the team. Always start with **segmentation and change-timeline reconstruction**, then test the highest-impact branch.
+
+### 4.0A Route the count decline to the correct ratio
+
+| What visibly declined | First KPI to diagnose | Why |
+|---|---|---|
+| Gross Leads | Marketing activity / delivery / response **upstream of GNACC** | Gross Leads is the funnel's entry volume; there is no universal Gross Lead count benchmark |
+| Net Leads while Gross Leads are stable | **Gross → Net** | Fewer CRM inquiries become verified interested owners |
+| Attended Appointments while Net Leads are stable | **Net → Appointment** | Verified interested owners are not reaching an attended offer conversation |
+| Contracts while attended Appointments are stable | **Appointment → Contract** | Offers are presented, but fewer sellers sign |
+| Closings while signed Contracts are stable | **Contract → Close** | Fully executed agreements are not monetizing |
+| Every downstream count falls in the same proportion while all adjacent conversions stay stable | **Gross Lead volume** | The full funnel is processing fewer inputs; do not invent a conversion failure |
+| Two or more adjacent conversions move | **Multiple branches** | Quantify each break separately, fix the largest, recompute the funnel, and follow the residual KPI |
+| Closings stay stable but gross profit per closed deal falls | **Unit economics, not GNACC** | Deal value or cost changed even though the funnel still converts |
+
+### 4.0B One-page hypothesis map
+
+| Alarm KPI | Canonical reference | Common hypotheses to test first | First segmentation / evidence request |
+|---|---:|---|---|
+| **Gross Lead volume ↓** | Client baseline at comparable marketing input; no universal count target | One channel stopped operating or delivering; spend/volume shifted; SMS vendor/compliance/carrier suppression; Cold Call activity or contact coverage fell; Direct Mail delivery/response path/piece performance failed; buy-box/list/import/exclusion error; eligible market inventory declined | Channel → vendor/campaign/piece → activity/delivery/contact/response; correlate the first decline with invoices, exports, proofs, tickets, settings, and market supply |
+| **Gross → Net ↓** | **50%** | Wrong-party contacts or stale phone data; caller/vendor stops before reaching the owner; wrong audience from buy-box/list/import/tag failure; low-intent responses/removal requests; caller verification/script/disposition or CRM-definition change | Channel → vendor/caller/list/skiptrace age/phone position → rejection reason; compare correct-owner reach and interest once owner reached; then review targeted recordings |
+| **Net → Appointment ↓** | **25%** | Slow response or backlog; lead-management capacity did not scale; too few follow-up attempts; off-buy-box Net Leads or bad routing; scheduling availability; confirmation/reminder failure or no-shows; setter/caller execution | Channel → lead owner/setter → first-contact-time bucket → scheduled vs. attended → buy-box fit; inspect queue, attempts, calendar events, and targeted recordings |
+| **Appointment → Contract ↓** | **15%** | Appointments outside the active buy box; offer formula/MAO too low; acquisition-rep negotiation or follow-up; seller motivation/price expectations; market competition | Channel → active-buy-box fit → setter → acquisition rep → ARV/price band/property type; compare offer economics and lost-deal reasons |
+| **Contract → Close ↓** | **70%** *(may be lower for virtual acquisitions)* | Buyer-list depth/concentration; buy box wider than dispo demand; contract price/repairs/ARV make deals unassignable; slow dispo or short closing window; title, seller, inspection, financing, or deadline fallout | Channel → fallout reason → end buyer → county/price/property type → days-to-first-bid; compare buyer pause and buy-box change timing |
+| **Closed Deals ↓ but no single ratio is obvious** | Product of Gross Lead volume and all four adjacent conversions | The first upstream volume/rate change; two simultaneous leaks hidden by downstream counts; CRM definition/completeness problem | Rebuild the full before/after funnel; calculate every adjacent rate; do not treat downstream count losses as separate root causes |
+| **Gross profit per Closed Deal ↓** | Client history; typical training-case midpoint is **$25,000**, not a performance target | Worse deal/exit mix; thinner assignment spread; higher acquisition price; ARV/repair miss; buyer concession; JV/double-close cost; revenue-recognition inconsistency | Market → property/ARV band → acquisition rep → exit type → end buyer; bridge contract price, buyer price, revisions, fees, and concessions |
+
+**Benchmark guardrail:** use the canonical GNACC ratios above for the defined GNACC stages. The broader client-diagnostic health heuristics (for example, Lead → Appointment ≥35% and Appointment → Contract ≥30%) may use different operational denominators; do not substitute them for the canonical 25% and 15% ratios unless the populations are aligned.
+
+**Five-minute sequence:** quantify the decline → calculate every adjacent rate → segment the first broken KPI by marketing channel → reconstruct what changed → test the leading hypothesis → recompute the entire funnel. If a material residual remains, continue to the next branch.
+
+### 4.0C Financial symptom guardrail
 
 Do not force every revenue or profit decline into GNACC. Start with the identity:
 
-**Gross profit contribution = closed deals × gross profit per closed deal − operating/marketing costs.**
+**Operating contribution = closed deals × gross profit per closed deal − operating/marketing costs.**
 
 | Observed pattern | Correct diagnostic branch | First tests |
 |---|---|---|
@@ -417,49 +485,115 @@ Do not force every revenue or profit decline into GNACC. Start with the identity
 
 Common unit-economics hypotheses include a worse deal mix, thinner assignment spreads, acquisition prices rising faster than buyer prices, repair/ARV misses that force price reductions, more JV or double-close costs, and inconsistent revenue recognition. The first test is still segmentation plus change history. **A lower gross profit per closed deal can coexist with a healthy Contract → Close rate.**
 
-### 4.1 Appointment → Contract rate LOW (while appointments/visits are happening)
+### 4.1 Gross Lead volume DECLINING
 
-**Your hypothesis (the strong one):** the appointment is not producing a seller-acceptable offer — because the property does not meet acquisition criteria, the offer economics are wrong, or the rep fails to convert the seller. **Do not put "we signed it but could not find a cash buyer" here; that is a Contract → Close failure (§4.2).**
+**Start with the stage fact:** Gross Leads is an absolute input volume, not a conversion rate. Compare it with the client's own prior period at comparable marketing spend and operating volume. If every downstream count falls proportionally while adjacent GNACC conversions remain stable, diagnose the marketing layer before touching sales.
+
+| # | Hypothesis | Test / evidence | If confirmed → action |
+|---|---|---|---|
+| 1 | One marketing channel stopped operating, delivering, or producing responses | **Segment Gross Leads and operating volume first by SMS, Cold Call, and Direct Mail**, then by week and vendor/campaign/piece; reconcile submitted → delivered → response for SMS, records/positions → attempts → live answers for Cold Call, and exported → mailed → delivered → working response path → response for Direct Mail; reconstruct the change timeline | Restore or deliberately reweight the isolated channel; repair its specific vendor/configuration/activity failure instead of applying a company-wide sales fix |
+| 2 | 8020REI fulfillment delivered a different population than the client approved | Reconcile approved buy-box version → imported rules/field map → pre-export population → exclusions → dedupe → final export; compare row counts and inspect a targeted record sample | Quarantine the affected campaign/file, rebuild and reissue it from the approved criteria, add hard-fail reconciliation and QA/CSM sign-off |
+| 3 | Direct Mail delivery, piece performance, or response access failed | Segment by piece type, version, vendor, drop date, exposure cohort, and returned-mail rate; live-test every printed phone/tracking number and QR/URL from the final proof | Correct the response path or vendor issue; restore a measured piece mix and retain a controlled holdout |
+| 4 | SMS audience or delivery was suppressed | Reconcile selected → eligible → uploaded → vendor-suppressed → submitted → delivered by jurisdiction, vendor, campaign/sender, carrier, and reason/error code; keep legislation, carrier policy, and vendor configuration as separate branches | Keep only the affected segment paused; preserve consent/DNC/suppression evidence; obtain qualified review where needed; fix vendor/configuration controls and re-enable only approved traffic |
+| 5 | Cold Call coverage or contactability declined | Compare selected records, phone positions supplied/loaded/attempted, records exhausted, live answers, and correct-owner reach by vendor, caller, skiptrace age, and highest position attempted | Correct vendor SOW/dialer mapping/attempt rules or refresh only the stale eligible contact cohort; do not repull distress data unless targeting evidence also fails |
+| 6 | The addressable distressed-property supply or seller response propensity declined | Compare the client with local peers and market signals: distress filings, seasonality, DOM, supply, and cash-buyer activity; verify that within-channel operating yield stayed stable | Reset the recoverable forecast and test adjacent sources/geographies only where economics and dispo capacity support them |
+
+Key signature: **Gross Leads down + all four GNACC conversions stable**. A channel-level activity or yield loss can still be a client/vendor problem; only proportional channel declines with stable within-channel yields support an external market-volume conclusion.
+
+### 4.2 Gross → Net rate LOW
+
+**Start with the definition:** a Net Lead is a verified human contact who owns a property and has expressed interest in selling. It is **not yet an acquisition-qualified property**. The diagnostic question is why more CRM inquiries now fail owner verification or seller-interest criteria.
+
+| # | Hypothesis | Test / evidence | If confirmed → action |
+|---|---|---|---|
+| 1 | Correct-owner / decision-maker contactability declined | **Segment Gross → Net first by channel**, then list source, skiptrace date/age, vendor, caller, highest phone position attempted, owner-reach result, and rejection reason; compare correct-owner reach separately from interest once the owner is reached | Refresh the stale eligible contact cohort or correct phone-position/attempt coverage; keep property targeting and skiptrace enrichment as separate controls |
+| 2 | Vendor or caller execution declined | Rate by call-center vendor/caller/disposition; inspect identity-verification and qualification fields; only after isolating the abnormal cohort, review a small matched recording sample against a healthy control | Correct the vendor SOW/dialer workflow or coach the isolated caller on verification, objections, dispositions, and premature disqualification |
+| 3 | Channel or response mix shifted toward lower-intent inquiries | Segment by channel, campaign, piece/message version, response type, and removal-request share; compare each segment's own rate before and after | Rebalance the channel/creative mix using qualified-lead and closed-deal economics, not Gross Leads alone |
+| 4 | Wrong audience entered the campaign through buy-box, import, list-source, or exclusion-tag failure | Segment by fulfillment batch, active-buy-box fit, imported criteria version, source, and `SystemDMA` / `DoNotSend` / client-suppression status; anti-join final IDs against exclusions | Contain and reissue the affected fulfillment; enforce the approved buy box and zero excluded-tag intersection before release |
+| 5 | CRM definition, capture, or disposition rules changed | Compare Gross/Net definitions, required fields, duplicate logic, and disposition mapping before/after; audit representative records around the inflection | Restore the canonical definitions, remap historical/current reporting, retrain users, and monitor field completion |
+
+Key signature: **Gross Leads stable + Net Leads down**. For Cold Call, test correct-owner reach before concluding that seller motivation declined. Recordings explain why a segmented cohort moved; cohort data establishes how widespread the issue is.
+
+### 4.3 Net → Appointment rate LOW
+
+**Start with the definition:** the denominator is verified interested owners; the numerator is **attended** appointments where an offer is presented. Separate failure to contact/book from failure to attend.
+
+| # | Hypothesis | Test / evidence | If confirmed → action |
+|---|---|---|---|
+| 1 | Lead-management capacity or speed-to-lead failed, especially after volume increased | **Segment Net → Appointment first by channel**, lead owner/setter, lead-arrival period, first-contact-time bucket, and backlog; compare Net Leads per owner and queue size before/after | Stage volume the team cannot absorb, assign overflow ownership, add/rebalance trained coverage, and restore the hot-lead SLA before rescaling spend |
+| 2 | Too few follow-up attempts or premature disqualification | Segment by attempt count, cadence completion, last disposition, and owner; compare with the 6–8-attempt diagnostic control | Enforce the follow-up cadence and stopping rules; audit completion and appointment yield by owner |
+| 3 | Booking/show process failed | Split **scheduled versus attended**; inspect calendar availability, confirmation/reminder events, reschedules, cancellations, and no-show reasons by channel and setter | Restore booking capacity and confirmation/reminder workflows; assign no-show recovery and monitor Scheduled → Attended |
+| 4 | Net Leads are outside the active buy box or routed to the wrong team | Segment by active-buy-box fit, imported buy-box version, routing rule, county, property type, and price band; compare on-box and off-box booking rates | Correct the fulfillment/import or routing defect; hard-stop or reroute off-box leads rather than blaming setters |
+| 5 | Setter/caller discovery, objection handling, or disposition behavior weakened | Rate by setter/caller and disposition; after isolating the abnormal segment, compare targeted recordings with a healthy control | Coach the isolated behavior, correct scripts/dispositions, and re-audit a defined sample |
+
+Key signature: **Net Leads rise or remain stable while attended Appointments do not**. If scheduled appointments are stable but attendance falls, the problem sits in confirmations, reminders, rescheduling, or no-show recovery—not lead qualification.
+
+### 4.4 Appointment → Contract rate LOW (while appointments/visits are happening)
+
+**Your hypothesis (the strong one):** the appointment is not producing a seller-acceptable offer — because the property does not meet acquisition criteria, the offer economics are wrong, or the rep fails to convert the seller. **Do not put "we signed it but could not find a cash buyer" here; that is a Contract → Close failure (§4.5).**
 
 | # | Hypothesis | Test / evidence | If confirmed → action |
 |---|---|---|---|
 | 1 | Setter-to-acquisition handoff sends appointments outside the active buy box, so no viable offer is made | **Segment Appointment → Contract first** by active-buy-box fit, then by appointment setter and acquisition rep; compare visited-property characteristics with criteria; inspect required booking fields and routing changes | Reinstate required buy-box qualification before booking; hard-stop or reroute off-box leads; QA by setter and rep |
 | 2 | Offers going out but too low to convert | Offer-to-ARV / offer-to-ask spread vs. historical and vs. market comps | Revisit offer formula, MAO assumptions |
-| 3 | Acquisition rep execution (rapport, follow-up) | Rate by rep; call recordings; follow-up cadence data | Coaching / process |
+| 3 | Acquisition rep execution (rapport, negotiation, follow-up) | Segment by acquisition rep and channel; inspect follow-up cadence and lost-deal reasons; after isolating the abnormal cohort, compare a small matched recording sample with a healthy control | Coach the isolated behavior, enforce the follow-up process, and re-audit the same KPI segment |
 | 4 | Competitive pressure in the market | Lost-deal reasons; market DOM / investor activity | Speed and offer positioning, not targeting |
 
 Key signature: **appointments high + signed contracts low**. The seller has not signed yet, so tests belong on qualification/handoff, acquisition fit, offer economics, and rep conversion. If the appointment setter and the acquisition rep are different people, explicitly test that handoff.
 
-### 4.2 Contract → Close rate LOW (signed contracts are not monetizing)
+### 4.5 Contract → Close rate LOW (signed contracts are not monetizing)
 
 **Start with the stage fact:** the seller has already signed, but the contract did not become a closed deal. Buyer-list/dispo capacity is often the leading branch, but the fallout reasons determine which post-signature hypothesis deserves priority.
 
 | # | Hypothesis | Test / evidence | If confirmed → action |
 |---|---|---|---|
-| 1 | Buyer-list depth, concentration, or demand loss | **Segment Contract → Close first** by fallout reason and end buyer; measure verified active buyers, buyer share of exits, bid coverage, time-to-first-bid, and buyer pause dates; check change history | Re-verify and expand the buyer list, pre-market contracts, and cap concentration |
+| 1 | Buyer-list depth, concentration, or demand loss | **Segment Contract → Close first** by acquisition channel, fallout reason, and end buyer; measure verified active buyers, buyer share of exits, bid coverage, time-to-first-bid, and buyer pause dates; check change history | Start with 8020REI's existing **Buyers List**; validate current activity, buy-box/price fit, capacity, and proof of funds; activate relevant buyers, pre-market contracts, and cap concentration |
 | 2 | Buy box expanded beyond dispo capacity | Segment by county, price band, and property type; compare signed-contract mix with verified buyer demand; correlate the decline with buy-box edits | Pause/revert unsupported criteria, refocus on proven segments, and build verified buyer depth before re-expanding |
 | 3 | Contracts priced too high to assign | Contract price, repairs, ARV, expected buyer margin, and assignment spread vs. closed deals | Tighten MAO/underwriting; renegotiate current contracts |
 | 4 | Dispo execution or closing window is too slow/short | Time from signature to first marketing, buyer follow-up, bid count, and days remaining before close | Market on day zero, assign ownership/SLA, and negotiate realistic closing windows |
 | 5 | Title, transaction, or seller fallout | Title, inspection, withdrawal, financing, and missed-deadline reason codes | Fix title/process controls; extend timelines or address the documented seller-side cause |
 
-Key signature: **signed contracts flat + closings down**. `"No buyer found"` points to buyer-list/dispo or deal-to-buyer fit; title and seller withdrawals point to different branches. If closings are flat but gross profit per closed deal is down, return to §4.0 — that is unit economics, not Contract → Close.
+Key signature: **signed contracts flat + closings down**. `"No buyer found"` points to buyer-list/dispo or deal-to-buyer fit; title and seller withdrawals point to different branches. If closings are flat but gross profit per closed deal is down, return to §4.0C — that is unit economics, not Contract → Close.
 
-### 4.3 Prospect → Lead rate DECLINING
+### 4.6 Marketing-channel and 8020REI fulfillment drill-down
 
-| # | Hypothesis | Test / evidence | If confirmed → action |
+Use this after the channel-first cut identifies where the alarm lives. Compare both the **absolute operating volume** and the **yield between each upstream step**.
+
+| Area | Hypothesis | Test / evidence | If confirmed → action |
 |---|---|---|---|
-| 1 | Data quality dropped (stale lists, bad skiptracing) | Contact-rate / valid-number rate over time; list source age | Refresh lists, change skiptrace vendor |
-| 2 | Content unchanged → creative fatigue | Content change history: if it hasn't changed in a while, fatigue is plausible; if it *just* changed, the new content itself is suspect | Refresh creative / rotate hooks |
-| 3 | Offer anchor too low (e.g., check letters with low amounts) | Response rate by offer amount band | Raise anchor / restructure the letter |
-| 4 | Channel-specific breakdown | **Segment the ratio by channel / communication type** — isolates whether it's global or one channel | Fix or reweight that channel |
-| 5 | Targeting drift (wrong audience, low motivation) | List criteria vs. converting-lead profile; motivation indicators | Retarget list pulls |
+| SMS | Vendor/compliance suppression or an internal pause reduced eligible/submitted volume | Reconcile selected → eligible → uploaded → suppressed → submitted by jurisdiction, vendor, campaign, and suppression reason; timestamp the change | Preserve records, resolve ownership and qualified review, repair eligibility/configuration controls, and re-enable only approved traffic |
+| SMS | Carrier policy/filtering, sender registration, routing, or vendor configuration reduced delivery | Segment Sent → Delivered by carrier, vendor, campaign/sender, message version, and error code | Correct the isolated registration/configuration/routing issue; do not label a carrier restriction as legislation |
+| SMS | Delivery stayed stable but message, offer, timing, audience saturation, reply routing, or CRM ingestion reduced responses | Compare response per delivered message by version, list source, buy-box cohort, send time, and vendor; send a controlled reply and trace it into the CRM | Restore the working response path and run a measured creative/timing test against a control |
+| Cold Call | Vendor staffing, dialer mapping, attempt depth, stopping rules, or shallow phone-position coverage reduced record coverage | Reconcile phone positions supplied → loaded → attempted → records exhausted by vendor, caller, and highest position attempted; do not rely on total dial count alone | Correct the vendor SOW, field mapping, staffing, cadence, and approved stopping rules |
+| Cold Call | Aging skiptrace, wrong-party numbers, ownership mismatch, or omitted fields reduced live-answer/correct-owner reach | Segment live answers and correct-owner reach by skiptrace date/age, source, vendor, caller, and phone position; compare matched workflows using the same selected-property file | Re-skiptrace only the stale eligible cohort or fix output mapping; establish a client-specific age alert from measured decay |
+| Cold Call | Identity verification, script/objection handling, premature disqualification, dispositions, or CRM capture reduced owner-to-lead yield | Segment by vendor, caller, and disposition; compare required fields; then listen to a small matched recording sample from the abnormal cohort and a healthy control | Coach the isolated behavior or correct the vendor/CRM rule; retain focused recording QA |
+| Direct Mail | Export loss, partial/missed drop, cadence, budget, or vendor production reduced mailed volume | Reconcile approved rows → final export → vendor-accepted rows → produced/mailed pieces using manifests, invoices, and drop records | Reissue the missing eligible records and require source-to-mail quantity reconciliation |
+| Direct Mail | Returned mail, address quality, vendor/drop change, wrong printed phone number, broken QR/URL, or bad routing blocked responses | Segment delivery/returns by vendor, drop date, list cohort, and geography; live-test every response path from the final production proof | Correct and reissue the affected piece; add production-proof sign-off and live-routing QA |
+| Direct Mail | Piece-mix shift, creative fatigue/new weak creative, offer, overexposure, or targeting drift reduced response despite healthy delivery | Measure response and downstream economics by piece type (for example Check Letter vs. Postcard), version, vendor, drop, exposure cohort, and offer | Restore a measured mix, retain a randomized control, refresh the isolated creative/offer, and manage cost per Net Lead/Close—not the blend |
+| 8020REI fulfillment | Wrong/stale buy-box import, field mapping, manual filter, suppression, dedupe, or export truncation changed the delivered population | Reconcile approved buy-box version → imported criteria → pre-export population → exclusions → dedupe → final export; inspect row counts and targeted records | Quarantine/rebuild/reissue; hard-fail the release unless lineage, counts, active-buy-box fit, and approvals reconcile |
+| 8020REI fulfillment | Aging skiptrace, omitted phone fields, stale addresses, wrong file/batch, or schema mismatch reduced usable/contactable records | Segment contactability by fulfillment batch, skiptrace date/age, vendor, caller, and phone position; compare source/export schemas and sample records | Refresh only the stale eligible records, correct mapping, and retain a versioned manifest |
+| 8020REI fulfillment | `SystemDMA`, `DoNotSend`, or client-suppression leakage, wrong audience, inaccurate property fields, or duplicate/overexposed cohorts reduced Gross → Net or Net → Appointment | Segment by batch, buy-box version, exclusion-tag status, source, and exposure cohort; anti-join exported IDs against exclusions | Contain the campaign, correct criteria/exclusions, notify the proper internal owner, reissue safely, and add automated checks plus two-person approval |
 
-**Pattern to reuse for every entry:** segmenting the KPI (by channel, by rep, by list source, by property type) is itself the cheapest first test — it usually kills half the tree in one query.
+**When to check call recordings:** recordings are a targeted second-step test, not the starting point. First isolate the abnormal channel, vendor, caller, skiptrace-age cohort, or disposition. Then compare a small sample with a healthy control for owner-identity verification, script adherence, objection handling, premature disqualification, disposition accuracy, and evidence of slow follow-up. Recordings explain *why* a cohort moved; the segmented data establishes prevalence.
 
-### 4.4 Remaining entries to draft
-- Lead → Appointment declining (speed-to-lead, lead manager capacity, script)
-- Additional Appointment → Contract branches (offer level, competition, negotiation)
-- Volume problems vs. ratio problems (top-of-funnel spend/list size vs. conversion) — keep these separate; they have different trees
+**Service boundaries and caveats:**
+
+- Skiptrace supplies possible phone numbers for already-selected records; it does not provide distress, property-condition, or buy-box data.
+- Do not prescribe a universal skiptrace-refresh cadence; use the client's measured contactability decay by age cohort.
+- Treat legislation, carrier policy, and vendor configuration as separate SMS hypotheses.
+- Treat `SystemDMA` and `DoNotSend` as case-defined exclusion tags unless their production meaning is independently verified.
+- A fulfillment defect may not reduce Gross Leads: exclusion-tagged records can create real removal inquiries that count as Gross Leads but produce no Net Leads.
+
+### 4.7 Multi-issue stop rule
+
+Do not stop because the first hypothesis is true. Apply the proposed correction to a counterfactual funnel and recompute every volume and adjacent conversion:
+
+1. **If the full gap closes**, the cause is sufficient.
+2. **If one KPI recovers but another remains below baseline**, branch from the residual KPI.
+3. **If counts improve but the rate worsens**, the first fix may have exposed a second defect hidden by the prior mix.
+4. **If no KPI responds**, reject or refine the hypothesis before scaling the action.
+
+Cases 08 and 09 demonstrate the method: each partial fix is necessary, none is sufficient alone, and the final recommendation sequences all confirmed fixes.
 
 ---
 
@@ -500,13 +634,13 @@ Three options, probably combined:
 | `roi-client-analysis` | Per-client performance analysis (funnel data source for diagnostics). |
 | `roi-calculator` | Sizes dollar impact of gaps → step 3 prioritization and step 7 recommendation sizing. |
 
-**Implication:** the hypothesis-tree half of this playbook is substantially built. What §4 adds on top of `clientDiagnosticFlow.ts` is the *trigger* layer (which KPI deviation activates which branch) and the *test/action* columns; what's missing entirely is the change-event log (§6) and the teaching layer (see `training-program.md`).
+**Implication:** the hypothesis-tree half of this playbook is substantially built. What §4 adds on top of `clientDiagnosticFlow.ts` is the *trigger* layer (which KPI deviation activates which branch) and the *test/action* columns. The queryable change-event log is still missing (§6), and the existing teaching layer (`training-program.md`) is not yet integrated into the intranet workflow.
 
 ---
 
 ## 8. The AI agent prompt (deferred, deliberately)
 
-Don't write it yet. The prompt Gemini produced was too broad because the playbook didn't exist to feed it. Once §3, §4, and §6 are locked, the agent prompt is short and mechanical:
+Do not deploy an unconstrained version yet. The earlier broad prompt asked the model to recreate the diagnostic logic on every run. Once the data interfaces and §6 change evidence are ready, the agent prompt is short and mechanical:
 
 > *Context: [KPI definitions] + [hypothesis playbook for the flagged KPI] + [client's data: ratios, trends, segments, change log].*
 > *Task: execute steps 3–7 — prioritize the hypotheses given the change log, run/request the listed tests, state the confirmed root cause with evidence, deliver an SCR-structured recommendation.*
@@ -517,11 +651,11 @@ One template, parameterized by KPI + client. The playbook is the product; the pr
 
 ## 9. Suggested next steps
 
-1. **Lock the funnel taxonomy** (§3) — stage names and ratio definitions, MECE, agreed with the team.
-2. **Audit the change-event log** — what's captured today for buy box / content / channel changes, and where.
-3. **Finish the playbook tables** — the two drafted entries plus the four missing ones (§4.3), each hypothesis with test + data source + action.
-4. **Pick the baseline approach** (§6) — recommend starting with self-trend + change-log correlation, adding cohort bands later.
-5. **Then** write the agent prompt and wire it into `client-diagnostic`.
+1. **Operationalize the KPI router** (§4.0A–B) — make every alert identify the first broken volume/rate and load only that hypothesis branch.
+2. **Audit the change-event log** — determine what is captured today for buy-box, fulfillment, content, channel, vendor, script, and staffing changes, and where.
+3. **Name each data pull and owner** — connect every test in §4 to the system/export, query, CSM, analyst, vendor, or client responsible for supplying it.
+4. **Pick the baseline approach** (§6) — start with self-trend + reconstructed change correlation, then add aligned cohort bands.
+5. **Then** parameterize the agent prompt by alarm KPI and wire the guide into `client-diagnostic`.
 
 ---
 

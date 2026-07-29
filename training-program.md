@@ -43,23 +43,25 @@ Lecture time spent explaining MECE is wasted — people nod and forget. The flip
 - **Level 2 — Interviewer:** ran a case as facilitator (you don't fully understand the method until you interview with it).
 - Interviewers become facilitators for the next cohort → the program self-staffs.
 
-## 3. The case library (build-out plan)
+## 3. The case library
 
-The library spans the GNACC funnel and can revisit a stage when the root causes and tests differ materially. Each case follows the Case 01 template (prompt → structure → exhibit/quant → brainstorm → synthesis + rubric + facilitator notes).
+The library spans the diagnostic method through seven standard single-issue cases and two advanced multi-issue cases. Each follows the same interviewer-led structure: prompt → structure → exhibit/quant → brainstorm → synthesis + rubric + facilitator notes.
 
-| # | Case | Broken stage | Engineered root cause | Status |
-|---|---|---|---|---|
-| 01 | Lone Star Home Buyers | Appointment → Contract | Setter-to-rep handoff stopped enforcing the active buy box | ✅ drafted |
-| 02 | Cedar Fork Property Group | Gross → Net | Stale list / skip-trace decay | ✅ drafted |
-| 03 | Prairie Gate Investments | Contract → Close | Dispo buyer concentration — top end-buyer paused | ✅ drafted |
-| 04 | Red Oak Home Offers | Mail → Response | Creative fatigue, no A/B test in 9 months | ✅ drafted |
-| 05 | Panther City Acquisitions | Net → Appt | Speed-to-lead collapse after lead-manager departure | ✅ drafted |
-| 06 | North Elm Property Buyers | Nothing (trap case) | Market contraction — distressed inventory down; execution is fine | ✅ drafted |
-| 07 | Waxahachie Home Solutions | Appt → Contract | Flat 55% offer formula replaced tiered ARV brackets | ✅ drafted |
+| # | Fictional client | Format | Access |
+|---|---|---|---|
+| 01 | Lone Star Home Buyers | Standard · single issue | 🔒 Encrypted casefile |
+| 02 | Cedar Fork Property Group | Standard · single issue | 🔒 Encrypted casefile |
+| 03 | Prairie Gate Investments | Standard · single issue | 🔒 Encrypted casefile |
+| 04 | Red Oak Home Offers | Standard · single issue | 🔒 Encrypted casefile |
+| 05 | Panther City Acquisitions | Standard · single issue | 🔒 Encrypted casefile |
+| 06 | North Elm Property Buyers | Standard · single issue | 🔒 Encrypted casefile |
+| 07 | Waxahachie Home Solutions | Standard · single issue | 🔒 Encrypted casefile |
+| 08 | Cross Timbers Property Partners | Advanced · two issues | 🔒 Encrypted casefile |
+| 09 | Trinity Bend Homebuyers | Advanced · three issues | 🔒 Encrypted casefile |
 
-Case 06 matters: the method must also conclude *"it's not the client's execution"* — the market-context signals in client-diagnostic (DOM, months of supply, distressed inventory vs 2019, cash-buyer %) exist precisely for this.
+**Public-spoiler rule:** this program overview intentionally omits case-specific KPI values, root causes, exhibits, and answers. Facilitators access those only inside the password-protected Interview Casefile.
 
-Cases 01 and 07 intentionally share **Appointment → Contract**: Lone Star tests qualification and buy-box fit across the setter-to-rep handoff; Waxahachie tests seller-side offer calibration. Prairie Gate is the clean **Contract → Close** contrast: signed contracts fail because the end-buyer list is too concentrated.
+In the advanced cases, the facilitator releases evidence sequentially, applies a partial fix, and asks **"Are we done?"** The remaining KPI gap determines the next hypothesis; the final synthesis must sequence every required fix.
 
 Source material for new cases: Knowledge Gap sessions (the 367 that informed the diagnostic pillars), real anonymized client inflections, and the red-flag items already codified in `clientDiagnosticFlow.ts` — every `redFlag` in that file is a case seed.
 
@@ -69,6 +71,8 @@ Source material for new cases: Knowledge Gap sessions (the 367 that informed the
 2. **The tree is pre-built; judgment is what's trained.** The client-diagnostic tool already holds the hypothesis tree. The skill being taught is steps 3–7: prioritizing, testing cheaply (segmentation first, change-log correlation first), and synthesizing SCR-style.
 3. **Interviewer-led, not candidate-led.** Matches McKinsey's own format and keeps a 45-min time box; the facilitator can rescue a stuck room with the scripted coaching prompts.
 4. **Every diagnosis feeds the playbook.** The memo template's last section is literally "playbook entry proposed." Training and knowledge management are the same loop.
+5. **Channel first, then operator.** Every case segments the broken KPI by SMS, Cold Call, and Direct Mail before recommending a broad fix. Once a channel is isolated, the next cut matches its mechanics: state/carrier/vendor/campaign for SMS; call center/caller/attempt depth/phone position for Cold Call; piece type/printed response number/vendor/drop date for Direct Mail. For Cold Call, segment first and then listen to a few recordings from the abnormal cohort plus a healthy control; check identity verification, script, objections, dispositions, and premature disqualification.
+6. **Audit our own fulfillment.** A client symptom can originate inside 8020REI. Reconcile the approved buy box to the import and final export, verify `SystemDMA` / `DoNotSend` and client-specific exclusions, compare source and row counts, and inspect a targeted record sample. For contactability declines, segment by skiptrace date/age—a file last refreshed 12 months ago can decay gradually.
 
 ## 5. Open items
 

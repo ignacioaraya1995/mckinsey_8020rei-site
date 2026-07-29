@@ -16,37 +16,70 @@ Every case follows the same skeleton (see `case-01-lone-star.md` as the model):
 
 1. **Opening prompt** — fictional client, one headline symptom, one owner quote. Keep spend/volume numbers loadable into the GNACC calculator.
 2. **Q1 — Structure**: "what framework?" Expected answer: funnel-first + the three diagnostic pillars + market. Include coaching prompt.
-3. **Q2 — Quant exhibit**: before/after funnel table. Exactly **one** stage-conversion breaks and everything else stays stable — unless the case is explicitly designed as a market/context trap, in which case **no** conversion breaks. Candidate must isolate the pattern and size the $ exposure.
-4. **Q3 — Brainstorm**: MECE hypothesis set for that broken stage, then "what do you test first?" The taught move: **segment before you theorize** + **check the change log**. Exhibit 2 = a segmentation + a change-log note that together confirm one hypothesis.
+3. **Q2 — Quant exhibit**: before/after funnel table. A standard case has exactly **one** stage-conversion break and everything else stays stable. A case explicitly labeled **advanced** may contain two or three declared issues; its exhibits must let the candidate isolate them sequentially and show why correcting only one leaves a measurable residual gap. Candidate must isolate the pattern and size the $ exposure.
+4. **Q3 — Brainstorm**: MECE hypothesis set for the alarm, then "what do you test first?" The taught move: **segment before you theorize** + **check the change log**. A standard Exhibit 2 confirms one hypothesis; an advanced case uses sequential Exhibits 2A/2B/2C with a partial-fix calculation after each.
 5. **Q4 — Synthesis**: two-minute elevator answer, SCR, recommendation first, with a risk and a monitoring metric.
-6. **Rubric + facilitator notes** — including which real red flag (from `../gnacc-reference.md` diagnostic table) the case dramatizes.
+6. **Rubric + facilitator notes** — including a one-line issue summary, the exact KPI that triggered the alarm, and which real red flag (from `../gnacc-reference.md` diagnostic table) the case dramatizes.
 
 **Rules of the house style:**
 - Use real benchmarks from `../gnacc-reference.md`; the math must check out exactly (recompute every rate).
 - If the prompt says a metric is unchanged, keep the before/after exhibit values identical. Use **$25,000 gross profit per closed deal** for case sizing (typical range: $20,000–$30,000, or roughly 10%–15% of property value) unless the case provides a client-specific figure.
 - Place the cause at the stage where the failure actually happens: no seller signature = **Appointment → Contract**; a signed contract that cannot monetize = **Contract → Close**; stable closings with lower gross profit per deal = **unit economics**, not a GNACC conversion break.
-- One engineered root cause per case. The decline's start date correlates with a supplied change event except in an explicit market/context trap, where the evidence must rule out client-side changes.
+- Use one engineered root cause in a standard case. An advanced case may declare exactly two or three independent issues, but must expose them hypothesis by hypothesis: the first fix produces a partial recovery, the residual KPI points to the next test, and the final recommendation sequences every required fix. Do not hide a grab bag of causes behind one blended exhibit.
+- Every case must contain a `**Channel check:**`. Segment the broken KPI by marketing channel first; if a single channel is already isolated, segment by that channel's operating unit. If channel is not causal, the exhibit must explicitly rule it out.
+- Test 8020REI's own fulfillment output as well as the client's execution. Reconcile the approved buy box to the imported criteria and final export; count excluded-tag leakage (`SystemDMA`, `DoNotSend`, and any client-specific suppression tags); compare source totals, row counts, and a record sample before release. A manual export is a control point, not proof of correctness.
 - Fictional client names, realistic geography (DFW area so far).
 - Every red flag in `clientDiagnosticFlow.ts` is a candidate case seed.
 
 **Casefile role-card convention:** the renderer turns the opening prompt, each `**Ask:**` line, Exhibit 1, and Exhibit 2 into blue student-share cards. Expected answers, coaching prompts, reveals, model syntheses, rubrics, and facilitator notes become amber coach-only cards. Keep those labels and headings intact so the generated cards remain screenshot-safe.
 
-## Build-out plan
+## Required marketing-channel lens
 
-| # | Broken stage | Engineered root cause | Status |
+A blended GNACC result can hide one broken marketing channel—or one vendor, caller, carrier, or mail piece inside that channel. Apply this cut before debating team-wide fixes:
+
+| Marketing channel | Extend the funnel upstream | First within-channel segmentations |
+|---|---|---|
+| **SMS** | Selected records → Sent → Delivered → Response/Gross Lead | Jurisdiction, carrier, messaging vendor, registered campaign/sender, message version, delivery/error code, opt-out cohort |
+| **Cold Call** | Selected records → Phone positions supplied → Positions attempted → Live answer → Correct owner → Interest/Net Lead | Call-center vendor, caller/team member, attempt count, highest phone position attempted, disposition, time/day, targeted call-recording QA |
+| **Direct Mail** | Selected records → Pieces mailed → Delivered/returned → Working response path → Response/Gross Lead | Piece type (for example, Check Letter vs. Postcard), printed phone/tracking number or QR/URL, mail vendor, drop date, list/exposure cohort, offer |
+
+For SMS, keep **legislation/regulation**, **carrier filtering/policy**, and **vendor configuration** as separate hypotheses. Do not teach a specific legal or carrier rule until its jurisdiction, effective date, and current official source have been verified. Carrier restrictions are not legislation.
+
+For Cold Call, **segment before listening**. Select a small sample from the abnormal vendor/caller/disposition cohort plus a healthy control, then check owner-identity verification, script adherence, objection handling, disposition accuracy, and premature disqualification. A few recordings can explain *why* a segmented KPI moved; a convenient random handful cannot establish the prevalence of a problem.
+
+For data fulfillment, compare what the client approved with what 8020REI actually delivered. Inspect buy-box version and field mapping, import/export lineage, exclusion-tag logic, source and row-count reconciliations, and a targeted record sample. When skiptrace performance declines, cohort contactability by **skiptrace date/age** before assuming the list or caller is bad; a file last refreshed 12 months ago can deteriorate gradually rather than fail on one obvious date.
+
+## Case roster — spoiler-safe public view
+
+The public roster identifies the fictional client and case format only. **KPI values, engineered root causes, exhibits, answers, rubrics, and facilitator notes stay inside the encrypted Interview Casefile.** Do not add case-specific diagnostics to this page or the public document bundle.
+
+| # | Fictional client | Format | Access |
 |---|---|---|---|
-| 01 | Appointment → Contract | Setter-to-rep handoff stopped enforcing the active buy box | ✅ `case-01-lone-star.md` |
-| 02 | Gross → Net | Stale lists / skip-trace decay | ✅ `case-02-cedar-fork.md` |
-| 03 | Contract → Close | Dispo buyer concentration — top end-buyer paused | ✅ `case-03-prairie-gate.md` |
-| 04 | Mail → Response | Creative fatigue, no A/B test in 9 months | ✅ `case-04-red-oak.md` |
-| 05 | Net → Appt | Speed-to-lead > 30 min after lead-manager departure | ✅ `case-05-panther-city.md` |
-| 06 | None (trap case) | Market contraction — distressed inventory down; execution is fine | ✅ `case-06-north-elm.md` |
-| 07 | Appt → Contract | Flat 55% offer formula replaced tiered ARV brackets | ✅ `case-07-waxahachie.md` |
+| 01 | Lone Star Home Buyers | Standard · single issue | 🔒 Encrypted casefile |
+| 02 | Cedar Fork Property Group | Standard · single issue | 🔒 Encrypted casefile |
+| 03 | Prairie Gate Investments | Standard · single issue | 🔒 Encrypted casefile |
+| 04 | Red Oak Home Offers | Standard · single issue | 🔒 Encrypted casefile |
+| 05 | Panther City Acquisitions | Standard · single issue | 🔒 Encrypted casefile |
+| 06 | North Elm Property Buyers | Standard · single issue | 🔒 Encrypted casefile |
+| 07 | Waxahachie Home Solutions | Standard · single issue | 🔒 Encrypted casefile |
+| 08 | Cross Timbers Property Partners | Advanced · two issues | 🔒 Encrypted casefile |
+| 09 | Trinity Bend Homebuyers | Advanced · three issues | 🔒 Encrypted casefile |
 
-**Rendering & access:** all seven cases live in `interview-cases.html` — the password-protected Interview Casefile (facilitators only; content is AES-encrypted in the page). The case `.md` files here are the source of truth and are **not** published to the web or downloads page.
+**Rendering & access:** all nine cases live in `interview-cases.html`, the password-protected Interview Casefile for facilitators. The individual case `.md` files are the private source of truth and are **not** copied to the public site or downloads page.
 
-Case 06 matters because the method must also be able to conclude "it's not the client's execution" — that's what the market-context signals exist for.
+## Diagnostic coverage — not an answer key
 
-Cases 01 and 07 intentionally share **Appointment → Contract** but teach different branches: Lone Star sends the wrong opportunities through the setter-to-rep handoff; Waxahachie sends the right opportunities the wrong offer. Case 03 is the clean **Contract → Close** contrast: the seller has signed, but the buyer list cannot absorb the contracts.
+Across the library, participants practice the following diagnostic domains. The public view deliberately does not map a domain, KPI, or confirmed cause to a particular case.
+
+| Domain | Skills practiced |
+|---|---|
+| GNACC stage logic | Distinguish a volume loss from Gross → Net, Net → Appointment, Appointment → Contract, and Contract → Close conversion failures |
+| Marketing channels | Cut the alarm by SMS, Cold Call, and Direct Mail before recommending a blended fix |
+| Channel operations | Segment by jurisdiction/carrier/vendor, caller/attempt/phone position, or mail piece/vendor/response path as appropriate |
+| 8020REI fulfillment | Reconcile approved buy box → import → exclusions → dedupe → final export and inspect targeted records |
+| Sales and dispo operations | Test capacity, handoffs, offer execution, follow-up, buyer depth, and post-signature fallout at the correct stage |
+| Advanced sequencing | Apply a partial fix, recompute the full funnel, and let the residual KPI select the next hypothesis |
+
+The case-specific mapping of these domains, alarm KPIs, exhibits, and root causes is facilitator-only.
 
 Run `node scripts/audit-cases.mjs` after substantive edits. Rebuild the encrypted page with `node scripts/rebuild-casefile.mjs`; it reads the existing casefile password from standard input, stores no password, and verifies the encrypted round trip.
