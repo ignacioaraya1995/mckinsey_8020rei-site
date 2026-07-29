@@ -19,6 +19,7 @@ Lecture time spent explaining MECE is wasted — people nod and forget. The flip
 
 ### Pre-work (solo, self-paced, ~60 min)
 - Read `McKinsey-Problem-Solving-Guide.html` — at minimum: the 4 phases, Step 1 (problem statements), Step 2 (issue trees), MECE section.
+- Also read **"The engine underneath — four tools in a loop"** in the Method Reference (`mckinsey-method.html`) — the hypothesis-first mindset the live case runs on.
 - Micro-exercise (submit before class, 15 min): *"A client says 'my cost per deal doubled.' Write a SMART problem statement and sketch a 2-level MECE tree."* — this is the accountability check that the reading happened; no exercise, no seat.
 
 ### Session 1 — the case (live, 90 min)

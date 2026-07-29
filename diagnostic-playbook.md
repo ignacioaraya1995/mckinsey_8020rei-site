@@ -1,6 +1,6 @@
 # Client Diagnostic Playbook — Working Notes
 
-*Organizing the idea from the Gemini conversation (McKinsey 7-step applied to 8020REI client funnels). Companion to `McKinsey-Problem-Solving-Guide.html` (the teaching guide). Last updated: 2026-07-28.*
+*Organizing the idea from the Gemini conversation (McKinsey 7-step applied to 8020REI client funnels). Companion to `McKinsey-Problem-Solving-Guide.html` (the teaching guide). Last updated: 2026-07-29.*
 
 ---
 
@@ -16,7 +16,51 @@ Three ingredients, all necessary:
 
 ---
 
-## 2. The funnel (KPI taxonomy — CONFIRMED: it's GNACC)
+## 2. Framing the problem: a quantified gap (R1 vs R2)
+
+Before any hypothesis tree gets touched, write the problem down as a **gap between two numbers**:
+
+- **R1 — the undesired result, quantified.** What the client's KPI is doing now (e.g., Appointment → Contract at 9% and falling).
+- **R2 — the desired result, quantified.** What it should be (e.g., the 15% CG benchmark, or the client's own pre-decline 18%).
+
+If R2 isn't a number, you can't tell when you're done — "improve conversions" is not a problem statement, it's a wish. Every engagement starts by filling four boxes, in order:
+
+| Box | Question it answers | 8020REI version |
+|---|---|---|
+| **Opening Scene** | What does normal look like? | The client's funnel as it runs today — GNACC stages, volumes, and conversion rates over the trailing period |
+| **Disturbing Event** | What changed? | The event (or realization) that knocked the funnel off its opening scene |
+| **R1** | Where are we now? | The KPI deviation vs. the client's own history — specific stage, specific rate, specific dates |
+| **R2** | Where should we be? | The benchmark value from `gnacc-reference.md` (CG standard), or the client's pre-decline baseline |
+
+The output is a one-sentence problem statement — the same template used at step 1 of the 7-step mapping (§5): *"Client X's [ratio] fell from A% to B% between [dates]; identify root cause and restore to baseline within [horizon]."*
+
+### The Disturbing Event has exactly three flavors
+
+1. **External** — the market moved (rates, DOM, investor competition, seasonality). Nobody at the client did anything; the environment changed under them.
+2. **Internal** — the client changed something: buy-box edit, creative swap, new list source, new script, pricing/formula change, rep turnover.
+3. **Recently recognized** — it was always broken; the client just noticed (first time the funnel was instrumented, or first time anyone looked at the rate by segment).
+
+This typology is why the **change-event log is the highest-leverage missing asset**. Internal disturbances are the most common and the cheapest to confirm — but only if buy-box edits and creative swaps are timestamped somewhere queryable, which today they are not (§6). Until that log exists, the first diagnostic job on every engagement is **reconstructing "what changed" with the client** — a structured interview against the funnel timeline. That is why segmentation checks and change-log correlation always come first in priority in the hypothesis tables.
+
+### Step zero: is it us or the market?
+
+Before dissecting any funnel, separate client-specific causes from market-wide ones: compare the client's trend against peers in the same market and against the market's own seasonality. If every wholesaler in the metro saw Appointment → Contract compress in the same month, the Disturbing Event is external and the fix is positioning, not targeting. If the client's rate broke while peers held, it's internal — go find the change. Skipping this step is how teams end up rewriting their buy box in response to a rate hike.
+
+### SAE — the working algorithm: Segment → Isolate → Explore
+
+Once the gap is quantified and the market question is answered, the diagnostic itself runs on a three-step loop (from the Spanish mnemonic **Segmentar → Aislar → Explorar**):
+
+1. **Segment** the numbers first. Totals and averages mislead — a funnel-wide 9% can be one dead channel, one dead rep, or one dead county hiding under healthy ones. Cut every flagged KPI by channel, list source, rep, county, price band, and buy-box fit before believing any aggregate.
+2. **Isolate** the funnel stage and driver carrying the bulk of the deviation. Quantify each candidate cause's share of the total gap (R2 − R1) and attack the biggest — a cause that explains 60% of the gap beats three that explain 10% each, even when the small ones are easier to test.
+3. **Explore** fixes only after the first two steps. Brainstorming solutions before the gap is allocated produces confident answers to the wrong problem.
+
+This is the algorithm behind the hypothesis table in §4: each entry's "segment first" test column is SAE step 1, the key-signature lines are step 2, and the action column is deliberately last because exploring comes last.
+
+*(Problem-definition framework after Barbara Minto; SAE from classic case-interview literature.)*
+
+---
+
+## 3. The funnel (KPI taxonomy — CONFIRMED: it's GNACC)
 
 The taxonomy already exists and is codified in the intranet (`src/lib/config/gnaccCalculator.ts`), standardized at the Collective Genius vendor meeting (Dallas, March 2026). **GNACC = Gross → Net → Appointments → Contracts → Closings.**
 
@@ -36,9 +80,9 @@ Upstream of Gross Leads sits the marketing layer (the "prospect → lead" ratio 
 
 ---
 
-## 3. Hypothesis playbook (entries drafted so far)
+## 4. Hypothesis playbook (entries drafted so far)
 
-### 3.0 Diagnose the financial symptom before choosing a funnel stage
+### 4.0 Diagnose the financial symptom before choosing a funnel stage
 
 Do not force every revenue or profit decline into GNACC. Start with the identity:
 
@@ -53,9 +97,9 @@ Do not force every revenue or profit decline into GNACC. Start with the identity
 
 Common unit-economics hypotheses include a worse deal mix, thinner assignment spreads, acquisition prices rising faster than buyer prices, repair/ARV misses that force price reductions, more JV or double-close costs, and inconsistent revenue recognition. The first test is still segmentation plus change history. **A lower gross profit per closed deal can coexist with a healthy Contract → Close rate.**
 
-### 3.1 Appointment → Contract rate LOW (while appointments/visits are happening)
+### 4.1 Appointment → Contract rate LOW (while appointments/visits are happening)
 
-**Your hypothesis (the strong one):** the appointment is not producing a seller-acceptable offer — because the property does not meet acquisition criteria, the offer economics are wrong, or the rep fails to convert the seller. **Do not put "we signed it but could not find a cash buyer" here; that is a Contract → Close failure (§3.2).**
+**Your hypothesis (the strong one):** the appointment is not producing a seller-acceptable offer — because the property does not meet acquisition criteria, the offer economics are wrong, or the rep fails to convert the seller. **Do not put "we signed it but could not find a cash buyer" here; that is a Contract → Close failure (§4.2).**
 
 | # | Hypothesis | Test / evidence | If confirmed → action |
 |---|---|---|---|
@@ -66,7 +110,7 @@ Common unit-economics hypotheses include a worse deal mix, thinner assignment sp
 
 Key signature: **appointments high + signed contracts low**. The seller has not signed yet, so tests belong on qualification/handoff, acquisition fit, offer economics, and rep conversion. If the appointment setter and the acquisition rep are different people, explicitly test that handoff.
 
-### 3.2 Contract → Close rate LOW (signed contracts are not monetizing)
+### 4.2 Contract → Close rate LOW (signed contracts are not monetizing)
 
 **Start with the stage fact:** the seller has already signed, but the contract did not become a closed deal. Buyer-list/dispo capacity is often the leading branch, but the fallout reasons determine which post-signature hypothesis deserves priority.
 
@@ -78,9 +122,9 @@ Key signature: **appointments high + signed contracts low**. The seller has not 
 | 4 | Dispo execution or closing window is too slow/short | Time from signature to first marketing, buyer follow-up, bid count, and days remaining before close | Market on day zero, assign ownership/SLA, and negotiate realistic closing windows |
 | 5 | Title, transaction, or seller fallout | Title, inspection, withdrawal, financing, and missed-deadline reason codes | Fix title/process controls; extend timelines or address the documented seller-side cause |
 
-Key signature: **signed contracts flat + closings down**. `"No buyer found"` points to buyer-list/dispo or deal-to-buyer fit; title and seller withdrawals point to different branches. If closings are flat but gross profit per closed deal is down, return to §3.0 — that is unit economics, not Contract → Close.
+Key signature: **signed contracts flat + closings down**. `"No buyer found"` points to buyer-list/dispo or deal-to-buyer fit; title and seller withdrawals point to different branches. If closings are flat but gross profit per closed deal is down, return to §4.0 — that is unit economics, not Contract → Close.
 
-### 3.3 Prospect → Lead rate DECLINING
+### 4.3 Prospect → Lead rate DECLINING
 
 | # | Hypothesis | Test / evidence | If confirmed → action |
 |---|---|---|---|
@@ -92,19 +136,19 @@ Key signature: **signed contracts flat + closings down**. `"No buyer found"` poi
 
 **Pattern to reuse for every entry:** segmenting the KPI (by channel, by rep, by list source, by property type) is itself the cheapest first test — it usually kills half the tree in one query.
 
-### 3.4 Remaining entries to draft
+### 4.4 Remaining entries to draft
 - Lead → Appointment declining (speed-to-lead, lead manager capacity, script)
 - Additional Appointment → Contract branches (offer level, competition, negotiation)
 - Volume problems vs. ratio problems (top-of-funnel spend/list size vs. conversion) — keep these separate; they have different trees
 
 ---
 
-## 4. How this maps to the 7 steps
+## 5. How this maps to the 7 steps
 
 | McKinsey step | In the playbook |
 |---|---|
 | 1. Define | Triggered by KPI vs. baseline/trend. Template: *"Client X's [ratio] fell from A% to B% between [dates]; identify root cause and restore to baseline within [horizon]."* |
-| 2. Structure | Pre-built: the hypothesis tree for that KPI (§3). Built once, MECE, reused. |
+| 2. Structure | Pre-built: the hypothesis tree for that KPI (§4). Built once, MECE, reused. |
 | 3. Prioritize | Rank hypotheses by prior likelihood (boosted hugely by change-log correlation) × ease of testing. Segmentation tests first. |
 | 4. Plan | Each hypothesis row already names its data pull. |
 | 5. Analyze | Run the pulls against client data. |
@@ -115,7 +159,7 @@ The insight that makes this scalable: **steps 1–4 are done once per KPI** (tha
 
 ---
 
-## 5. Baselines — the open methodology question
+## 6. Baselines — the open methodology question
 
 Three options, probably combined:
 
@@ -127,7 +171,7 @@ Three options, probably combined:
 
 ---
 
-## 6. Where the intranet tools fit (verified in code)
+## 7. Where the intranet tools fit (verified in code)
 
 | Tool | What it actually is |
 |---|---|
@@ -136,13 +180,13 @@ Three options, probably combined:
 | `roi-client-analysis` | Per-client performance analysis (funnel data source for diagnostics). |
 | `roi-calculator` | Sizes dollar impact of gaps → step 3 prioritization and step 7 recommendation sizing. |
 
-**Implication:** the hypothesis-tree half of this playbook is substantially built. What §3 adds on top of `clientDiagnosticFlow.ts` is the *trigger* layer (which KPI deviation activates which branch) and the *test/action* columns; what's missing entirely is the change-event log (§5) and the teaching layer (see `training-program.md`).
+**Implication:** the hypothesis-tree half of this playbook is substantially built. What §4 adds on top of `clientDiagnosticFlow.ts` is the *trigger* layer (which KPI deviation activates which branch) and the *test/action* columns; what's missing entirely is the change-event log (§6) and the teaching layer (see `training-program.md`).
 
 ---
 
-## 7. The AI agent prompt (deferred, deliberately)
+## 8. The AI agent prompt (deferred, deliberately)
 
-Don't write it yet. The prompt Gemini produced was too broad because the playbook didn't exist to feed it. Once §2, §3, and §5 are locked, the agent prompt is short and mechanical:
+Don't write it yet. The prompt Gemini produced was too broad because the playbook didn't exist to feed it. Once §3, §4, and §6 are locked, the agent prompt is short and mechanical:
 
 > *Context: [KPI definitions] + [hypothesis playbook for the flagged KPI] + [client's data: ratios, trends, segments, change log].*
 > *Task: execute steps 3–7 — prioritize the hypotheses given the change log, run/request the listed tests, state the confirmed root cause with evidence, deliver an SCR-structured recommendation.*
@@ -151,10 +195,10 @@ One template, parameterized by KPI + client. The playbook is the product; the pr
 
 ---
 
-## 8. Suggested next steps
+## 9. Suggested next steps
 
-1. **Lock the funnel taxonomy** (§2) — stage names and ratio definitions, MECE, agreed with the team.
+1. **Lock the funnel taxonomy** (§3) — stage names and ratio definitions, MECE, agreed with the team.
 2. **Audit the change-event log** — what's captured today for buy box / content / channel changes, and where.
-3. **Finish the playbook tables** — the two drafted entries plus the four missing ones (§3.3), each hypothesis with test + data source + action.
-4. **Pick the baseline approach** (§5) — recommend starting with self-trend + change-log correlation, adding cohort bands later.
+3. **Finish the playbook tables** — the two drafted entries plus the four missing ones (§4.3), each hypothesis with test + data source + action.
+4. **Pick the baseline approach** (§6) — recommend starting with self-trend + change-log correlation, adding cohort bands later.
 5. **Then** write the agent prompt and wire it into `client-diagnostic`.

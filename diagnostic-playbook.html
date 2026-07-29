@@ -100,9 +100,53 @@
   </div>
 </section>
 
+<section id="framing">
+  <div class="wrap">
+    <h2>2 · Framing the problem: a quantified gap (R1 vs R2)</h2>
+    <p class="lede">Before any hypothesis tree gets touched, write the problem down as a <b>gap between two numbers</b>: <b>R1</b> — the undesired result, quantified (what the client's KPI is doing now, e.g. Appointment → Contract at 9% and falling) — versus <b>R2</b> — the desired result, quantified (the 15% CG benchmark, or the client's own pre-decline 18%). If R2 isn't a number, you can't tell when you're done — "improve conversions" is not a problem statement, it's a wish. Every engagement starts by filling four boxes, in order:</p>
+    <div class="table-scroll">
+      <table class="data" style="max-width:820px;">
+        <thead><tr><th>Box</th><th>Question it answers</th><th>8020REI version</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Opening Scene</td><td>What does normal look like?</td><td>The client's funnel as it runs today — GNACC stages, volumes, and conversion rates over the trailing period</td></tr>
+          <tr><td class="strong">Disturbing Event</td><td>What changed?</td><td>The event (or realization) that knocked the funnel off its opening scene</td></tr>
+          <tr><td class="strong">R1</td><td>Where are we now?</td><td>The KPI deviation vs. the client's own history — specific stage, specific rate, specific dates</td></tr>
+          <tr><td class="strong">R2</td><td>Where should we be?</td><td>The benchmark value from the <a href="gnacc-reference.html">GNACC Reference</a> (CG standard), or the client's pre-decline baseline</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13.5px; color:var(--text-2); max-width:720px;">The output is a one-sentence problem statement — the same template used at step 1 of the 7-step mapping (§5): <i>"Client X's [ratio] fell from A% to B% between [dates]; identify root cause and restore to baseline within [horizon]."</i></p>
+
+    <h3 class="sub">The Disturbing Event has exactly three flavors</h3>
+    <ol class="tight">
+      <li><b>External</b> — the market moved (rates, DOM, investor competition, seasonality). Nobody at the client did anything; the environment changed under them.</li>
+      <li><b>Internal</b> — the client changed something: buy-box edit, creative swap, new list source, new script, pricing/formula change, rep turnover.</li>
+      <li><b>Recently recognized</b> — it was always broken; the client just noticed (first time the funnel was instrumented, or first time anyone looked at the rate by segment).</li>
+    </ol>
+    <div class="callout">
+      <span class="eyebrow">Why the change-event log matters most</span>
+      <p>Internal disturbances are the most common and the cheapest to confirm — but only if buy-box edits and creative swaps are timestamped somewhere queryable, which today they are not (§6). Until that log exists, the first diagnostic job on every engagement is <b>reconstructing "what changed" with the client</b> — a structured interview against the funnel timeline. That is why segmentation checks and change-log correlation always come first in priority in the hypothesis tables.</p>
+    </div>
+
+    <h3 class="sub">Step zero: is it us or the market?</h3>
+    <p class="lede" style="margin-bottom:8px;">Before dissecting any funnel, separate client-specific causes from market-wide ones: compare the client's trend against peers in the same market and against the market's own seasonality. If every wholesaler in the metro saw Appointment → Contract compress in the same month, the Disturbing Event is external and the fix is positioning, not targeting. If the client's rate broke while peers held, it's internal — go find the change. Skipping this step is how teams end up rewriting their buy box in response to a rate hike.</p>
+
+    <h3 class="sub">SAE — the working algorithm: Segment → Isolate → Explore</h3>
+    <ol class="tight">
+      <li><b>Segment</b> the numbers first. Totals and averages mislead — a funnel-wide 9% can be one dead channel, one dead rep, or one dead county hiding under healthy ones. Cut every flagged KPI by channel, list source, rep, county, price band, and buy-box fit before believing any aggregate.</li>
+      <li><b>Isolate</b> the funnel stage and driver carrying the bulk of the deviation. Quantify each candidate cause's share of the total gap (R2 − R1) and attack the biggest — a cause that explains 60% of the gap beats three that explain 10% each, even when the small ones are easier to test.</li>
+      <li><b>Explore</b> fixes only after the first two steps. Brainstorming solutions before the gap is allocated produces confident answers to the wrong problem.</li>
+    </ol>
+    <div class="callout">
+      <span class="eyebrow">From the Spanish mnemonic Segmentar → Aislar → Explorar</span>
+      <p>This is the algorithm behind the hypothesis table in §4: each entry's "segment first" test column is SAE step 1, the key-signature lines are step 2, and the action column is deliberately last because exploring comes last. <i>(Problem-definition framework after Barbara Minto; SAE from classic case-interview literature.)</i></p>
+    </div>
+  </div>
+</section>
+
 <section id="funnel">
   <div class="wrap">
-    <h2>2 · The funnel (KPI taxonomy — it's GNACC)</h2>
+    <h2>3 · The funnel (KPI taxonomy — it's GNACC)</h2>
     <p class="lede">The taxonomy already exists and is codified in the intranet (<code class="inline">gnaccCalculator.ts</code>), standardized at the Collective Genius vendor meeting (Dallas, March 2026). Full definitions and benchmarks: <a href="gnacc-reference.html">GNACC Reference</a>.</p>
     <pre class="flow">Ad Spend → Gross Leads → Net Leads → Appointments Attended → Contracts Signed → Closed Deals</pre>
     <div class="table-scroll">
@@ -123,9 +167,9 @@
 
 <section id="entries">
   <div class="wrap">
-    <h2>3 · Hypothesis playbook (entries drafted so far)</h2>
+    <h2>4 · Hypothesis playbook (entries drafted so far)</h2>
 
-    <h3 class="sub">3.0 — Diagnose the financial symptom before choosing a funnel stage</h3>
+    <h3 class="sub">4.0 — Diagnose the financial symptom before choosing a funnel stage</h3>
     <p class="lede" style="margin-bottom:8px;">Do not force every revenue or profit decline into GNACC. Start with the identity: <b>gross profit contribution = closed deals × gross profit per closed deal − operating/marketing costs.</b></p>
     <div class="table-scroll">
       <table class="data">
@@ -143,8 +187,8 @@
       <p>Common causes include a worse deal mix, thinner assignment spreads, acquisition prices rising faster than buyer prices, repair/ARV misses that force price reductions, more JV or double-close costs, and inconsistent revenue recognition. <b>A lower gross profit per closed deal can coexist with a healthy Contract → Close rate.</b></p>
     </div>
 
-    <h3 class="sub">3.1 — Appointment → Contract rate LOW (while appointments are happening)</h3>
-    <p class="lede" style="margin-bottom:8px;"><b>The strong hypothesis:</b> the appointment is not producing a seller-acceptable offer — because the property does not meet acquisition criteria, the offer economics are wrong, or the rep fails to convert the seller. <b>Do not put “we signed it but could not find a cash buyer” here; that is a Contract → Close failure (§3.2).</b></p>
+    <h3 class="sub">4.1 — Appointment → Contract rate LOW (while appointments are happening)</h3>
+    <p class="lede" style="margin-bottom:8px;"><b>The strong hypothesis:</b> the appointment is not producing a seller-acceptable offer — because the property does not meet acquisition criteria, the offer economics are wrong, or the rep fails to convert the seller. <b>Do not put “we signed it but could not find a cash buyer” here; that is a Contract → Close failure (§4.2).</b></p>
     <div class="table-scroll">
       <table class="data">
         <thead><tr><th>#</th><th>Hypothesis</th><th>Test / evidence</th><th>If confirmed → action</th></tr></thead>
@@ -161,7 +205,7 @@
       <p><b>Appointments high + signed contracts low.</b> The seller has not signed yet, so tests belong on qualification/handoff, acquisition fit, offer economics, and rep conversion. If the appointment setter and acquisition rep are different people, explicitly test that handoff.</p>
     </div>
 
-    <h3 class="sub">3.2 — Contract → Close rate LOW (signed contracts are not monetizing)</h3>
+    <h3 class="sub">4.2 — Contract → Close rate LOW (signed contracts are not monetizing)</h3>
     <p class="lede" style="margin-bottom:8px;"><b>Start with the stage fact:</b> the seller has already signed, but the contract did not become a closed deal. Buyer-list/dispo capacity is often the leading branch, but the fallout reasons determine which post-signature hypothesis deserves priority.</p>
     <div class="table-scroll">
       <table class="data">
@@ -177,10 +221,10 @@
     </div>
     <div class="callout">
       <span class="eyebrow">Key signature</span>
-      <p><b>Signed contracts flat + closings down.</b> “No buyer found” points to buyer-list/dispo or deal-to-buyer fit; title and seller withdrawals point to different branches. If closings are flat but gross profit per closed deal is down, return to §3.0 — that is unit economics, not Contract → Close.</p>
+      <p><b>Signed contracts flat + closings down.</b> “No buyer found” points to buyer-list/dispo or deal-to-buyer fit; title and seller withdrawals point to different branches. If closings are flat but gross profit per closed deal is down, return to §4.0 — that is unit economics, not Contract → Close.</p>
     </div>
 
-    <h3 class="sub">3.3 — Prospect → Lead rate DECLINING</h3>
+    <h3 class="sub">4.3 — Prospect → Lead rate DECLINING</h3>
     <div class="table-scroll">
       <table class="data">
         <thead><tr><th>#</th><th>Hypothesis</th><th>Test / evidence</th><th>If confirmed → action</th></tr></thead>
@@ -198,7 +242,7 @@
       <p><b>Segmenting the KPI (by channel, by rep, by list source, by property type) is itself the cheapest first test</b> — it usually kills half the tree in one query.</p>
     </div>
 
-    <h3 class="sub">3.4 — Remaining entries to draft</h3>
+    <h3 class="sub">4.4 — Remaining entries to draft</h3>
     <ul class="tight">
       <li>Lead → Appointment declining (speed-to-lead, lead manager capacity, script)</li>
       <li>Additional Appointment → Contract branches (offer level, competition, negotiation)</li>
@@ -209,13 +253,13 @@
 
 <section id="mapping">
   <div class="wrap">
-    <h2>4 · How this maps to the 7 steps</h2>
+    <h2>5 · How this maps to the 7 steps</h2>
     <div class="table-scroll">
       <table class="data" style="max-width:820px;">
         <thead><tr><th>McKinsey step</th><th>In the playbook</th></tr></thead>
         <tbody>
           <tr><td class="strong">1 · Define</td><td>Triggered by KPI vs. baseline/trend. Template: <i>"Client X's [ratio] fell from A% to B% between [dates]; identify root cause and restore to baseline within [horizon]."</i></td></tr>
-          <tr><td class="strong">2 · Structure</td><td>Pre-built: the hypothesis tree for that KPI (§3). Built once, MECE, reused.</td></tr>
+          <tr><td class="strong">2 · Structure</td><td>Pre-built: the hypothesis tree for that KPI (§4). Built once, MECE, reused.</td></tr>
           <tr><td class="strong">3 · Prioritize</td><td>Rank hypotheses by prior likelihood (boosted hugely by change-log correlation) × ease of testing. Segmentation tests first.</td></tr>
           <tr><td class="strong">4 · Plan</td><td>Each hypothesis row already names its data pull.</td></tr>
           <tr><td class="strong">5 · Analyze</td><td>Run the pulls against client data.</td></tr>
@@ -233,7 +277,7 @@
 
 <section id="baselines">
   <div class="wrap">
-    <h2>5 · Baselines — the open methodology question</h2>
+    <h2>6 · Baselines — the open methodology question</h2>
     <ol class="tight">
       <li><b>Self-trend:</b> the client's own trailing history. No absolute benchmark needed — an inflection correlated with a change event is diagnostic on its own. Cheapest to ship; works from day one of the change log.</li>
       <li><b>Cohort benchmark:</b> percentile bands across clients, segmented by market and channel mix. Needed to catch clients who were <i>never</i> healthy (no inflection to see).</li>
@@ -248,7 +292,7 @@
 
 <section id="tools">
   <div class="wrap">
-    <h2>6 · Where the intranet tools fit (verified in code)</h2>
+    <h2>7 · Where the intranet tools fit (verified in code)</h2>
     <div class="table-scroll">
       <table class="data">
         <thead><tr><th>Tool</th><th>What it actually is</th></tr></thead>
@@ -260,14 +304,14 @@
         </tbody>
       </table>
     </div>
-    <p style="font-size:13.5px; color:var(--text-2); max-width:760px;"><b style="color:var(--text);">Implication:</b> the hypothesis-tree half of this playbook is substantially built. What §3 adds on top of <code class="inline">clientDiagnosticFlow.ts</code> is the <i>trigger</i> layer (which KPI deviation activates which branch) and the <i>test/action</i> columns; what's missing entirely is the change-event log (§5) and the teaching layer (the <a href="8020IQ-Training-Program.html">training program</a>).</p>
+    <p style="font-size:13.5px; color:var(--text-2); max-width:760px;"><b style="color:var(--text);">Implication:</b> the hypothesis-tree half of this playbook is substantially built. What §4 adds on top of <code class="inline">clientDiagnosticFlow.ts</code> is the <i>trigger</i> layer (which KPI deviation activates which branch) and the <i>test/action</i> columns; what's missing entirely is the change-event log (§6) and the teaching layer (the <a href="8020IQ-Training-Program.html">training program</a>).</p>
   </div>
 </section>
 
 <section id="agent">
   <div class="wrap">
-    <h2>7 · The AI agent prompt (deferred, deliberately)</h2>
-    <p class="lede">Don't write it yet. Once §2, §3, and §5 are locked, the agent prompt is short and mechanical — one template, parameterized by KPI + client. The playbook is the product; the prompt is packaging.</p>
+    <h2>8 · The AI agent prompt (deferred, deliberately)</h2>
+    <p class="lede">Don't write it yet. Once §3, §4, and §6 are locked, the agent prompt is short and mechanical — one template, parameterized by KPI + client. The playbook is the product; the prompt is packaging.</p>
     <blockquote class="prompt">
       <i>Context: [KPI definitions] + [hypothesis playbook for the flagged KPI] + [client's data: ratios, trends, segments, change log].<br><br>
       Task: execute steps 3–7 — prioritize the hypotheses given the change log, run/request the listed tests, state the confirmed root cause with evidence, deliver an SCR-structured recommendation.</i>
@@ -277,12 +321,12 @@
 
 <section id="next">
   <div class="wrap">
-    <h2>8 · Suggested next steps</h2>
+    <h2>9 · Suggested next steps</h2>
     <ol class="tight">
-      <li><b>Lock the funnel taxonomy</b> (§2) — stage names and ratio definitions, MECE, agreed with the team.</li>
+      <li><b>Lock the funnel taxonomy</b> (§3) — stage names and ratio definitions, MECE, agreed with the team.</li>
       <li><b>Audit the change-event log</b> — what's captured today for buy box / content / channel changes, and where.</li>
-      <li><b>Finish the playbook tables</b> — the two drafted entries plus the four missing ones (§3.3), each hypothesis with test + data source + action.</li>
-      <li><b>Pick the baseline approach</b> (§5) — start with self-trend + change-log correlation, add cohort bands later.</li>
+      <li><b>Finish the playbook tables</b> — the two drafted entries plus the four missing ones (§4.3), each hypothesis with test + data source + action.</li>
+      <li><b>Pick the baseline approach</b> (§6) — start with self-trend + change-log correlation, add cohort bands later.</li>
       <li><b>Then</b> write the agent prompt and wire it into <code class="inline">client-diagnostic</code>.</li>
     </ol>
   </div>

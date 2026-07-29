@@ -21,6 +21,34 @@ The seven steps are grouped into four phases; one phase can hold several steps. 
 
 ---
 
+## The engine underneath — four tools in a loop
+
+The 7 steps look linear on paper. In practice they run on four tools used in an iterative loop: **hypothesis → issue tree → drill-down → synthesis**. Drill down into the data, pull up to revise the hypothesis, restructure the tree, drill down again — lather, rinse, repeat. It is the scientific method wearing a suit: hypothesis → experiment → conclusion, repeated until the conclusion stops moving.
+
+**Trinity River, looped:** hypothesis "one funnel stage broke" → tree (one branch per stage) → drill down (walk the funnel) → finding (only NL→Appt broke) → revised hypothesis "first-contact speed collapsed" → new tree (speed buckets × time) → drill down (segmentation + change log) → synthesis. Two loops, two queries, one answer.
+
+**Hypothesis first, frameworks second.** A hypothesis is a theory to be proved **or disproved** — proving it wrong still moves you to the right answer, because a dead branch is information. Had Trinity River's funnel walk come back healthy, that failure would have sent the search upstream to lead volume just as fast.
+
+Frameworks are just templates of commonly used issue trees — the profit-identity tree in Step 2 is one. The failure mode has a name: the **framework robot** — force-fitting a memorized framework onto a problem with no hypothesis behind it. Custom-build the tree from the stated hypothesis, then run two validity tests:
+
+1. **MECE** — no overlap, nothing missing (see the MECE section below).
+2. **The conclusiveness test** — if every branch proves true, could the opposite conclusion still hold? If yes, a branch is missing. ("Spend flat, leads flat, all conversion rates healthy" — and profit still down? Then gross profit per deal or costs was missing from the tree.)
+
+**The Five-Minute Hypothesis Rule.** If you haven't stated a hypothesis by minute 5 of a diagnostic, state your best guess immediately — and **label it as a guess**. Being early never kills you; being silent does. An early wrong hypothesis that gets tested beats a late right one, because the loop needs something to chew on.
+
+**Problem isolation does the heavy lifting.** Roughly **75% of diagnostic time is problem definition** — isolating the cause by proving what the problem is *not*. Trinity River was solved mostly by elimination: not spend, not lead volume, not qualification, not closing — what remains is the answer. If you isolate the problem exceedingly well, usually the answer is extremely obvious. Corollary: **never propose fixes before isolation.** A fix pitched at minute 10 is a guess wearing a recommendation's clothes.
+
+**Facts are friendly — but don't boil the ocean.** Data will not hurt you; drowning in it will. Gather only the minimally necessary data to prove or kill the current branch. Stop a branch at a logical dead end — once it is proved or disproved, it is done. If more data cannot change the conclusion, stop collecting it. Trinity River needed two queries, not a data-warehouse export.
+
+**Issue trees vs. hypothesis trees — one line each:**
+
+- **Issue tree** — answers "HOW could we achieve X?" Divergent; use it early, while the problem is still open and you need the full map.
+- **Hypothesis tree** — answers "WHY do we believe Y?" Convergent; use it once you have a belief to test, decomposed into sub-hypotheses that each accept proof or disproof.
+
+*(Distilled from Victor Cheng's Case Interview Secrets and Ethan Rasiel's The McKinsey Way.)*
+
+---
+
 ## Step 1 — Define the problem
 
 Most weak diagnostic work is excellent analysis of the wrong question. Write the problem as a **problem** (a metric that moved, with numbers and dates) — never as an opportunity ("how do we grow?") or a pre-picked solution ("they need more leads").

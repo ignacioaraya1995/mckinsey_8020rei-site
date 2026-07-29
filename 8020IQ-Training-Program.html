@@ -89,6 +89,17 @@
   .callout p { font-size:14px; color:var(--text-2); margin:0 0 8px; }
   .callout p:last-child { margin:0; }
   .callout b { color:var(--text); }
+
+  /* coaching system grid */
+  .tool-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px; }
+  @media (max-width:640px) { .tool-grid { grid-template-columns:1fr; } }
+  a.tool-card { display:block; text-decoration:none; color:inherit; background:var(--warm-white); border:1px solid var(--line-strong); border-radius:var(--r-card); box-shadow:var(--shadow-rest); padding:18px 20px; transition:transform 0.2s ease, box-shadow 0.2s ease; }
+  a.tool-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-hover); }
+  a.tool-card .tool-tag { display:block; font-family:var(--font-mono); font-size:10px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent-strong); margin-bottom:6px; }
+  a.tool-card h3 { font-size:15.5px; margin-bottom:4px; }
+  a.tool-card h3 .go { font-family:var(--font-mono); font-size:11px; font-weight:600; color:var(--accent-strong); }
+  a.tool-card p { font-size:13.5px; color:var(--text-2); margin:0; }
+
   ul.tight { padding-left:20px; max-width:660px; color:var(--text-2); margin:0 0 12px; }
   ul.tight li { margin-bottom:8px; }
   ul.tight b { color:var(--text); }
@@ -131,6 +142,7 @@
           <h3>Learn the method</h3>
           <ul>
             <li>Read the <a href="McKinsey-Problem-Solving-Guide.html">Problem-Solving Guide</a> — at minimum: the 4 phases, Step 1, Step 2, and MECE.</li>
+            <li>Also read <a href="mckinsey-method.html#engine">"The engine underneath — four tools in a loop"</a> in the Method Reference — the hypothesis-first mindset the live case runs on.</li>
             <li><b>Micro-exercise (the gate):</b> a client says <i>"my cost per deal doubled."</i> Write a SMART problem statement and a two-level MECE tree. Submit before class — no exercise, no seat.</li>
           </ul>
         </div>
@@ -187,6 +199,46 @@
     <div class="callout">
       <span class="eyebrow">How to run a case</span>
       <p><b>Interviewer-led.</b> You control direction; provide exhibits only when asked. Time box 45–60 min. Coach with the scripted lines before improvising. Score 1–5 on the rubric during the case.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COACHING SYSTEM ================= -->
+<section id="coaching-system">
+  <div class="wrap">
+    <h2>The coaching system</h2>
+    <p class="lede">Six pieces, one loop: learn the method, teach it, practice it on cases, then diagnose real clients against the standard numbers.</p>
+    <div class="tool-grid">
+      <a class="tool-card" href="mckinsey-method.html">
+        <span class="tool-tag">The method</span>
+        <h3>The McKinsey Problem-Solving Method <span class="go">&rarr;</span></h3>
+        <p>The 7-step reference the whole program runs on. Keep it beside you during cases and debriefs.</p>
+      </a>
+      <a class="tool-card" href="McKinsey-Problem-Solving-Guide.html">
+        <span class="tool-tag">The guide</span>
+        <h3>Problem-Solving Guide <span class="go">&rarr;</span></h3>
+        <p>The teaching text — 7 steps in 4 phases through one running wholesale case. This is the pre-work.</p>
+      </a>
+      <a class="tool-card" href="interview-cases.html">
+        <span class="tool-tag">The case file</span>
+        <h3>Interview Casefile &#128274; <span class="go">&rarr;</span></h3>
+        <p>Seven interviewer-led cases with prompts, exhibits, and answers. Facilitators only — password required.</p>
+      </a>
+      <a class="tool-card" href="gnacc-reference.html">
+        <span class="tool-tag">The standard table</span>
+        <h3>GNACC Funnel &amp; Benchmarks <span class="go">&rarr;</span></h3>
+        <p>Client-agnostic stage definitions and conversion benchmarks. The only source for numbers — never invent a rate.</p>
+      </a>
+      <a class="tool-card" href="diagnostic-playbook.html">
+        <span class="tool-tag">The one-pager</span>
+        <h3>Client Diagnostic Playbook <span class="go">&rarr;</span></h3>
+        <p>KPI deviation &rarr; hypotheses &rarr; tests &rarr; actions. The lookup table during a real diagnosis.</p>
+      </a>
+      <a class="tool-card" href="glossary.html">
+        <span class="tool-tag">The reference</span>
+        <h3>Glossary — How Wholesale Works <span class="go">&rarr;</span></h3>
+        <p>How the wholesale operation runs: buy box, dispo, ARV, MAO, speed to lead — plus the method terms.</p>
+      </a>
     </div>
   </div>
 </section>
