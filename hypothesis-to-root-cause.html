@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="assets/8020rei-logo.svg" type="image/svg+xml">
+<title>From Hypothesis to Root Cause — 8020IQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Azeret+Mono:wght@500;600&family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== Casefile design tokens — light mode only ===== */
+  :root {
+    --paper: #F3EFE5;
+    --surface: #FFFCF5;
+    --ink: #17211C;
+    --ink-soft: #34443C;
+    --muted: #657169;
+    --rule: #D4CDBE;
+    --rule-strong: #B8AE9D;
+    --emerald: #0E6B4F;
+    --alert: #B6402A;
+    --font-display: 'Barlow Semi Condensed', 'Arial Narrow', sans-serif;
+    --font-body: 'Atkinson Hyperlegible', Arial, sans-serif;
+    --font-mono: 'Azeret Mono', Menlo, Consolas, monospace;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: #BFDFD2; color: var(--ink); }
+  .wrap { width: 100%; min-width: 0; max-width: 920px; margin: 0 auto; padding: 0 32px; }
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; color: var(--ink); margin: 0; text-wrap: balance; }
+  p { max-width: 72ch; margin: 0 0 14px; }
+  a { color: var(--emerald); }
+  :focus-visible { outline: 3px solid #E2A72E; outline-offset: 3px; }
+  .eyebrow {
+    font-family: var(--font-mono); font-weight: 600; font-size: 10px; letter-spacing: 0.055em;
+    text-transform: uppercase; color: var(--emerald);
+  }
+
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; height: 58px; }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: 0.01em;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-brand img { display: block; width: 112px; height: auto; }
+  .nav-back {
+    padding: 7px 0;
+    border-bottom: 1px solid transparent;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+  }
+  .nav-back:hover { color: var(--emerald); border-bottom-color: var(--emerald); }
+
+  header.hero {
+    padding: 56px 0 44px;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  header.hero h1 {
+    max-width: 20ch;
+    font-size: clamp(44px, 6vw, 68px); line-height: 0.92; letter-spacing: -0.02em;
+    margin: 14px 0 16px;
+  }
+  header.hero .doc-sub { font-size: 16.5px; color: var(--ink-soft); max-width: 62ch; margin: 0; }
+  header.hero .doc-sub b { color: var(--ink); }
+
+  section { padding: 44px 0; border-bottom: 1px solid var(--rule); }
+  section:last-of-type { border-bottom: none; }
+  .sec-head {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    padding: 15px 4px 12px; margin-bottom: 26px;
+    border-top: 3px solid var(--ink); border-bottom: 1px solid var(--rule-strong);
+  }
+  .sec-head h2 { font-size: 26px; line-height: 1; }
+  .sec-head span {
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  h3.sub {
+    font-size: 19px; line-height: 1.1; margin: 30px 0 10px;
+    padding-bottom: 7px; border-bottom: 1px solid var(--rule);
+    max-width: 760px;
+  }
+  .lede { color: var(--ink-soft); max-width: 62ch; margin-bottom: 22px; }
+  .lede b { color: var(--ink); }
+  ul.tight, ol.tight { padding-left: 20px; color: var(--ink-soft); max-width: 72ch; }
+  ul.tight li, ol.tight li { margin-bottom: 9px; }
+  ul.tight b, ol.tight b { color: var(--ink); }
+
+  .table-scroll { overflow-x: auto; }
+  table.data { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 14px; background: var(--surface); }
+  table.data th {
+    font-family: var(--font-mono); font-weight: 600; font-size: 10px; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--muted); text-align: left;
+    padding: 10px 12px; border: 1px solid var(--rule); border-bottom: 2px solid var(--ink);
+  }
+  table.data td { padding: 11px 12px; border: 1px solid var(--rule); color: var(--ink-soft); vertical-align: top; }
+  table.data td b { color: var(--ink); }
+  td.mono { font-family: var(--font-mono); font-size: 12.5px; color: var(--emerald); white-space: nowrap; }
+  td.strong { color: var(--ink); font-weight: 600; }
+  td.bad { color: var(--alert); font-weight: 600; }
+  td.good { color: var(--emerald); font-weight: 600; }
+  tr.is-key td { background: #F6F2E7; }
+
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--rule-strong);
+    border-top: 3px solid var(--ink);
+    border-radius: 0;
+    padding: 18px 22px 14px; margin: 22px 0; max-width: 760px;
+  }
+  .callout .eyebrow { display: block; margin-bottom: 8px; }
+  .callout p { font-size: 14.5px; color: var(--ink-soft); margin: 0 0 10px; }
+  .callout p:last-child { margin: 0; }
+  .callout b { color: var(--ink); }
+  .callout.rule { border-top-color: var(--emerald); }
+  .callout.warn { border-top-color: var(--alert); }
+
+  code.inline {
+    font-family: var(--font-mono); font-size: 0.85em;
+    background: #E6EFE9; color: var(--emerald); padding: 2px 6px;
+  }
+
+  /* ===== the ladder ===== */
+  .ladder {
+    margin: 24px 0; max-width: 880px;
+    background: var(--surface);
+    border: 1px solid var(--rule-strong);
+    border-top: 3px solid var(--ink);
+    overflow-x: auto;
+  }
+  .rung {
+    display: grid; grid-template-columns: 46px 148px minmax(0, 1.15fr) minmax(0, 1fr);
+    border-bottom: 1px solid var(--rule);
+  }
+  .rung:last-child { border-bottom: none; }
+  .rung .r-num {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--paper); border-right: 1px solid var(--rule);
+    font-family: var(--font-mono); font-weight: 600; font-size: 13px; color: var(--emerald);
+  }
+  .rung .r-name {
+    padding: 12px 14px; border-right: 1px solid var(--rule);
+    font-family: var(--font-display); font-weight: 700; font-size: 16.5px; line-height: 1.15;
+  }
+  .rung .r-q { padding: 12px 14px; border-right: 1px solid var(--rule); font-size: 13.5px; color: var(--ink-soft); }
+  .rung .r-ev { padding: 12px 14px; font-family: var(--font-mono); font-size: 11.5px; line-height: 1.5; color: var(--muted); }
+  .rung.is-key { background: #F6F2E7; }
+  .rung.is-key .r-num { background: var(--emerald); color: #FFFDF6; }
+  .rung.is-key .r-name { color: var(--emerald); }
+  .ladder-note {
+    margin: 0; padding: 13px 16px;
+    background: var(--paper); border-top: 1px solid var(--rule-strong);
+    font-size: 13.5px; color: var(--ink-soft); max-width: none;
+  }
+  .ladder-note b { color: var(--ink); }
+
+  /* ===== the loop ===== */
+  .loop {
+    margin: 22px 0; max-width: 760px; padding: 18px 22px;
+    background: var(--surface);
+    border: 1px solid var(--rule-strong); border-left: 3px solid var(--emerald);
+  }
+  .loop ol { margin: 0; padding-left: 20px; }
+  .loop li { font-size: 14px; color: var(--ink-soft); margin-bottom: 7px; }
+  .loop li:last-child { margin-bottom: 0; }
+  .loop li b { color: var(--ink); }
+  .loop .cut { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--emerald); }
+
+  /* ===== FAQ ===== */
+  .faq { max-width: 800px; }
+  .faq details {
+    background: var(--surface);
+    border: 1px solid var(--rule); border-top: 1px solid var(--rule-strong);
+    margin-bottom: 8px;
+  }
+  .faq details[open] { border-top: 3px solid var(--ink); }
+  .faq summary {
+    cursor: pointer; list-style: none;
+    padding: 13px 16px;
+    font-family: var(--font-display); font-weight: 700; font-size: 16.5px; line-height: 1.25;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: "＋ "; color: var(--emerald); font-family: var(--font-mono); font-size: 13px; }
+  .faq details[open] summary::before { content: "－ "; }
+  .faq summary:hover { color: var(--emerald); }
+  .faq .a { padding: 0 16px 14px 16px; }
+  .faq .a p { font-size: 14.5px; color: var(--ink-soft); margin: 0 0 10px; max-width: 70ch; }
+  .faq .a p:last-child { margin: 0; }
+  .faq .a b { color: var(--ink); }
+
+  footer { padding: 26px 0 52px; font-size: 12px; color: var(--muted); }
+  footer p { margin: 0; max-width: 72ch; }
+
+  @media (max-width: 760px) {
+    .rung { grid-template-columns: 40px 1fr; }
+    .rung .r-num { grid-row: 1 / -1; }
+    .rung .r-name { border-right: none; padding-bottom: 4px; }
+    .rung .r-q, .rung .r-ev { grid-column: 2; border-right: none; padding-top: 0; }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding-left: 16px; padding-right: 16px; }
+    header.hero { padding: 40px 0 32px; }
+    .sec-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Site">
+  <div class="wrap nav-inner">
+    <a class="nav-brand" href="index.html" aria-label="8020REI home"><img src="assets/8020rei-logo.svg" alt="8020REI"></a>
+    <a class="nav-back" href="index.html">&larr; All documents</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Method Reference</span>
+    <h1>From Hypothesis to Root Cause</h1>
+    <p class="doc-sub">The missing half of the method: <b>what a hypothesis actually is, how it differs from a root cause, when to segment, and how to decide what to test first.</b></p>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <p class="lede">Styled rendering of <code class="inline">hypothesis-to-root-cause.md</code>. <code class="inline">mckinsey-method.md</code> teaches the seven steps; <code class="inline">diagnostic-playbook.md</code> lists the hypotheses for each KPI. This page explains the part everybody trips on in between.</p>
+    <p class="lede" style="margin-bottom:0;">Three questions come up in every session:</p>
+    <ol class="tight">
+      <li><i>"Cold callers are underperforming" and "the new cold callers were never trained" — which one is the hypothesis and which one is the root cause? Are they both hypotheses? Are they MECE?</i></li>
+      <li><i>I've built my tree. Now when — and why — do I segment?</i></li>
+      <li><i>I have six hypotheses. Why do we test them in this order and not another?</i></li>
+    </ol>
+    <p class="lede" style="margin-bottom:0;">They are the same question wearing three hats. Answering it needs one idea: <b>a diagnosis is a ladder, and every rung answers a different question with a different kind of evidence.</b></p>
+  </div>
+</section>
+
+<section id="ladder">
+  <div class="wrap">
+    <div class="sec-head"><h2>The one-page card</h2><span>Screenshot this</span></div>
+    <div class="ladder">
+      <div class="rung">
+        <div class="r-num">0</div>
+        <div class="r-name">Complaint</div>
+        <div class="r-q">What does the client feel?</div>
+        <div class="r-ev">Nothing — it's a feeling, not a claim</div>
+      </div>
+      <div class="rung">
+        <div class="r-num">1</div>
+        <div class="r-name">The break</div>
+        <div class="r-q">Which number moved, from what to what?</div>
+        <div class="r-ev">Arithmetic — walk the funnel</div>
+      </div>
+      <div class="rung">
+        <div class="r-num">2</div>
+        <div class="r-name">The segment</div>
+        <div class="r-q">Which slice of the business is carrying it?</div>
+        <div class="r-ev">Arithmetic — cut the broken KPI</div>
+      </div>
+      <div class="rung is-key">
+        <div class="r-num">3</div>
+        <div class="r-name">The hypothesis</div>
+        <div class="r-q">Why would that slice behave that way?</div>
+        <div class="r-ev">Investigation — documents, lineage, records, recordings</div>
+      </div>
+      <div class="rung is-key">
+        <div class="r-num">4</div>
+        <div class="r-name">The root cause</div>
+        <div class="r-q">What exactly is broken, and who can fix it Monday?</div>
+        <div class="r-ev">Investigation — narrowed until it names a thing</div>
+      </div>
+      <div class="rung">
+        <div class="r-num">5</div>
+        <div class="r-name">The trigger</div>
+        <div class="r-q">When did it start, and what switched it on?</div>
+        <div class="r-ev">A timestamp lined up against the inflection</div>
+      </div>
+      <p class="ladder-note"><b>Segmentation moves you down a rung. Hypotheses tell you which cut to make next.</b> You alternate until you can name a fix with an owner.</p>
+    </div>
+  </div>
+</section>
+
+<section id="rungs">
+  <div class="wrap">
+    <div class="sec-head"><h2>1 · The ladder, rung by rung</h2><span>6 rungs</span></div>
+
+    <h3 class="sub">Rung 0 — the complaint</h3>
+    <p class="lede"><i>"My ROI got worse." · "Your data sucks." · "Lead quality fell off a cliff."</i></p>
+    <p class="lede">Not a hypothesis. Not a problem statement. It is the reason you were called. It usually contains at least one undefined word (<i>deals</i>, <i>ROI</i>, <i>quality</i>, <i>junk</i>) and one accusation. Your first job is to convert it into a number that moved — that's Step 1 of the method, and it is the whole of Q1 in a case.</p>
+
+    <h3 class="sub">Rung 1 — the break</h3>
+    <p class="lede"><i>"Net → Appointment fell from 20% to 11% while every other conversion held."</i></p>
+    <p class="lede">This is <b>where in the funnel</b> the loss happens. You find it by walking every adjacent conversion before and after — not by theorizing. It is arithmetic, and arithmetic cannot be argued with, which is why it is the strongest thing you will say all day.</p>
+    <p class="lede">A break is not a cause. "Net → Appointment broke" tells you nothing about <i>why</i>; it tells you which half of the business to stop looking at. That is worth enormous amounts of time.</p>
+
+    <h3 class="sub">Rung 2 — the segment</h3>
+    <p class="lede"><i>"Leads first contacted within 5 minutes still book at 38%. Leads contacted after 30 minutes book at 9%. And the share contacted within 5 minutes fell from 80% to 20%."</i></p>
+    <p class="lede">This is <b>where inside the business</b> the loss is concentrated. Still arithmetic — you are cutting the same broken KPI by a dimension the business actually operates on (channel, vendor, rep, piece, cohort, time bucket).</p>
+    <p class="lede">A segment is not a cause either. But it is the single highest-value move in the whole diagnostic, because one cut can kill several hypotheses at once.</p>
+
+    <h3 class="sub">Rung 3 — the hypothesis</h3>
+    <p class="lede"><i>"The team is not contacting new leads fast enough."</i></p>
+    <p class="lede">Now you are explaining <b>why</b> that segment behaves the way it does. This is the level the brainstorm question (Q3) is asking for. A rung-3 hypothesis is:</p>
+    <ul class="tight">
+      <li><b>A mechanism, not a name.</b> "Contact coverage failed," not "Jen failed."</li>
+      <li><b>Falsifiable.</b> You can state, in advance, the evidence that would kill it.</li>
+      <li><b>MECE against its siblings.</b> It sits alongside four or five other explanations that together cover every way this stage could break.</li>
+    </ul>
+    <p class="lede">A rung-3 hypothesis is a <i>category of causes</i>, not a fix. "Contact coverage failed" could be a staffing problem, a routing problem, a queue problem, an hours-of-operation problem, or a vendor problem. You cannot act on it yet.</p>
+
+    <h3 class="sub">Rung 4 — the root cause</h3>
+    <p class="lede"><i>"The lead manager resigned ten weeks ago and was never backfilled, so calls now go out in end-of-day batches."</i></p>
+    <p class="lede">The <b>one specific, fixable thing</b> inside the surviving branch. You are at rung 4 when the claim names something concrete — a person's absence, a setting, a version, a mapping, a rule, a workflow — and you can write a task with an owner and a date.</p>
+    <p class="lede">The move from rung 3 to rung 4 is <i>the same move</i> as rung 1 to rung 2: <b>you segment again, this time inside the branch.</b></p>
+
+    <h3 class="sub">Rung 5 — the trigger</h3>
+    <p class="lede"><i>"Week zero of the decline is the week the resignation took effect."</i></p>
+    <p class="lede" style="margin-bottom:0;">The change event that switched the root cause on. It is not strictly necessary to be right — but a timestamp that lines up with a metric inflection is the fastest and cheapest confirmation available, and it is what stops the same failure from recurring. This is why <code class="inline">diagnostic-playbook.md</code> calls the missing change-event log the highest-leverage gap in the whole system: without it, rung 5 has to be reconstructed by hand from invoices, exports, tickets, proofs, and interviews.</p>
+  </div>
+</section>
+
+<section id="three-questions">
+  <div class="wrap">
+    <div class="sec-head"><h2>2 · The three questions people actually ask</h2></div>
+
+    <h3 class="sub">"Which one is the hypothesis and which one is the root cause?"</h3>
+    <p class="lede">Take the example directly. (Illustration only — not one of the library cases.)</p>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Claim</th><th>Rung</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>"Deals are down and I think my cold callers have gotten lazy"</td><td class="mono">0 · complaint</td><td>An undefined outcome and an accusation</td></tr>
+          <tr><td>"Gross → Net fell from 62% to 44%; every other conversion held"</td><td class="mono">1 · break</td><td>A number that moved, found by arithmetic</td></tr>
+          <tr><td>"Four of the nine callers convert at 21% and carry ~40% of conversations; the other five are unchanged at 60%"</td><td class="mono">2 · segment</td><td>The same KPI, cut by who does the work</td></tr>
+          <tr class="is-key"><td><b>"Those callers aren't turning owner conversations into verified interest"</b></td><td class="mono"><b>3 · hypothesis</b></td><td>A mechanism. Testable. Not yet actionable</td></tr>
+          <tr class="is-key"><td><b>"All four started within the last 90 days and never received the owner-verification training"</b></td><td class="mono"><b>4 · root cause</b></td><td>Names a thing. Someone can fix it this week</td></tr>
+          <tr><td>"The March hiring wave, after the trainer left in February"</td><td class="mono">5 · trigger</td><td>A date and a record</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede">So: <i>"cold callers are performing badly"</i> is <b>rung 3</b>. <i>"the new cold callers were never trained"</i> is <b>rung 4</b>. They are not rivals — the second lives <i>inside</i> the first. Same branch, two depths.</p>
+
+    <h3 class="sub">"Are they both hypotheses, then?"</h3>
+    <p class="lede"><b>Yes.</b> Anything you believe and have not yet proved is a hypothesis, and you can hold one at every rung. Before you see the funnel, "I think the break is at Net → Appointment" is a hypothesis. Before you cut the data, "I think it's concentrated in one vendor" is a hypothesis.</p>
+    <div class="callout rule">
+      <span class="eyebrow">What changes with the rung is the evidence, not the status</span>
+      <p><b>Rungs 1–2 are settled by arithmetic. Rungs 3–4 are settled by investigation. Rung 5 is settled by a timestamp.</b></p>
+      <p>If you can't say which of those three would settle your claim, you haven't stated a claim yet. That is the practical value of knowing your rung: it tells you what to go get.</p>
+    </div>
+
+    <h3 class="sub">"So are they MECE with each other?"</h3>
+    <p class="lede">No — and the question is a category error, which is worth saying out loud because it is the most common confusion in the room.</p>
+    <div class="callout rule">
+      <p><b>MECE is a horizontal test. You apply it to a set of siblings on one rung. It is never a test between a parent and its child.</b></p>
+      <p>"Cold callers underperforming" and "new callers untrained" are parent and child. Asking whether they overlap is like asking whether <i>Texas</i> and <i>Dallas</i> are mutually exclusive. Of course they overlap — one is inside the other.</p>
+    </div>
+
+    <h3 class="sub">The failure this creates: layer mixing</h3>
+    <p class="lede">The real damage happens when rungs get mixed <i>among siblings</i>. A trainee lists:</p>
+    <div class="callout warn">
+      <span class="eyebrow">Broken branch list</span>
+      <p>offer economics &middot; rep execution &middot; <b>the new rep who started in March</b> &middot; the market</p>
+    </div>
+    <p class="lede">Three of those are rung-3 branches; one is a rung-4 root cause that belongs <i>inside</i> rep execution. The list is no longer mutually exclusive, and worse, the specific item hijacks the conversation — everyone starts arguing about the new rep instead of testing the four branches.</p>
+    <p class="lede"><b>Two tells that you have mixed layers:</b></p>
+    <ol class="tight">
+      <li>One item is far more specific than the others.</li>
+      <li>One item names a <b>person, tool, vendor, version, or date</b> while the others name <b>categories</b>.</li>
+    </ol>
+    <p class="lede" style="margin-bottom:0;"><b>The fix:</b> push the specific item down a rung. It isn't wrong — it's premature. Write it as a candidate <i>inside</i> its parent branch, and come back to it when the evidence gets there.</p>
+  </div>
+</section>
+
+<section id="generators">
+  <div class="wrap">
+    <div class="sec-head"><h2>3 · Where the branches come from</h2><span>2 generators</span></div>
+    <p class="lede">A rung-3 list should never feel like a memorized set. It should feel <i>generated</i>, because it is. There are only two generators, and which one you use depends on what kind of alarm you have.</p>
+
+    <h3 class="sub">Generator A — a conversion broke (a rate moved)</h3>
+    <p class="lede">A conversion is one population turning into a smaller population. For that to happen, five things must be true. Ask them in order, in plain language:</p>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>#</th><th>The question</th><th>The branch</th><th>Example failure</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">1</td><td class="strong">Did the right thing arrive?</td><td><b>Input / fit</b></td><td>Off-buy-box appointments, wrong-party phone numbers, suppressed records mailed</td></tr>
+          <tr><td class="mono">2</td><td class="strong">Did we work it?</td><td><b>Coverage / capacity</b></td><td>Too slow, too few attempts, shallow phone-position coverage, queue not staffed</td></tr>
+          <tr><td class="mono">3</td><td class="strong">Did we work it well?</td><td><b>Execution / economics</b></td><td>Offer formula too low, weak objection handling, wrong script</td></tr>
+          <tr><td class="mono">4</td><td class="strong">Did we count it?</td><td><b>Measurement</b></td><td>Stage definition changed, CRM migration, disposition mapping</td></tr>
+          <tr><td class="mono">5</td><td class="strong">Did the other side change?</td><td><b>External</b></td><td>Seller expectations, competing offers, market, regulation</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede">Five branches, always. They are MECE by construction: a conversion cannot fail for a reason outside "wrong input, no work, bad work, miscounted, or the world changed." Run the <b>conclusiveness test</b> on it: if all five came back clean, could the rate still have dropped? No. That's what makes it collectively exhaustive.</p>
+
+    <h3 class="sub">Generator B — a volume fell (a count dropped with rates intact)</h3>
+    <p class="lede">Volume is not a conversion; it's a chain. Follow the record from intention to response: <b>Planned → Eligible → Sent/Delivered → Reached → Responded.</b> Each arrow is a place volume disappears, and each has its own owner.</p>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Step</th><th>Volume vanishes because&hellip;</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Planned</td><td>Spend, cadence, or selected-record volume fell</td></tr>
+          <tr><td class="strong">Eligible</td><td>Buy box, list source, exclusions, suppression, or a compliance hold shrank the usable audience</td></tr>
+          <tr><td class="strong">Sent / Delivered</td><td>Vendor config, carrier filtering, mail production, or a dialer failure</td></tr>
+          <tr><td class="strong">Reached</td><td>Wrong numbers, shallow phone-position coverage, returned mail, a broken response path</td></tr>
+          <tr><td class="strong">Responded</td><td>Creative, offer, saturation, or genuine market propensity</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede">Use the channel waterfalls in <code class="inline">case-library/README.md</code> to instantiate this for SMS, Cold Call, and Direct Mail.</p>
+    <div class="callout rule">
+      <span class="eyebrow">Which generator</span>
+      <p><b>If a rate moved, use Generator A. If a count fell but every rate held, use Generator B.</b></p>
+      <p>If a count fell <i>and</i> a rate moved, you have two problems. Quantify each, fix the larger, recompute the whole funnel, and let the residual pick the next branch (<code class="inline">diagnostic-playbook.md</code> §4.7).</p>
+    </div>
+  </div>
+</section>
+
+<section id="segmentation">
+  <div class="wrap">
+    <div class="sec-head"><h2>4 · Segmentation — when, and why</h2></div>
+    <p class="lede">This is the piece that most often feels like magic. It isn't.</p>
+    <div class="callout rule">
+      <p><b>Segmentation is not a hypothesis. It is the instrument that tells you which hypotheses are worth testing.</b></p>
+    </div>
+
+    <h3 class="sub">Segmentation does three different jobs</h3>
+    <ol class="tight">
+      <li><b>Segment to locate — <i>before</i> you theorize.</b> You have an alarm and no belief yet. Cut the broken KPI by the dimensions the business runs on. You are not testing anything; you are finding out where the loss lives. This is cheap, uses data you already have, and — the important part — <b>one cut can kill several branches simultaneously</b>.</li>
+      <li><b>Segment to test — <i>after</i> you have a hypothesis.</b> Now the cut <i>is</i> the experiment. A good hypothesis predicts a specific pattern: <i>"If the vendor's attempt depth is the cause, Gross → Net should differ by vendor and by highest phone position attempted — and should <b>not</b> differ by list source."</i> Run the cut. The pattern appears or it doesn't. State the prediction <b>before</b> you look, or you'll find a story in any table.</li>
+      <li><b>Segment to rule out — to protect the answer you already have.</b> Cut the <i>other</i> way, deliberately looking for the thing that would embarrass you. If every rep shows the identical pattern, it is not the reps. If the decline is the same inside all three channels, channel is not causal. Ruling out is not wasted time; it is most of the time, and it is what makes a recommendation survive contact with the client.</li>
+    </ol>
+
+    <h3 class="sub">The loop: hypothesis and segmentation alternate</h3>
+    <p class="lede">You do not build a tree and then test it. You do this:</p>
+    <div class="loop">
+      <ol>
+        <li>alarm</li>
+        <li><span class="cut">cut</span> → the loss is concentrated over here</li>
+        <li><b>why?</b> → 5 branches, and this cut already killed 2 of them</li>
+        <li>the surviving branch predicts a pattern</li>
+        <li><span class="cut">cut</span> → the loss is concentrated in this sub-slice</li>
+        <li><b>why?</b> → 3 candidates inside the branch, and the cut killed 2</li>
+        <li>the survivor names a thing → <b>root cause</b></li>
+        <li>find its date → <b>trigger</b></li>
+      </ol>
+    </div>
+    <p class="lede"><b>Every cut converts a "why?" question into a "where?" question, and every "where?" answer kills some "why"s for free.</b> That is the entire engine.</p>
+    <p class="lede">This is also the answer to <i>"when do I segment once I have my hypotheses?"</i> — <b>immediately, and again after every hypothesis.</b> Segmentation is not a phase that happens once between Q2 and Q3. It runs the whole way down the ladder.</p>
+
+    <h3 class="sub">Segmentation gets you from rung 3 to rung 4, too</h3>
+    <p class="lede">People think of segmentation as a rung-1→2 tool. It is equally the rung-3→4 tool. Take the cold-caller example all the way down:</p>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Step</th><th>Move</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Branch survives</td><td>"Caller execution is the problem" (rung 3)</td><td>Not actionable yet</td></tr>
+          <tr><td class="strong">Cut by caller</td><td>4 of 9 callers are far below the rest</td><td>Narrower, still not a cause</td></tr>
+          <tr><td class="strong">Cut those 4 by tenure</td><td>All four started within the last 90 days</td><td>Now a pattern with a shape</td></tr>
+          <tr><td class="strong">Check onboarding</td><td>No owner-verification training was delivered</td><td class="good">Root cause (rung 4)</td></tr>
+          <tr><td class="strong">Find the date</td><td>The March hiring wave; the trainer left in February</td><td class="good">Trigger (rung 5)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede">Notice what the tenure cut did for free: it killed <i>"the script changed"</i> and <i>"compensation changed"</i> without testing either, because those would have hit tenured callers too.</p>
+
+    <h3 class="sub">Which dimension do I cut by first?</h3>
+    <p class="lede">Two rules. Use the first when you have live competing hypotheses; use the second when you don't yet.</p>
+    <p class="lede"><b>Rule 1 — cut where your hypotheses disagree.</b> A cut is only useful if your candidate causes predict <i>different</i> patterns under it. If two hypotheses predict the same table, that cut cannot separate them — pick another. The best first cut is the one your live hypotheses disagree about most.</p>
+    <p class="lede"><b>Rule 2 — the standard order for this business.</b> When you have no strong prior, cut in this order. It is not arbitrary; each level is inside the one above it.</p>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Order</th><th>Cut</th><th>Why here</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">1</td><td class="strong">Marketing channel<br>(SMS · Cold Call · Direct Mail)</td><td>Every operating unit lives inside a channel, and a blended number can hide one dead one. <b>Mandatory, even when it turns out not to be causal</b> — ruling it out is a result</td></tr>
+          <tr><td class="mono">2</td><td class="strong">Time</td><td>An inflection date is a free hypothesis filter: only causes that existed on that date survive</td></tr>
+          <tr><td class="mono">3</td><td class="strong">Operating unit<br>(vendor · caller · setter · rep · piece · campaign)</td><td>Separates a person/vendor problem from a system problem</td></tr>
+          <tr><td class="mono">4</td><td class="strong">Population attribute<br>(buy-box fit · ARV band · county · skiptrace age · list source)</td><td>Separates "wrong records arrived" from "the work was bad"</td></tr>
+          <tr><td class="mono">5</td><td class="strong">Process state<br>(speed bucket · attempt count · scheduled vs. attended · fallout reason)</td><td>Locates the exact step inside the stage</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">The one cut that separates people from systems</h3>
+    <div class="callout rule">
+      <span class="eyebrow">Memorize this one</span>
+      <p><b>If every operator shows the same pattern, it is the system they share</b> — the tool, the formula, the data, the workflow, the version.</p>
+      <p><b>If one operator differs, it is that operator</b> — or the vendor, cohort, or file that only they touch.</p>
+      <p>Owners blame people; the data usually points at a shared setting. Run this cut before you agree to retrain anyone.</p>
+    </div>
+
+    <h3 class="sub">When are recordings, interviews, and shadowing the right test?</h3>
+    <p class="lede" style="margin-bottom:0;"><b>Second, never first.</b> Segmented data establishes <i>how widespread</i> something is; a recording explains <i>why</i> a cohort moved. Sample from the abnormal cohort <b>and a healthy control</b>, after the cut has told you which cohort to sample. A convenient random handful proves nothing about prevalence and will happily confirm whatever you already believed.</p>
+  </div>
+</section>
+
+<section id="priority">
+  <div class="wrap">
+    <div class="sec-head"><h2>5 · Prioritization — why we test in that order</h2></div>
+    <div class="callout rule">
+      <span class="eyebrow">The sort rule, in one line</span>
+      <p>Rank by <b>how much of the gap could this explain?</b> × <b>how fast can I know?</b> — then let change-log evidence and discriminating power break ties.</p>
+    </div>
+
+    <h3 class="sub">The four questions, in the order they bind</h3>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>#</th><th>Question</th><th>What it does</th><th>Cost</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">1</td><td class="strong">Could this explain the whole gap?</td><td>Screens out branches too small to be the answer. A cause that can only explain 10% of a 50% drop is not the main story</td><td>Free — back of envelope</td></tr>
+          <tr><td class="mono">2</td><td class="strong">How fast can I know?</td><td>Segmentations resolve today with data you have. Vendor audits take a week. Market studies take longer</td><td>Free to estimate</td></tr>
+          <tr><td class="mono">3</td><td class="strong">How often is this the answer here?</td><td>Prior likelihood, from the playbook and the case library. A change event that timestamps to the inflection is a massive boost</td><td>Free</td></tr>
+          <tr><td class="mono">4</td><td class="strong">What if I'm wrong to skip it?</td><td>Compliance holds, suppression-tag leakage, and data-lineage defects jump the queue not because they're likely but because being wrong is expensive</td><td>Judgment</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede">Questions 1 and 2 do most of the sorting. Question 3 breaks ties. Question 4 overrides everything when the downside is regulatory or reputational.</p>
+
+    <h3 class="sub">Prioritization happens twice — this is the part that's usually skipped</h3>
+    <p class="lede"><b>Round 1 — before any evidence.</b> You rank the five branches on size × speed. Almost always, the winner of round 1 is <b>not a hypothesis test at all — it's a segmentation</b>, because a cut scores maximum on speed and re-ranks everything below it. That is why "what would you test first?" is nearly always answered with a cut.</p>
+    <p class="lede"><b>Round 2 — after the cut.</b> The loss is now concentrated somewhere. Re-rank, but only among hypotheses that survive <i>inside that segment</i>. Several branches are now dead for free, and the ones that remain have new sizes: a branch that could only have explained 10% before might explain 100% of the concentrated loss.</p>
+    <div class="callout rule">
+      <p><b>Round 1 is a guess. Round 2 is a posterior.</b> Never present round 1 as your plan of record — present it as "here's the cut that will tell us what to test."</p>
+    </div>
+
+    <h3 class="sub">A worked sort</h3>
+    <p class="lede">Alarm: <b>Net → Appointment fell 20% → 11%; every other conversion held.</b></p>
+    <p class="lede"><b>Round 1:</b></p>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Rank</th><th>Candidate</th><th>Could explain the gap?</th><th>How fast?</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr class="is-key"><td class="mono">1</td><td><b>Cut by channel, then by first-contact-time bucket</b></td><td>n/a — it's a cut, and it discriminates between coverage, execution, and external</td><td>Same day, existing CRM timestamps</td><td class="good">Do this first</td></tr>
+          <tr><td class="mono">2</td><td>Coverage — leads not worked fast/often enough</td><td>Yes, fully</td><td>Answered by the cut above</td><td>Queued behind the cut</td></tr>
+          <tr><td class="mono">3</td><td>Input — the incremental leads aren't really net leads</td><td>Yes, fully</td><td>One buy-box-fit cut</td><td>Cheap; run alongside</td></tr>
+          <tr><td class="mono">4</td><td>Execution — booking conversation got worse</td><td>Yes, but only if it hit everyone</td><td>Needs recordings — slow</td><td>Only if the cut points here</td></tr>
+          <tr><td class="mono">5</td><td>External — sellers changed</td><td>Yes, but should hit all buckets equally</td><td>Market data, slow</td><td>Rule out last</td></tr>
+          <tr><td class="mono">6</td><td>Measurement — appointments not recorded</td><td>Rarely this large</td><td>One definition check</td><td>Cheap rule-out</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede"><b>Round 2, after the cut:</b> fast-contact leads still book at 38% (above the ≥35% healthy line); slow-contact leads book at 9%; the slow bucket grew from 20% to 80% of volume.</p>
+    <ul class="tight">
+      <li><b>Execution dies</b> — the conversation still works when it happens.</li>
+      <li><b>External dies with it</b> — if sellers had changed, the fast bucket would have fallen too.</li>
+      <li><b>Input weakens</b> — the same leads convert fine when reached quickly.</li>
+      <li><b>Coverage is now the only branch that can carry the whole gap</b>, and it went from rank 2 to the only thing on the list.</li>
+    </ul>
+    <p class="lede" style="margin-bottom:0;">One cut, four branches resolved. That is what "why we sorted it this way" means in practice: <b>you don't sort to find the answer, you sort to find the cheapest question whose answer re-sorts everything else.</b></p>
+  </div>
+</section>
+
+<section id="flat-lines">
+  <div class="wrap">
+    <div class="sec-head"><h2>6 · Read the flat lines</h2></div>
+    <p class="lede">The numbers that <i>didn't</i> move do most of the work, and beginners skip right past them.</p>
+    <p class="lede">When a client doubles the appointments they attend and the number of signed contracts lands on <b>exactly</b> its old value, that is not "no change." It is the loudest fact in the room: the added appointments produced <b>zero</b> contracts. A general decline in rep skill would have moved contracts a little, up or down. Exactly-flat says the added population is categorically different from the original one — and that points straight at Input, before any exhibit is opened.</p>
+    <p class="lede">Three flat-line reads worth having ready:</p>
+    <ul class="tight">
+      <li><b>A stage held at its old absolute number while its input grew</b> → the added input is the problem, not the work.</li>
+      <li><b>Every conversion held while every count fell proportionally</b> → nothing broke inside the funnel; the problem is upstream volume (Generator B).</li>
+      <li><b>A blended rate held while its parts diverged</b> → the mix changed, not the performance. A blend can sit exactly on benchmark while one half is excellent and the other is broken. Never accept a blended number as evidence that a segment is healthy.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="stop-rules">
+  <div class="wrap">
+    <div class="sec-head"><h2>7 · Stop rules</h2></div>
+    <p class="lede"><b>When is a hypothesis dead?</b> When a piece of evidence that the hypothesis <i>predicted</i> failed to appear. Dead branches are results — say them out loud. "It isn't the reps, and here's how I know" is worth as much as naming the cause, and it's most of what protects the recommendation.</p>
+    <p class="lede"><b>When is a root cause deep enough?</b> All three must be true:</p>
+    <ol class="tight">
+      <li><b>Actionable</b> — you can name an owner and a first task.</li>
+      <li><b>Sufficient</b> — applied on paper to the funnel, it closes the gap. If it closes only part, you have a second issue; branch from the residual KPI.</li>
+      <li><b>Preventable</b> — fixing it, plus a control, would stop the recurrence.</li>
+    </ol>
+    <p class="lede"><b>Can you go too deep?</b> Yes. "No backfill policy" → "no workforce planning" → "the company grew too fast" are all true and none of them restores $100k this month. Stop at the layer the client can act on. Anything deeper is a <b>prevention item</b> for the recommendation, not the root cause.</p>
+    <p class="lede" style="margin-bottom:0;"><b>When are you done?</b> When the counterfactual funnel — your fix applied to the actual before/after numbers — reproduces the baseline. If it doesn't, you are not done, no matter how confident the story sounds.</p>
+  </div>
+</section>
+
+<section id="worked">
+  <div class="wrap">
+    <div class="sec-head"><h2>8 · The full worked example — Trinity River</h2><span>All six rungs</span></div>
+    <p class="lede">The running case from <code class="inline">mckinsey-method.md</code>, climbed all the way down. Baseline: 500 gross leads → 350 net (70%) → 70 appointments (20%) → 14 contracts (20%) → ~10 closings (~71%), at <b>$25,000</b> gross profit per closed deal and $15,000/month spend.</p>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Rung</th><th>Claim</th><th>Evidence that settled it</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">0 · Complaint</td><td>"Profit is down and nobody can tell me why"</td><td>— ($235k → $185k → $135k/mo)</td></tr>
+          <tr><td class="strong">1 · Break</td><td>Net → Appointment fell 20% → 11%; appointments 70 → 40. Spend, gross leads, net leads, and every other conversion flat</td><td><b>Arithmetic.</b> One funnel walk, one query</td></tr>
+          <tr><td class="strong">2 · Segment</td><td>Leads contacted &lt;5 min book at 38%; &gt;30 min book at 9%. Share contacted &lt;5 min fell 80% → 20%</td><td><b>Arithmetic.</b> One cut by first-contact-time bucket</td></tr>
+          <tr class="is-key"><td class="strong">3 · Hypothesis</td><td>Of Input / Coverage / Execution / Measurement / External — only <b>Coverage</b> survives. Execution and External die because the fast bucket still converts above the ≥35% healthy line; Input dies because they're the same leads</td><td><b>The cut itself</b>, plus the healthy control</td></tr>
+          <tr class="is-key"><td class="strong">4 · Root cause</td><td>The lead manager resigned and was never backfilled; first contact now happens in end-of-day batches</td><td>Roster + queue timestamps. Names a role, a gap, and a behavior</td></tr>
+          <tr><td class="strong">5 · Trigger</td><td>The decline starts the week the resignation took effect, ten weeks ago</td><td>A date against the inflection</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede"><b>Sufficiency check:</b> restore &lt;5-minute contact → 70 appointments → 14 contracts → ~10 closings. Gap closes. <b>≈ +4 closed deals/month × $25,000 ≈ +$100k/mo (~$1.2m/yr).</b></p>
+    <p class="lede"><b>Where a weaker answer stops:</b></p>
+    <ul class="tight">
+      <li><b>"Speed to lead is bad."</b> That's rung 3 dressed up as an answer. It names no owner and no task.</li>
+      <li><b>"Jen isn't performing."</b> Layer mixing — a person named among categories, and factually wrong: Jen left.</li>
+      <li><b>"They need a workforce-planning process."</b> Too deep. True, but it doesn't recover this month's $100k. Put it in the recommendation as the prevention control.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="stuck">
+  <div class="wrap">
+    <div class="sec-head"><h2>9 · Stuck? Find your rung</h2><span>Use mid-case</span></div>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>If you catch yourself saying&hellip;</th><th>You're missing</th><th>Do this next</th></tr></thead>
+        <tbody>
+          <tr><td>"Something's wrong with their funnel"</td><td class="mono">Rung 1</td><td>Compute every adjacent conversion before/after. Usually exactly one moved</td></tr>
+          <tr><td>"It could be a hundred things"</td><td class="mono">Rung 2</td><td>Cut the broken KPI by channel. The list shrinks by two-thirds in one move</td></tr>
+          <tr><td>"I think it's the reps"</td><td class="mono">Evidence</td><td>Ask: what cut would prove it <i>isn't</i> the reps? Run that cut</td></tr>
+          <tr><td>"I found the segment but I don't know why"</td><td class="mono">Rung 3</td><td>Run the five questions: right input? worked it? worked it well? counted it? other side changed?</td></tr>
+          <tr><td>"I have a branch but no fix"</td><td class="mono">Rung 4</td><td>Segment <i>inside</i> the branch until you can name an owner and a Monday task</td></tr>
+          <tr><td>"I'm sure of the cause but can't prove it"</td><td class="mono">Rung 5</td><td>Find the date. Line the inflection up against a change event</td></tr>
+          <tr><td>"My fix doesn't close the whole gap"</td><td class="mono">A second issue</td><td>Recompute the entire funnel. The residual KPI names the next branch</td></tr>
+          <tr><td>"I have six hypotheses and no idea where to start"</td><td class="mono">The sort</td><td>Rank by <i>could this explain the whole gap</i> × <i>how fast can I know</i>. The winner is usually a cut, not a test</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="case-map">
+  <div class="wrap">
+    <div class="sec-head"><h2>10 · How this maps to the case interview</h2></div>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Case question</th><th>Rungs in play</th><th>What the interviewer is scoring</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Opening prompt</td><td class="mono">0</td><td>Do you convert a complaint into a measurable problem, or accept the client's accusation?</td></tr>
+          <tr><td class="strong">Q1 · Structure</td><td class="mono">0 → 1</td><td>Do you define the ambiguous words and name the evidence you need <i>before</i> theorizing?</td></tr>
+          <tr><td class="strong">Q2 · Quant</td><td class="mono">1</td><td>Do you walk every adjacent conversion, isolate the one that moved, and price it in <b>closings</b>?</td></tr>
+          <tr><td class="strong">Q3 · Brainstorm</td><td class="mono">3, then 2, then 4</td><td>Do you generate MECE branches at one rung, then pick the <b>cut</b> that separates them — rather than defending a favorite?</td></tr>
+          <tr><td class="strong">Q4 · Synthesis</td><td class="mono">4 + 5</td><td>Do you lead with the fix, name the trigger, and prove the branches you eliminated?</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede" style="margin-bottom:0;">The most common scoring failure in Q3 is not a missing hypothesis. It is <b>answering "what would you test first?" with a hypothesis instead of a cut.</b></p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head"><h2>FAQ</h2><span>19 questions</span></div>
+    <div class="faq">
+
+      <details open>
+        <summary>"The cold callers are underperforming" — hypothesis or root cause?</summary>
+        <div class="a"><p>Hypothesis, rung 3. It's the <i>Execution</i> branch of the five-branch tree. It's testable, but you can't act on it: there is no task called "fix underperformance."</p></div>
+      </details>
+
+      <details>
+        <summary>And "the new cold callers were never trained"?</summary>
+        <div class="a"><p>Root cause, rung 4. It sits <i>inside</i> the hypothesis above. It names who, what, and what to do about it.</p></div>
+      </details>
+
+      <details>
+        <summary>Are they both hypotheses?</summary>
+        <div class="a"><p>Yes. Anything unproved is a hypothesis. The rung doesn't change whether it's a hypothesis — it changes what evidence settles it. Rungs 1–2: arithmetic. Rungs 3–4: investigation. Rung 5: a timestamp.</p></div>
+      </details>
+
+      <details>
+        <summary>Are they MECE with each other?</summary>
+        <div class="a"><p>The question doesn't apply. MECE is a test among <b>siblings on one rung</b>, never between a parent and its child. Asking whether they overlap is like asking whether Texas and Dallas are mutually exclusive.</p></div>
+      </details>
+
+      <details>
+        <summary>My brainstorm list has "offer economics, rep execution, the new rep who started in March, and the market." What's wrong?</summary>
+        <div class="a"><p>Layer mixing. Three branches and one root cause standing among them. Push the specific one down inside <i>rep execution</i> and keep the siblings at the same altitude. The tell: one item names a person or a date while the others name categories.</p></div>
+      </details>
+
+      <details>
+        <summary>How do I know I've gone deep enough?</summary>
+        <div class="a"><p>Three tests: <b>actionable</b> (you can name an owner and a first task), <b>sufficient</b> (applied on paper, it closes the whole gap), <b>preventable</b> (fixing it plus a control stops recurrence). Miss any one and you're not at rung 4 yet.</p></div>
+      </details>
+
+      <details>
+        <summary>Can I go too deep?</summary>
+        <div class="a"><p>Yes. "No backfill policy" → "no workforce planning" → "grew too fast." All true, none recovers this month's money. Stop where the client can act; put the deeper layer in the recommendation as a prevention control.</p></div>
+      </details>
+
+      <details>
+        <summary>When exactly do I segment — before or after I have hypotheses?</summary>
+        <div class="a"><p>Both, and repeatedly. Before, to find where the loss lives (you need almost no theory for this). After, because a hypothesis predicts a pattern and the cut is how you check it. Segmentation isn't a phase — it's the rung-change mechanism.</p></div>
+      </details>
+
+      <details>
+        <summary>Why is "what do you test first?" almost always answered with a segmentation?</summary>
+        <div class="a"><p>Because a cut is the cheapest question with the biggest re-ranking effect. Testing one hypothesis resolves one branch. A good cut resolves several at once and re-prioritizes what's left. Speed × discriminating power beats confidence in a favorite theory.</p></div>
+      </details>
+
+      <details>
+        <summary>Which dimension do I cut by first?</summary>
+        <div class="a"><p>Cut where your live hypotheses <b>disagree</b> — a cut that produces the same table under two hypotheses can't separate them. Absent a strong prior, use the house order: channel → time → operating unit → population attribute → process state.</p></div>
+      </details>
+
+      <details>
+        <summary>The exhibit shows every rep with the same pattern. What does that tell me?</summary>
+        <div class="a"><p>That it isn't the reps. Identical behavior across independent operators points at the thing they <b>share</b>: the tool, the formula, the data version, the workflow. One operator differing points at that operator, their vendor, or their file.</p></div>
+      </details>
+
+      <details>
+        <summary>My hypotheses feel like a random list. How do I know I'm not missing one?</summary>
+        <div class="a"><p>Stop listing and start generating. A rate moved → five questions (right input? worked it? worked it well? counted it? other side changed?). A count fell → the waterfall (planned → eligible → delivered → reached → responded). Then run the conclusiveness test: if all branches came back clean, could the number still have moved? If yes, you're missing a branch.</p></div>
+      </details>
+
+      <details>
+        <summary>What if the segmentation shows nothing — every slice moved the same amount?</summary>
+        <div class="a"><p>That's a real result, not a failed test. A uniform decline points at something <i>shared by everything</i>: a company-wide setting, a definition change, a shared vendor, or a genuine external shift. It also tells you to stop cutting on that dimension and cut on another.</p></div>
+      </details>
+
+      <details>
+        <summary>What if I can't segment — the data doesn't exist?</summary>
+        <div class="a"><p>Say so explicitly, then use the cheapest proxy: a manual sample, a date-bounded comparison, or a reconstruction from invoices, exports, proofs, and tickets. Name the missing instrumentation as a finding in its own right — that is exactly how the change-event-log gap was identified.</p></div>
+      </details>
+
+      <details>
+        <summary>When do I listen to call recordings?</summary>
+        <div class="a"><p>After the cut, never before. Segmented data establishes <i>how widespread</i> something is; recordings explain <i>why</i> a cohort moved. Sample the abnormal cohort <b>and</b> a healthy control, or you'll confirm whatever you already believed.</p></div>
+      </details>
+
+      <details>
+        <summary>Two things broke at once. Does the ladder still work?</summary>
+        <div class="a"><p>Yes — you run it twice. Quantify each break, fix the larger on paper, recompute the <b>entire</b> funnel, and let the residual KPI select the next branch. The two advanced cases in the library are built to teach exactly this. The trap is stopping at the first true cause: true and sufficient are different claims.</p></div>
+      </details>
+
+      <details>
+        <summary>The client already told me the cause. Do I still build the tree?</summary>
+        <div class="a"><p>Yes, and quickly. The client's explanation becomes one branch, not the conclusion — treat it as the hypothesis with the highest prior, not as a finding. Half of these engagements end with the client's stated cause being real but not sufficient, or real but downstream of the actual trigger.</p></div>
+      </details>
+
+      <details>
+        <summary>Isn't this just the Five Whys?</summary>
+        <div class="a"><p>Same instinct, more discipline. Five Whys walks a single chain and has no test for whether you've missed a branch or gone too deep. The ladder pairs each "why" with an explicit MECE branch set, a cut that discriminates, and a sufficiency check against the funnel.</p></div>
+      </details>
+
+      <details>
+        <summary>Where do I go next?</summary>
+        <div class="a"><p><a href="mckinsey-method.html">The Method Reference</a> for the seven steps · <a href="diagnostic-playbook.html">The Diagnostic Playbook</a> for hypotheses, tests, and actions per KPI · <a href="gnacc-reference.html">GNACC Reference</a> for every benchmark (never invent a rate) · <a href="case-library.html">Case Library</a> for the channel waterfalls and how cases are run.</p></div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Rendered from <code class="inline">hypothesis-to-root-cause.md</code> — the markdown file is the source of truth. All benchmarks are 8020REI's own (<code class="inline">gnacc-reference.md</code>); Trinity River Home Buyers is the fictional running case from the Problem-Solving Guide.</p>
+  </div>
+</footer>
+
+</body>
+</html>

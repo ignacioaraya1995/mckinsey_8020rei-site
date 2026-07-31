@@ -664,6 +664,15 @@ blockquote.model b { color:var(--ink); font-style:normal; }
 .gloss:hover::after,.gloss:focus::after { opacity:1; visibility:visible; }
 .context-card table.data { margin:10px 0 4px; }
 .context-card table.data td,.context-card table.data th { vertical-align:top; }
+.ladder-card table.data { margin:10px 0 14px; }
+.ladder-card table.data td,.ladder-card table.data th { vertical-align:top; }
+.ladder-card table.data th[scope="row"] { white-space:nowrap; }
+/* Ladder cells are prose, not figures — override the renderer's numeric detection. */
+.ladder-card table.data td.numeric {
+  font-family:inherit;
+  font-size:inherit;
+  text-align:left;
+}
 
 @media (max-width:1040px) {
   #casefile { padding-top:18px; }

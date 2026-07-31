@@ -224,6 +224,25 @@
       <span class="eyebrow">From the Spanish mnemonic Segmentar → Aislar → Explorar</span>
       <p>This is the algorithm behind the hypothesis table in §4: each entry's "segment first" test column is SAE step 1, the key-signature lines are step 2, and the action column is deliberately last because exploring comes last. <i>(Problem-definition framework after Barbara Minto; SAE from classic case-interview literature.)</i></p>
     </div>
+
+    <h3 class="sub">What rung the §4 tables live on — and why the "Hypothesis" column is not the answer</h3>
+    <p class="lede">Every entry in the §4 hypothesis tables is a <b>rung-3 branch</b>: a mechanism that could explain the deviation, paired with the cut that would confirm or kill it. It is deliberately <i>not</i> a root cause. Compare:</p>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr><th>Rung</th><th>Example</th><th>Can you act on it?</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">3 · Hypothesis<br>(what a §4 row gives you)</td><td>"Correct-owner contactability declined"</td><td class="bad">No — it names a category, not a thing</td></tr>
+          <tr><td class="strong">4 · Root cause<br>(what the diagnostic must produce)</td><td>"The vendor's dialer mapping loads three of the fifteen supplied phone fields"</td><td class="good">Yes — it has an owner and a first task</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede">The <b>Test / evidence</b> column moves you from rung 3 to rung 4, and it does so by segmenting <i>inside</i> the branch. The <b>If confirmed → action</b> column already assumes you got there: you cannot execute "correct the vendor SOW" until the evidence has named which rule, in which document, changed by whom. A diagnostic that stops at the Hypothesis column has produced a category, not a recommendation.</p>
+    <p class="lede">Two rules follow, and they explain the ordering used throughout §4:</p>
+    <ol class="tight">
+      <li><b>Prioritize twice.</b> Rank the branches before any evidence on <i>could this explain the whole gap</i> × <i>how fast can I know</i> — which is why every table's first row is a segmentation, not a theory. Then re-rank after the cut, among only the branches that survive inside the concentrated segment. The first ranking is a guess; the second is a posterior.</li>
+      <li><b>Pick the cut where the live branches disagree.</b> A segmentation that produces the same table under two competing hypotheses cannot separate them. Channel comes first everywhere in §4 because almost every branch predicts a different channel pattern — and because a blended KPI can sit exactly on benchmark while one channel inside it is broken.</li>
+    </ol>
+    <p class="lede" style="margin-bottom:0;">Vocabulary, the branch generators, the stop rules, and a student FAQ: <a href="hypothesis-to-root-cause.html"><b>From Hypothesis to Root Cause</b></a>.</p>
   </div>
 </section>
 
@@ -480,7 +499,7 @@
         <tbody>
           <tr><td class="strong">1 · Define</td><td>Triggered by KPI vs. baseline/trend. Template: <i>"Client X's [ratio] fell from A% to B% between [dates]; identify root cause and restore to baseline within [horizon]."</i></td></tr>
           <tr><td class="strong">2 · Structure</td><td>Pre-built: the hypothesis tree for that KPI (§4). Built once, MECE, reused.</td></tr>
-          <tr><td class="strong">3 · Prioritize</td><td>Rank hypotheses by prior likelihood (boosted hugely by change-log correlation) × ease of testing. Segmentation tests first.</td></tr>
+          <tr><td class="strong">3 · Prioritize</td><td>Two rounds. <b>Round 1</b>, before evidence: rank on <i>could this explain the whole gap</i> × <i>how fast can I know</i>, with prior likelihood (boosted hugely by change-log correlation) and cost-of-being-wrong as tie-breakers — the winner is almost always a segmentation, not a hypothesis test. <b>Round 2</b>, after the cut: re-rank only the branches surviving inside the concentrated segment. See §2.</td></tr>
           <tr><td class="strong">4 · Plan</td><td>Each hypothesis row already names its data pull.</td></tr>
           <tr><td class="strong">5 · Analyze</td><td>Run the pulls against client data.</td></tr>
           <tr><td class="strong">6 · Synthesize</td><td>SCR: <i>Situation</i> (baseline), <i>Complication</i> (decline + timing), <i>Resolution</i> (confirmed root cause).</td></tr>

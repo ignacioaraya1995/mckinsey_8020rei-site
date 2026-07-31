@@ -58,6 +58,24 @@ This is the algorithm behind the hypothesis table in §4: each entry's "segment 
 
 *(Problem-definition framework after Barbara Minto; SAE from classic case-interview literature.)*
 
+### What rung the §4 tables live on — and why the "Hypothesis" column is not the answer
+
+Every entry in the §4 hypothesis tables is a **rung-3 branch**: a mechanism that could explain the deviation, paired with the cut that would confirm or kill it. It is deliberately *not* a root cause. Compare:
+
+| Rung | Example | Can you act on it? |
+|---|---|---|
+| 3 · Hypothesis (what a §4 row gives you) | "Correct-owner contactability declined" | No — it names a category, not a thing |
+| 4 · Root cause (what the diagnostic must produce) | "The vendor's dialer mapping loads three of the fifteen supplied phone fields" | Yes — it has an owner and a first task |
+
+The **Test / evidence** column moves you from rung 3 to rung 4, and it does so by segmenting *inside* the branch. The **If confirmed → action** column already assumes you got there: you cannot execute "correct the vendor SOW" until the evidence has named which rule, in which document, changed by whom. A diagnostic that stops at the Hypothesis column has produced a category, not a recommendation.
+
+Two rules follow, and they explain the ordering used throughout §4:
+
+1. **Prioritize twice.** Rank the branches before any evidence on *could this explain the whole gap* × *how fast can I know* — which is why every table's first row is a segmentation, not a theory. Then re-rank after the cut, among only the branches that survive inside the concentrated segment. The first ranking is a guess; the second is a posterior.
+2. **Pick the cut where the live branches disagree.** A segmentation that produces the same table under two competing hypotheses cannot separate them. Channel comes first everywhere in §4 because almost every branch predicts a different channel pattern — and because a blended KPI can sit exactly on benchmark while one channel inside it is broken.
+
+Vocabulary, the branch generators, the stop rules, and a student FAQ: `hypothesis-to-root-cause.md`.
+
 ---
 
 ## 3. The funnel (KPI taxonomy — CONFIRMED: it's GNACC)
@@ -259,7 +277,7 @@ Cases 08 and 09 demonstrate the method: each partial fix is necessary, none is s
 |---|---|
 | 1. Define | Triggered by KPI vs. baseline/trend. Template: *"Client X's [ratio] fell from A% to B% between [dates]; identify root cause and restore to baseline within [horizon]."* |
 | 2. Structure | Pre-built: the hypothesis tree for that KPI (§4). Built once, MECE, reused. |
-| 3. Prioritize | Rank hypotheses by prior likelihood (boosted hugely by change-log correlation) × ease of testing. Segmentation tests first. |
+| 3. Prioritize | Two rounds. **Round 1**, before evidence: rank on *could this explain the whole gap* × *how fast can I know*, with prior likelihood (boosted hugely by change-log correlation) and cost-of-being-wrong as tie-breakers — the winner is almost always a segmentation, not a hypothesis test. **Round 2**, after the cut: re-rank only the branches surviving inside the concentrated segment. See §2. |
 | 4. Plan | Each hypothesis row already names its data pull. |
 | 5. Analyze | Run the pulls against client data. |
 | 6. Synthesize | SCR: *Situation* (baseline), *Complication* (decline + timing), *Resolution* (confirmed root cause). |

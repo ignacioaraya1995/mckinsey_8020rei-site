@@ -112,10 +112,19 @@ Keep these exits separate in reporting. A healthy wholesale buyer list does not 
 - **SMART problem statement** — specific, measurable, action-oriented, relevant, time-bound.
 - **MECE** — mutually exclusive, collectively exhaustive; the rule that makes trees and pyramids defensible.
 - **Issue tree vs. hypothesis tree** — open-question decomposition (data thin) vs. proposed-answer decomposition (strong hunch).
+- **Hypothesis ladder** — the six rungs a diagnosis climbs down: **complaint → break → segment → hypothesis → root cause → trigger**. Each rung answers a different question and is settled by different evidence (rungs 1–2 by arithmetic, 3–4 by investigation, 5 by a timestamp). Full reference: `hypothesis-to-root-cause.md`.
+- **Hypothesis (rung 3)** — a *mechanism* that could explain why a segment behaves as it does ("the callers aren't reaching real owners"). Testable and falsifiable, but not yet actionable: it names a category of causes, not a fix.
+- **Root cause (rung 4)** — the one *specific fixable thing* inside a confirmed hypothesis ("the dialer loads three of fifteen phone fields"). You are there when the claim is **actionable** (an owner and a first task), **sufficient** (applied on paper it closes the whole gap), and **preventable** (a control stops the recurrence).
+- **Trigger (rung 5)** — the timestamped change event that switched the root cause on. Often external even when the root cause is internal; it explains *when*, not *what to fix*.
+- **Layer mixing** — the most common tree defect: listing a root cause ("the rep who started in March") beside category-level branches ("offer economics", "the market"). MECE is a test among siblings on one rung, never between a parent and its child. The tell: one item names a person, tool, vendor, version, or date while the others name categories.
+- **Discriminating cut** — a segmentation whose result differs depending on which hypothesis is true. A cut that produces the same table under two hypotheses cannot separate them; pick the dimension your live hypotheses disagree about most.
+- **The five-branch conversion tree** — the generator for a broken rate: *did the right thing arrive (Input) · did we work it (Coverage) · did we work it well (Execution) · did we count it (Measurement) · did the other side change (External)*.
+- **The volume waterfall** — the generator for a lost count with rates intact: *planned → eligible → sent/delivered → reached → responded*. Find the step where the records disappear.
+- **People versus systems** — if every operator shows the same pattern it is the thing they share (tool, formula, data version, workflow); if one operator differs it is that operator, vendor, or file.
 - **Pyramid Principle** — think bottom-up, present top-down; answer first, then MECE supporting reasons.
 - **SCR** — Situation → Complication → Resolution; the storyline of a memo or deck. RSC variant when the audience already agrees.
 - **80/20** — spend analysis hours on the ~20% of branches driving ~80% of the effect.
-- **Segment before you theorize** — the house diagnostic move: cut a broken KPI by rep/county/channel/price band before debating hypotheses; one query usually kills half the tree.
+- **Segment before you theorize** — the house diagnostic move: cut a broken KPI by rep/county/channel/price band before debating hypotheses; one query usually kills half the tree. Segmentation is not a hypothesis — it is the instrument that decides which hypotheses are worth testing, and it runs at *every* rung, not once at the start.
 - **Change-log correlation** — matching a metric inflection to a timestamped account change (buy-box edit, creative change); the fastest confirmation there is.
 - **Baseline vs. benchmark** — the client's own trailing history vs. cross-client/industry standards; deviations from either can trigger a diagnostic.
 - **Flipped classroom** — theory consumed alone before class; live time reserved for supervised practice (the case).

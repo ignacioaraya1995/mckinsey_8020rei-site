@@ -229,6 +229,12 @@
       <li><b>Issue tree</b> — answers "HOW could we achieve X?" Divergent; use it early, while the problem is still open and you need the full map.</li>
       <li><b>Hypothesis tree</b> — answers "WHY do we believe Y?" Convergent; use it once you have a belief to test, decomposed into sub-hypotheses that each accept proof or disproof.</li>
     </ul>
+    <p class="lede"><b>A hypothesis is not a root cause — they sit on different rungs of the same ladder.</b> The loop above runs down six of them: <b>complaint → the break</b> (which number moved) <b>→ the segment</b> (which slice carries it) <b>→ the hypothesis</b> (why that slice behaves that way) <b>→ the root cause</b> (the one specific fixable thing inside it) <b>→ the trigger</b> (the change event that switched it on). Two consequences worth carrying into every diagnostic:</p>
+    <ul class="tight">
+      <li><b>Every rung can hold a hypothesis; what changes is the evidence that settles it.</b> Rungs 1–2 are settled by arithmetic, rungs 3–4 by investigation, rung 5 by a timestamp. If you cannot say which of the three would settle your claim, you have not stated a claim yet.</li>
+      <li><b>MECE is a horizontal test.</b> It applies to siblings on one rung, never between a parent and its child. "Rep execution declined" and "the two reps hired in March were never trained" are not rivals — the second lives inside the first. Listing them side by side is the most common tree defect there is.</li>
+    </ul>
+    <p class="lede">Segmentation is what moves you down a rung, and it does so at <i>every</i> level — not once at the start. Full treatment, including the branch generators, the two rounds of prioritization, the stop rules, and a student FAQ: <a href="hypothesis-to-root-cause.html"><b>From Hypothesis to Root Cause</b></a>.</p>
     <p class="lede" style="margin-bottom:0;"><i>(Distilled from Victor Cheng's Case Interview Secrets and Ethan Rasiel's The McKinsey Way.)</i></p>
   </div>
 </section>
@@ -281,6 +287,7 @@
   <div class="wrap">
     <div class="sec-head"><h2>Step 3 — Prioritize the issues</h2></div>
     <p class="lede">A perfectly MECE tree with thirty leaves bankrupts the timeline. Plot branches on <b>impact × ease</b>, attack top-right first. Rank; don't score to two decimals; judgment and the client's stakeholders belong in the call.</p>
+    <p class="lede"><b>Prioritize twice, and expect the first winner to be a segmentation rather than a hypothesis test.</b> Round 1 ranks branches before any evidence, on <i>could this explain the whole gap</i> × <i>how fast can I know</i> — and a cut usually wins, because it resolves several branches at once instead of one. Round 2 re-ranks after the cut, among only the hypotheses that survive inside the concentrated segment; several are now dead for free, and the survivors have new sizes. Round 1 is a guess, round 2 is a posterior, so never present round 1 as the plan of record. Two tie-breakers on top of the two questions: how often this is the answer <i>in this business</i> (a change event that timestamps to the inflection is a large boost), and what it costs to be wrong to skip it (compliance and data-lineage branches jump the queue on consequence, not likelihood). Full treatment: <a href="hypothesis-to-root-cause.html">From Hypothesis to Root Cause</a>.</p>
     <p class="lede" style="margin-bottom:0;"><b>Running case, ranked:</b> (A) funnel stage rates vs. baseline — one CRM query, decides everything → do first; (B) speed-to-lead &amp; rep segmentation — cheap follow-up; (C) spend/cost lines — known flat → quick rule-out; (D) gross-profit-per-closed-deal trend — stable at $25,000 → quick rule-out; (E) market shift (DOM, supply) — only if execution checks out. Two same-day queries kill branches 2 and 3 by lunch.</p>
   </div>
 </section>

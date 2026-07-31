@@ -45,6 +45,13 @@ Frameworks are just templates of commonly used issue trees — the profit-identi
 - **Issue tree** — answers "HOW could we achieve X?" Divergent; use it early, while the problem is still open and you need the full map.
 - **Hypothesis tree** — answers "WHY do we believe Y?" Convergent; use it once you have a belief to test, decomposed into sub-hypotheses that each accept proof or disproof.
 
+**A hypothesis is not a root cause — they sit on different rungs of the same ladder.** The loop above runs down six of them: **complaint → the break** (which number moved) **→ the segment** (which slice carries it) **→ the hypothesis** (why that slice behaves that way) **→ the root cause** (the one specific fixable thing inside it) **→ the trigger** (the change event that switched it on). Two consequences worth carrying into every diagnostic:
+
+- **Every rung can hold a hypothesis; what changes is the evidence that settles it.** Rungs 1–2 are settled by arithmetic, rungs 3–4 by investigation, rung 5 by a timestamp. If you cannot say which of the three would settle your claim, you have not stated a claim yet.
+- **MECE is a horizontal test.** It applies to siblings on one rung, never between a parent and its child. "Rep execution declined" and "the two reps hired in March were never trained" are not rivals — the second lives inside the first. Listing them side by side is the most common tree defect there is.
+
+Segmentation is what moves you down a rung, and it does so at *every* level — not once at the start. Full treatment, including the branch generators, the two rounds of prioritization, the stop rules, and a student FAQ: **`hypothesis-to-root-cause.md`**.
+
 *(Distilled from Victor Cheng's Case Interview Secrets and Ethan Rasiel's The McKinsey Way.)*
 
 ---
@@ -87,6 +94,8 @@ MECE by construction — it mirrors the identity **profit = closed deals × gros
 ## Step 3 — Prioritize the issues
 
 A perfectly MECE tree with thirty leaves bankrupts the timeline. Plot branches on **impact × ease**, attack top-right first. Rank; don't score to two decimals; judgment and the client's stakeholders belong in the call.
+
+**Prioritize twice, and expect the first winner to be a segmentation rather than a hypothesis test.** Round 1 ranks branches before any evidence, on *could this explain the whole gap* × *how fast can I know* — and a cut usually wins, because it resolves several branches at once instead of one. Round 2 re-ranks after the cut, among only the hypotheses that survive inside the concentrated segment; several are now dead for free, and the survivors have new sizes. Round 1 is a guess, round 2 is a posterior, so never present round 1 as the plan of record. Two tie-breakers on top of the two questions: how often this is the answer *in this business* (a change event that timestamps to the inflection is a large boost), and what it costs to be wrong to skip it (compliance and data-lineage branches jump the queue on consequence, not likelihood).
 
 **Running case, ranked:** (A) funnel stage rates vs. baseline — one CRM query, decides everything → do first; (B) speed-to-lead & rep segmentation — cheap follow-up; (C) spend/cost lines — known flat → quick rule-out; (D) gross-profit-per-closed-deal trend — stable at $25,000 → quick rule-out; (E) market shift (DOM, supply) — only if execution checks out. Two same-day queries kill branches 2 and 3 by lunch.
 
