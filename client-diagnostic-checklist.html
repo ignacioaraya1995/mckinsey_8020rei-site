@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="assets/8020rei-logo.svg" type="image/svg+xml">
+<title>Client Diagnostic Checklist — 3-Pillar Account Health — 8020IQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;family=Azeret+Mono:wght@500;600&amp;family=Barlow+Semi+Condensed:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+  /* ===== Casefile design tokens — light mode only ===== */
+  :root {
+    --paper: #F3EFE5;
+    --surface: #FFFCF5;
+    --ink: #17211C;
+    --ink-soft: #34443C;
+    --muted: #647068;
+    --rule: #D4CDBE;
+    --rule-strong: #B8AE9D;
+    --emerald: #0E6B4F;
+    --alert: #B6402A;
+    --amber: #9A6B15;
+    --font-display: 'Barlow Semi Condensed', 'Arial Narrow', sans-serif;
+    --font-body: 'Atkinson Hyperlegible', Arial, sans-serif;
+    --font-mono: 'Azeret Mono', Menlo, Consolas, monospace;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: #BFDFD2; color: var(--ink); }
+  .wrap { width: 100%; min-width: 0; max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; color: var(--ink); margin: 0; text-wrap: balance; }
+  p { max-width: 72ch; margin: 0 0 14px; }
+  a { color: var(--emerald); }
+  :focus-visible { outline: 3px solid #E2A72E; outline-offset: 3px; }
+  .eyebrow {
+    font-family: var(--font-mono); font-weight: 600; font-size: 10px; letter-spacing: 0.055em;
+    text-transform: uppercase; color: var(--emerald);
+  }
+
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; height: 58px; }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: 0.01em;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-brand img { display: block; width: 112px; height: auto; }
+  .nav-back {
+    padding: 7px 0;
+    border-bottom: 1px solid transparent;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+  }
+  .nav-back:hover { color: var(--emerald); border-bottom-color: var(--emerald); }
+
+  header.hero {
+    padding: 56px 0 44px;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  header.hero h1 {
+    max-width: 20ch;
+    font-size: clamp(44px, 6vw, 68px); line-height: 0.92; letter-spacing: -0.02em;
+    margin: 14px 0 16px;
+  }
+  header.hero .doc-sub { font-size: 16.5px; color: var(--ink-soft); max-width: 62ch; margin: 0; }
+
+  section { padding: 44px 0; border-bottom: 1px solid var(--rule); }
+  section:last-of-type { border-bottom: none; }
+  .sec-head {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    padding: 15px 4px 12px; margin-bottom: 26px;
+    border-top: 3px solid var(--ink); border-bottom: 1px solid var(--rule-strong);
+  }
+  .sec-head h2 { font-size: 26px; line-height: 1; }
+  .sec-head span {
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .lede { color: var(--ink-soft); max-width: 62ch; margin-bottom: 26px; }
+  .lede b { color: var(--ink); }
+  h3.sub { font-size: 20px; margin: 30px 0 4px; }
+  h3.sub .tag {
+    font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--emerald); margin-right: 8px;
+  }
+  ol.steps { padding-left: 22px; color: var(--ink-soft); max-width: 720px; }
+  ol.steps li { margin-bottom: 9px; }
+  ol.steps b { color: var(--ink); }
+
+  .table-scroll { overflow-x: auto; }
+  table.data {
+    width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 14px;
+    background: var(--surface); border: 1px solid var(--rule);
+  }
+  table.data th {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--muted); text-align: left; padding: 10px 12px;
+    border-bottom: 2px solid var(--ink);
+  }
+  table.data td { padding: 11px 12px; border-bottom: 1px solid var(--rule); color: var(--ink-soft); vertical-align: top; }
+  table.data tbody tr:nth-child(even) { background: var(--paper); }
+  table.data td b { color: var(--ink); }
+  td.mono, th.num { font-family: var(--font-mono); font-size: 12.5px; white-space: nowrap; }
+  td.mono { color: var(--emerald); }
+  td.num { font-family: var(--font-mono); font-size: 12.5px; text-align: right; white-space: nowrap; color: var(--ink-soft); }
+  th.num { text-align: right; }
+  td.bad { color: var(--alert); }
+  td.good { color: var(--emerald); }
+  td.strong { color: var(--ink); font-weight: 700; }
+  .key-star { color: var(--emerald); font-weight: 700; }
+
+  .callout {
+    background: var(--surface); border: 1px solid var(--rule-strong); border-top: 3px solid var(--ink);
+    padding: 18px 22px 16px; margin: 22px 0; max-width: 760px;
+  }
+  .callout .eyebrow { display: block; margin-bottom: 8px; }
+  .callout p { font-size: 14px; color: var(--ink-soft); margin: 0 0 10px; }
+  .callout p:last-child { margin: 0; }
+  .callout b { color: var(--ink); }
+  .callout.warn { border-top-color: var(--alert); }
+  .callout.warn .eyebrow { color: var(--alert); }
+
+  code.inline {
+    font-family: var(--font-mono); font-size: 0.85em;
+    background: #E6EFE9; color: var(--emerald); padding: 2px 6px;
+  }
+  pre.summary {
+    font-family: var(--font-mono); font-size: 12.5px; line-height: 1.6;
+    background: var(--surface); border: 1px solid var(--rule-strong); border-top: 3px solid var(--ink);
+    color: var(--ink-soft); padding: 18px 22px; margin: 22px 0; max-width: 620px;
+    overflow-x: auto;
+  }
+
+  footer { padding: 26px 0 52px; font-size: 12px; color: var(--muted); }
+  footer p { margin: 0; max-width: 72ch; }
+
+  @media (max-width: 640px) {
+    .wrap { padding-left: 16px; padding-right: 16px; }
+    header.hero { padding: 40px 0 32px; }
+    .sec-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Site">
+  <div class="wrap nav-inner">
+    <a class="nav-brand" href="index.html" aria-label="8020REI home"><img src="assets/8020rei-logo.svg" alt="8020REI"></a>
+    <a class="nav-back" href="index.html">&larr; All documents</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">3 · Apply — Reference</span>
+    <h1>Client Diagnostic Checklist</h1>
+    <p class="doc-sub">The 3-pillar account health assessment: <b>23 checks</b> across Targeting &amp; Data Quality, Marketing Effectiveness, and Sales Operations &amp; Engagement — each with the question to ask, the healthy signal, the red flag, and the benchmark. Informed by 367 Knowledge Gap sessions. Formerly the intranet tool <code class="inline">/tools/client-diagnostic</code>, retired 2026-08-06; this page and its markdown source are now the source of truth.</p>
+  </div>
+</header>
+
+<!-- ================= WHEN TO USE ================= -->
+<section id="when">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Checklist vs. playbook — two instruments, two triggers</h2>
+      <span>§1</span>
+    </div>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Checklist versus playbook comparison">
+      <table class="data">
+        <thead><tr><th>Instrument</th><th>Trigger</th><th>Question it answers</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">This checklist</td><td>Client health review, QBR, at-risk escalation, engagement call prep</td><td><i>Across the three controllable drivers, where is this account unhealthy?</i></td></tr>
+          <tr><td class="strong"><a href="diagnostic-playbook.html">Diagnostic playbook</a></td><td>A specific KPI declined (Gross Leads or a GNACC conversion)</td><td><i>Which hypothesis explains this specific break, and what test confirms it?</i></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede">The checklist is a <b>breadth-first sweep</b> — assess every item, mark it Healthy / Watch / Issue, leave with a prioritized action list. The playbook is <b>depth-first</b> — route one broken KPI to its hypothesis branch. A checklist "Issue" often becomes the entry point into a playbook branch.</p>
+    <h3 class="sub">How to run it</h3>
+    <ol class="steps">
+      <li>Read the <b>market context</b> signals first — external conditions inform, but do not score, the diagnosis.</li>
+      <li>Walk the three pillars in order. For every item: ask the client the question, compare against the healthy signal and red flag, mark <b>Healthy / Watch / Issue</b>.</li>
+      <li>Build the <b>executive summary</b>: healthy/watch/issue counts, priority issues first.</li>
+      <li>For every priority issue, run the five-step <b>diagnostic sequence</b> before prescribing anything.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= MARKET CONTEXT ================= -->
+<section id="market-context">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Market context — read before diagnosing</h2>
+      <span>§2 · not assessed</span>
+    </div>
+    <p class="lede">Five external signals that can explain performance <b>before execution is judged</b>. They contextualize the pillar findings; they are never scored.</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Market context signals">
+      <table class="data">
+        <thead><tr><th>Signal</th><th>How to check</th><th>Impact</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Days on Market trend</td><td>Compare client county DOM to historical average</td><td>Rising = cooling market, more inventory. Falling = hot market, harder to find deals.</td></tr>
+          <tr><td class="strong">Months of supply</td><td>Current inventory relative to absorption rate</td><td>&lt;6 months = seller's market (harder for investors). &gt;6 months = buyer's market (more opportunity).</td></tr>
+          <tr><td class="strong">Distressed inventory vs 2019 baseline</td><td>Pre-foreclosure, tax liens, REO volume by county</td><td>Lower distress = smaller addressable market. May explain volume drop regardless of execution.</td></tr>
+          <tr><td class="strong">Cash buyer % vs historical</td><td>Institutional buyer activity in client counties</td><td>Spike = institutional competition (hedge funds, iBuyers). Compresses margins.</td></tr>
+          <tr><td class="strong">Foreclosure pipeline / tax lien season</td><td>Filing trends, moratoriums, auction calendars</td><td>Reduced filings = fewer leads at the source. Seasonal misalignment = marketing off-cycle.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PILLAR I ================= -->
+<section id="pillar-1">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Pillar I — Targeting &amp; Data Quality</h2>
+      <span>§3 · 7 checks</span>
+    </div>
+    <p class="lede"><b>Are we sending the right leads with clean data?</b> Evidence basis: BuyBox staleness, cash offer tuning, missing client deal data, pre-foreclosure data errors, EMV discrepancies, mobile home classification, score confusion. <span class="key-star">★</span> = key metric.</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Pillar I checks">
+      <table class="data">
+        <thead><tr><th>Check</th><th>Ask the client</th><th>Healthy signal</th><th>Red flag</th><th>Benchmark</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">BuyBox freshness</td><td>When did we last review your BuyBox criteria together?</td><td class="good">Updated within 90 days</td><td class="bad">No update in 6+ months</td><td class="mono">&le; 90 days</td></tr>
+          <tr><td class="strong">BuyBox vs actual closed deals <span class="key-star">★</span></td><td>Are you closing deals that match your BuyBox, or outside of it?</td><td class="good">80%+ of closed deals match BuyBox parameters</td><td class="bad">Closing outside BuyBox = stale targeting</td><td class="mono">&ge; 80% match</td></tr>
+          <tr><td class="strong">Cash offer % strategy</td><td>What cash offer % are you using? Is it tiered by price range?</td><td class="good">Tiered by ARV bracket (e.g. 63/68/78%)</td><td class="bad">Flat % across all price ranges, or below 60%</td><td class="mono">Tiered, tested</td></tr>
+          <tr><td class="strong">Client deal data shared <span class="key-star">★</span></td><td>Have you shared your past deals, leads, and appointments with us?</td><td class="good">Feedback Loop active, deals uploaded</td><td class="bad">No data shared = BuyBox is guesswork</td><td class="mono">Deals uploaded</td></tr>
+          <tr><td class="strong">Property data accuracy</td><td>Are you seeing wrong property types, missing APNs, or stale pre-foreclosure flags?</td><td class="good">&lt;5% error rate in client counties</td><td class="bad">Classification errors (land vs SFR), blank last-sale dates, wrong distress flags</td><td class="mono">&lt; 5% errors</td></tr>
+          <tr><td class="strong">Skip trace quality</td><td>What % of phone numbers are working when you call?</td><td class="good">&gt;50% reachable contacts</td><td class="bad">High wrong-number rate, single phone per record</td><td class="mono">&gt; 50% reachable</td></tr>
+          <tr><td class="strong">Score interpretation</td><td>Do you understand how Likely Deal Score differs from Overall Score?</td><td class="good">Client can explain the difference</td><td class="bad">Confused by 0 Likely Deal + high Overall, or thinks stars are arbitrary</td><td class="mono">Clear understanding</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PILLAR II ================= -->
+<section id="pillar-2">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Pillar II — Marketing Effectiveness</h2>
+      <span>§4 · 7 checks</span>
+    </div>
+    <p class="lede"><b>Are we reaching sellers through the right channels with the right message?</b> Evidence basis: split test confusion, DM Force pricing, Rapid Response effectiveness, texting vendor alignment, recurring need to explain DM funnel math.</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Pillar II checks">
+      <table class="data">
+        <thead><tr><th>Check</th><th>Ask the client</th><th>Healthy signal</th><th>Red flag</th><th>Benchmark</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">DM response rate <span class="key-star">★</span></td><td>What response rate are you getting on your mail pieces?</td><td class="good">&ge; 0.35%</td><td class="bad">&lt; 0.2% = list fatigue, bad creative, or wrong audience</td><td class="mono">0.35%+</td></tr>
+          <tr><td class="strong">Mail pieces per deal</td><td>How many pieces are you mailing per closed deal?</td><td class="good">&lt; 10,000</td><td class="bad">&gt; 25,000 = funnel leaking at multiple stages</td><td class="mono">See DM funnel</td></tr>
+          <tr><td class="strong">A/B testing active</td><td>When did you last test a different mail piece or message?</td><td class="good">Active testing — messaging variations AND different piece designs</td><td class="bad">Same piece for 6+ months, no test history</td><td class="mono">Test quarterly</td></tr>
+          <tr><td class="strong">Channel diversification</td><td>What marketing channels are you actively running besides DM?</td><td class="good">2–3 active (DM + cold call / SMS / PPC)</td><td class="bad">Single channel dependency</td><td class="mono">&ge; 2 channels</td></tr>
+          <tr><td class="strong">SMS / texting strategy</td><td>Do you have a texting cadence aligned with your mailing schedule?</td><td class="good">30/60/90 day texting aligned with DM drops</td><td class="bad">No texting, or texting without coordination with mail</td><td class="mono">Aligned cadence</td></tr>
+          <tr><td class="strong">Rapid Response usage</td><td>Are you using Rapid Response? How are the templates performing?</td><td class="good">Active, customized templates, manages expectations on volume</td><td class="bad">Not using, or default templates with unrealistic volume expectations</td><td class="mono">Active + custom</td></tr>
+          <tr><td class="strong">Marketing ROI trend <span class="key-star">★</span></td><td>Is your revenue per marketing dollar improving or declining QoQ?</td><td class="good">Stable or improving</td><td class="bad">Declining = spending more for less</td><td class="mono">Stable+ QoQ</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub"><span class="tag">§4.1</span>DM funnel reference — per 10,000 mail pieces</h3>
+    <p class="lede">The first stage below average is the bottleneck. Fix it before optimizing downstream.</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Direct mail funnel benchmarks">
+      <table class="data">
+        <thead><tr><th>Stage</th><th>Conversion</th><th class="num">Worst</th><th class="num">Average</th><th class="num">Best</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Mail &rarr; Response</td><td>Response rate</td><td class="num">0.2% &rarr; 20</td><td class="num">0.35% &rarr; 35</td><td class="num">0.6% &rarr; 60</td></tr>
+          <tr><td class="strong">Response &rarr; Qualified</td><td>Gross/net ratio</td><td class="num">30% &rarr; 6</td><td class="num">35% &rarr; 12</td><td class="num">40% &rarr; 24</td></tr>
+          <tr><td class="strong">Qualified &rarr; Appointment</td><td>Lead/appt rate</td><td class="num">30% &rarr; 2</td><td class="num">35% &rarr; 4</td><td class="num">40% &rarr; 10</td></tr>
+          <tr><td class="strong">Appointment &rarr; Contract</td><td>Appt/contract rate</td><td class="num">20% &rarr; 0</td><td class="num">30% &rarr; 1</td><td class="num">40% &rarr; 4</td></tr>
+          <tr><td class="strong">Contract &rarr; Deal</td><td>Close rate</td><td class="num">75% &rarr; 0</td><td class="num">83% &rarr; 1</td><td class="num">90% &rarr; 3</td></tr>
+          <tr><td class="strong" colspan="2">Mail pieces per deal</td><td class="num bad">37,037</td><td class="num strong">9,424</td><td class="num good">2,894</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn">
+      <span class="eyebrow">Benchmark guardrail</span>
+      <p>These operational health heuristics use <b>different denominators</b> than the canonical GNACC ratios in the <a href="gnacc-reference.html">GNACC reference</a> (Gross &rarr; Net 50%, Net &rarr; Appt 25%, Appt &rarr; Contract 15%, Contract &rarr; Close 70%). Do not substitute one set for the other unless the populations are aligned. Same rule as <a href="diagnostic-playbook.html">playbook</a> §4.0B.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PILLAR III ================= -->
+<section id="pillar-3">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Pillar III — Sales Operations &amp; Engagement</h2>
+      <span>§5 · 9 checks</span>
+    </div>
+    <p class="lede"><b>Are leads being worked properly and is the client engaged with us?</b> Evidence basis: churn is 30–33% with only 67–69% valid. Unengaged clients and teams with &lt;5 people are highest risk. Feedback Loop data is critical but many clients don't submit.</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Pillar III checks">
+      <table class="data">
+        <thead><tr><th>Check</th><th>Ask the client</th><th>Healthy signal</th><th>Red flag</th><th>Benchmark</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Speed to lead <span class="key-star">★</span></td><td>How quickly do you or your team contact new leads?</td><td class="good">&lt; 5 minutes for hot leads</td><td class="bad">&gt; 30 min = 21x less likely to convert</td><td class="mono">&lt; 5 min</td></tr>
+          <tr><td class="strong">Contact attempts</td><td>How many times do you try before giving up on a lead?</td><td class="good">6–8 attempts across call / text / voicemail</td><td class="bad">1–2 attempts then disqualified</td><td class="mono">6–8 attempts</td></tr>
+          <tr><td class="strong">Lead to appointment rate</td><td>What % of leads become appointments?</td><td class="good">&ge; 35%</td><td class="bad">&lt; 25% = weak follow-up or poor qualification</td><td class="mono">&ge; 35%</td></tr>
+          <tr><td class="strong">Appointment to contract rate</td><td>Of your appointments, how many end in a signed contract?</td><td class="good">&ge; 30%</td><td class="bad">&lt; 20% = pricing, negotiation, or unmotivated sellers</td><td class="mono">&ge; 30%</td></tr>
+          <tr><td class="strong">Pipeline stage bottleneck</td><td>Where do deals get stuck or die in your pipeline?</td><td class="good">No single stage &gt; 30% drop-off</td><td class="bad">Steep drop at one specific stage</td><td class="mono">Even flow</td></tr>
+          <tr><td class="strong">Feedback Loop participation <span class="key-star">★</span></td><td>Are you sharing closed deal data back through the Feedback Loop?</td><td class="good">Active monthly submissions</td><td class="bad">Never submitted or stopped months ago</td><td class="mono">Monthly active</td></tr>
+          <tr><td class="strong">Engagement call attendance</td><td>When was your last engagement call with your CSM?</td><td class="good">Monthly or more frequent</td><td class="bad">Skipping calls, unresponsive to scheduling</td><td class="mono">Monthly</td></tr>
+          <tr><td class="strong">Client team capacity</td><td>How many people on your team work leads and close deals?</td><td class="good">&ge; 5 people, clear roles</td><td class="bad">&lt; 5 = may lack capacity to execute recommendations</td><td class="mono">&ge; 5 people</td></tr>
+          <tr><td class="strong">CRM / tracking discipline</td><td>Are all your deals and activities tracked in your CRM?</td><td class="good">&gt; 90% field completion</td><td class="bad">No CRM, or incomplete data = can't diagnose anything</td><td class="mono">&gt; 90%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SYNTHESIS ================= -->
+<section id="synthesis">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Synthesis — executive summary</h2>
+      <span>§6</span>
+    </div>
+    <p class="lede">Close every assessment with a one-glance summary, priority issues first (Pyramid Principle):</p>
+    <pre class="summary">CLIENT PERFORMANCE DIAGNOSTIC — EXECUTIVE SUMMARY
+Date: &lt;date&gt;
+Coverage: &lt;n&gt; of 23 checks assessed
+
+Healthy: &lt;n&gt; | Watch: &lt;n&gt; | Issues: &lt;n&gt;
+
+PRIORITY ISSUES:
+  - [&lt;pillar&gt;] &lt;check label&gt;
+
+WATCH ITEMS:
+  - [&lt;pillar&gt;] &lt;check label&gt;</pre>
+
+    <h3 class="sub"><span class="tag">§6.1</span>Recommended diagnostic sequence — same for every priority issue</h3>
+    <ol class="steps">
+      <li><b>Segment</b> — break by geography, property type, and price tier. Aggregates hide the truth: a client may be fine in County A and failing in County B.</li>
+      <li><b>Compare</b> — current vs historical (YoY, QoQ, MoM). New problems point to recent changes; ongoing trends point to structural issues.</li>
+      <li><b>Benchmark</b> — client vs top 25% of active 8020REI clients in similar markets. If top performers thrive in the same conditions, the market isn't the issue.</li>
+      <li><b>Correlate</b> — which leading indicator changed first? Did engagement calls drop before deal flow? Did BuyBox updates stop before hit rates declined?</li>
+      <li><b>Prioritize</b> — fix the biggest bottleneck first. A 2x improvement on a 50% conversion rate matters more than a 2x improvement on a 2% rate.</li>
+    </ol>
+    <p class="lede">This is the checklist-flavored cousin of the playbook's SAE loop — <b>Segment &rarr; Isolate &rarr; Explore</b>. Same first move: segment before believing any aggregate.</p>
+
+    <h3 class="sub"><span class="tag">§6.2</span>Five performance dimensions</h3>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Five performance dimensions">
+      <table class="data">
+        <thead><tr><th>Dimension</th><th>Metrics</th><th>What it tells you</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Volume</td><td>Leads, Appointments, Contracts, Closings</td><td>Are there enough opportunities in the pipeline?</td></tr>
+          <tr><td class="strong">Velocity</td><td>Days in stage, cycle time</td><td>How fast are deals moving? Where are they stalling?</td></tr>
+          <tr><td class="strong">Value</td><td>Avg deal size, margin %, ROI by channel</td><td>Are the deals worth enough? Are channels profitable?</td></tr>
+          <tr><td class="strong">Efficiency</td><td>Cost per acquisition, conversion rates</td><td>Is the client getting maximum output per dollar input?</td></tr>
+          <tr><td class="strong">Quality</td><td>Lead score accuracy, win rate trends</td><td>Is the targeting producing the right opportunities?</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXTENDED REFERENCE ================= -->
+<section id="extended">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Extended reference — four-hypothesis deep-dive</h2>
+      <span>§7 · second layer</span>
+    </div>
+    <p class="lede">The 3-pillar checklist is the operational instrument. This section preserves the <b>extended reference version</b> (formerly the intranet doc <code class="inline">CLIENT_DIAGNOSTIC_FRAMEWORK.md</code>): four independent hypotheses off the symptom <b>Client Deal Flow &lt; Target</b>. Use it when a pillar "Issue" needs a second layer of specificity. Some benchmarks here are aspirational reference values rather than measured 8020REI numbers — where they conflict with the checklist or the <a href="gnacc-reference.html">GNACC reference</a>, those win. Full tables: <a href="client-diagnostic-checklist.md">markdown source, §7</a>.</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Four hypotheses overview">
+      <table class="data">
+        <thead><tr><th>Hypothesis</th><th>Question</th><th>Sub-areas</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">I · Data &amp; Analytics Foundation</td><td>Is the client working with the right data?</td><td>BuyBox analytics · lead scoring model · data pipeline health</td></tr>
+          <tr><td class="strong">II · Market Dynamics &amp; Positioning</td><td>Are external conditions causing it, independent of execution?</td><td>Market indicators · competitive intelligence · seasonal &amp; cycle analysis</td></tr>
+          <tr><td class="strong">III · Marketing Effectiveness &amp; ROI</td><td>Are channels performing efficiently?</td><td>Channel performance · message &amp; creative testing · attribution &amp; ROI</td></tr>
+          <tr><td class="strong">IV · Sales Operations &amp; Execution</td><td>Is the client executing well on the leads they receive?</td><td>Lead response SLAs · pipeline velocity · team performance management</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DATA SOURCES ================= -->
+<section id="data-sources">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Where the data lives — 8020REI dashboards</h2>
+      <span>§8</span>
+    </div>
+    <p class="lede">The interactive tool is retired; the underlying data surfaces remain in the intranet.</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Framework area to dashboard mapping">
+      <table class="data">
+        <thead><tr><th>Framework area</th><th>8020REI dashboard / tool</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">BuyBox analytics</td><td>Client Health tab, Engagement Heatmap</td></tr>
+          <tr><td class="strong">Lead scoring</td><td>Distress Definitions scoring system</td></tr>
+          <tr><td class="strong">Data pipeline</td><td>Data Management admin page</td></tr>
+          <tr><td class="strong">Market indicators</td><td>Market Analysis tool, Datamap</td></tr>
+          <tr><td class="strong">Channel performance</td><td>Paid Ads dashboard, Marketing Summary</td></tr>
+          <tr><td class="strong">Attribution</td><td>Marketing Attribution tab</td></tr>
+          <tr><td class="strong">Pipeline velocity</td><td>Sales Pipeline tab</td></tr>
+          <tr><td class="strong">Team performance</td><td>Rep Benchmarking tool</td></tr>
+          <tr><td class="strong">Overall client health</td><td>CS Risk Analysis, Client Explorer</td></tr>
+          <tr><td class="strong">Funnel model &amp; benchmarks</td><td>GNACC Calculator (<code class="inline">/tools/gnacc-calculator</code>)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Rendered from <code class="inline">client-diagnostic-checklist.md</code> — the markdown file is the source of truth. Formerly the intranet tool <code class="inline">/tools/client-diagnostic</code> (config <code class="inline">clientDiagnosticFlow.ts</code>), retired 2026-08-06 and folded into the 8020IQ program.</p>
+  </div>
+</footer>
+
+</body>
+</html>

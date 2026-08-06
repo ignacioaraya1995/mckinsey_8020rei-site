@@ -38,7 +38,7 @@ Every case follows the same skeleton (see `case-01-lone-star.md` as the model):
 - Test 8020REI's own fulfillment output as well as the client's execution. Reconcile the approved buy box to the imported criteria and final export; count excluded-tag leakage (`SystemDMA`, `DoNotSend`, and any client-specific suppression tags); compare source totals, row counts, and a record sample before release. A manual export is a control point, not proof of correctness.
 - Keep Reverse BuyBox and BuyBox IQ recommendations separate from the active, CSM-confirmed BuyBox. A written volume request does not bypass that release gate; outside-BuyBox records require a documented, CSM-approved test cohort or BuyBox revision.
 - Fictional client names, realistic geography (DFW area so far).
-- Every red flag in `clientDiagnosticFlow.ts` is a candidate case seed.
+- Every red flag in `client-diagnostic-checklist.md` is a candidate case seed.
 
 **Casefile role-card convention:** the renderer turns the opening prompt, each `**Ask:**` line, Exhibit 1, and Exhibit 2 into blue student-share cards. Expected answers, coaching prompts, reveals, model syntheses, rubrics, facilitator notes, and the `## Client context` and `## Hypothesis ladder` sections become amber coach-only cards. Keep those labels and headings intact so the generated cards remain screenshot-safe.
 

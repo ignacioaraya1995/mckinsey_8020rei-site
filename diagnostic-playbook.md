@@ -6,7 +6,7 @@
 
 ## 1. The core idea in one paragraph
 
-Build a **diagnostic playbook** that turns client funnel KPIs into root-cause hypotheses, the way a McKinsey team would — but pre-built and repeatable. When Gross Lead volume or a GNACC conversion is below baseline or trending down, the playbook says which hypotheses to test, what data confirms or kills each one, and what the fix is. The McKinsey guide is the *method*; this playbook is the method *instantiated for the wholesale REI acquisition funnel*. Eventually an AI agent inside the client-diagnostic tool runs it automatically.
+Build a **diagnostic playbook** that turns client funnel KPIs into root-cause hypotheses, the way a McKinsey team would — but pre-built and repeatable. When Gross Lead volume or a GNACC conversion is below baseline or trending down, the playbook says which hypotheses to test, what data confirms or kills each one, and what the fix is. The McKinsey guide is the *method*; this playbook is the method *instantiated for the wholesale REI acquisition funnel*. Eventually an AI agent runs it automatically against client funnel data.
 
 Three ingredients, all necessary:
 
@@ -94,7 +94,7 @@ Ad Spend → Gross Leads → Net Leads → Appointments Attended → Contracts S
 | Contract → Close | 70% (lower for virtual) | — |
 | Full funnel GL → Closed | floor 1.0–1.4%, mid 5–10% | — |
 
-Upstream of Gross Leads sits the **channel-specific marketing layer**; there is no single canonical "Prospect → Lead" denominator across SMS, Cold Call, and Direct Mail. Diagnose each channel through its own operating waterfall (§4.6). Verified Direct Mail benchmarks live in `clientDiagnosticFlow.ts` (Mail → Response 0.35% avg; mail pieces per deal ~9,400 avg, ~2,900 best); do not invent equivalent SMS or Cold Call benchmarks.
+Upstream of Gross Leads sits the **channel-specific marketing layer**; there is no single canonical "Prospect → Lead" denominator across SMS, Cold Call, and Direct Mail. Diagnose each channel through its own operating waterfall (§4.6). Verified Direct Mail benchmarks live in `client-diagnostic-checklist.md` §4.1 (Mail → Response 0.35% avg; mail pieces per deal ~9,400 avg, ~2,900 best); do not invent equivalent SMS or Cold Call benchmarks.
 
 ### 3.1 8020REI targeting control model
 
@@ -111,7 +111,7 @@ A recommendation does not silently change the active BuyBox, and a written reque
 
 ## 4. KPI decline guide — common hypotheses to test first
 
-This is the quick routing guide. It does **not** claim that 8020REI has measured the statistical frequency of every cause by KPI; it prioritizes the recurring hypotheses already encoded in `clientDiagnosticFlow.ts`, the case library, and the operating patterns supplied by the team. Always start with **segmentation and change-timeline reconstruction**, then test the highest-impact branch.
+This is the quick routing guide. It does **not** claim that 8020REI has measured the statistical frequency of every cause by KPI; it prioritizes the recurring hypotheses already encoded in `client-diagnostic-checklist.md`, the case library, and the operating patterns supplied by the team. Always start with **segmentation and change-timeline reconstruction**, then test the highest-impact branch.
 
 ### 4.0A Route the count decline to the correct ratio
 
@@ -303,12 +303,12 @@ Three options, probably combined:
 
 | Tool | What it actually is |
 |---|---|
-| `client-diagnostic` | **Already a McKinsey-style diagnostic tree** (`clientDiagnosticFlow.ts`): 3 pillars — Targeting & Data Quality, Marketing Effectiveness, Sales Ops & Engagement — each with ask/healthy/red-flag/benchmark per item, informed by 367 Knowledge Gap sessions. Plus market-context signals (DOM, supply, distress, cash-buyer %) and the 5-step approach: Segment → Compare → Benchmark → Correlate → Prioritize. Has TreeView + Wizard modes. |
+| ~~`client-diagnostic`~~ | **Retired from the intranet 2026-08-06.** Its McKinsey-style diagnostic tree — 3 pillars (Targeting & Data Quality, Marketing Effectiveness, Sales Ops & Engagement), each item with ask/healthy/red-flag/benchmark, informed by 367 Knowledge Gap sessions, plus market-context signals and the 5-step approach (Segment → Compare → Benchmark → Correlate → Prioritize) — now lives here as `client-diagnostic-checklist.md`. |
 | `gnacc-calculator` | The funnel model itself (GNACC = Gross→Net→Appt→Contract→Close): per-stage conversion + cost metrics, CG benchmarks, 8020REI/industry presets, tiered full-funnel benchmarks, channel/rep comparison. |
 | `roi-client-analysis` | Per-client performance analysis (funnel data source for diagnostics). |
 | `roi-calculator` | Sizes dollar impact of gaps → step 3 prioritization and step 7 recommendation sizing. |
 
-**Implication:** the hypothesis-tree half of this playbook is substantially built. What §4 adds on top of `clientDiagnosticFlow.ts` is the *trigger* layer (which KPI deviation activates which branch) and the *test/action* columns. The queryable change-event log is still missing (§6), and the existing teaching layer (`training-program.md`) is not yet integrated into the intranet workflow.
+**Implication:** the hypothesis-tree half of this playbook is substantially built. What §4 adds on top of `client-diagnostic-checklist.md` is the *trigger* layer (which KPI deviation activates which branch) and the *test/action* columns. The queryable change-event log is still missing (§6), and the existing teaching layer (`training-program.md`) is not yet integrated into the intranet workflow.
 
 ---
 
@@ -329,4 +329,4 @@ One template, parameterized by KPI + client. The playbook is the product; the pr
 2. **Audit the change-event log** — determine what is captured today for buy-box, fulfillment, content, channel, vendor, script, and staffing changes, and where.
 3. **Name each data pull and owner** — connect every test in §4 to the system/export, query, CSM, analyst, vendor, or client responsible for supplying it.
 4. **Pick the baseline approach** (§6) — start with self-trend + reconstructed change correlation, then add aligned cohort bands.
-5. **Then** parameterize the agent prompt by alarm KPI and wire the guide into `client-diagnostic`.
+5. **Then** parameterize the agent prompt by alarm KPI and wire the guide into an intranet diagnostic surface (the former `client-diagnostic` tool was retired 2026-08-06; a future agent would run from this playbook + `client-diagnostic-checklist.md`).

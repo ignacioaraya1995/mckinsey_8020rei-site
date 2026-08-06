@@ -174,7 +174,7 @@
 <section id="idea">
   <div class="wrap">
     <div class="sec-head"><h2>1 · The core idea</h2></div>
-    <p class="lede">When Gross Lead volume or a GNACC conversion is below baseline or trending down, the playbook says which hypotheses to test, what data confirms or kills each one, and what the fix is — pre-built and repeatable, the way a McKinsey team would do it once and reuse it. Eventually an AI agent inside the client-diagnostic tool runs it automatically.</p>
+    <p class="lede">When Gross Lead volume or a GNACC conversion is below baseline or trending down, the playbook says which hypotheses to test, what data confirms or kills each one, and what the fix is — pre-built and repeatable, the way a McKinsey team would do it once and reuse it. Eventually an AI agent runs it automatically against client funnel data.</p>
     <ol class="tight">
       <li><b>KPI framework</b> — canonical funnel stages and conversion ratios, with a baseline (or at minimum a trend) per client.</li>
       <li><b>Hypothesis playbook</b> — for each KPI that is low/declining, a MECE tree of candidate root causes, each with a test and a recommended action.</li>
@@ -263,7 +263,7 @@
         </tbody>
       </table>
     </div>
-    <p style="font-size:13.5px; color:var(--ink-soft); max-width:720px;">Upstream of Gross Leads sits the <b>channel-specific marketing layer</b>; there is no single canonical “Prospect → Lead” denominator across SMS, Cold Call, and Direct Mail. Diagnose each channel through its own operating waterfall (§4.6). Verified Direct Mail benchmarks live in <code class="inline">clientDiagnosticFlow.ts</code> (Mail → Response 0.35% avg; mail pieces per deal ~9,400 avg, ~2,900 best); do not invent equivalent SMS or Cold Call benchmarks.</p>
+    <p style="font-size:13.5px; color:var(--ink-soft); max-width:720px;">Upstream of Gross Leads sits the <b>channel-specific marketing layer</b>; there is no single canonical “Prospect → Lead” denominator across SMS, Cold Call, and Direct Mail. Diagnose each channel through its own operating waterfall (§4.6). Verified Direct Mail benchmarks live in the <a href="client-diagnostic-checklist.html">Client Diagnostic Checklist</a> §4.1 (Mail → Response 0.35% avg; mail pieces per deal ~9,400 avg, ~2,900 best); do not invent equivalent SMS or Cold Call benchmarks.</p>
     <h3 class="sub">3.1 — 8020REI targeting control model</h3>
     <p class="lede" style="margin-bottom:8px;">Keep four layers distinct when diagnosing a targeting complaint:</p>
     <ol>
@@ -536,14 +536,14 @@
       <table class="data">
         <thead><tr><th>Tool</th><th>What it actually is</th></tr></thead>
         <tbody>
-          <tr><td class="mono">client-diagnostic</td><td><b>Already a McKinsey-style diagnostic tree</b> (<code class="inline">clientDiagnosticFlow.ts</code>): 3 pillars — Targeting &amp; Data Quality, Marketing Effectiveness, Sales Ops &amp; Engagement — each with ask/healthy/red-flag/benchmark per item, informed by 367 Knowledge Gap sessions. Plus market-context signals and the 5-step approach: Segment → Compare → Benchmark → Correlate → Prioritize. TreeView + Wizard modes.</td></tr>
+          <tr><td class="mono"><s>client-diagnostic</s></td><td><b>Retired from the intranet 2026-08-06.</b> Its McKinsey-style diagnostic tree — 3 pillars (Targeting &amp; Data Quality, Marketing Effectiveness, Sales Ops &amp; Engagement), each with ask/healthy/red-flag/benchmark, informed by 367 Knowledge Gap sessions, plus market-context signals and the 5-step approach — now lives here as the <a href="client-diagnostic-checklist.html">Client Diagnostic Checklist</a>.</td></tr>
           <tr><td class="mono">gnacc-calculator</td><td>The funnel model itself: per-stage conversion + cost metrics, CG benchmarks, 8020REI/industry presets, tiered full-funnel benchmarks, channel/rep comparison.</td></tr>
           <tr><td class="mono">roi-client-analysis</td><td>Per-client performance analysis (funnel data source for diagnostics).</td></tr>
           <tr><td class="mono">roi-calculator</td><td>Sizes dollar impact of gaps → step 3 prioritization and step 7 recommendation sizing.</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:13.5px; color:var(--ink-soft); max-width:760px;"><b style="color:var(--ink);">Implication:</b> the hypothesis-tree half of this playbook is substantially built. What §4 adds on top of <code class="inline">clientDiagnosticFlow.ts</code> is the <i>trigger</i> layer (which KPI deviation activates which branch) and the <i>test/action</i> columns. The queryable change-event log is still missing (§6), and the existing <a href="8020IQ-Training-Program.html">teaching layer</a> is not yet integrated into the intranet workflow.</p>
+    <p style="font-size:13.5px; color:var(--ink-soft); max-width:760px;"><b style="color:var(--ink);">Implication:</b> the hypothesis-tree half of this playbook is substantially built. What §4 adds on top of the <a href="client-diagnostic-checklist.html">Client Diagnostic Checklist</a> is the <i>trigger</i> layer (which KPI deviation activates which branch) and the <i>test/action</i> columns. The queryable change-event log is still missing (§6), and the existing <a href="8020IQ-Training-Program.html">teaching layer</a> is not yet integrated into the intranet workflow.</p>
   </div>
 </section>
 
@@ -566,7 +566,7 @@
       <li><b>Audit the change-event log</b> — determine what is captured today for buy-box, fulfillment, content, channel, vendor, script, and staffing changes, and where.</li>
       <li><b>Name each data pull and owner</b> — connect every test in §4 to the system/export, query, CSM, analyst, vendor, or client responsible for supplying it.</li>
       <li><b>Pick the baseline approach</b> (§6) — start with self-trend + reconstructed change correlation, then add aligned cohort bands.</li>
-      <li><b>Then</b> parameterize the agent prompt by alarm KPI and wire the guide into <code class="inline">client-diagnostic</code>.</li>
+      <li><b>Then</b> parameterize the agent prompt by alarm KPI and wire the guide into an intranet diagnostic surface (the former <code class="inline">client-diagnostic</code> tool was retired 2026-08-06; a future agent would run from this playbook + the <a href="client-diagnostic-checklist.html">checklist</a>).</li>
     </ol>
   </div>
 </section>

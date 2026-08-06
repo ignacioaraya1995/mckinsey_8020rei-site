@@ -93,5 +93,5 @@ Derived: cost/lead $30 · cost/net lead ~$43 · cost/appt ~$214 · cost/contract
 ## Source files (intranet repo: `/Volumes/External Drive/Projects/8020REI/intranet`)
 
 - `src/lib/config/gnaccCalculator.ts` — stages, CG benchmarks, presets, tiers, formulas
-- `src/lib/config/clientDiagnosticFlow.ts` — 3-pillar diagnostic tree, DM funnel, market signals, 5-step approach
-- Tools (UI): `src/routes/(authenticated)/tools/{gnacc-calculator, client-diagnostic, roi-calculator, roi-client-analysis}`
+- `client-diagnostic-checklist.md` (this repo) — 3-pillar diagnostic tree, DM funnel, market signals, 5-step approach (formerly intranet `clientDiagnosticFlow.ts`, retired 2026-08-06)
+- Tools (UI): `src/routes/(authenticated)/tools/{gnacc-calculator, roi-calculator, roi-client-analysis}`

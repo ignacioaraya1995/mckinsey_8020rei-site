@@ -5,7 +5,7 @@
 ```
 McKinsey-Problem-Solving-Guide.html   →  learn the method (pre-work, self-paced)
 case-library/*.md                     →  practice on fictional clients (live session)
-tools/client-diagnostic + gnacc-calc  →  apply to real clients (post-work)
+client-diagnostic-checklist + gnacc-calc  →  apply to real clients (post-work)
 diagnostic-playbook.md                →  reference: KPI → hypothesis trees (grows over time)
 ```
 
@@ -28,10 +28,10 @@ Lecture time spent explaining MECE is wasted — people nod and forget. The flip
 | 0–10 | Warm-up: critique two problem statements (one vague, one SMART) |
 | 10–55 | A case from the **Interview Casefile** (`interview-cases.html`, password-protected), run interviewer-led. Facilitator interviews; participants work in pairs (one leads, one seconds); rotate at each question |
 | 55–75 | Debrief: map what just happened to the 7 steps; show the scoring rubric; replay the "segment before you theorize" moment |
-| 75–90 | Connect to reality: open `tools/gnacc-calculator`, load the *8020REI Benchmarks* preset, and reproduce the case's baseline funnel and conversion math; use the case's $25k gross-profit assumption for dollar sizing. Then open `tools/client-diagnostic` and show the 3 pillars = the hypothesis tree they just built by hand |
+| 75–90 | Connect to reality: open `tools/gnacc-calculator`, load the *8020REI Benchmarks* preset, and reproduce the case's baseline funnel and conversion math; use the case's $25k gross-profit assumption for dollar sizing. Then open `client-diagnostic-checklist.html` and show the 3 pillars = the hypothesis tree they just built by hand |
 
 ### Post-work — real client (async, CSM's own book)
-- Pick one underperforming client. Run the 5-step diagnostic approach (Segment → Compare → Benchmark → Correlate → Prioritize) using client-diagnostic + roi-client-analysis.
+- Pick one underperforming client. Run the 5-step diagnostic approach (Segment → Compare → Benchmark → Correlate → Prioritize) using the client-diagnostic checklist + roi-client-analysis.
 - Deliverable: **one-page SCR memo** — Situation, Complication, Resolution — recommendation first, ≤ 3 supporting exhibits.
 
 ### Session 2 — memo review (live, 45 min)
@@ -63,12 +63,12 @@ The library spans the diagnostic method through seven standard single-issue case
 
 In the advanced cases, the facilitator releases evidence sequentially, applies a partial fix, and asks **"Are we done?"** The remaining KPI gap determines the next hypothesis; the final synthesis must sequence every required fix.
 
-Source material for new cases: Knowledge Gap sessions (the 367 that informed the diagnostic pillars), real anonymized client inflections, and the red-flag items already codified in `clientDiagnosticFlow.ts` — every `redFlag` in that file is a case seed.
+Source material for new cases: Knowledge Gap sessions (the 367 that informed the diagnostic pillars), real anonymized client inflections, and the red-flag items already codified in `client-diagnostic-checklist.md` — every red flag in that checklist is a case seed.
 
 ## 4. Design principles (why it's built this way)
 
 1. **Real numbers everywhere.** Cases use the CG stage benchmarks (50/25/15/70), the preset's baseline funnel counts, and a confirmed typical-client gross-profit range of $20,000–$30,000 per closed deal (case midpoint: $25,000).
-2. **The tree is pre-built; judgment is what's trained.** The client-diagnostic tool already holds the hypothesis tree. The skill being taught is steps 3–7: prioritizing, testing cheaply (segmentation first, change-log correlation first), and synthesizing SCR-style.
+2. **The tree is pre-built; judgment is what's trained.** The client-diagnostic checklist already holds the hypothesis tree. The skill being taught is steps 3–7: prioritizing, testing cheaply (segmentation first, change-log correlation first), and synthesizing SCR-style.
 3. **Interviewer-led, not candidate-led.** Matches McKinsey's own format and keeps a 45-min time box; the facilitator can rescue a stuck room with the scripted coaching prompts.
 4. **Every diagnosis feeds the playbook.** The memo template's last section is literally "playbook entry proposed." Training and knowledge management are the same loop.
 5. **Channel first, then operator.** Every case segments the broken KPI by SMS, Cold Call, and Direct Mail before recommending a broad fix. Once a channel is isolated, the next cut matches its mechanics: state/carrier/vendor/campaign for SMS; call center/caller/attempt depth/phone position for Cold Call; piece type/printed response number/vendor/drop date for Direct Mail. For Cold Call, segment first and then listen to a few recordings from the abnormal cohort plus a healthy control; check identity verification, script, objections, dispositions, and premature disqualification.
